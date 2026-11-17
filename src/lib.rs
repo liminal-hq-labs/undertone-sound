@@ -7,6 +7,7 @@
 //! The TypeScript in `apps/studio/src/song/` is the reference; `fixtures/song/` holds its output.
 
 pub mod album;
+pub mod compile;
 pub mod describe;
 pub mod file;
 pub mod format;
