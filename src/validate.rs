@@ -82,6 +82,18 @@ pub enum ProblemCode {
     BadSongId,
     DuplicateSong,
     NotValidJson,
+    /// A comments file (`<id>.comments.json`) whose frame is wrong: its format, version, size or
+    /// `seq`.
+    BadCommentsFile,
+    /// A thread in a comments file that does not read.
+    BadThread,
+    /// A comment in a comments file that does not read.
+    BadComment,
+    /// A comment thread's anchor that does not read.
+    BadAnchor,
+    /// A comments file over one of its limits: comments in a thread, threads in a file, or the
+    /// length of a comment.
+    CommentsLimit,
 }
 
 /// One thing wrong, or worth knowing, in a document.
