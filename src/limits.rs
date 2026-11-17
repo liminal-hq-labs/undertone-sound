@@ -98,8 +98,9 @@ pub fn analyse_performance(
             continue;
         }
         let end = (length as f64).min((event.step + event.len).ceil()) as usize;
-        for step in (event.step.floor().max(0.0) as usize)..end {
-            demand[step] = demand[step].saturating_add(1);
+        let first = event.step.floor().max(0.0) as usize;
+        for slot in demand.iter_mut().take(end).skip(first) {
+            *slot = slot.saturating_add(1);
         }
     }
 
