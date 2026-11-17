@@ -9,7 +9,7 @@
 //! the file had them.
 
 use indexmap::IndexMap;
-use serde::{Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
 use ts_rs::TS;
 
@@ -123,13 +123,21 @@ text_enum!(
     ]
 );
 
-/// Reads a whole number that JSON may spell with a fraction part (`4.0`), as JavaScript does.
-fn whole_number<'de, D: Deserializer<'de>>(deserializer: D) -> Result<u32, D::Error> {
-    let number = f64::deserialize(deserializer)?;
-    if number.fract() == 0.0 && (0.0..=f64::from(u32::MAX)).contains(&number) {
-        Ok(number as u32)
-    } else {
-        Err(serde::de::Error::custom("expected a whole number"))
+/// A whole number that JSON may spell with a fraction part (`4.0`), as JavaScript does.
+mod whole_number {
+    use serde::{Deserialize, Deserializer, Serializer};
+
+    pub fn serialize<S: Serializer>(value: &u32, serializer: S) -> Result<S::Ok, S::Error> {
+        serializer.serialize_u32(*value)
+    }
+
+    pub fn deserialize<'de, D: Deserializer<'de>>(deserializer: D) -> Result<u32, D::Error> {
+        let number = f64::deserialize(deserializer)?;
+        if number.fract() == 0.0 && (0.0..=f64::from(u32::MAX)).contains(&number) {
+            Ok(number as u32)
+        } else {
+            Err(serde::de::Error::custom("expected a whole number"))
+        }
     }
 }
 
@@ -149,7 +157,7 @@ pub struct Instrument {
     /// Per-engine voice overrides layered over the preset, keyed by engine.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(
-        type = "Partial<Record<EngineId, Record<string, unknown>>>",
+        type = "Partial<Record<\"undertone\" | \"opl2\" | \"opl3\" | \"pc-speaker\", Record<string, unknown>>>",
         optional
     )]
     pub engines: Option<IndexMap<EngineId, Map<String, Value>>>,
@@ -181,7 +189,8 @@ pub struct Section {
     pub id: String,
     pub name: String,
     /// Length in bars.
-    #[serde(deserialize_with = "whole_number")]
+    #[serde(with = "whole_number")]
+    #[ts(type = "number")]
     pub bars: u32,
 }
 
@@ -263,18 +272,18 @@ pub struct Mix {
 pub struct Song {
     #[ts(type = "\"fizz-audio-studio/song\"")]
     pub format: String,
-    #[serde(deserialize_with = "whole_number")]
+    #[serde(with = "whole_number")]
     #[ts(type = "1")]
     pub version: u32,
     pub title: String,
     /// Tempo in beats per minute.
     pub tempo: f64,
-    #[serde(rename = "beatsPerBar", deserialize_with = "whole_number")]
-    #[ts(rename = "beatsPerBar")]
+    #[serde(rename = "beatsPerBar", with = "whole_number")]
+    #[ts(rename = "beatsPerBar", type = "number")]
     pub beats_per_bar: u32,
     /// Grid steps per beat: 4 gives a sixteenth-note grid in 4/4.
-    #[serde(rename = "stepsPerBeat", deserialize_with = "whole_number")]
-    #[ts(rename = "stepsPerBeat")]
+    #[serde(rename = "stepsPerBeat", with = "whole_number")]
+    #[ts(rename = "stepsPerBeat", type = "number")]
     pub steps_per_beat: u32,
     pub key: Key,
     /// The engine the song is meant for.

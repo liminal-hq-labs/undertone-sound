@@ -102,6 +102,12 @@ pub struct Validation {
     /// The song when there are no errors (warnings allowed), otherwise `null`.
     pub song: Option<Song>,
     pub problems: Vec<Problem>,
+    /// The document as read, with its keys in file order, when there are no errors. A `Song` has
+    /// its keys in the order of its fields, so formatting this value (`format_document`) is what
+    /// keeps a file's own key order; `format_song` writes the canonical order.
+    #[serde(skip)]
+    #[ts(skip)]
+    pub document: Option<Value>,
 }
 
 impl Validation {
@@ -117,7 +123,12 @@ impl Validation {
 pub(crate) struct Problems(pub Vec<Problem>);
 
 impl Problems {
-    pub fn error(&mut self, code: ProblemCode, path: impl Into<String>, message: impl Into<String>) {
+    pub fn error(
+        &mut self,
+        code: ProblemCode,
+        path: impl Into<String>,
+        message: impl Into<String>,
+    ) {
         self.push(Severity::Error, code, path.into(), message.into());
     }
 
@@ -191,6 +202,7 @@ pub fn validate_song(raw: &Value) -> Validation {
         return Validation {
             song: None,
             problems: problems.0,
+            document: None,
         };
     };
 
@@ -304,7 +316,11 @@ pub fn validate_song(raw: &Value) -> Validation {
                 };
                 instrument_ids.insert(id);
                 if member(instrument, "name").and_then(Value::as_str).is_none() {
-                    problems.error(ProblemCode::NeedsName, format!("{path}.name"), "needs a name");
+                    problems.error(
+                        ProblemCode::NeedsName,
+                        format!("{path}.name"),
+                        "needs a name",
+                    );
                 }
                 let preset = member(instrument, "preset").and_then(Value::as_str);
                 if !preset.is_some_and(|p| PresetId::from_word(p).is_some()) {
@@ -378,7 +394,11 @@ pub fn validate_song(raw: &Value) -> Validation {
                 }
                 track_ids.insert(id);
                 if member(track, "name").and_then(Value::as_str).is_none() {
-                    problems.error(ProblemCode::NeedsName, format!("{path}.name"), "needs a name");
+                    problems.error(
+                        ProblemCode::NeedsName,
+                        format!("{path}.name"),
+                        "needs a name",
+                    );
                 }
                 if !member(track, "role")
                     .and_then(Value::as_str)
@@ -453,7 +473,11 @@ pub fn validate_song(raw: &Value) -> Validation {
                     );
                 }
                 if member(section, "name").and_then(Value::as_str).is_none() {
-                    problems.error(ProblemCode::NeedsName, format!("{path}.name"), "needs a name");
+                    problems.error(
+                        ProblemCode::NeedsName,
+                        format!("{path}.name"),
+                        "needs a name",
+                    );
                 }
                 let bars = member(section, "bars").and_then(as_integer);
                 if !bars.is_some_and(|n| (1.0..=64.0).contains(&n)) {
@@ -623,9 +647,11 @@ pub fn validate_song(raw: &Value) -> Validation {
             }
         }
     };
+    let document = song.as_ref().map(|_| Value::Object(raw.clone()));
     Validation {
         song,
         problems: problems.0,
+        document,
     }
 }
 
@@ -639,7 +665,11 @@ fn check_slot(slot: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
         return;
     };
     let Some(takes) = member(slot, "takes").and_then(Value::as_array) else {
-        problems.error(ProblemCode::BadTakes, format!("{path}.takes"), "must be a list");
+        problems.error(
+            ProblemCode::BadTakes,
+            format!("{path}.takes"),
+            "must be a list",
+        );
         return;
     };
     let mut take_ids: HashSet<&str> = HashSet::new();

@@ -60,7 +60,7 @@ fn letter_and_mark(bytes: &[u8]) -> Option<(u8, Option<u8>, &[u8])> {
         return None;
     }
     match rest.split_first() {
-        Some((&mark, tail)) if mark == b'#' || mark.to_ascii_lowercase() == b'b' => {
+        Some((&mark, tail)) if mark == b'#' || mark.eq_ignore_ascii_case(&b'b') => {
             Some((letter, Some(mark), tail))
         }
         _ => Some((letter, None, rest)),
