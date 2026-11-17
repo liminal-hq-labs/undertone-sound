@@ -1,0 +1,16 @@
+[package]
+name = "fizz-audio-mini"
+version = "0.1.0"
+description = "Mini-notation for Fizz Audio Studio: a port of Undertone's parser and pattern combinators with exact fraction time"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+rust-version.workspace = true
+homepage.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+
+[dev-dependencies]
+serde_json = { workspace = true }
