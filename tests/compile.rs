@@ -120,7 +120,9 @@ fn compile_fixtures() {
             }
             "takeNotes" => {
                 let track = song.find_track(case["track"].as_str().unwrap()).unwrap();
-                let section = song.find_section(case["section"].as_str().unwrap()).unwrap();
+                let section = song
+                    .find_section(case["section"].as_str().unwrap())
+                    .unwrap();
                 let slot = &song.clips[&track.id][&section.id];
                 let take = slot
                     .takes

@@ -22,7 +22,11 @@ pub const DEFAULT_VELOCITY: f64 = 0.8;
 /// One note, placed in song time. Steps may be fractional where mini-notation splits a step.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
 #[serde(rename_all = "camelCase")]
-#[ts(export, export_to = "../../../packages/protocol/src/generated/", rename_all = "camelCase")]
+#[ts(
+    export,
+    export_to = "../../../packages/protocol/src/generated/",
+    rename_all = "camelCase"
+)]
 pub struct PerformanceEvent {
     pub step: f64,
     pub len: f64,
@@ -42,7 +46,11 @@ pub struct PerformanceEvent {
 /// Where one arrangement entry sits in the performance.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
 #[serde(rename_all = "camelCase")]
-#[ts(export, export_to = "../../../packages/protocol/src/generated/", rename_all = "camelCase")]
+#[ts(
+    export,
+    export_to = "../../../packages/protocol/src/generated/",
+    rename_all = "camelCase"
+)]
 pub struct PlacedSection {
     /// Index into `Song.arrangement`, or -1 when one section was compiled on its own.
     pub index: i32,
@@ -53,7 +61,11 @@ pub struct PlacedSection {
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
 #[serde(rename_all = "camelCase")]
-#[ts(export, export_to = "../../../packages/protocol/src/generated/", rename_all = "camelCase")]
+#[ts(
+    export,
+    export_to = "../../../packages/protocol/src/generated/",
+    rename_all = "camelCase"
+)]
 pub struct Performance {
     pub steps_per_second: f64,
     pub length_steps: f64,
@@ -142,7 +154,11 @@ pub fn compile_song(song: &Song, options: &CompileOptions) -> Result<Performance
                     track_id: track.id.clone(),
                     instrument_id: track.instrument.clone(),
                     pitch: note.pitch.clone(),
-                    midi: if drums { None } else { parse_pitch(&note.pitch) },
+                    midi: if drums {
+                        None
+                    } else {
+                        parse_pitch(&note.pitch)
+                    },
                     drum: if drums {
                         DrumPiece::from_word(&note.pitch)
                     } else {
