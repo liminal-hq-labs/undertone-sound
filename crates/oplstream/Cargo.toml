@@ -1,0 +1,24 @@
+# Manifest for the `oplstream` crate.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+[package]
+name = "oplstream"
+description = "Reader, writer and stepper for OPX, a timed OPL2, OPL3 and PC speaker register-stream format"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+default = ["std"]
+# The core (header, stepper, validator, text twin) is `no_std`; `alloc` adds the writer
+# and `std` adds the IMF, DRO and VGM importers and the re-timing step.
+alloc = []
+std = ["alloc"]
