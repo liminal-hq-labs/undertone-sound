@@ -84,6 +84,9 @@ text_enum!(
         Organ => "organ",
         Bass => "bass",
         SubBass => "sub-bass",
+        BassSaw => "bass-saw",
+        PadBright => "pad-bright",
+        Drone => "drone",
         Kit => "kit",
     ]
 );
