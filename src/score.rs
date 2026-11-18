@@ -3,21 +3,16 @@
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: MIT
 
-//! The studio's `toScoreEvents` (`apps/studio/src/engines/undertone/engine.ts`), at 12 ticks a
-//! step, and Undertone's `score()` (`score.ts`) with the part of `renderToBuffer` and
+//! Undertone's `score()` (`score.ts`), its events at 12 ticks a step, with the part of `renderToBuffer` and
 //! `collectOnsets` that turns one pass into voices. Pattern time is exact: an event begins at
 //! `tick / lengthTicks` of the cycle, reduced to lowest terms as Undertone's `Fraction` keeps it,
 //! and its start in seconds is that fraction as a double times the cycle's length, the same two
 //! operations the TypeScript performs.
 
-use fizz_audio_song::compile::Performance;
-use fizz_audio_song::model::Song;
-
 use crate::error::Error;
 use crate::math;
 use crate::params::{resolve_params, Params, Patch};
 use crate::pitch::{json_number, midi_to_frequency, Pitch};
-use crate::presets::{drum_layers, instrument_voice};
 
 /// Score ticks a grid step: twelve keeps triplets exact on any grid.
 pub const TICKS_PER_STEP: f64 = 12.0;
@@ -38,52 +33,8 @@ pub struct ScoreEvent {
     pub level: Option<f64>,
     pub pan: Option<f64>,
     pub voice: Patch,
-}
-
-/// `toScoreEvents`: every event of the performance that starts inside it, a drum hit as one event
-/// per layer of its piece, a rest left out.
-pub fn to_score_events(song: &Song, performance: &Performance) -> Result<Vec<ScoreEvent>, Error> {
-    let length_ticks = performance.length_steps * TICKS_PER_STEP;
-    let mut events = Vec::new();
-    let mut voices: Vec<(String, Patch)> = Vec::new();
-    for event in &performance.events {
-        let tick = math::round(event.step * TICKS_PER_STEP);
-        if tick >= length_ticks {
-            continue;
-        }
-        let gate = math::max(1.0, math::round(event.len * TICKS_PER_STEP));
-        if let Some(piece) = event.drum {
-            for layer in drum_layers(song, &event.instrument_id, piece)? {
-                events.push(ScoreEvent {
-                    tick,
-                    pitch: ScorePitch::Note(layer.pitch),
-                    gate,
-                    level: Some(event.velocity),
-                    pan: Some(event.pan),
-                    voice: layer.voice,
-                });
-            }
-            continue;
-        }
-        let Some(midi) = event.midi else { continue };
-        let voice = match voices.iter().find(|(id, _)| *id == event.instrument_id) {
-            Some((_, voice)) => voice.clone(),
-            None => {
-                let voice = instrument_voice(song, &event.instrument_id);
-                voices.push((event.instrument_id.clone(), voice.clone()));
-                voice
-            }
-        };
-        events.push(ScoreEvent {
-            tick,
-            pitch: ScorePitch::Midi(f64::from(midi)),
-            gate,
-            level: Some(event.velocity),
-            pan: Some(event.pan),
-            voice,
-        });
-    }
-    Ok(events)
+    /// The index of the performance event it plays, so a render can tell the tracks apart.
+    pub source: usize,
 }
 
 /// An event of a compiled score: where it begins in the cycle, as a fraction in lowest terms, and
@@ -92,6 +43,8 @@ pub fn to_score_events(song: &Song, performance: &Performance) -> Result<Vec<Sco
 pub struct ScoreOnset {
     pub begin: (i64, i64),
     pub value: Patch,
+    /// The performance event it plays.
+    pub source: usize,
 }
 
 /// A compiled score (`score()`): one cycle is one pass.
@@ -178,6 +131,7 @@ pub fn score(
         onsets.push(ScoreOnset {
             begin: fraction(event.tick as i64, length_ticks as i64),
             value,
+            source: event.source,
         });
     }
     // Every begin shares the denominator `lengthTicks` before reduction, so comparing the reduced
@@ -193,20 +147,13 @@ pub fn score(
     })
 }
 
-/// `toScore`: the score for one pass of a performance, at its own tick rate.
-pub fn to_score(song: &Song, performance: &Performance) -> Result<Score, Error> {
-    score(
-        performance.steps_per_second * TICKS_PER_STEP,
-        math::max(1.0, performance.length_steps * TICKS_PER_STEP),
-        &to_score_events(song, performance)?,
-    )
-}
-
 /// A voice of the pass: when it starts and its full parameters.
 #[derive(Debug, Clone, PartialEq)]
 pub struct PendingVoice {
     pub start_time: f64,
     pub params: Params,
+    /// The performance event it plays.
+    pub source: usize,
 }
 
 /// The voices of the score's first cycle, as `renderToBuffer` collects them (`collectOnsets`,
@@ -221,6 +168,7 @@ pub fn collect_onsets(score: &Score) -> Vec<PendingVoice> {
             PendingVoice {
                 start_time: 0.0 + begin * cycle_seconds,
                 params: resolve_params(&onset.value),
+                source: onset.source,
             }
         })
         .collect()
@@ -238,6 +186,7 @@ mod tests {
             level: Some(0.5),
             pan: Some(0.0),
             voice: Patch::new(),
+            source: 0,
         }
     }
 

@@ -15,8 +15,9 @@ use fizz_audio_song::compile::{compile_song, CompileOptions, Performance};
 use fizz_audio_song::model::Song;
 use fizz_audio_undertone::json::Json;
 use fizz_audio_undertone::log::{num, round};
-use fizz_audio_undertone::render::{render_graph, RenderRequest};
-use fizz_audio_undertone::score::{to_score, to_score_events, ScoreEvent, ScorePitch};
+use fizz_audio_undertone::render::RenderRequest;
+use fizz_audio_undertone::score::{ScoreEvent, ScorePitch};
+use fizz_audio_undertone::studio::{render_graph, to_score, to_score_events};
 use serde_json::Value;
 
 fn fixtures() -> PathBuf {

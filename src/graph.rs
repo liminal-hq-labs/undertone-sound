@@ -35,6 +35,9 @@ pub enum Param {
     Frequency,
     /// A biquad's `Q` (Undertone leaves it at 1).
     Q,
+    /// An oscillator's, a biquad's or a buffer source's `detune`, in cents (Undertone leaves it
+    /// at 0).
+    Detune,
     /// A stereo panner's `pan`.
     Pan,
     /// A delay's `delayTime`.
@@ -56,6 +59,7 @@ impl Param {
             Param::Gain => "gain",
             Param::Frequency => "frequency",
             Param::Q => "Q",
+            Param::Detune => "detune",
             Param::Pan => "pan",
             Param::DelayTime => "delayTime",
             Param::PlaybackRate => "playbackRate",
@@ -227,4 +231,7 @@ pub trait Graph {
         imag: Vec<f32>,
         disable_normalization: bool,
     ) -> WaveId;
+    /// Says that the nodes made from now on play the performance event `source`. Not a Web Audio
+    /// call: a renderer may use it to render some tracks alone; a recording ignores it.
+    fn voice(&mut self, _source: usize) {}
 }

@@ -3,22 +3,24 @@
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: MIT
 
-//! The entry point: `render_graph` (and `book`, for any `Graph`) does what the studio's export does
-//! with `toScore(song, performance).render({ tail, channels })`, up to the moment the context would
-//! render: it sizes the context, seeds it, makes the master bus, collects the pass's voices, sorts
-//! them by start time and books each with `play_voice`. Rendering the booked graph to samples is the
-//! next step (`docs/research/UNDERTONE-HEADLESS.md`, task 4.5); a renderer implements `Graph` and
-//! is made by the `make` function `book` takes.
+//! The core entry points, on a `Score` (no studio types): `book_score` books one pass on any
+//! `Graph` as Undertone's `renderToBuffer` does (it sizes the context, seeds it, makes the master
+//! bus, collects the pass's voices, sorts them by start time and books each with `play_voice`);
+//! `render_score` books it on the in-house `RenderGraph` and renders it as the studio's export
+//! does (one pass, the tail after it, stereo at 48 kHz, through the master bus, no wrap unless
+//! asked); `render_score_parts` measures groups of voices alone and inside the mix from one
+//! booking. `crate::studio` turns a song and its performance into the score.
 
-use fizz_audio_song::compile::Performance;
-use fizz_audio_song::model::Song;
+use std::sync::Arc;
 
+use crate::dsp::compressor::{Compressor, Settings};
+use crate::dsp::QUANTUM;
 use crate::error::Error;
 use crate::graph::Graph;
-use crate::log::LogGraph;
-use crate::master::{master_bus, LIMITER};
+use crate::master::{makeup_compensation, master_bus, Limiter, LIMITER};
 use crate::math;
-use crate::score::{collect_onsets, to_score, Score};
+use crate::render_graph::{Engine, Limits, RenderGraph};
+use crate::score::{collect_onsets, Score};
 use crate::voice::{play_voice, Booking, Output};
 
 /// Undertone's offline sample rate.
@@ -36,6 +38,9 @@ pub struct RenderRequest {
     pub seed: f64,
     /// Play through the master bus and its limiter.
     pub master: bool,
+    /// Fold the tail onto the start of a pass-length render, so a looped file has no gap at the
+    /// seam (`renderToBuffer`'s `wrap`). The export leaves it off.
+    pub wrap: bool,
 }
 
 impl RenderRequest {
@@ -46,6 +51,7 @@ impl RenderRequest {
         sample_rate: DEFAULT_SAMPLE_RATE,
         seed: 0.0,
         master: true,
+        wrap: false,
     };
 }
 
@@ -135,6 +141,7 @@ pub fn book_score<G: Graph>(
             .unwrap_or(std::cmp::Ordering::Equal)
     });
     for voice in &voices {
+        graph.voice(voice.source);
         play_voice(
             &mut graph,
             &mut booking,
@@ -146,76 +153,328 @@ pub fn book_score<G: Graph>(
     Ok(graph)
 }
 
-/// Books one pass of a performance on the graph `make` returns.
-pub fn book<G: Graph>(
-    song: &Song,
-    performance: &Performance,
-    request: &RenderRequest,
-    make: impl FnOnce(ContextInit) -> G,
-) -> Result<G, Error> {
-    book_score(&to_score(song, performance)?, request, make)
+/// Frames in one pass at the request's rate, as `renderToBuffer` rounds them.
+fn pass_frames(score: &Score, request: &RenderRequest) -> usize {
+    math::max(1.0, math::round(request.sample_rate / score.cps)) as usize
 }
 
-/// One pass of a performance as the graph Undertone would render, recorded.
-pub fn render_graph(
-    song: &Song,
-    performance: &Performance,
+/// Sound rendered by the in-house renderer: planar `f32`, one `Vec` a channel.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Rendered {
+    pub sample_rate: f64,
+    pub channels: Vec<Vec<f32>>,
+}
+
+impl Rendered {
+    /// Frames in each channel.
+    pub fn frames(&self) -> usize {
+        self.channels.first().map_or(0, Vec::len)
+    }
+
+    /// The channels interleaved, frame by frame.
+    pub fn interleaved(&self) -> Vec<f32> {
+        let frames = self.frames();
+        let mut out = Vec::with_capacity(frames * self.channels.len());
+        for n in 0..frames {
+            for channel in &self.channels {
+                out.push(channel[n]);
+            }
+        }
+        out
+    }
+
+    /// The largest absolute sample, linear.
+    pub fn peak(&self) -> f64 {
+        self.channels
+            .iter()
+            .flatten()
+            .fold(0f64, |m, s| m.max(f64::from(*s).abs()))
+    }
+
+    /// The RMS over every channel and frame, linear.
+    pub fn rms(&self) -> f64 {
+        let count = self.channels.iter().map(Vec::len).sum::<usize>();
+        if count == 0 {
+            return 0.0;
+        }
+        let sum: f64 = self
+            .channels
+            .iter()
+            .flatten()
+            .map(|s| f64::from(*s).powi(2))
+            .sum();
+        (sum / count as f64).sqrt()
+    }
+}
+
+/// `foldTail`: the frames after the pass added onto its start, pass-length.
+fn fold_tail(channels: Vec<Vec<f32>>, pass: usize) -> Vec<Vec<f32>> {
+    channels
+        .into_iter()
+        .map(|source| {
+            let mut target = source[..pass.min(source.len())].to_vec();
+            target.resize(pass, 0.0);
+            for (i, sample) in source.iter().enumerate().skip(pass) {
+                target[(i - pass) % pass] += sample;
+            }
+            target
+        })
+        .collect()
+}
+
+/// Books one pass of a score on the in-house renderer: the graph and the pass's frames.
+pub fn book_score_render(
+    score: &Score,
     request: &RenderRequest,
-) -> Result<LogGraph, Error> {
-    book(song, performance, request, |init| {
-        LogGraph::new(init.channels, init.length, init.sample_rate)
+) -> Result<(RenderGraph, usize), Error> {
+    let pass = pass_frames(score, request);
+    let graph = book_score(score, request, |init| {
+        RenderGraph::new(init.channels, init.length, init.sample_rate)
+    })?;
+    Ok((graph, pass))
+}
+
+/// One pass of a score rendered to samples as the studio's export renders it: the pass and
+/// `request.tail` after it, `request.channels` at `request.sample_rate`, through the master bus
+/// when `request.master`, folded onto the pass when `request.wrap`.
+pub fn render_score(score: &Score, request: &RenderRequest) -> Result<Rendered, Error> {
+    let (graph, pass) = book_score_render(score, request)?;
+    let mut channels = graph.engine()?.render_all();
+    if request.wrap && request.tail > 0.0 {
+        channels = fold_tail(channels, pass);
+    }
+    Ok(Rendered {
+        sample_rate: request.sample_rate,
+        channels,
+    })
+}
+
+/// The master bus applied to a mix rendered without it, frame for frame as the bus in the graph
+/// computes it (a gain of 1, the limiter, the make-up compensation, then the output's channels).
+/// Returns the output and, per frame, the gain the limiter applied to its pre-delayed input.
+fn master_offline(
+    mix: &[Vec<f32>],
+    sample_rate: f64,
+    limiter: Limiter,
+    out_channels: usize,
+) -> (Vec<Vec<f32>>, Vec<f32>, usize) {
+    let frames = mix.first().map_or(0, Vec::len);
+    let padded = frames.div_ceil(QUANTUM) * QUANTUM;
+    let mut left = vec![0f32; padded];
+    let mut right = vec![0f32; padded];
+    left[..frames].copy_from_slice(&mix[0][..frames]);
+    right[..frames].copy_from_slice(&mix[mix.len().min(2) - 1][..frames]);
+    let mut gains = vec![0f32; padded];
+    let mut compressor = Compressor::new(sample_rate);
+    let settings = Settings {
+        threshold: limiter.threshold as f32,
+        knee: limiter.knee as f32,
+        ratio: limiter.ratio as f32,
+        attack: limiter.attack as f32,
+        release: limiter.release as f32,
+    };
+    for start in (0..padded).step_by(QUANTUM) {
+        let range = start..start + QUANTUM;
+        compressor.process(
+            settings,
+            [&mut left[range.clone()], &mut right[range.clone()]],
+            Some(&mut gains[range]),
+        );
+    }
+    let compensation = if limiter.compensate {
+        makeup_compensation(limiter.threshold, limiter.ratio) as f32
+    } else {
+        1.0
+    };
+    if limiter.compensate {
+        for (l, r) in left.iter_mut().zip(right.iter_mut()) {
+            *l *= compensation;
+            *r *= compensation;
+        }
+    }
+    for gain in &mut gains {
+        *gain *= compensation;
+    }
+    left.truncate(frames);
+    right.truncate(frames);
+    gains.truncate(frames);
+    let out = if out_channels == 1 {
+        vec![left
+            .iter()
+            .zip(&right)
+            .map(|(l, r)| 0.5 * (l + r))
+            .collect()]
+    } else {
+        vec![left, right]
+    };
+    (out, gains, compressor.latency())
+}
+
+/// One group of voices measured from a render: alone, and its share of the mix.
+#[derive(Debug, Clone, PartialEq)]
+pub struct PartRender {
+    /// Its voices alone through the master bus.
+    pub solo: Rendered,
+    /// Its own sound inside the mix: its voices with the limiter's gain the whole mix set.
+    pub in_mix: Rendered,
+}
+
+/// The mix and some groups of its voices, from one booking.
+#[derive(Debug, Clone, PartialEq)]
+pub struct PartRenders {
+    pub mix: Rendered,
+    pub parts: Vec<PartRender>,
+}
+
+/// Renders the mix and, for each of `parts` groups of voices, the group alone and its share of
+/// the mix, from one booking of the whole pass. `part_of` says which group the score event at a
+/// voice's `source` belongs to, if any.
+///
+/// Everything before the master bus is linear in the voices (FM, filters and envelopes are inside
+/// a voice; the reverb and the echo are linear, and booked once), so with the booking kept, the
+/// mix before the limiter is the sum of each group's voices rendered with the others left out.
+/// The limiter is the only part that mixes them: its gain at each frame follows the whole mix. So
+/// `solo` is the group's voices through a limiter of their own, and `in_mix` is the same voices
+/// times the gain the mix's limiter applied, which is the group's part of what the mix plays.
+/// That costs one render of the mix and one render per group of only that group's voices (the
+/// shared reverb and echo run in each), instead of rendering the mix again without each group and
+/// subtracting. Room sizes, noise seeds and cut groups are the mix's in every render, so a group
+/// alone keeps the room its orbit has in the mix.
+pub fn render_score_parts(
+    score: &Score,
+    request: &RenderRequest,
+    part_of: &dyn Fn(usize) -> Option<usize>,
+    parts: usize,
+) -> Result<PartRenders, Error> {
+    let dry = RenderRequest {
+        master: false,
+        channels: 2,
+        ..*request
+    };
+    let (graph, pass) = book_score_render(score, &dry)?;
+    let graph = Arc::new(graph);
+    let out_channels = request.channels as usize;
+    let finish = |channels: Vec<Vec<f32>>, mixed: bool| {
+        let channels = if !mixed && out_channels == 1 && channels.len() == 2 {
+            vec![channels[0]
+                .iter()
+                .zip(&channels[1])
+                .map(|(l, r)| 0.5 * (l + r))
+                .collect()]
+        } else {
+            channels
+        };
+        Rendered {
+            sample_rate: request.sample_rate,
+            channels: if request.wrap && request.tail > 0.0 {
+                fold_tail(channels, pass)
+            } else {
+                channels
+            },
+        }
+    };
+    let whole = Engine::new(graph.clone())?.render_all();
+    let limiter = request.master.then_some(LIMITER);
+    let (mix, gains, latency) = match limiter {
+        Some(limiter) => master_offline(&whole, request.sample_rate, limiter, out_channels),
+        None => (whole, Vec::new(), 0),
+    };
+    let mut out = Vec::with_capacity(parts);
+    for part in 0..parts {
+        let alone = Engine::with(
+            graph.clone(),
+            |tag| tag.and_then(part_of) == Some(part),
+            Limits::DEFAULT,
+        )?
+        .render_all();
+        let (solo, in_mix) = match limiter {
+            Some(limiter) => {
+                let (solo, _, _) = master_offline(&alone, request.sample_rate, limiter, 2);
+                let share = alone
+                    .iter()
+                    .map(|channel| {
+                        (0..channel.len())
+                            .map(|n| {
+                                if n < latency {
+                                    0.0
+                                } else {
+                                    channel[n - latency] * gains[n]
+                                }
+                            })
+                            .collect()
+                    })
+                    .collect();
+                (solo, share)
+            }
+            None => (alone.clone(), alone),
+        };
+        out.push(PartRender {
+            solo: finish(solo, false),
+            in_mix: finish(in_mix, false),
+        });
+    }
+    Ok(PartRenders {
+        mix: finish(mix, limiter.is_some()),
+        parts: out,
     })
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use fizz_audio_song::compile::{compile_song, CompileOptions};
+    use crate::params::Patch;
+    use crate::score::{score, ScoreEvent, ScorePitch};
 
-    fn voices() -> (Song, Performance) {
-        let text = include_str!("../../../fixtures/undertone/inputs/undertone-voices.song.json");
-        let song: Song = serde_json::from_str(text).unwrap();
-        let performance = compile_song(&song, &CompileOptions::default()).unwrap();
-        (song, performance)
+    fn note(tick: f64, source: usize) -> ScoreEvent {
+        ScoreEvent {
+            tick,
+            pitch: ScorePitch::Midi(69.0),
+            gate: 6.0,
+            level: Some(0.8),
+            pan: Some(0.0),
+            voice: Patch::new(),
+            source,
+        }
     }
 
     #[test]
-    fn a_pass_and_its_tail_size_the_context() {
-        let (song, performance) = voices();
-        let graph = render_graph(&song, &performance, &RenderRequest::EXPORT).unwrap();
-        // One bar at 120 bpm is 2 s, and the tail another 2 s, at 48 kHz.
-        assert_eq!(graph.length(), 192_000);
-        assert_eq!(graph.channels(), 2);
-        assert_eq!(graph.node_count(), 112);
-    }
-
-    #[test]
-    fn without_the_master_bus_voices_play_straight_out() {
-        let (song, performance) = voices();
-        let request = RenderRequest {
-            master: false,
-            ..RenderRequest::EXPORT
-        };
-        let graph = render_graph(&song, &performance, &request).unwrap();
-        assert_eq!(graph.node_count(), 112 - 3);
+    fn a_score_renders_its_pass_and_tail_and_its_parts_add_up() {
+        let score = score(24.0, 48.0, &[note(0.0, 0), note(12.0, 1), note(24.0, 0)]).unwrap();
+        let rendered = render_score(&score, &RenderRequest::EXPORT).unwrap();
+        // Two seconds of pass and two of tail.
+        assert_eq!(rendered.frames(), 192_000);
+        assert!(rendered.peak() > 0.1);
+        let parts = render_score_parts(&score, &RenderRequest::EXPORT, &|s| Some(s), 2).unwrap();
+        assert_eq!(parts.mix, rendered, "the offline bus is the graph's bus");
+        for n in (0..rendered.frames()).step_by(101) {
+            let sum = parts.parts[0].in_mix.channels[0][n] + parts.parts[1].in_mix.channels[0][n];
+            assert!((sum - rendered.channels[0][n]).abs() < 1e-5);
+        }
+        let wrapped = render_score(
+            &score,
+            &RenderRequest {
+                wrap: true,
+                ..RenderRequest::EXPORT
+            },
+        )
+        .unwrap();
+        assert_eq!(wrapped.frames(), 96_000);
     }
 
     #[test]
     fn surround_and_bad_rates_are_refused() {
-        let (song, performance) = voices();
+        let score = score(24.0, 48.0, &[note(0.0, 0)]).unwrap();
         let surround = RenderRequest {
             channels: 6,
             ..RenderRequest::EXPORT
         };
-        assert!(render_graph(&song, &performance, &surround).is_err());
+        assert!(render_score(&score, &surround).is_err());
         let silent = RenderRequest {
             sample_rate: 0.0,
             ..RenderRequest::EXPORT
         };
         assert_eq!(
-            render_graph(&song, &performance, &silent)
-                .unwrap_err()
-                .message,
+            render_score(&score, &silent).unwrap_err().message,
             "sampleRate must be positive, got 0"
         );
     }

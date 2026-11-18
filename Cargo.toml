@@ -1,7 +1,7 @@
 [package]
 name = "fizz-audio-undertone"
 version = "0.1.0"
-description = "Undertone's voice graph in Rust: a song's performance booked as the Web Audio nodes, connections and automation the TypeScript engine makes, behind a small Graph trait"
+description = "Undertone in Rust: a song's performance booked as the Web Audio graph the TypeScript engine makes, behind a small Graph trait, and an in-house renderer that plays it offline or as a stream"
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
