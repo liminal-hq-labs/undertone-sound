@@ -23,7 +23,7 @@ Open:
 - [ ] Native output without Web Audio, and streaming through an AudioWorklet in the browser
 - [ ] The JavaScript API through WebAssembly, with generated TypeScript typings
 - [ ] A parity canary against the TypeScript library in CI, with City Sim 1000's API frozen and checked
-- [ ] Where the Undertone repository itself goes: Rust first, or the TypeScript library on a Rust core
+- [ ] Where the Undertone repository itself goes: Rust first, or the TypeScript library on a Rust core. Not decided. Until then the engine crates incubate here and stay promotable with their history (D42), and the engine's own bindings become a crate separate from `undertone-wasm`
 
 ## Track 2: synth backends, OPX and DOS (supporting)
 
