@@ -13,11 +13,13 @@
 //! - [`speaker`]: the PC speaker's frame frequencies and its square-wave render.
 //! - [`params`]: voice parameters and values for the instrument editor.
 //! - [`limits`]: lost notes ([`limits::analyse_limits`]).
+//! - [`imf`]: a song to an IMF chunk for the DOS game, and a chunk read back.
 //! - [`engine`]: the three engines behind one interface, with placement, the preview and
 //!   rendering a pass or a section.
 
 pub mod chip;
 pub mod engine;
+pub mod imf;
 pub mod limits;
 pub mod numbers;
 pub mod params;
