@@ -12,7 +12,7 @@ Shared Rust sound core for Undertone.
 
 Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-hq/undertone) family: one sound grammar for songs and effects, with a renderer per target, from OPL2 and OPL3 chips to the browser. It starts with `oplstream`, the reference implementation of OPX, a small, exact, loopable stream of timed OPL register writes.
 
-> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-opl` sequences songs onto the chips, and `undertone-sound` holds the song document, its validation and its compiler. `undertone-wasm` binds them for the browser, and the site has a live demo that imports Title Theme and plays it through an OPL emulator. The [roadmap](docs/ROADMAP.md) lists what comes next.
+> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-sound` and `undertone-opl` hold the song model and OPL sequencing, and Title Theme is turned into OPX for the OPL2 and OPL3 and checked against the DOS game's own chunk. `undertone-wasm` binds them for the browser, and the site has a live demo that imports Title Theme and plays it through an OPL emulator. The [roadmap](docs/ROADMAP.md) has two tracks: the Undertone engine in Rust leads, and the chip and DOS backends support it.
 
 ## What it's for
 
@@ -25,12 +25,14 @@ Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-h
 
 | Crate | What it holds | State |
 |---|---|---|
-| `oplstream` | OPX reader, writer, stepper, validator, text twin and IMF, DRO and VGM import. The core is `no_std` | Working |
+| **Track 1: the Undertone engine** | | |
 | `undertone-mini` | Undertone's mini-notation and exact fractions | Working |
 | `undertone-dsp` | Undertone's voices, Web Audio graph and in-house renderer | Working |
-| `undertone-opl` | OPL sequencing and channel allocation | Planned, empty |
-| `undertone-sound` | The song document, its validation and formatting, and the compiler to engine-neutral events | Working |
 | `undertone-wasm` | WebAssembly bindings and the demo's engine | Working |
+| **Track 2: synth backends, OPX and DOS** | | |
+| `oplstream` | OPX reader, writer, stepper, validator, text twin and IMF, DRO and VGM import. The core is `no_std` | Working |
+| `undertone-sound` | The song model, validation and compiler | Working |
+| `undertone-opl` | OPL sequencing and channel allocation | Working |
 
 ## Install and run
 

@@ -1,15 +1,22 @@
 # Guide
 
-Undertone Sound is a workspace of Rust crates.
+Undertone Sound is a workspace of Rust crates on two tracks. The first, the Undertone engine in Rust, leads. The second, synth backends and DOS, extends the engine to sound chips.
+
+## Track 1: the Undertone engine
+
+| Crate | What it does |
+|---|---|
+| [`undertone-mini`](/guide/undertone-mini) | Parses Undertone's mini-notation into patterns over exact fractions |
+| [`undertone-dsp`](/guide/undertone-dsp) | Renders Undertone's voices and Web Audio graph to samples |
+| `undertone-wasm` | Binds the crates for JavaScript; it runs the [demo](/demo) |
+
+## Track 2: synth backends, OPX and DOS
 
 | Crate | What it does |
 |---|---|
 | [`oplstream`](/guide/oplstream) | Reads, writes, steps, validates and converts OPX streams of OPL register writes |
-| [`undertone-mini`](/guide/undertone-mini) | Parses Undertone's mini-notation into patterns over exact fractions |
-| [`undertone-dsp`](/guide/undertone-dsp) | Renders Undertone's voices and Web Audio graph to samples |
-| `undertone-opl` | Planned: OPL sequencing and channel allocation |
 | [`undertone-sound`](/guide/undertone-sound) | The song document, its validation and formatting, and the compiler to engine-neutral events |
-| `undertone-wasm` | Binds the crates for JavaScript; it runs the [demo](/demo) |
+| `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation, with the host's profile |
 
 ## Using the crates
 
