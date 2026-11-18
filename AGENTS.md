@@ -18,7 +18,7 @@
 
 ## Project status
 
-{{PROJECT_TITLE}} is a [Liminal HQ Labs](https://github.com/liminal-hq-labs) experiment: {{PROJECT_DESCRIPTION}}. It is **experimental**, so interfaces, file formats and behaviour may change between any two commits. `SPEC.md` is the source of truth for behaviour, and `docs/decisions.md` records why. The [Labs charter](https://github.com/liminal-hq-labs/.github/blob/main/docs/labs-charter.md) covers what that status means and how a project graduates.
+Undertone Sound is a [Liminal HQ Labs](https://github.com/liminal-hq-labs) experiment: Shared Rust sound core for Undertone. It is **experimental**, so interfaces, file formats and behaviour may change between any two commits. `SPEC.md` is the source of truth for behaviour, and `docs/decisions.md` records why. The [Labs charter](https://github.com/liminal-hq-labs/.github/blob/main/docs/labs-charter.md) covers what that status means and how a project graduates.
 
 ## Spelling and writing
 
@@ -72,7 +72,7 @@
 - **Shared CI images** come from [`liminal-hq/.github`](https://github.com/liminal-hq/.github) (`ci-rust`, `ci-web`, `tauri-ci-desktop` and others). Pick the leanest tier that fits and pin it by digest. A project image belongs here only when no shared tier covers it.
 - **Dependabot** is off. Add `.github/dependabot.yml` only when the project opts in (see `docs/new-project.md`).
 
-<!-- Add the project's toolchain pin, build container and single local gate (for example `make validate`) here. -->
+- **Toolchain** is pinned in `rust-toolchain.toml`. The local gate is `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings` and `cargo test --workspace --locked`.
 
 ## Licence headers
 
@@ -89,12 +89,18 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 
 ## Architecture rules
 
-<!-- The few rules that keep the design honest, for example "core first: the library has no UI dependency" or "all I/O is async". Delete this comment when the first rule lands. -->
-
+- **Fizz-agnostic.** Fizz concepts (rooms, role pans, the level rule, captions, cue sheets, mix profiles) stay out of every crate. Reserved channels and similar host choices are passed in.
+- **No "enhanced".** No format, field, crate or type name uses that word; use a neutral term.
+- **`oplstream` core is `no_std`** and allocation-free. Writers need `alloc` and importers need `std`.
+- **No `unsafe`.** The workspace forbids it.
+- **Frozen names.** Undertone's `VoiceParams` field names and builder method names do not change.
+- **Nothing is published** without the maintainer's say: every crate keeps `publish = false`.
+- **No barrel files.** A `lib.rs` declares modules and re-exports only the public API.
 - **SPEC first.** A change to behaviour, interfaces, settings or defaults updates `SPEC.md` in the same change.
 
 ## Testing
 
+- `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, `cargo test --workspace --locked` — Rust
 - `bash scripts/check-headers.sh` — SPDX headers
 - `bash scripts/check-banner.sh` — hero banner rules and text fit (needs `xmllint`, `rsvg-convert`, `python3` and Chromium; `--shots DIR` writes frames to look at)
 - `docker run --rm -v "$PWD:/workdir" davidanson/markdownlint-cli2:v0.17.2 "**/*.md"` — markdown
@@ -114,8 +120,9 @@ State exactly what was and was not run when reporting results.
 ```text
 README.md SPEC.md AGENTS.md CLAUDE.md LICENSE-APACHE LICENSE-MIT
 .editorconfig .markdownlint.jsonc .gitignore rustfmt.toml
+Cargo.toml crates/  workspace and crates (oplstream, undertone-dsp, undertone-opl, undertone-sound)
 assets/        hero banner
-docs/          decisions and project notes
+docs/          decisions, roadmap and the OPX specification
 scripts/       header check, banner check and its Chromium text-fit harness
 .github/       CI workflow, issue and pull request templates, release notes configuration
 ```

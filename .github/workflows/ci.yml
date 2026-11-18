@@ -1,6 +1,4 @@
 # One job per check, so a pull request's checks list names exactly what passed or failed.
-# Language-neutral checks run as they are; uncomment the Rust block below (or add the
-# equivalent for the project's language) once there is code to check.
 #
 # (c) Copyright 2026 Liminal HQ, Scott Morris
 # SPDX-License-Identifier: Apache-2.0 OR MIT
@@ -77,60 +75,59 @@ jobs:
           BANNER_REQUIRE_RENDER: '1'
         run: bash scripts/check-banner.sh
 
-  # Rust: one job per check in the shared ci-rust image. Take the current digest from
-  # https://github.com/liminal-hq/.github/blob/main/docs/reference/recommended-image-pins.md
-  #
-  # fmt:
-  #   name: Format
-  #   runs-on: ubuntu-24.04
-  #   timeout-minutes: 15
-  #   container:
-  #     image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v6
-  #       with:
-  #         persist-credentials: false
-  #
-  #     - name: Check formatting
-  #       run: cargo fmt --all -- --check
-  #
-  # clippy:
-  #   name: Clippy
-  #   runs-on: ubuntu-24.04
-  #   timeout-minutes: 30
-  #   container:
-  #     image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v6
-  #       with:
-  #         persist-credentials: false
-  #
-  #     - name: Cache Rust build output
-  #       uses: Swatinem/rust-cache@v2
-  #       with:
-  #         shared-key: {{PROJECT_NAME}}
-  #
-  #     - name: Run clippy
-  #       run: cargo clippy --workspace --all-targets --locked -- -D warnings
-  #
-  # test:
-  #   name: Tests
-  #   runs-on: ubuntu-24.04
-  #   timeout-minutes: 30
-  #   container:
-  #     image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v6
-  #       with:
-  #         persist-credentials: false
-  #
-  #     - name: Cache Rust build output
-  #       uses: Swatinem/rust-cache@v2
-  #       with:
-  #         shared-key: {{PROJECT_NAME}}
-  #
-  #     - name: Run the tests
-  #       run: cargo nextest run --workspace --locked
+  # Rust: one job per check in the shared ci-rust image (digest from
+  # https://github.com/liminal-hq/.github/blob/main/docs/reference/recommended-image-pins.md).
+  fmt:
+    name: Format
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Run clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+
+  test:
+    name: Tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Run the tests
+        run: cargo nextest run --workspace --locked

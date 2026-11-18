@@ -1,49 +1,48 @@
-# {{PROJECT_TITLE}} specification
-
-<!-- The source of truth for behaviour. A change that alters behaviour updates this file in the same change. Delete the guidance comments as sections fill in. -->
+# Undertone Sound specification
 
 ## Purpose
 
-{{PROJECT_DESCRIPTION}}.
-
-<!-- One paragraph: the problem, who has it and what this does about it. -->
+Shared Rust sound core for Undertone.
 
 ## Users and scenarios
 
-<!-- Who uses it and the concrete situations they are in. One bullet each. -->
-
-- …
+- A game or tool that plays OPL2, OPL3 or PC speaker music and effects from a timer interrupt, reading OPX with `oplstream`.
+- A composer's tool that lowers songs to register writes and needs one exact, steppable, loopable stream.
+- A browser or native app that renders the same song through a software renderer, from the same grammar.
+- A converter between IMF, DRO, VGM and OPX.
 
 ## Non-goals
 
-<!-- What this deliberately does not do, so scope stays honest. -->
-
-- …
+- Fizz-specific concepts. They belong to a separate layer.
+- Capturing chip output. OPX is not a capture format and logs no other chips.
+- Describing instruments or notes in OPX: it holds the register writes a tool has already lowered.
 
 ## Components
 
-<!-- The parts (library, app, command line, service) and how they relate. -->
+| Crate | Role | State |
+|---|---|---|
+| `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Header only |
+| `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation | Empty shell |
+| `undertone-dsp` | Voices and node graph, native and WebAssembly | Empty shell |
+| `undertone-sound` | Song model and compiler | Empty shell |
 
 ## Behaviour
 
-<!-- What happens, step by step, for each scenario. Include error cases. -->
+OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for the format.
 
 ## Interfaces
 
-<!-- Command-line flags, APIs, file formats, protocols. Exact names and types. -->
+- The OPX file format, version 0.1, a draft: [docs/OPX.md](docs/OPX.md).
+- `oplstream::Header`: parse and write of the 32-byte header.
 
 ## Settings and defaults
 
-<!-- Every setting, its default and its range. -->
-
-| Setting | Default | Meaning |
-|---|---|---|
-| … | … | … |
+None yet.
 
 ## Security and privacy
 
-<!-- What data it touches, where it goes, what it never does. -->
+Readers treat input as untrusted: every length and offset is checked against the buffer, and no `unsafe` code is allowed in the workspace. Nothing touches the network or the file system except the importers and tools, which read the paths they are given.
 
 ## Limits
 
-<!-- Sizes, counts, timeouts and what happens at each limit. -->
+The header declares the stream length, the grid and the tick count; readers refuse a header that disagrees with the bytes. Limits for the stepper and importers are listed in [docs/OPX.md](docs/OPX.md) as they land.
