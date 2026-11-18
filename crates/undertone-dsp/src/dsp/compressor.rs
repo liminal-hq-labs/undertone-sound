@@ -1,10 +1,10 @@
-// The DynamicsCompressorNode as the specification describes it and Chromium's kernel computes it
+// The DynamicsCompressorNode: the specification's algorithm, matching Chromium's behaviour
 //
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-//! The algorithm of the specification's DynamicsCompressorNode section, which Chromium's
-//! `DynamicsCompressorKernel` (and Firefox, which shares it) implements, in `f32` as they do:
+//! Implements the algorithm of the specification's DynamicsCompressorNode section, in `f32`, and
+//! matches the behaviour of Chromium's `DynamicsCompressorKernel` (which Firefox shares):
 //!
 //! - a 6 ms pre-delay (`floor(0.006 · sampleRate)` frames): the gain is worked out from the
 //!   undelayed input and applied to the delayed one;
@@ -192,7 +192,7 @@ impl Compressor {
 	/// Compresses two channels in place (a mono input arrives copied to both). `frames` is a
 	/// multiple of 32. `gains`, when given, receives the gain each output frame was multiplied by
 	/// (the make-up included); output frame `n` is input frame `n − latency()` times it.
-	// The release curve's coefficients are written to the digits Chromium writes them.
+	// The release curve's coefficients are kept to the digits that reproduce Chromium's behaviour.
 	#[allow(clippy::excessive_precision)]
 	pub fn process(
 		&mut self,

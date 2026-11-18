@@ -1,4 +1,4 @@
-// Band-limited wavetables for the oscillator, built and read as Chromium's PeriodicWave does
+// Band-limited wavetables for the oscillator, built and read to match Chromium's PeriodicWave behaviour
 //
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: Apache-2.0 OR MIT
