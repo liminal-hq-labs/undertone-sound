@@ -1,0 +1,554 @@
+[
+	{
+		"error": { "message": "Empty mini-notation pattern: \"\"", "position": null },
+		"from": "empty",
+		"group": "errors",
+		"id": "errors/001",
+		"leaf": "word",
+		"pattern": ""
+	},
+	{
+		"error": { "message": "Empty mini-notation pattern: \"   \"", "position": null },
+		"from": "only whitespace",
+		"group": "errors",
+		"id": "errors/002",
+		"leaf": "word",
+		"pattern": "   "
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a $ b\": unexpected \"$\"", "position": 2 },
+		"from": "unexpected character",
+		"group": "errors",
+		"id": "errors/003",
+		"leaf": "word",
+		"pattern": "a $ b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"? a\": unexpected \"?\"", "position": 0 },
+		"from": "unexpected character at the start",
+		"group": "errors",
+		"id": "errors/004",
+		"leaf": "word",
+		"pattern": "? a"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"a b ?\": unexpected \"?\"", "position": 4 },
+		"from": "unexpected character at the end",
+		"group": "errors",
+		"id": "errors/005",
+		"leaf": "word",
+		"pattern": "a b ?"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a \"b\"\": unexpected \"\"\"", "position": 2 },
+		"from": "a quote mark",
+		"group": "errors",
+		"id": "errors/006",
+		"leaf": "word",
+		"pattern": "a \"b\""
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"[a b\": unexpected end of pattern", "position": 4 },
+		"from": "unclosed bracket",
+		"group": "errors",
+		"id": "errors/007",
+		"leaf": "word",
+		"pattern": "[a b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"<a b\": unexpected end of pattern", "position": 4 },
+		"from": "unclosed alternation",
+		"group": "errors",
+		"id": "errors/008",
+		"leaf": "word",
+		"pattern": "<a b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 5 in \"a(3,8\": unexpected end of pattern", "position": 5 },
+		"from": "unclosed euclid",
+		"group": "errors",
+		"id": "errors/009",
+		"leaf": "word",
+		"pattern": "a(3,8"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a b]\": unexpected \"]\"", "position": 3 },
+		"from": "stray closing bracket",
+		"group": "errors",
+		"id": "errors/010",
+		"leaf": "word",
+		"pattern": "a b]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a b>\": unexpected \">\"", "position": 3 },
+		"from": "stray closing angle",
+		"group": "errors",
+		"id": "errors/011",
+		"leaf": "word",
+		"pattern": "a b>"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a )\": unexpected \")\"", "position": 2 },
+		"from": "stray closing paren",
+		"group": "errors",
+		"id": "errors/012",
+		"leaf": "word",
+		"pattern": "a )"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"[a b>\": unexpected \">\"", "position": 4 },
+		"from": "mismatched closers",
+		"group": "errors",
+		"id": "errors/013",
+		"leaf": "word",
+		"pattern": "[a b>"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"<a b]\": unexpected \"]\"", "position": 4 },
+		"from": "mismatched closers the other way",
+		"group": "errors",
+		"id": "errors/014",
+		"leaf": "word",
+		"pattern": "<a b]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"[]\": expected at least one element", "position": 1 },
+		"from": "empty brackets",
+		"group": "errors",
+		"id": "errors/015",
+		"leaf": "word",
+		"pattern": "[]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a [] b\": expected at least one element", "position": 3 },
+		"from": "empty brackets in a sequence",
+		"group": "errors",
+		"id": "errors/016",
+		"leaf": "word",
+		"pattern": "a [] b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"<>\": expected at least one element inside <>", "position": 1 },
+		"from": "empty alternation",
+		"group": "errors",
+		"id": "errors/017",
+		"leaf": "word",
+		"pattern": "<>"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a <> b\": expected at least one element inside <>", "position": 3 },
+		"from": "empty alternation in a sequence",
+		"group": "errors",
+		"id": "errors/018",
+		"leaf": "word",
+		"pattern": "a <> b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"[a, ]\": expected at least one element", "position": 4 },
+		"from": "stack with an empty side",
+		"group": "errors",
+		"id": "errors/019",
+		"leaf": "word",
+		"pattern": "[a, ]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"[, a]\": expected at least one element", "position": 1 },
+		"from": "stack with an empty first side",
+		"group": "errors",
+		"id": "errors/020",
+		"leaf": "word",
+		"pattern": "[, a]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"[a,, b]\": expected at least one element", "position": 3 },
+		"from": "stack with a double comma",
+		"group": "errors",
+		"id": "errors/021",
+		"leaf": "word",
+		"pattern": "[a,, b]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a,\": expected at least one element", "position": 2 },
+		"from": "top-level stack with an empty side",
+		"group": "errors",
+		"id": "errors/022",
+		"leaf": "word",
+		"pattern": "a,"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*\": unexpected end of pattern", "position": 2 },
+		"from": "star with nothing after",
+		"group": "errors",
+		"id": "errors/023",
+		"leaf": "word",
+		"pattern": "a*"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*b\": expected a number after \"*\" but found \"b\"", "position": 2 },
+		"from": "star with a word after",
+		"group": "errors",
+		"id": "errors/024",
+		"leaf": "word",
+		"pattern": "a*b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*[\": expected a number after \"*\" but found \"[\"", "position": 2 },
+		"from": "star with a bracket after",
+		"group": "errors",
+		"id": "errors/025",
+		"leaf": "word",
+		"pattern": "a*["
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a*-2\": fast() factor must be positive, got -2", "position": 1 },
+		"from": "star with a negative number",
+		"group": "errors",
+		"id": "errors/026",
+		"leaf": "word",
+		"pattern": "a*-2"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a*0\": fast() factor must be positive, got 0", "position": 1 },
+		"from": "star by zero",
+		"group": "errors",
+		"id": "errors/027",
+		"leaf": "word",
+		"pattern": "a*0"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a/0\": slow() factor must be positive, got 0", "position": 1 },
+		"from": "slash by zero",
+		"group": "errors",
+		"id": "errors/028",
+		"leaf": "word",
+		"pattern": "a/0"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a/\": unexpected end of pattern", "position": 2 },
+		"from": "slash with nothing after",
+		"group": "errors",
+		"id": "errors/029",
+		"leaf": "word",
+		"pattern": "a/"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a!\": unexpected end of pattern", "position": 2 },
+		"from": "bang with nothing after",
+		"group": "errors",
+		"id": "errors/030",
+		"leaf": "word",
+		"pattern": "a!"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a!0\": \"!\" count must be at least 1", "position": 3 },
+		"from": "bang by zero",
+		"group": "errors",
+		"id": "errors/031",
+		"leaf": "word",
+		"pattern": "a!0"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a!1.5\": expected an integer for \"!\" but found \"1.5\"", "position": 2 },
+		"from": "bang by a decimal",
+		"group": "errors",
+		"id": "errors/032",
+		"leaf": "word",
+		"pattern": "a!1.5"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"a!-1\": \"!\" count must be at least 1", "position": 4 },
+		"from": "bang by a negative",
+		"group": "errors",
+		"id": "errors/033",
+		"leaf": "word",
+		"pattern": "a!-1"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a@\": unexpected end of pattern", "position": 2 },
+		"from": "at with nothing after",
+		"group": "errors",
+		"id": "errors/034",
+		"leaf": "word",
+		"pattern": "a@"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a@0\": \"@\" weight must be positive", "position": 3 },
+		"from": "at by zero",
+		"group": "errors",
+		"id": "errors/035",
+		"leaf": "word",
+		"pattern": "a@0"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"a@-1\": \"@\" weight must be positive", "position": 4 },
+		"from": "at by a negative",
+		"group": "errors",
+		"id": "errors/036",
+		"leaf": "word",
+		"pattern": "a@-1"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a@b\": expected a number after \"@\" but found \"b\"", "position": 2 },
+		"from": "at by a word",
+		"group": "errors",
+		"id": "errors/037",
+		"leaf": "word",
+		"pattern": "a@b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 5 in \"<a@2 b>\": \"@\" weights are not supported inside <>", "position": 5 },
+		"from": "at inside an alternation",
+		"group": "errors",
+		"id": "errors/038",
+		"leaf": "word",
+		"pattern": "<a@2 b>"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*0x10\": expected a number after \"*\" but found \"0x10\"", "position": 2 },
+		"from": "hex number",
+		"group": "errors",
+		"id": "errors/039",
+		"leaf": "word",
+		"pattern": "a*0x10"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*1e3\": expected a number after \"*\" but found \"1e3\"", "position": 2 },
+		"from": "exponent number",
+		"group": "errors",
+		"id": "errors/040",
+		"leaf": "word",
+		"pattern": "a*1e3"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*2.\": expected a number after \"*\" but found \"2.\"", "position": 2 },
+		"from": "number with a trailing dot",
+		"group": "errors",
+		"id": "errors/041",
+		"leaf": "word",
+		"pattern": "a*2."
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a*.5\": expected a number after \"*\" but found \".5\"", "position": 2 },
+		"from": "number with a leading dot",
+		"group": "errors",
+		"id": "errors/042",
+		"leaf": "word",
+		"pattern": "a*.5"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"*2\": unexpected \"*\"", "position": 0 },
+		"from": "leading symbol with nothing before",
+		"group": "errors",
+		"id": "errors/043",
+		"leaf": "word",
+		"pattern": "*2"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"@2 a\": unexpected \"@\"", "position": 0 },
+		"from": "leading at",
+		"group": "errors",
+		"id": "errors/044",
+		"leaf": "word",
+		"pattern": "@2 a"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"!2 a\": unexpected \"!\"", "position": 0 },
+		"from": "leading bang",
+		"group": "errors",
+		"id": "errors/045",
+		"leaf": "word",
+		"pattern": "!2 a"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"(3,8)\": unexpected \"(\"", "position": 0 },
+		"from": "leading euclid",
+		"group": "errors",
+		"id": "errors/046",
+		"leaf": "word",
+		"pattern": "(3,8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"a(3)\": expected \",\" but found \")\"", "position": 3 },
+		"from": "euclid missing steps",
+		"group": "errors",
+		"id": "errors/047",
+		"leaf": "word",
+		"pattern": "a(3)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"a(3 8)\": expected \",\" but found \"8\"", "position": 4 },
+		"from": "euclid missing the comma",
+		"group": "errors",
+		"id": "errors/048",
+		"leaf": "word",
+		"pattern": "a(3 8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a()\": expected a number after \"euclid pulses\" but found \")\"", "position": 2 },
+		"from": "euclid empty",
+		"group": "errors",
+		"id": "errors/049",
+		"leaf": "word",
+		"pattern": "a()"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a(2.5,8)\": expected an integer for \"euclid pulses\" but found \"2.5\"", "position": 2 },
+		"from": "euclid with a decimal pulse count",
+		"group": "errors",
+		"id": "errors/050",
+		"leaf": "word",
+		"pattern": "a(2.5,8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"a(3,8.5)\": expected an integer for \"euclid steps\" but found \"8.5\"", "position": 4 },
+		"from": "euclid with a decimal step count",
+		"group": "errors",
+		"id": "errors/051",
+		"leaf": "word",
+		"pattern": "a(3,8.5)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 6 in \"a(3,8,1.5)\": expected an integer for \"euclid rotation\" but found \"1.5\"", "position": 6 },
+		"from": "euclid with a decimal rotation",
+		"group": "errors",
+		"id": "errors/052",
+		"leaf": "word",
+		"pattern": "a(3,8,1.5)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a(x,8)\": expected a number after \"euclid pulses\" but found \"x\"", "position": 2 },
+		"from": "euclid with a word",
+		"group": "errors",
+		"id": "errors/053",
+		"leaf": "word",
+		"pattern": "a(x,8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 7 in \"a(3,8,1,2)\": expected \")\" but found \",\"", "position": 7 },
+		"from": "euclid with four arguments",
+		"group": "errors",
+		"id": "errors/054",
+		"leaf": "word",
+		"pattern": "a(3,8,1,2)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a(3,0)\": Invalid euclidean rhythm: (3,0)", "position": 1 },
+		"from": "euclid with zero steps",
+		"group": "errors",
+		"id": "errors/055",
+		"leaf": "word",
+		"pattern": "a(3,0)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a(9,8)\": Euclidean pulses must be between 0 and steps, got (9,8)", "position": 1 },
+		"from": "euclid with more pulses than steps",
+		"group": "errors",
+		"id": "errors/056",
+		"leaf": "word",
+		"pattern": "a(9,8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a(-1,8)\": Euclidean pulses must be between 0 and steps, got (-1,8)", "position": 1 },
+		"from": "euclid with a negative pulse count",
+		"group": "errors",
+		"id": "errors/057",
+		"leaf": "word",
+		"pattern": "a(-1,8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a(3,-8)\": Invalid euclidean rhythm: (3,-8)", "position": 1 },
+		"from": "euclid with a negative step count",
+		"group": "errors",
+		"id": "errors/058",
+		"leaf": "word",
+		"pattern": "a(3,-8)"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a; b\": unexpected \";\"", "position": 1 },
+		"from": "semicolon",
+		"group": "errors",
+		"id": "errors/059",
+		"leaf": "word",
+		"pattern": "a; b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a {b}\": unexpected \"{\"", "position": 2 },
+		"from": "curly brace",
+		"group": "errors",
+		"id": "errors/060",
+		"leaf": "word",
+		"pattern": "a {b}"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a%2\": unexpected \"%\"", "position": 1 },
+		"from": "percent sign",
+		"group": "errors",
+		"id": "errors/061",
+		"leaf": "word",
+		"pattern": "a%2"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a+b\": unexpected \"+\"", "position": 1 },
+		"from": "plus sign",
+		"group": "errors",
+		"id": "errors/062",
+		"leaf": "word",
+		"pattern": "a+b"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 1 in \"a:1\": unexpected \":\"", "position": 1 },
+		"from": "colon",
+		"group": "errors",
+		"id": "errors/063",
+		"leaf": "word",
+		"pattern": "a:1"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"é\": unexpected \"é\"", "position": 0 },
+		"from": "non-ASCII letter",
+		"group": "errors",
+		"id": "errors/064",
+		"leaf": "word",
+		"pattern": "é"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 2 in \"a é\": unexpected \"é\"", "position": 2 },
+		"from": "non-ASCII after a word",
+		"group": "errors",
+		"id": "errors/065",
+		"leaf": "word",
+		"pattern": "a é"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"é ?\": unexpected \"é\"", "position": 0 },
+		"from": "position after multi-byte text",
+		"group": "errors",
+		"id": "errors/066",
+		"leaf": "word",
+		"pattern": "é ?"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 12 in \"a b c [d e f\": unexpected end of pattern", "position": 12 },
+		"from": "unclosed bracket in a long pattern",
+		"group": "errors",
+		"id": "errors/067",
+		"leaf": "word",
+		"pattern": "a b c [d e f"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 8 in \"a [b [c $ d]]\": unexpected \"$\"", "position": 8 },
+		"from": "error inside nested brackets",
+		"group": "errors",
+		"id": "errors/068",
+		"leaf": "word",
+		"pattern": "a [b [c $ d]]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 7 in \"[a, b] ?\": unexpected \"?\"", "position": 7 },
+		"from": "error after a stack",
+		"group": "errors",
+		"id": "errors/069",
+		"leaf": "word",
+		"pattern": "[a, b] ?"
+	}
+]
