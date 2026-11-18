@@ -11,7 +11,7 @@
 use std::collections::HashMap;
 
 use fizz_audio_song::compile::{Performance, PerformanceEvent};
-use fizz_audio_song::model::{Song, TrackRole};
+use fizz_audio_song::model::{Song, Track, TrackRole};
 
 use crate::numbers::{max, to_int32};
 use crate::patches::{
@@ -63,6 +63,9 @@ pub struct OplSequence {
     pub dropped: usize,
     /// The notes that found no channel, in performance order.
     pub dropped_events: Vec<PerformanceEvent>,
+    /// The notes that started and were ended early because a more important note took their
+    /// channel, in the order they were cut. A note is counted once, though it holds two channels.
+    pub cut_events: Vec<PerformanceEvent>,
 }
 
 /// Channels kept free for the game's sound effects: 5 on the first bank, and 14 (its partner on
@@ -77,16 +80,17 @@ pub fn melodic_channels(chip: OplChip) -> &'static [usize] {
     }
 }
 
-/// How much a track's notes matter when channels run out.
-fn priority_of(role: TrackRole) -> i32 {
-    match role {
-        TrackRole::Melody => 9,
-        TrackRole::Bass => 8,
-        TrackRole::Drums => 7,
-        TrackRole::Harmony => 5,
-        TrackRole::Texture => 4,
-    }
+/// How much a track's notes matter when channels run out: its own `priority`, else its role's. A
+/// note an event names a track the song does not have for is treated as a melody's.
+fn priority_of(track: Option<&Track>) -> i32 {
+    track.map_or_else(
+        || i32::from(TrackRole::Melody.default_priority()),
+        |track| i32::from(track.effective_priority()),
+    )
 }
+
+/// The chip's lowest level: total level 63, the attenuation a note at velocity 0 gets.
+const QUIETEST: i32 = 63;
 
 /// A short silence before a note ends, so the next note on the channel re-triggers the envelope.
 const KEY_GAP: f64 = 0.004;
@@ -98,6 +102,8 @@ struct Fallback {
     instrument_id: String,
     output: i32,
     extra_tl: i32,
+    /// The modulator's share on an additive patch (0, or the lowest level for a hushed track).
+    mod_extra_tl: i32,
 }
 
 #[derive(Clone)]
@@ -109,6 +115,9 @@ struct Channel {
     /// The scheduled key-off of the note now on the channel (an index into the writes), cancelled if the note is stolen.
     key_off: Option<usize>,
     note_start: f64,
+    /// The note now on the channel, so a steal can say which note it cut. Left empty on the
+    /// second channel of a stereo pair: that note is the first channel's.
+    event: Option<PerformanceEvent>,
     /// On the first channel of a stereo pair, its second channel.
     partner: Option<usize>,
     /// On the second channel of a stereo pair, the first.
@@ -122,6 +131,8 @@ struct Sequencer {
     cancelled: Vec<bool>,
     channels: Vec<Channel>,
     numbers: &'static [usize],
+    /// Notes ended early by a steal (`OplSequence::cut_events`).
+    cut_events: Vec<PerformanceEvent>,
 }
 
 impl Sequencer {
@@ -182,6 +193,13 @@ impl Sequencer {
         let time = self.release(index, start);
         let paired_with = self.channels[index].paired_with;
         let partner = self.channels[index].partner;
+        // A sounding note taken from its channel is cut, unless it is the second half of a pair,
+        // whose note carries on alone on the first channel.
+        if sounding && paired_with.is_none() {
+            if let Some(event) = self.channels[index].event.clone() {
+                self.cut_events.push(event);
+            }
+        }
         if let (true, Some(first)) = (sounding, paired_with) {
             // The second channel of a pair gives way: its note carries on alone on its single-channel placement.
             let number = self.numbers[first];
@@ -189,7 +207,12 @@ impl Sequencer {
                 if self.channels[first].busy_until > time {
                     let write = output_write(number, &fallback.patch, fallback.output);
                     self.at(time, write);
-                    for write in level_writes(number, &fallback.patch, fallback.extra_tl, 0) {
+                    for write in level_writes(
+                        number,
+                        &fallback.patch,
+                        fallback.extra_tl,
+                        fallback.mod_extra_tl,
+                    ) {
                         self.at(time, write);
                     }
                     self.channels[first].patch_key =
@@ -282,6 +305,20 @@ fn choose_channel(
 
 /// Turns a performance into register writes for a chip.
 pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> OplSequence {
+    sequence_opl_hushing(song, performance, chip, None)
+}
+
+/// Like [`sequence_opl`], but every note and drum hit of the track `hushed` names is played at the
+/// chip's lowest level (carrier and, on an additive patch, modulator at total level 63, about
+/// 47 dB down). Everything else is the same: the track still takes and steals the channels it
+/// takes and steals, so the mix of the others is exactly the mix they have with the track in. The
+/// difference between this render and the plain one is the track's own sound in the mix.
+pub fn sequence_opl_hushing(
+    song: &Song,
+    performance: &Performance,
+    chip: OplChip,
+    hushed: Option<&str>,
+) -> OplSequence {
     let max_wave = chip.max_wave();
     let seconds = performance.length_steps / performance.steps_per_second;
     let numbers = melodic_channels(chip);
@@ -293,6 +330,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
             track_id: None,
             key_off: None,
             note_start: -1.0,
+            event: None,
             partner: None,
             paired_with: None,
             fallback: None,
@@ -304,6 +342,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         cancelled: Vec::new(),
         channels,
         numbers,
+        cut_events: Vec::new(),
     };
     let plain = |register: u16, value: i32| RegisterWrite { register, value };
 
@@ -334,10 +373,10 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         }
     }
 
-    let roles: HashMap<&str, TrackRole> = song
+    let priorities: HashMap<&str, i32> = song
         .tracks
         .iter()
-        .map(|track| (track.id.as_str(), track.role))
+        .map(|track| (track.id.as_str(), priority_of(Some(track))))
         .collect();
     let mut patches: HashMap<String, Patch> = HashMap::new();
     let pan_law = song
@@ -366,12 +405,11 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
             start + 0.01,
             (event.step + event.len) / performance.steps_per_second - KEY_GAP,
         );
-        let priority = priority_of(
-            roles
-                .get(event.track_id.as_str())
-                .copied()
-                .unwrap_or(TrackRole::Melody),
-        );
+        let hush = hushed == Some(event.track_id.as_str());
+        let priority = priorities
+            .get(event.track_id.as_str())
+            .copied()
+            .unwrap_or_else(|| priority_of(None));
         let (plan_channels, plan_fallback) = if chip == OplChip::Opl3 {
             let plan = stereo_plan(event.pan, pan_law);
             (plan.channels, plan.fallback)
@@ -416,12 +454,16 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         for (i, placed) in placement.iter().enumerate() {
             let which = if i == 0 { index } else { partner.unwrap_or(0) };
             let number = s.numbers[which];
-            let extra_tl = attenuation(event.velocity * placed.gain);
-            // An additive patch's modulator is heard too, so it takes the side's share as well.
-            let mod_extra_tl = if patch.additive {
-                attenuation(placed.gain)
+            let extra_tl = if hush {
+                QUIETEST
             } else {
-                0
+                attenuation(event.velocity * placed.gain)
+            };
+            // An additive patch's modulator is heard too, so it takes the side's share as well.
+            let mod_extra_tl = match (patch.additive, hush) {
+                (false, _) => 0,
+                (true, true) => QUIETEST,
+                (true, false) => attenuation(placed.gain),
             };
             let patch_key = key_of(&event.instrument_id, placed);
             if s.channels[which].patch_key.as_deref() != Some(patch_key.as_str()) {
@@ -452,6 +494,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
             channel.patch_key = Some(patch_key);
             channel.track_id = Some(event.track_id.clone());
             channel.note_start = start;
+            channel.event = (i == 0).then(|| event.clone());
         }
         if let Some(second) = partner {
             s.channels[index].partner = Some(second);
@@ -460,15 +503,23 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
                 patch,
                 instrument_id: event.instrument_id.clone(),
                 output: plan_fallback.output,
-                extra_tl: attenuation(event.velocity),
+                extra_tl: if hush {
+                    QUIETEST
+                } else {
+                    attenuation(event.velocity)
+                },
+                mod_extra_tl: if hush { QUIETEST } else { 0 },
             });
         }
     }
 
-    sequence_drums(song, &drum_hits, chip, &mut s);
+    sequence_drums(song, &drum_hits, chip, hushed, &mut s);
 
     let Sequencer {
-        writes, cancelled, ..
+        writes,
+        cancelled,
+        cut_events,
+        ..
     } = s;
     let mut kept: Vec<TimedWrite> = writes
         .into_iter()
@@ -483,6 +534,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         seconds,
         dropped: dropped_events.len(),
         dropped_events,
+        cut_events,
     }
 }
 
@@ -501,6 +553,7 @@ fn sequence_drums(
     song: &Song,
     hits: &[(f64, &PerformanceEvent)],
     chip: OplChip,
+    hushed: Option<&str>,
     s: &mut Sequencer,
 ) {
     let mut edges: Vec<Edge> = Vec::new();
@@ -535,7 +588,11 @@ fn sequence_drums(
             let tl = operator.tl
                 + f64::from(trim)
                 + drum_trim(song, &event.instrument_id, chip, edge.drum)
-                + f64::from(attenuation(event.velocity));
+                + if hushed == Some(event.track_id.as_str()) {
+                    f64::from(QUIETEST)
+                } else {
+                    f64::from(attenuation(event.velocity))
+                };
             let level =
                 to_int32(operator.ksl).wrapping_shl(6) | to_int32(crate::numbers::min(63.0, tl));
             s.at(edge.time, plain(0x40 + slot, level));

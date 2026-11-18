@@ -217,6 +217,10 @@ pub fn pit_hz(hz: f64) -> f64 {
 }
 
 struct Span<'a> {
+    /// Index of the note in `Performance::events`.
+    event: usize,
+    /// Index of its track in `SpeakerFrames::track_ids`.
+    track: u16,
     start: f64,
     end: f64,
     priority: f64,
@@ -225,32 +229,90 @@ struct Span<'a> {
 }
 
 struct DrumSpan {
+    event: usize,
+    track: u16,
     start: f64,
     frames: f64,
     piece: DrumPiece,
     priority: f64,
 }
 
+/// What the speaker does with a performance, frame by frame: the pitch it plays, and which parts
+/// (tracks) wanted to sound and which of them it plays. The speaker has one voice, so a frame in
+/// which more parts sound than are played is a frame in which the others are dropped.
+#[derive(Debug, Clone, PartialEq)]
+pub struct SpeakerFrames {
+    /// One frequency per frame (0 is silence), as [`sequence_speaker`] returns.
+    pub hz: Vec<f32>,
+    /// The tracks that have events in the performance, in the order they first appear; the
+    /// numbers in `wanted` and `heard` index this list.
+    pub track_ids: Vec<String>,
+    /// Per frame, the tracks with a note or a drum hit sounding, each once, in track order.
+    pub wanted: Vec<Vec<u16>>,
+    /// Per frame, the tracks the speaker plays: the drum's track when a drum wins, else the tracks
+    /// whose notes are in the winning chord (the winner's instrument and priority).
+    pub heard: Vec<Vec<u16>>,
+    /// Per event of the performance, whether it sounded in at least one frame. A note the speaker
+    /// never played, and a drum hit it never struck, read `false`; events without a sound read `true`.
+    pub event_heard: Vec<bool>,
+}
+
 /// One frequency per frame for one pass (0 is silence).
 pub fn sequence_speaker(song: &Song, performance: &Performance) -> Vec<f32> {
+    frames_of(song, performance, false).hz
+}
+
+/// What the speaker plays in each frame and which parts it leaves out.
+pub fn analyse_speaker(song: &Song, performance: &Performance) -> SpeakerFrames {
+    frames_of(song, performance, true)
+}
+
+/// The frequencies of a pass in which the speaker plays only the frames the track wins: what that
+/// track sounds like in the mix, with every other frame silent. Frames keep their places, so the
+/// result lines up with the mix's frames.
+pub fn sequence_speaker_track(song: &Song, performance: &Performance, track_id: &str) -> Vec<f32> {
+    let frames = analyse_speaker(song, performance);
+    let Some(track) = frames.track_ids.iter().position(|id| id == track_id) else {
+        return vec![0.0; frames.hz.len()];
+    };
+    let track = track as u16;
+    frames
+        .hz
+        .iter()
+        .zip(&frames.heard)
+        .map(|(&hz, heard)| if heard.contains(&track) { hz } else { 0.0 })
+        .collect()
+}
+
+fn frames_of(song: &Song, performance: &Performance, collect: bool) -> SpeakerFrames {
     let seconds = performance.length_steps / performance.steps_per_second;
     let frame_count = round(seconds * SPEAKER_FRAME_RATE).max(1.0) as usize;
     let mut hz = vec![0f32; frame_count];
     let mut voices: HashMap<&str, SpeakerVoice> = HashMap::new();
     let to_frame = |step: f64| round((step / performance.steps_per_second) * SPEAKER_FRAME_RATE);
 
+    let mut track_ids: Vec<String> = Vec::new();
     let mut notes: Vec<Span> = Vec::new();
     let mut drums: Vec<DrumSpan> = Vec::new();
-    for event in &performance.events {
+    for (index, event) in performance.events.iter().enumerate() {
         let voice = voices
             .entry(event.instrument_id.as_str())
             .or_insert_with(|| speaker_voice(song, &event.instrument_id))
             .clone();
+        let track = match track_ids.iter().position(|id| *id == event.track_id) {
+            Some(track) => track,
+            None => {
+                track_ids.push(event.track_id.clone());
+                track_ids.len() - 1
+            }
+        } as u16;
         let start = to_frame(event.step);
         if let Some(piece) = event.drum {
             let (on, frames) = drum_setting(song, &event.instrument_id, piece);
             if on {
                 drums.push(DrumSpan {
+                    event: index,
+                    track,
                     start,
                     frames,
                     piece,
@@ -267,12 +329,27 @@ pub fn sequence_speaker(song: &Song, performance: &Performance) -> Vec<f32> {
             to_frame(event.step + event.len) - voice.gap_frames,
         );
         notes.push(Span {
+            event: index,
+            track,
             start,
             end,
             priority: voice.priority,
             instrument_id: event.instrument_id.as_str(),
             midi: f64::from(midi) + 12.0 * voice.octave,
         });
+    }
+
+    let mut wanted: Vec<Vec<u16>> = Vec::new();
+    let mut heard: Vec<Vec<u16>> = Vec::new();
+    // Events that have no sound to be heard (a rest, a drum the kit turns off) read as heard.
+    let mut event_heard = vec![true; performance.events.len()];
+    if collect {
+        for span in &notes {
+            event_heard[span.event] = false;
+        }
+        for drum in &drums {
+            event_heard[drum.event] = false;
+        }
     }
 
     for (frame, slot) in hz.iter_mut().enumerate() {
@@ -293,20 +370,44 @@ pub fn sequence_speaker(song: &Song, performance: &Performance) -> Vec<f32> {
         let drum = drums
             .iter()
             .find(|d| d.start <= frame && frame < d.start + d.frames);
+        let mut frame_wanted: Vec<u16> = Vec::new();
+        let mut frame_heard: Vec<u16> = Vec::new();
+        if collect {
+            frame_wanted.extend(sounding.iter().map(|n| n.track));
+            frame_wanted.extend(
+                drums
+                    .iter()
+                    .filter(|d| d.start <= frame && frame < d.start + d.frames)
+                    .map(|d| d.track),
+            );
+            frame_wanted.sort_unstable();
+            frame_wanted.dedup();
+        }
         if let Some(drum) = drum {
             if best.is_none_or(|b| drum.priority >= b.priority) {
                 *slot = pit_hz(drum_hz(drum.piece, frame - drum.start, drum.frames, frame)) as f32;
+                if collect {
+                    event_heard[drum.event] = true;
+                    frame_heard.push(drum.track);
+                    wanted.push(frame_wanted);
+                    heard.push(frame_heard);
+                }
                 continue;
             }
         }
         let Some(winner) = best else {
+            if collect {
+                wanted.push(frame_wanted);
+                heard.push(frame_heard);
+            }
             continue;
         };
-        let mut chord: Vec<f64> = sounding
+        let group: Vec<&Span> = sounding
             .iter()
+            .copied()
             .filter(|n| n.instrument_id == winner.instrument_id && n.priority == winner.priority)
-            .map(|n| n.midi)
             .collect();
+        let mut chord: Vec<f64> = group.iter().map(|n| n.midi).collect();
         chord.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
         let voice = &voices[winner.instrument_id];
         let midi = match voice.chord_mode() {
@@ -318,6 +419,22 @@ pub fn sequence_speaker(song: &Song, performance: &Performance) -> Vec<f32> {
             }
         };
         *slot = pit_hz(440.0 * 2f64.powf((midi - 69.0) / 12.0)) as f32;
+        if collect {
+            for note in &group {
+                event_heard[note.event] = true;
+                frame_heard.push(note.track);
+            }
+            frame_heard.sort_unstable();
+            frame_heard.dedup();
+            wanted.push(frame_wanted);
+            heard.push(frame_heard);
+        }
     }
-    hz
+    SpeakerFrames {
+        hz,
+        track_ids,
+        wanted,
+        heard,
+        event_heard,
+    }
 }
