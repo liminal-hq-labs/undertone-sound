@@ -15,6 +15,7 @@ pub mod js;
 mod mini_bridge;
 pub mod model;
 pub mod music;
+pub mod pan;
 pub mod summarise;
 pub mod takes;
 pub mod validate;

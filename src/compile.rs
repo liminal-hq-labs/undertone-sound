@@ -12,8 +12,9 @@ use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use ts_rs::TS;
 
-use crate::model::{DrumPiece, Song, Track};
+use crate::model::{DrumPiece, PanMotion, Song, Track};
 use crate::music::parse_pitch;
+use crate::pan::{cut_path, note_pan, onset_ranks, PanPoint, PanScope};
 use crate::takes::take_notes;
 
 /// The velocity of a note that does not say.
@@ -39,8 +40,15 @@ pub struct PerformanceEvent {
     pub drum: Option<DrumPiece>,
     /// Note strength times the track's volume.
     pub velocity: f64,
-    /// Stereo position, -1 to 1: the take's own pan when it has one, else the track's.
+    /// Stereo position at the note's onset, -1 to 1: the first of the note's motion, its pan, the
+    /// take's motion, the take's pan, and the track's pan.
     pub pan: f64,
+    /// Where the pan goes from there: points in steps from the onset, interpolated linearly, the
+    /// last value held, and two points at the same step making a jump. Left out when the pan stays
+    /// put.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub pan_path: Option<Vec<PanPoint>>,
 }
 
 /// Where one arrangement entry sits in the performance.
@@ -143,14 +151,24 @@ pub fn compile_song(song: &Song, options: &CompileOptions) -> Result<Performance
                 continue;
             };
             let drums = song.is_drum_track(track);
-            let pan = take.pan.unwrap_or(track.pan);
-            for note in take_notes(song, track, section, take)? {
+            let notes = take_notes(song, track, section, take)?;
+            let is_jump = matches!(take.pan_motion, Some(PanMotion::Jump { .. }));
+            let scope = PanScope {
+                track_pan: track.pan,
+                take,
+                section_steps: steps,
+                steps_per_bar: f64::from(song.steps_per_bar()),
+                ranks: onset_ranks(if is_jump { &notes[..] } else { &[] }),
+            };
+            for note in &notes {
                 if note.at >= steps {
                     continue;
                 }
+                let len = note.len.min(steps - note.at);
+                let placed = note_pan(note, len, &scope);
                 events.push(PerformanceEvent {
                     step: cursor + note.at,
-                    len: note.len.min(steps - note.at),
+                    len,
                     track_id: track.id.clone(),
                     instrument_id: track.instrument.clone(),
                     pitch: note.pitch.clone(),
@@ -165,7 +183,8 @@ pub fn compile_song(song: &Song, options: &CompileOptions) -> Result<Performance
                         None
                     },
                     velocity: note.vel.unwrap_or(DEFAULT_VELOCITY) * track.volume,
-                    pan,
+                    pan: placed.pan,
+                    pan_path: placed.pan_path,
                 });
             }
         }
@@ -198,9 +217,15 @@ pub fn rotate_performance(performance: &Performance, from_step: f64) -> Performa
                     ..event.clone()
                 }
             } else {
+                let len = event.len.min(from_step - event.step);
+                let pan_path = match &event.pan_path {
+                    Some(path) if len < event.len => cut_path(path, len),
+                    other => other.clone(),
+                };
                 PerformanceEvent {
                     step: event.step + length - from_step,
-                    len: event.len.min(from_step - event.step),
+                    len,
+                    pan_path,
                     ..event.clone()
                 }
             }
