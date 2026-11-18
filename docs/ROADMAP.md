@@ -6,24 +6,26 @@ The work runs on two tracks, and the first leads. Undertone's own audio engine i
 
 ## Track 1: the Undertone engine in Rust (primary)
 
-The goal is a Rust Undertone with the full API, native rendering without Web Audio, and a JavaScript surface pulled through WebAssembly, so the library works without TypeScript or a browser when that is wanted. Undertone's TypeScript library, and City Sim 1000 with its frozen `VoiceParams` field names and builder method names, stay working throughout. This project is the testing ground.
+The next version of Undertone is Rust. The Undertone repository (`liminal-hq/undertone`) is where it lives: a Rust API, with the TypeScript API bridging WebAssembly and JavaScript. The plan is the full migration, and it does not wait on its consumers. There is no staging gate (D62).
 
-Done:
+This lab incubated the engine crates and is the testing ground until the move. The engine crates are promoted into the Undertone repository early, with their history, and the lab then depends on Undertone and never the reverse. The renames that come with the promotion (`undertone-mini` to `undertone-pattern`, `undertone-dsp` to `undertone-engine`) happen there, not here. [The promotion handover](https://github.com/liminal-hq-labs/undertone-sound/blob/main/docs/promotion.md) is the handover: what moves, what stays, and the checks that guard the move.
+
+Done in the lab:
 
 - [x] `undertone-mini`: mini-notation, exact fractions and pattern combinators, with recorded fixtures
 - [x] `undertone-dsp`: voices, effects, master bus, DSP kernels, the `Graph` trait and an in-house renderer that plays offline or streams in blocks of any size, matching the TypeScript library's recorded Web Audio graph byte for byte
 - [x] `undertone-mini` and `undertone-dsp` compile for `wasm32-unknown-unknown`
-- [x] `undertone-wasm`: first bindings, with a browser demo (the demo plays Title Theme as the recorded Undertone score, an OPL2 file and an OPL3 file, side by side; one `undertone-dsp` voice renders through the same bindings)
+- [x] `undertone-wasm`: first bindings, with a browser demo that plays Title Theme through the Undertone engine (a two-bar excerpt for now), the OPL2 chip and the OPL3 chip
+- [x] The layering rule (D42), enforced by `scripts/check-layering.sh`: the engine crates depend on nothing else in the lab, so the promotion is a path filter
 
-Open:
+Next:
 
-- [ ] A design for the Rust-first Undertone: API mapping, WebAssembly strategy, native output, parity, and how the studio and the chip backends fit as consumers (written in the studio repository, to be adopted here)
-- [ ] The full API in Rust: the pattern, control, signal and scheduling API that the TypeScript library exposes, not only the renderer
-- [ ] Parity with the 0.4.0 features: the autopan LFO, the pan law, the master ceiling, windowed booking, signals and `panPath`
-- [ ] Native output without Web Audio, and streaming through an AudioWorklet in the browser
-- [ ] The JavaScript API through WebAssembly, with generated TypeScript typings
-- [ ] A parity canary against the TypeScript library in CI, with City Sim 1000's API frozen and checked
-- [ ] Where the Undertone repository itself goes: Rust first, or the TypeScript library on a Rust core. Not decided. Until then the engine crates incubate here and stay promotable with their history (D42), and the engine's own bindings become a crate separate from `undertone-wasm`
+- [ ] The execution plan for the Rust-first Undertone, written in the Undertone repository
+- [ ] The promotion of the engine crates into the Undertone repository, with their history and fixtures
+- [ ] The demo's Undertone card plays the full Title Theme, from a recorded events-only score the studio is producing
+- [ ] The lab depends on Undertone for the engine, and the engine's bindings leave `undertone-wasm` (the OPX bindings stay in the lab)
+
+No new engine-crate work starts in the lab: schedulers, renames and the bindings split happen after the promotion, in the Undertone repository.
 
 ## Track 2: synth backends, OPX and DOS (supporting)
 
@@ -43,7 +45,7 @@ Open:
 - [ ] A conformance corpus of OPX files, including the examples in the specification (the five examples and the nine refused files are tests; a corpus of files is not built)
 - [ ] Real DRO and VGM captures to test those readers against (none exist; low priority)
 
-New OPL-only work waits until Track 1's design is settled. Work already in flight finishes.
+New OPL-only work waits until the Undertone repository's plan lands. Work already in flight finishes.
 
 ## Across both
 
