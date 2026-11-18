@@ -18,16 +18,20 @@
 //! - [`sequence`]: a compiled performance to timed OPL register writes ([`sequence::sequence_opl`]).
 //! - [`chip`]: those writes to samples through `oplon` ([`chip::render_sequence`]).
 //! - [`speaker`]: the PC speaker's frame frequencies and its square-wave render.
+//! - [`opx`]: a sequence as an OPX stream, and [`analyse`]: the notes and drum hits a stream
+//!   sounds, for checking one against another.
 //! - [`limits`]: lost notes ([`limits::analyse_limits`]).
 //! - [`engine`]: the three engines behind one interface, rendering a pass or a track's share of
 //!   the mix.
 //! - [`patches`], [`registers`], [`stereo`] and [`numbers`]: the tables and arithmetic under the
 //!   sequencer.
 
+pub mod analyse;
 pub mod chip;
 pub mod engine;
 pub mod limits;
 pub mod numbers;
+pub mod opx;
 pub mod patches;
 pub mod profile;
 pub mod registers;

@@ -106,7 +106,7 @@ fn priority_of(track: Option<&Track>) -> i32 {
 const QUIETEST: i32 = 63;
 
 /// A short silence before a note ends, so the next note on the channel re-triggers the envelope.
-const KEY_GAP: f64 = 0.004;
+pub(crate) const KEY_GAP: f64 = 0.004;
 
 /// The single-channel placement a note keeps if it loses the second channel of its pair.
 #[derive(Clone)]

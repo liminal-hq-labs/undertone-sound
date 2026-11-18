@@ -212,6 +212,7 @@ name = "undertone-opl"
 version = "0.0.0"
 dependencies = [
  "oplon",
+ "oplstream",
  "serde_json",
  "undertone-mini",
  "undertone-sound",

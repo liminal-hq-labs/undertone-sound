@@ -20,7 +20,9 @@ workspace = true
 undertone-sound = { path = "../undertone-sound" }
 undertone-mini = { path = "../undertone-mini" }
 oplon = "=1.0.0"
+oplstream = { path = "../oplstream", default-features = false, features = ["alloc"] }
 serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
 
 [dev-dependencies]
+oplstream = { path = "../oplstream" }
 serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
