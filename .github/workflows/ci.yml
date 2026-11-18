@@ -256,6 +256,36 @@ jobs:
             echo "- Command: \`cargo doc --workspace --no-deps --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
 
+  song-bindings:
+    name: Song TypeScript bindings
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Build and test with the `ts` feature
+        id: check
+        run: cargo test -p undertone-sound --features ts --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Song TypeScript bindings"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo test -p undertone-sound --features ts --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
   oplstream-core:
     name: oplstream core features
     runs-on: ubuntu-24.04
