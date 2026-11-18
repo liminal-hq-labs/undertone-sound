@@ -22,3 +22,8 @@ default = ["std"]
 # and `std` adds the IMF, DRO and VGM importers and the re-timing step.
 alloc = []
 std = ["alloc"]
+
+# The guide example uses the importers and the writer, which need the `std` feature.
+[[example]]
+name = "oplstream_guide"
+required-features = ["std"]
