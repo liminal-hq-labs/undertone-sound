@@ -66,7 +66,10 @@ pub fn default_speaker_voice(preset: PresetId, role: TrackRole) -> SpeakerVoice 
         priority: role_priority(role),
         chord: "arpeggio".to_string(),
         arpeggio_frames: 2.0,
-        octave: if matches!(preset, PresetId::Bass | PresetId::SubBass | PresetId::BassSaw) {
+        octave: if matches!(
+            preset,
+            PresetId::Bass | PresetId::SubBass | PresetId::BassSaw
+        ) {
             1.0
         } else {
             0.0
