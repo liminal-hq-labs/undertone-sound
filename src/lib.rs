@@ -25,4 +25,6 @@ pub mod patches;
 pub mod registers;
 pub mod sequence;
 pub mod speaker;
+pub mod spread;
 pub mod stereo;
+pub mod stereo_view;
