@@ -23,7 +23,7 @@ Next:
 - [ ] The execution plan for the Rust-first Undertone, written in the Undertone repository
 - [ ] The promotion of the engine crates into the Undertone repository, with their history and fixtures
 - [x] The demo's Undertone card plays the full Title Theme, from a recorded events-only score the studio is producing
-- [ ] The lab depends on Undertone for the engine, and the engine's bindings leave `undertone-wasm` (the OPX bindings stay in the lab)
+- [ ] The lab depends on Undertone for the engine, and `undertone-wasm` splits: the OPX player and importer stay as `undertone-sound-wasm`, and the voice and recorded-score demo code either stays over Undertone's crates or is dropped
 
 No new engine-crate work starts in the lab: schedulers, renames and the bindings split happen after the promotion, in the Undertone repository.
 
