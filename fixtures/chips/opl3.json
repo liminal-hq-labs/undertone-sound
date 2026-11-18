@@ -9325,8 +9325,8 @@
 	{
 		"dropped": 0,
 		"droppedEvents": [],
-		"id": "opl3:chips-fizz",
-		"input": "chips-fizz",
+		"id": "opl3:chips-host-patches",
+		"input": "chips-host-patches",
 		"options": null,
 		"seconds": 4,
 		"writes": [

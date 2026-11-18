@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "Tricky “Quotes” & é",
 	"tempo": 133.5,
@@ -71,14 +71,14 @@
 					{
 						"id": "m",
 						"name": "Triplets",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "bb4 [d5 f5 a5] <c5 eb5> ~",
 						"comment": "Triplet run, then the alternation moves each bar"
 					},
 					{
 						"id": "n",
 						"name": "Plain notes",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.25,
 						"notes": [
 							{ "at": 0, "pitch": "bb4", "len": 2, "vel": 0.5 },
@@ -91,7 +91,12 @@
 			"b": {
 				"active": "a",
 				"takes": [
-					{ "id": "a", "name": "Euclid", "by": "claude", "mini": "bb4(3,8) d5*3 [f5, a5]@2" }
+					{
+						"id": "a",
+						"name": "Euclid",
+						"by": { "kind": "agent", "name": "Claude" },
+						"mini": "bb4(3,8) d5*3 [f5, a5]@2"
+					}
 				]
 			},
 			"c": {
@@ -100,7 +105,7 @@
 					{
 						"id": "a",
 						"name": "Silent",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "bb4", "len": 3 }
 						]
@@ -112,7 +117,12 @@
 			"a": {
 				"active": "a",
 				"takes": [
-					{ "id": "a", "name": "Chords", "by": "you", "mini": "bb3 [d4, f4]/2" }
+					{
+						"id": "a",
+						"name": "Chords",
+						"by": { "kind": "human" },
+						"mini": "bb3 [d4, f4]/2"
+					}
 				]
 			}
 		},
@@ -123,7 +133,7 @@
 					{
 						"id": "a",
 						"name": "Root and fifth",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "bb2 ~ f2!2 <d3 g2>/2"
 					}
 				]
@@ -134,7 +144,7 @@
 					{
 						"id": "a",
 						"name": "Walk",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "bb2", "len": 3 },
 							{ "at": 3, "pitch": "d3", "len": 3 },
@@ -149,7 +159,12 @@
 			"a": {
 				"active": "a",
 				"takes": [
-					{ "id": "a", "name": "Pulse", "by": "claude", "mini": "kick(3,8,2) snare@2" }
+					{
+						"id": "a",
+						"name": "Pulse",
+						"by": { "kind": "agent", "name": "Claude" },
+						"mini": "kick(3,8,2) snare@2"
+					}
 				]
 			},
 			"b": {
@@ -158,7 +173,7 @@
 					{
 						"id": "a",
 						"name": "Grid",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 1, "vel": 0.95 },
 							{ "at": 3, "pitch": "hat", "len": 1, "vel": 0.3 },
@@ -172,9 +187,13 @@
 		}
 	},
 	"messages": [
-		{ "by": "you", "text": "Try the coda an octave up?", "at": "2026-03-01T09:30:00.000Z" },
 		{
-			"by": "claude",
+			"by": { "kind": "human" },
+			"text": "Try the coda an octave up?",
+			"at": "2026-03-01T09:30:00.000Z"
+		},
+		{
+			"by": { "kind": "agent", "name": "Claude" },
 			"text": "Done: see “Plain notes”.",
 			"at": "2026-03-01T09:45:10.250Z",
 			"done": true

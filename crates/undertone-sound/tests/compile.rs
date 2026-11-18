@@ -1,40 +1,27 @@
-// Checks the performance compiler against `fixtures/song/compile.json`
+// Writes and checks `fixtures/song/compile.json`, the compiler's results for the named songs
 //
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-//! Each case holds a song and compile options, and the performance the TypeScript compiled from
-//! them. The test requires every event, section and length to match, bit for bit.
+//! Each case in `compile.json` names a song and what to ask of the compiler, and holds what the
+//! compiler gives back, every event, section and length, bit for bit. The test makes the results
+//! again and requires the file to hold exactly that text; with `UPDATE_FIXTURES=1` it writes the
+//! file instead.
 
 use std::fs;
-use std::path::PathBuf;
 
-use serde_json::Value;
+use serde_json::{Map, Value, json};
 use undertone_sound::compile::*;
 use undertone_sound::model::Song;
 use undertone_sound::takes::take_notes;
 
-fn dir() -> PathBuf {
-	PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../fixtures/song")
-}
+mod support;
+use support::{expect_file, fixture_text, song_dir};
 
 fn song(name: &str) -> Song {
-	let text = fs::read_to_string(dir().join("inputs").join(format!("{name}.song.json"))).unwrap();
+	let text =
+		fs::read_to_string(song_dir().join("inputs").join(format!("{name}.song.json"))).unwrap();
 	serde_json::from_str(&text).unwrap_or_else(|e| panic!("{name}: {e}"))
-}
-
-/// Equality that treats `96` and `96.0` as the same number, as JSON does.
-fn same(a: &Value, b: &Value) -> bool {
-	match (a, b) {
-		(Value::Number(x), Value::Number(y)) => x.as_f64() == y.as_f64(),
-		(Value::Array(x), Value::Array(y)) => {
-			x.len() == y.len() && x.iter().zip(y).all(|(p, q)| same(p, q))
-		}
-		(Value::Object(x), Value::Object(y)) => {
-			x.len() == y.len() && x.iter().all(|(k, v)| y.get(k).is_some_and(|w| same(v, w)))
-		}
-		_ => a == b,
-	}
 }
 
 fn options(value: &Value) -> CompileOptions {
@@ -52,112 +39,82 @@ fn options(value: &Value) -> CompileOptions {
 	}
 }
 
-#[test]
-fn compile_fixtures() {
-	let text = fs::read_to_string(dir().join("compile.json")).unwrap();
-	let cases: Vec<Value> = serde_json::from_str(&text).unwrap();
-	let mut counts = std::collections::BTreeMap::<String, (usize, usize)>::new();
-	let mut failures = Vec::new();
-	for case in &cases {
-		let kind = case["kind"].as_str().unwrap_or("compileSong").to_string();
-		let id = case["id"].as_str().unwrap();
-		let song = song(case["input"].as_str().unwrap());
-		let outcome: Result<(), String> = (|| match kind.as_str() {
-			"compileSong" => {
-				let got = compile_song(&song, &options(&case["options"]));
-				match (got, case.get("error")) {
-					(Err(message), Some(want)) => {
-						if want.as_str() == Some(message.as_str()) {
-							Ok(())
-						} else {
-							Err(format!("error {message:?} != {want}"))
-						}
-					}
-					(Ok(performance), None) => {
-						let value = serde_json::to_value(&performance).unwrap();
-						if same(&value, &case["performance"]) {
-							Ok(())
-						} else {
-							Err("performance differs".to_string())
-						}
-					}
-					(got, _) => Err(format!("outcome differs: {:?}", got.map(|_| "ok"))),
-				}
-			}
-			"rotatePerformance" => {
-				let base = compile_song(&song, &CompileOptions::default())?;
-				let got = rotate_performance(&base, case["fromStep"].as_f64().unwrap());
-				let value = serde_json::to_value(&got).unwrap();
-				if same(&value, &case["performance"]) {
-					Ok(())
-				} else {
-					Err("rotated performance differs".to_string())
-				}
-			}
-			"sectionAtStep" => {
-				let base = compile_song(&song, &CompileOptions::default())?;
-				let got = section_at_step(&base, case["step"].as_f64().unwrap());
-				let value = serde_json::to_value(got).unwrap();
-				if same(&value, &case["section"]) {
-					Ok(())
-				} else {
-					Err(format!("{value} != {}", case["section"]))
-				}
-			}
-			"audibleTracks" => {
-				let got: Vec<&str> = audible_tracks(&song)
-					.iter()
-					.map(|track| track.id.as_str())
-					.collect();
-				let want: Vec<&str> = case["tracks"]
-					.as_array()
-					.unwrap()
-					.iter()
-					.map(|v| v.as_str().unwrap())
-					.collect();
-				if got == want {
-					Ok(())
-				} else {
-					Err(format!("{got:?} != {want:?}"))
-				}
-			}
-			"takeNotes" => {
-				let track = song.find_track(case["track"].as_str().unwrap()).unwrap();
-				let section = song
-					.find_section(case["section"].as_str().unwrap())
-					.unwrap();
-				let slot = &song.clips[&track.id][&section.id];
-				let take = slot
-					.takes
-					.iter()
-					.find(|t| t.id == case["take"].as_str().unwrap())
-					.unwrap();
-				match (take_notes(&song, track, section, take), case.get("error")) {
-					(Ok(notes), None) => {
-						let value = serde_json::to_value(&notes).unwrap();
-						if same(&value, &case["notes"]) {
-							Ok(())
-						} else {
-							Err("notes differ".to_string())
-						}
-					}
-					(Err(message), Some(want)) if want.as_str() == Some(message.as_str()) => Ok(()),
-					(other, _) => Err(format!("outcome differs: {:?}", other.map(|_| "ok"))),
-				}
-			}
-			other => Err(format!("unknown case kind {other}")),
-		})();
-		let entry = counts.entry(kind).or_default();
-		match outcome {
-			Ok(()) => entry.0 += 1,
-			Err(detail) => {
-				entry.1 += 1;
-				failures.push(format!("{id}: {detail}"));
+fn value<T: serde::Serialize>(result: &T) -> Value {
+	serde_json::to_value(result).unwrap()
+}
+
+/// What a case asks for, as the fields it adds to the case.
+fn results(case: &Value, song: &Song) -> Vec<(&'static str, Value)> {
+	let id = case["id"].as_str().unwrap();
+	let kind = case["kind"].as_str().unwrap_or("compileSong");
+	match kind {
+		"compileSong" => match compile_song(song, &options(&case["options"])) {
+			Ok(performance) => vec![("performance", value(&performance))],
+			Err(message) => vec![("error", json!(message))],
+		},
+		"rotatePerformance" => {
+			let base = compile_song(song, &CompileOptions::default()).unwrap();
+			let rotated = rotate_performance(&base, case["fromStep"].as_f64().unwrap());
+			vec![("performance", value(&rotated))]
+		}
+		"sectionAtStep" => {
+			let base = compile_song(song, &CompileOptions::default()).unwrap();
+			let section = section_at_step(&base, case["step"].as_f64().unwrap());
+			vec![("section", value(&section))]
+		}
+		"audibleTracks" => {
+			let tracks: Vec<&str> = audible_tracks(song)
+				.iter()
+				.map(|track| track.id.as_str())
+				.collect();
+			vec![("tracks", json!(tracks))]
+		}
+		"takeNotes" => {
+			let track = song.find_track(case["track"].as_str().unwrap()).unwrap();
+			let section = song
+				.find_section(case["section"].as_str().unwrap())
+				.unwrap();
+			let take = song.clips[&track.id][&section.id]
+				.takes
+				.iter()
+				.find(|take| take.id == case["take"].as_str().unwrap())
+				.unwrap();
+			match take_notes(song, track, section, take) {
+				Ok(notes) => vec![("notes", value(&notes))],
+				Err(message) => vec![("error", json!(message))],
 			}
 		}
+		other => panic!("{id}: unknown case kind {other}"),
 	}
-	for (kind, (passed, failed)) in &counts {
-		println!("compile.json {kind}: {passed} passed, {failed} failed");
-	}
-	assert!(failures.is_empty(), "failures:\n{}", failures.join("\n"));
+}
+
+#[test]
+fn compile_fixtures() {
+	let text = fs::read_to_string(song_dir().join("compile.json")).unwrap();
+	let cases: Vec<Value> = serde_json::from_str(&text).unwrap();
+	let written: Vec<Value> = cases
+		.iter()
+		.map(|case| {
+			let song = song(case["input"].as_str().unwrap());
+			let mut out: Map<String, Value> = case.as_object().unwrap().clone();
+			// A `takeNotes` case's `section` is an input, a `sectionAtStep` case's is a result.
+			let own: &[&str] = match case["kind"].as_str().unwrap_or("compileSong") {
+				"sectionAtStep" => &["section"],
+				"audibleTracks" => &["tracks"],
+				"takeNotes" => &["notes", "error"],
+				_ => &["performance", "error"],
+			};
+			for key in own {
+				out.shift_remove(*key);
+			}
+			for (key, result) in results(case, &song) {
+				out.insert(key.to_string(), result);
+			}
+			Value::Object(out)
+		})
+		.collect();
+	expect_file(
+		&song_dir().join("compile.json"),
+		&fixture_text(&Value::Array(written)),
+	);
 }

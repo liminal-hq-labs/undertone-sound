@@ -14,10 +14,17 @@
 //! - [`compile`] — lowers a song to a [`compile::Performance`]: timed, engine-neutral events.
 //!
 //! The crate knows no host. It reads and writes the document, and says nothing about files on disk,
-//! albums, text readouts or how a sound engine voices a note. Those belong to the layers above.
+//! collections of songs, text readouts or how a sound engine voices a note. Those belong to the
+//! layers above.
 //!
-//! The TypeScript implementation is the reference, and `fixtures/song/` holds what it recorded.
-//! The `ts` cargo feature exports TypeScript bindings for the wire types; it is off by default.
+//! The format id is [`model::SONG_FORMAT`], `undertone-sound/song`, at version
+//! [`model::SONG_VERSION`]. `fixtures/song/` holds the recorded cases; this crate writes them
+//! (`UPDATE_FIXTURES=1 cargo test -p undertone-sound -- --test-threads=1`) and its tests require
+//! the files to hold exactly the bytes the code makes.
+//!
+//! The `ts` cargo feature (off by default) exports TypeScript bindings for the wire types, one
+//! file per type, with `cargo test -p undertone-sound --features ts`. They go to `bindings/`, or to
+//! the directory `TS_RS_EXPORT_DIR` names.
 
 pub mod compile;
 pub mod format;

@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "Title Theme (DOS)",
 	"tempo": 140,
@@ -207,7 +207,7 @@
 					{
 						"id": "a",
 						"name": "Classic loop",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
 						"comment": "Imported from patterns.ts:248, MUSIC.title part 1 (lead, square), gain 0.075."
 					}
@@ -219,7 +219,7 @@
 					{
 						"id": "a",
 						"name": "A",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -231,7 +231,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "f5", "len": 2 },
 							{ "at": 4, "pitch": "c5", "len": 2 },
@@ -296,7 +296,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -308,7 +308,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -322,7 +322,7 @@
 					{
 						"id": "a",
 						"name": "Classic loop",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
 						"comment": "Imported from patterns.ts:252, MUSIC.title part 2 (pad, sine), gain 0.05."
 					}
@@ -334,7 +334,7 @@
 					{
 						"id": "a",
 						"name": "A",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -346,7 +346,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "f4", "len": 16 },
 							{ "at": 0, "pitch": "a4", "len": 16 },
@@ -383,7 +383,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -395,7 +395,7 @@
 					{
 						"id": "a",
 						"name": "Break",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "c4", "len": 16 },
 							{ "at": 0, "pitch": "e4", "len": 16 },
@@ -420,7 +420,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -434,7 +434,7 @@
 					{
 						"id": "a",
 						"name": "Classic loop",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
 						"comment": "Imported from patterns.ts:256, MUSIC.title part 3 (bass, triangle), gain 0.3."
 					}
@@ -446,7 +446,7 @@
 					{
 						"id": "a",
 						"name": "A",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -458,7 +458,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "f2", "len": 4 },
 							{ "at": 4, "pitch": "f3", "len": 4 },
@@ -502,7 +502,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -514,7 +514,7 @@
 					{
 						"id": "a",
 						"name": "Break",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "c2", "len": 16, "vel": 0.4 },
 							{ "at": 16, "pitch": "a1", "len": 16, "vel": 0.4 },
@@ -531,7 +531,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -545,7 +545,7 @@
 					{
 						"id": "a",
 						"name": "Classic loop",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "kick ~ ~ kick kick ~ ~ ~",
 						"comment": "Imported from patterns.ts:259, MUSIC.title part 4 (kick, sine), gain 0.6."
 					}
@@ -557,7 +557,7 @@
 					{
 						"id": "a",
 						"name": "A",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "kick ~ ~ kick kick ~ ~ ~",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -569,7 +569,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "kick ~ ~ kick kick ~ ~ ~",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -581,7 +581,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "kick ~ ~ kick kick ~ ~ ~",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -593,7 +593,7 @@
 					{
 						"id": "a",
 						"name": "Break",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 2, "vel": 0.48 },
 							{ "at": 6, "pitch": "kick", "len": 2, "vel": 0.48 },
@@ -634,7 +634,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "kick ~ ~ kick kick ~ ~ ~",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -648,7 +648,7 @@
 					{
 						"id": "a",
 						"name": "Classic loop",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "~ snare ~ snare",
 						"comment": "Imported from patterns.ts:260, MUSIC.title part 5 (snare, triangle, noise), gain 0.24."
 					}
@@ -660,7 +660,7 @@
 					{
 						"id": "a",
 						"name": "A",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "~ snare ~ snare",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -672,7 +672,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "~ snare ~ snare",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -684,7 +684,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "~ snare ~ snare",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -696,7 +696,7 @@
 					{
 						"id": "a",
 						"name": "Break",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [],
 						"comment": "Made by `song form` from the loop “loop”: the kick, quieter. The loop was a mini pattern; this part needs its notes, so the take is notes."
 					}
@@ -708,7 +708,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "~ snare ~ snare",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -722,7 +722,7 @@
 					{
 						"id": "a",
 						"name": "Classic loop",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "[~ hat]*4",
 						"comment": "Imported from patterns.ts:261, MUSIC.title part 6 (hats, triangle, noise), gain 0.08."
 					}
@@ -734,7 +734,7 @@
 					{
 						"id": "a",
 						"name": "A",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "[~ hat]*4",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -746,7 +746,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "[~ hat]*4",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -758,7 +758,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "[~ hat]*4",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -770,7 +770,7 @@
 					{
 						"id": "a",
 						"name": "Break",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [],
 						"comment": "Made by `song form` from the loop “loop”: the kick, quieter. The loop was a mini pattern; this part needs its notes, so the take is notes."
 					}
@@ -782,7 +782,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "[~ hat]*4",
 						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
 					}
@@ -796,7 +796,7 @@
 					{
 						"id": "a",
 						"name": "B",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "f4", "len": 2 },
 							{ "at": 2, "pitch": "a4", "len": 2 },
@@ -873,7 +873,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "c4", "len": 2 },
 							{ "at": 2, "pitch": "e4", "len": 2 },
@@ -952,7 +952,7 @@
 					{
 						"id": "a",
 						"name": "A (octave)",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "c6", "len": 2 },
 							{ "at": 4, "pitch": "g5", "len": 2 },
@@ -1017,7 +1017,7 @@
 					{
 						"id": "a",
 						"name": "A2",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "c6", "len": 2 },
 							{ "at": 4, "pitch": "g5", "len": 2 },

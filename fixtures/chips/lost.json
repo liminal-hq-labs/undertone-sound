@@ -403,8 +403,8 @@
 	{ "chip": "opl3", "id": "opl3:fixture--take-panned", "input": "fixture--take-panned", "lost": null },
 	{ "chip": "opl2", "id": "opl2:fixture--instrument", "input": "fixture--instrument", "lost": null },
 	{ "chip": "opl3", "id": "opl3:fixture--instrument", "input": "fixture--instrument", "lost": null },
-	{ "chip": "opl2", "id": "opl2:chips-fizz", "input": "chips-fizz", "lost": null },
-	{ "chip": "opl3", "id": "opl3:chips-fizz", "input": "chips-fizz", "lost": null },
+	{ "chip": "opl2", "id": "opl2:chips-host-patches", "input": "chips-host-patches", "lost": null },
+	{ "chip": "opl3", "id": "opl3:chips-host-patches", "input": "chips-host-patches", "lost": null },
 	{
 		"chip": "opl2",
 		"id": "opl2:chips-priority",

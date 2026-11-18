@@ -932,8 +932,8 @@
 	},
 	{
 		"frames": 560,
-		"id": "pc-speaker:chips-fizz",
-		"input": "chips-fizz",
+		"id": "pc-speaker:chips-host-patches",
+		"input": "chips-host-patches",
 		"options": null,
 		"runs": [
 			[439.9638671875, 34],

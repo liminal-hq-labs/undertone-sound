@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "Overrides",
 	"tempo": 120,
@@ -128,7 +128,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "d5", "len": 4 },
 							{ "at": 4, "pitch": "f5", "len": 3, "vel": 1 },
@@ -148,7 +148,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 16 },
 							{ "at": 0, "pitch": "f4", "len": 16 },
@@ -167,7 +167,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 2, "pitch": "d3", "len": 10 },
 							{ "at": 2, "pitch": "a3", "len": 10 },
@@ -184,7 +184,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "d3", "len": 4 },
 							{ "at": 4, "pitch": "d3", "len": 4, "vel": 0.5 },
@@ -202,7 +202,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 1 },
 							{ "at": 0, "pitch": "hat", "len": 1 },

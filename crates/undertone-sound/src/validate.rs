@@ -12,7 +12,7 @@ use serde_json::{Map, Value};
 
 use crate::mini_bridge;
 use crate::model::{
-	Author, DrumPiece, EngineId, JUMP_POSITIONS_MAX, JUMP_POSITIONS_MIN, MAX_REVISION_STEPS,
+	AuthorKind, DrumPiece, EngineId, JUMP_POSITIONS_MAX, JUMP_POSITIONS_MIN, MAX_REVISION_STEPS,
 	PanCurve, PresetId, SONG_FORMAT, SONG_VERSION, ScaleName, Song, StepKind, TrackRole,
 	WobbleShape,
 };
@@ -110,7 +110,8 @@ pub enum ProblemCode {
 	BadSlot,
 	/// A slot's takes are not a list.
 	BadTakes,
-	/// An author is not a known one.
+	/// An author that does not read: not an object, an unknown kind, or a name that is empty or on a
+	/// human.
 	BadAuthor,
 	/// A take holds neither notes nor a pattern, or both.
 	NeedsOneOfNotesOrMini,
@@ -142,28 +143,6 @@ pub enum ProblemCode {
 	BadPanLaw,
 	/// A take's `revision` that does not read, or names a take or step that is not there.
 	BadRevision,
-	/// Reserved for album manifests, which a host layers over songs. This crate never raises it.
-	BadDescription,
-	/// Reserved for album manifests. This crate never raises it.
-	BadSongs,
-	/// Reserved for album manifests. This crate never raises it.
-	BadSongId,
-	/// Reserved for album manifests. This crate never raises it.
-	DuplicateSong,
-	/// Reserved for editor files, which a host reads from disk. This crate never raises it.
-	NotValidJson,
-	/// A comments file (`<id>.comments.json`) whose frame is wrong: its format, version, size or
-	/// `seq`.
-	BadCommentsFile,
-	/// A thread in a comments file that does not read.
-	BadThread,
-	/// A comment in a comments file that does not read.
-	BadComment,
-	/// A comment thread's anchor that does not read.
-	BadAnchor,
-	/// A comments file over one of its limits: comments in a thread, threads in a file, or the
-	/// length of a comment.
-	CommentsLimit,
 }
 
 /// One thing wrong, or worth knowing, in a document.
@@ -326,6 +305,7 @@ const NOTE_FIELDS: &[&str] = &["at", "pitch", "len", "vel", "pan", "panMotion"];
 const SLIDE_FIELDS: &[&str] = &["kind", "from", "to", "curve"];
 const WOBBLE_FIELDS: &[&str] = &["kind", "centre", "depth", "period", "shape", "phase"];
 const JUMP_FIELDS: &[&str] = &["kind", "positions", "every"];
+const AUTHOR_FIELDS: &[&str] = &["kind", "name"];
 const MESSAGE_FIELDS: &[&str] = &["by", "text", "at", "done"];
 const MIX_FIELDS: &[&str] = &["panLaw"];
 const REVISION_FIELDS: &[&str] = &[
@@ -375,6 +355,46 @@ fn word_list<T: Copy>(all: &[T], word: impl Fn(T) -> &'static str) -> String {
 		.map(|item| word(*item))
 		.collect::<Vec<_>>()
 		.join(", ")
+}
+
+/// Checks an author: an object with a `kind` of `human` or `agent` and, on an agent, an optional
+/// non-empty `name`.
+fn check_author(value: Option<&Value>, path: &str, problems: &mut Problems) {
+	let kinds = word_list(AuthorKind::ALL, AuthorKind::as_str);
+	let Some(author) = value.and_then(as_object) else {
+		problems.error(
+			ProblemCode::BadAuthor,
+			path,
+			format!("must be an object such as {{ \"kind\": \"human\" }} (the kinds are {kinds})"),
+		);
+		return;
+	};
+	check_fields(author, AUTHOR_FIELDS, "author", path, problems);
+	let kind = member(author, "kind")
+		.and_then(Value::as_str)
+		.and_then(AuthorKind::from_word);
+	if kind.is_none() {
+		problems.error(
+			ProblemCode::BadAuthor,
+			format!("{path}.kind"),
+			format!("must be one of {kinds}"),
+		);
+	}
+	if let Some(name) = member(author, "name") {
+		if kind == Some(AuthorKind::Human) {
+			problems.error(
+				ProblemCode::BadAuthor,
+				format!("{path}.name"),
+				"only an agent has a name",
+			);
+		} else if !name.as_str().is_some_and(|text| !trim(text).is_empty()) {
+			problems.error(
+				ProblemCode::BadAuthor,
+				format!("{path}.name"),
+				"must be a non-empty text",
+			);
+		}
+	}
 }
 
 /// Validates an already-parsed JSON value as a song document. Never panics.
@@ -786,16 +806,7 @@ pub fn validate_song(raw: &Value) -> Validation {
 					continue;
 				};
 				check_fields(message, MESSAGE_FIELDS, "message", &path, &mut problems);
-				if !member(message, "by")
-					.and_then(Value::as_str)
-					.is_some_and(|by| Author::from_word(by).is_some())
-				{
-					problems.error(
-						ProblemCode::BadAuthor,
-						format!("{path}.by"),
-						"must be \"you\" or \"claude\"",
-					);
-				}
+				check_author(member(message, "by"), &format!("{path}.by"), &mut problems);
 				if member(message, "text").and_then(Value::as_str).is_none() {
 					problems.error(
 						ProblemCode::BadMessageText,
@@ -918,16 +929,7 @@ fn check_slot(
 				"needs a name",
 			);
 		}
-		if !member(take, "by")
-			.and_then(Value::as_str)
-			.is_some_and(|by| Author::from_word(by).is_some())
-		{
-			problems.error(
-				ProblemCode::BadAuthor,
-				format!("{take_path}.by"),
-				"must be \"you\" or \"claude\"",
-			);
-		}
+		check_author(member(take, "by"), &format!("{take_path}.by"), problems);
 		if let Some(pan) = member(take, "pan")
 			&& !as_number(pan).is_some_and(|n| (-1.0..=1.0).contains(&n))
 		{
@@ -1577,7 +1579,7 @@ mod tests {
 
 	fn song(change: impl FnOnce(&mut Value)) -> Value {
 		let mut song = json!({
-			"format": "fizz-audio-studio/song", "version": 1, "title": "T", "tempo": 120,
+			"format": "undertone-sound/song", "version": 1, "title": "T", "tempo": 120,
 			"beatsPerBar": 4, "stepsPerBeat": 4, "key": { "root": "c", "scale": "major" },
 			"engine": "opl2",
 			"instruments": { "lead": { "name": "Lead", "preset": "lead" } },
@@ -1588,7 +1590,7 @@ mod tests {
 			"sections": [{ "id": "a", "name": "A", "bars": 1 }],
 			"arrangement": ["a"],
 			"clips": { "melody": { "a": { "active": "a", "takes": [{
-				"id": "a", "name": "A", "by": "you",
+				"id": "a", "name": "A", "by": { "kind": "human" },
 				"notes": [{ "at": 0, "pitch": "c4", "len": 2 }]
 			}] } } },
 			"messages": []
@@ -1719,5 +1721,52 @@ mod tests {
 				("clips.melody.a.takes[0].notes[0].pan", Severity::Warning),
 			]
 		);
+	}
+
+	#[test]
+	fn an_author_is_a_human_or_an_agent_and_only_an_agent_has_a_name() {
+		let author = |value: Value| {
+			let found = validate_song(&song(|s| {
+				s["clips"]["melody"]["a"]["takes"][0]["by"] = value.clone();
+			}));
+			found
+				.problems
+				.iter()
+				.map(|p| format!("{}: {}", p.path, p.message))
+				.collect::<Vec<_>>()
+		};
+		assert!(author(json!({ "kind": "human" })).is_empty());
+		assert!(author(json!({ "kind": "agent" })).is_empty());
+		assert!(author(json!({ "kind": "agent", "name": "Claude" })).is_empty());
+		let at = "clips.melody.a.takes[0].by";
+		assert_eq!(
+			author(json!({ "kind": "human", "name": "Sam" })),
+			[format!("{at}.name: only an agent has a name")]
+		);
+		assert_eq!(
+			author(json!({ "kind": "agent", "name": " " })),
+			[format!("{at}.name: must be a non-empty text")]
+		);
+		assert_eq!(
+			author(json!({ "kind": "robot" })),
+			[format!("{at}.kind: must be one of human, agent")]
+		);
+		assert_eq!(author(json!("human")).len(), 1);
+		assert_eq!(author(json!(null)).len(), 1);
+		let found = validate_song(&song(|s| {
+			s["clips"]["melody"]["a"]["takes"][0]["by"] = json!({ "kind": "human", "id": 4 });
+		}));
+		assert_eq!(found.problems.len(), 1);
+		assert_eq!(found.problems[0].code, ProblemCode::UnknownField);
+	}
+
+	#[test]
+	fn a_message_author_is_checked_the_same_way() {
+		let found = validate_song(&song(|s| {
+			s["messages"] = json!([{ "by": "agent", "text": "hi", "at": "2026-01-01T00:00:00Z" }]);
+		}));
+		assert_eq!(found.problems.len(), 1);
+		assert_eq!(found.problems[0].path, "messages[0].by");
+		assert_eq!(found.problems[0].code, ProblemCode::BadAuthor);
 	}
 }

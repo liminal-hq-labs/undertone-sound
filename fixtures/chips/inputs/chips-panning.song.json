@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "Panning",
 	"tempo": 120,
@@ -186,7 +186,7 @@
 					{
 						"id": "a",
 						"name": "Pan -1",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -1,
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 24 }
@@ -195,7 +195,7 @@
 					{
 						"id": "b",
 						"name": "Pan -0.95",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.95,
 						"notes": [
 							{ "at": 2, "pitch": "f4", "len": 24 }
@@ -204,7 +204,7 @@
 					{
 						"id": "c",
 						"name": "Pan -0.9",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.9,
 						"notes": [
 							{ "at": 4, "pitch": "a4", "len": 24 }
@@ -213,7 +213,7 @@
 					{
 						"id": "d",
 						"name": "Pan -0.89",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.89,
 						"notes": [
 							{ "at": 6, "pitch": "c5", "len": 24 }
@@ -222,7 +222,7 @@
 					{
 						"id": "e",
 						"name": "Pan -0.6",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.6,
 						"notes": [
 							{ "at": 8, "pitch": "d4", "len": 24 }
@@ -231,7 +231,7 @@
 					{
 						"id": "f",
 						"name": "Pan -0.34",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.34,
 						"notes": [
 							{ "at": 10, "pitch": "f4", "len": 24 }
@@ -240,7 +240,7 @@
 					{
 						"id": "g",
 						"name": "Pan -0.33",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.33,
 						"notes": [
 							{ "at": 12, "pitch": "a4", "len": 24 }
@@ -249,7 +249,7 @@
 					{
 						"id": "h",
 						"name": "Pan -0.1",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": -0.1,
 						"notes": [
 							{ "at": 14, "pitch": "c5", "len": 24 }
@@ -263,7 +263,7 @@
 					{
 						"id": "a",
 						"name": "Sweep",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 4 },
 							{ "at": 8, "pitch": "f4", "len": 4 },
@@ -293,7 +293,7 @@
 					{
 						"id": "a",
 						"name": "Chords",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": 0.7,
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 20 },
@@ -316,7 +316,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 6 }
 						]
@@ -331,7 +331,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 8, "pitch": "f4", "len": 26 }
 						]
@@ -346,7 +346,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 16, "pitch": "a4", "len": 46 }
 						]
@@ -361,7 +361,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 24, "pitch": "c5", "len": 6 }
 						]
@@ -376,7 +376,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 32, "pitch": "d4", "len": 26 }
 						]
@@ -391,7 +391,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 40, "pitch": "f4", "len": 46 }
 						]
@@ -406,7 +406,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 48, "pitch": "a4", "len": 6 }
 						]
@@ -421,7 +421,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 56, "pitch": "c5", "len": 26 }
 						]
@@ -436,7 +436,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 64, "pitch": "d4", "len": 46 }
 						]
@@ -451,7 +451,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 72, "pitch": "f4", "len": 6 }
 						]
@@ -466,7 +466,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 80, "pitch": "a4", "len": 26 }
 						]
@@ -481,7 +481,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 88, "pitch": "c5", "len": 46 }
 						]
@@ -496,7 +496,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 96, "pitch": "d4", "len": 6 }
 						]
@@ -511,7 +511,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 104, "pitch": "f4", "len": 26 }
 						]
@@ -526,7 +526,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 112, "pitch": "a4", "len": 46 }
 						]
@@ -541,7 +541,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 120, "pitch": "c5", "len": 6 }
 						]

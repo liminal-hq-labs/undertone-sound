@@ -39,7 +39,7 @@ fn track(id: &str, role: &str, priority: Option<u8>) -> Value {
 }
 
 fn take(notes: Vec<Value>) -> Value {
-	json!({ "active": "a", "takes": [{ "id": "a", "name": "A", "by": "you", "notes": notes }] })
+	json!({ "active": "a", "takes": [{ "id": "a", "name": "A", "by": { "kind": "human" }, "notes": notes }] })
 }
 
 /// A pad of five held notes (every OPL2 channel) and a lead note from step 4; `pad` and `lead`
@@ -51,7 +51,7 @@ fn contest(pad: Option<u8>, lead: Option<u8>, engine: &str) -> Song {
 		.map(|pitch| json!({ "at": 0, "pitch": pitch, "len": 12 }))
 		.collect();
 	serde_json::from_value(json!({
-		"format": "fizz-audio-studio/song", "version": 1, "title": "Contest", "tempo": 120,
+		"format": "undertone-sound/song", "version": 1, "title": "Contest", "tempo": 120,
 		"beatsPerBar": 4, "stepsPerBeat": 4, "key": { "root": "c", "scale": "major" },
 		"engine": engine,
 		"instruments": {
