@@ -1,0 +1,226 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Overrides",
+	"tempo": 120,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "d", "scale": "minor" },
+	"engine": "opl2",
+	"instruments": {
+		"lead": {
+			"name": "Odd lead",
+			"preset": "lead",
+			"engines": {
+				"opl2": {
+					"mod.ksl": 5,
+					"car.tl": -3.5,
+					"mod.wave": 7,
+					"feedback": 9,
+					"additive": true,
+					"car.mult": 17.9,
+					"mod.tl": "12",
+					"car.vibrato": 1,
+					"mod.sustain": false,
+					"car.ar": null,
+					"car.dr": "fast"
+				},
+				"opl3": { "car.tl": 10, "mod.wave": 6, "additive": false },
+				"pc-speaker": {
+					"chord": "top",
+					"priority": 10,
+					"octave": -1,
+					"gapFrames": 0,
+					"arpeggioFrames": 3,
+					"extra": "kept"
+				}
+			}
+		},
+		"bass": {
+			"name": "Bass",
+			"preset": "bass",
+			"engines": {
+				"opl2": { "car.ksl": 2, "mod.mult": 0, "car.wave": 2.7, "mod.tremolo": true },
+				"pc-speaker": { "chord": "bottom", "arpeggioFrames": 1.5, "octave": 2 }
+			}
+		},
+		"pad": {
+			"name": "Pad",
+			"preset": "pad",
+			"engines": {
+				"pc-speaker": { "chord": "sideways", "priority": 5, "gapFrames": null }
+			}
+		},
+		"organ": {
+			"name": "Organ",
+			"preset": "organ",
+			"engines": {
+				"opl3": { "mod.tl": 0, "feedback": 7 }
+			}
+		},
+		"kit": {
+			"name": "Kit",
+			"preset": "kit",
+			"engines": {
+				"opl2": { "bass.tl": 5, "snare.tl": -4, "hat.tl": 2.5, "tom.tl": "3", "cymbal.tl": 70 },
+				"opl3": { "bass.tl": 12 },
+				"pc-speaker": {
+					"kick.on": false,
+					"hat.frames": 3,
+					"crash.frames": 2.5,
+					"snare.frames": null,
+					"tom.on": 0
+				}
+			}
+		}
+	},
+	"tracks": [
+		{
+			"id": "melody",
+			"name": "Melody",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.8,
+			"pan": 0.4
+		},
+		{
+			"id": "pad",
+			"name": "Pad",
+			"role": "harmony",
+			"instrument": "pad",
+			"volume": 0.5,
+			"pan": -0.3
+		},
+		{
+			"id": "organ",
+			"name": "Organ",
+			"role": "harmony",
+			"instrument": "organ",
+			"volume": 0.6,
+			"pan": 0.7
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 0.9,
+			"pan": 0
+		},
+		{
+			"id": "drums",
+			"name": "Drums",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "a", "name": "A", "bars": 2 }
+	],
+	"arrangement": ["a", "a"],
+	"clips": {
+		"melody": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "d5", "len": 4 },
+							{ "at": 4, "pitch": "f5", "len": 3, "vel": 1 },
+							{ "at": 8, "pitch": "a4", "len": 8, "vel": 0.35 },
+							{ "at": 17, "pitch": "c5", "len": 2 },
+							{ "at": 20, "pitch": "d5", "len": 1 },
+							{ "at": 20, "pitch": "f5", "len": 6 }
+						]
+					}
+				]
+			}
+		},
+		"pad": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 16 },
+							{ "at": 0, "pitch": "f4", "len": 16 },
+							{ "at": 0, "pitch": "a4", "len": 16 },
+							{ "at": 16, "pitch": "c4", "len": 12 },
+							{ "at": 16, "pitch": "e4", "len": 12 }
+						]
+					}
+				]
+			}
+		},
+		"organ": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 2, "pitch": "d3", "len": 10 },
+							{ "at": 2, "pitch": "a3", "len": 10 },
+							{ "at": 18, "pitch": "f3", "len": 8 }
+						]
+					}
+				]
+			}
+		},
+		"bass": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "d3", "len": 4 },
+							{ "at": 4, "pitch": "d3", "len": 4, "vel": 0.5 },
+							{ "at": 8, "pitch": "a3", "len": 8 },
+							{ "at": 16, "pitch": "f3", "len": 16 }
+						]
+					}
+				]
+			}
+		},
+		"drums": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "kick", "len": 1 },
+							{ "at": 0, "pitch": "hat", "len": 1 },
+							{ "at": 1, "pitch": "kick", "len": 1, "vel": 1 },
+							{ "at": 2, "pitch": "snare", "len": 1 },
+							{ "at": 2, "pitch": "clap", "len": 1, "vel": 0.5 },
+							{ "at": 3, "pitch": "rim", "len": 1 },
+							{ "at": 4, "pitch": "tom", "len": 1 },
+							{ "at": 5, "pitch": "tom", "len": 1, "vel": 0.3 },
+							{ "at": 6, "pitch": "openhat", "len": 1 },
+							{ "at": 8, "pitch": "crash", "len": 1 },
+							{ "at": 10, "pitch": "kick", "len": 1 },
+							{ "at": 9, "pitch": "crash", "len": 1, "vel": 0.2 }
+						]
+					}
+				]
+			}
+		}
+	},
+	"messages": []
+}

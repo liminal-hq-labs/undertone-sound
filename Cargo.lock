@@ -45,6 +45,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98"
 
 [[package]]
+name = "oplon"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0df1044d4a29bc6db30e653b263b80599bcb4f15c0c0e2c61f9ac32f71d58de3"
+
+[[package]]
 name = "oplstream"
 version = "0.0.0"
 
@@ -204,6 +210,12 @@ dependencies = [
 [[package]]
 name = "undertone-opl"
 version = "0.0.0"
+dependencies = [
+ "oplon",
+ "serde_json",
+ "undertone-mini",
+ "undertone-sound",
+]
 
 [[package]]
 name = "undertone-sound"

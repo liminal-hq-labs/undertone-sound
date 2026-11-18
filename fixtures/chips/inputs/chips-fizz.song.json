@@ -1,0 +1,125 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Fizz presets",
+	"tempo": 120,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "d", "scale": "minor" },
+	"engine": "opl2",
+	"instruments": {
+		"lead": { "name": "Square lead", "preset": "square-lead" },
+		"bass": { "name": "Saw bass", "preset": "bass-saw" },
+		"pad": { "name": "Bright pad", "preset": "pad-bright" },
+		"drone": { "name": "Drone", "preset": "drone" }
+	},
+	"tracks": [
+		{
+			"id": "lead",
+			"name": "Lead",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 1,
+			"pan": 0
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 0.8,
+			"pan": 0
+		},
+		{
+			"id": "pad",
+			"name": "Pad",
+			"role": "harmony",
+			"instrument": "pad",
+			"volume": 0.4,
+			"pan": 0
+		},
+		{
+			"id": "drone",
+			"name": "Drone",
+			"role": "texture",
+			"instrument": "drone",
+			"volume": 0.5,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "a", "name": "A", "bars": 2 }
+	],
+	"arrangement": ["a"],
+	"clips": {
+		"lead": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "a4", "len": 2 },
+							{ "at": 4, "pitch": "c5", "len": 2 },
+							{ "at": 8, "pitch": "e5", "len": 4 },
+							{ "at": 16, "pitch": "d5", "len": 4 }
+						]
+					}
+				]
+			}
+		},
+		"bass": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "a2", "len": 4 },
+							{ "at": 8, "pitch": "a2", "len": 4 },
+							{ "at": 16, "pitch": "f2", "len": 8 }
+						]
+					}
+				]
+			}
+		},
+		"pad": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "c4", "len": 16 },
+							{ "at": 0, "pitch": "e4", "len": 16 },
+							{ "at": 16, "pitch": "a3", "len": 16 },
+							{ "at": 16, "pitch": "c4", "len": 16 }
+						]
+					}
+				]
+			}
+		},
+		"drone": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "a1", "len": 32 }
+						]
+					}
+				]
+			}
+		}
+	},
+	"messages": []
+}

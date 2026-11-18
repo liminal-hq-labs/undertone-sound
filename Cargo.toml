@@ -22,3 +22,10 @@ missing_docs = "warn"
 
 [workspace.lints.clippy]
 all = { level = "warn", priority = -1 }
+
+# The chips render whole passes in tests; unoptimised, the emulator makes them many times slower.
+[profile.dev.package.oplon]
+opt-level = 3
+
+[profile.dev.package.undertone-opl]
+opt-level = 3

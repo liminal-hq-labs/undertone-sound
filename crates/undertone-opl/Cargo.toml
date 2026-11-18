@@ -1,20 +1,26 @@
+# Manifest for the `undertone-opl` crate.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
 [package]
-name = "fizz-audio-chips"
-version = "0.1.0"
-description = "The OPL2, OPL3 and PC speaker engines for Fizz Audio Studio: register sequencing, rendering through oplon, voice parameters and lost notes"
+name = "undertone-opl"
+description = "OPL2 and OPL3 sequencing and channel allocation for Undertone, with lost-note accounting, a PC speaker engine and an oplon renderer"
 edition.workspace = true
-authors.workspace = true
 license.workspace = true
-rust-version.workspace = true
-homepage.workspace = true
+version.workspace = true
+authors.workspace = true
 repository.workspace = true
-publish = false
+publish.workspace = true
+
+[lints]
+workspace = true
 
 [dependencies]
-fizz-audio-song = { path = "../fizz-audio-song" }
-oplon = { workspace = true }
-serde = { workspace = true }
-serde_json = { workspace = true, features = ["preserve_order"] }
+undertone-sound = { path = "../undertone-sound" }
+undertone-mini = { path = "../undertone-mini" }
+oplon = "=1.0.0"
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
 
 [dev-dependencies]
-serde_json = { workspace = true, features = ["preserve_order"] }
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }

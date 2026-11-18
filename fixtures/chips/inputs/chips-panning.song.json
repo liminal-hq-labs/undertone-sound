@@ -1,0 +1,555 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Panning",
+	"tempo": 120,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "d", "scale": "minor" },
+	"engine": "opl3",
+	"instruments": {
+		"lead": { "name": "Lead", "preset": "lead" },
+		"organ": { "name": "Organ", "preset": "organ" },
+		"p0": { "name": "p0", "preset": "organ" },
+		"p1": { "name": "p1", "preset": "lead" },
+		"p2": { "name": "p2", "preset": "lead" },
+		"p3": { "name": "p3", "preset": "organ" },
+		"p4": { "name": "p4", "preset": "lead" },
+		"p5": { "name": "p5", "preset": "lead" },
+		"p6": { "name": "p6", "preset": "organ" },
+		"p7": { "name": "p7", "preset": "lead" },
+		"p8": { "name": "p8", "preset": "lead" },
+		"p9": { "name": "p9", "preset": "organ" },
+		"p10": { "name": "p10", "preset": "lead" },
+		"p11": { "name": "p11", "preset": "lead" },
+		"p12": { "name": "p12", "preset": "organ" },
+		"p13": { "name": "p13", "preset": "lead" },
+		"p14": { "name": "p14", "preset": "lead" },
+		"p15": { "name": "p15", "preset": "organ" }
+	},
+	"tracks": [
+		{
+			"id": "a",
+			"name": "A",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.8,
+			"pan": 0
+		},
+		{
+			"id": "b",
+			"name": "B",
+			"role": "harmony",
+			"instrument": "organ",
+			"volume": 0.6,
+			"pan": 0.3
+		},
+		{
+			"id": "p0",
+			"name": "p0",
+			"role": "melody",
+			"instrument": "p0",
+			"volume": 0.7,
+			"pan": -1
+		},
+		{
+			"id": "p1",
+			"name": "p1",
+			"role": "melody",
+			"instrument": "p1",
+			"volume": 0.7,
+			"pan": -0.95
+		},
+		{
+			"id": "p2",
+			"name": "p2",
+			"role": "melody",
+			"instrument": "p2",
+			"volume": 0.7,
+			"pan": -0.9
+		},
+		{
+			"id": "p3",
+			"name": "p3",
+			"role": "melody",
+			"instrument": "p3",
+			"volume": 0.7,
+			"pan": -0.89
+		},
+		{
+			"id": "p4",
+			"name": "p4",
+			"role": "melody",
+			"instrument": "p4",
+			"volume": 0.7,
+			"pan": -0.6
+		},
+		{
+			"id": "p5",
+			"name": "p5",
+			"role": "melody",
+			"instrument": "p5",
+			"volume": 0.7,
+			"pan": -0.34
+		},
+		{
+			"id": "p6",
+			"name": "p6",
+			"role": "melody",
+			"instrument": "p6",
+			"volume": 0.7,
+			"pan": -0.33
+		},
+		{
+			"id": "p7",
+			"name": "p7",
+			"role": "melody",
+			"instrument": "p7",
+			"volume": 0.7,
+			"pan": -0.1
+		},
+		{
+			"id": "p8",
+			"name": "p8",
+			"role": "melody",
+			"instrument": "p8",
+			"volume": 0.7,
+			"pan": -0.05
+		},
+		{
+			"id": "p9",
+			"name": "p9",
+			"role": "melody",
+			"instrument": "p9",
+			"volume": 0.7,
+			"pan": 0
+		},
+		{
+			"id": "p10",
+			"name": "p10",
+			"role": "melody",
+			"instrument": "p10",
+			"volume": 0.7,
+			"pan": 0.09
+		},
+		{
+			"id": "p11",
+			"name": "p11",
+			"role": "melody",
+			"instrument": "p11",
+			"volume": 0.7,
+			"pan": 0.11
+		},
+		{
+			"id": "p12",
+			"name": "p12",
+			"role": "melody",
+			"instrument": "p12",
+			"volume": 0.7,
+			"pan": 0.34
+		},
+		{
+			"id": "p13",
+			"name": "p13",
+			"role": "melody",
+			"instrument": "p13",
+			"volume": 0.7,
+			"pan": 0.5
+		},
+		{
+			"id": "p14",
+			"name": "p14",
+			"role": "melody",
+			"instrument": "p14",
+			"volume": 0.7,
+			"pan": 0.9
+		},
+		{
+			"id": "p15",
+			"name": "p15",
+			"role": "melody",
+			"instrument": "p15",
+			"volume": 0.7,
+			"pan": 1
+		}
+	],
+	"sections": [
+		{ "id": "s", "name": "S", "bars": 4 },
+		{ "id": "t", "name": "T", "bars": 8 }
+	],
+	"arrangement": ["s", "t"],
+	"clips": {
+		"a": {
+			"s": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Pan -1",
+						"by": "you",
+						"pan": -1,
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 24 }
+						]
+					},
+					{
+						"id": "b",
+						"name": "Pan -0.95",
+						"by": "you",
+						"pan": -0.95,
+						"notes": [
+							{ "at": 2, "pitch": "f4", "len": 24 }
+						]
+					},
+					{
+						"id": "c",
+						"name": "Pan -0.9",
+						"by": "you",
+						"pan": -0.9,
+						"notes": [
+							{ "at": 4, "pitch": "a4", "len": 24 }
+						]
+					},
+					{
+						"id": "d",
+						"name": "Pan -0.89",
+						"by": "you",
+						"pan": -0.89,
+						"notes": [
+							{ "at": 6, "pitch": "c5", "len": 24 }
+						]
+					},
+					{
+						"id": "e",
+						"name": "Pan -0.6",
+						"by": "you",
+						"pan": -0.6,
+						"notes": [
+							{ "at": 8, "pitch": "d4", "len": 24 }
+						]
+					},
+					{
+						"id": "f",
+						"name": "Pan -0.34",
+						"by": "you",
+						"pan": -0.34,
+						"notes": [
+							{ "at": 10, "pitch": "f4", "len": 24 }
+						]
+					},
+					{
+						"id": "g",
+						"name": "Pan -0.33",
+						"by": "you",
+						"pan": -0.33,
+						"notes": [
+							{ "at": 12, "pitch": "a4", "len": 24 }
+						]
+					},
+					{
+						"id": "h",
+						"name": "Pan -0.1",
+						"by": "you",
+						"pan": -0.1,
+						"notes": [
+							{ "at": 14, "pitch": "c5", "len": 24 }
+						]
+					}
+				]
+			},
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Sweep",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 4 },
+							{ "at": 8, "pitch": "f4", "len": 4 },
+							{ "at": 16, "pitch": "a4", "len": 4 },
+							{ "at": 24, "pitch": "c5", "len": 4 },
+							{ "at": 32, "pitch": "d4", "len": 4 },
+							{ "at": 40, "pitch": "f4", "len": 4 },
+							{ "at": 48, "pitch": "a4", "len": 4 },
+							{ "at": 56, "pitch": "c5", "len": 4 },
+							{ "at": 64, "pitch": "d4", "len": 4 },
+							{ "at": 72, "pitch": "f4", "len": 4 },
+							{ "at": 80, "pitch": "a4", "len": 4 },
+							{ "at": 88, "pitch": "c5", "len": 4 },
+							{ "at": 96, "pitch": "d4", "len": 4 },
+							{ "at": 104, "pitch": "f4", "len": 4 },
+							{ "at": 112, "pitch": "a4", "len": 4 },
+							{ "at": 120, "pitch": "c5", "len": 4 }
+						]
+					}
+				]
+			}
+		},
+		"b": {
+			"s": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Chords",
+						"by": "you",
+						"pan": 0.7,
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 20 },
+							{ "at": 1, "pitch": "d4", "len": 20, "vel": 0.5 },
+							{ "at": 4, "pitch": "f4", "len": 20 },
+							{ "at": 5, "pitch": "f4", "len": 20, "vel": 0.5 },
+							{ "at": 8, "pitch": "a4", "len": 20 },
+							{ "at": 9, "pitch": "a4", "len": 20, "vel": 0.5 },
+							{ "at": 12, "pitch": "c5", "len": 20 },
+							{ "at": 13, "pitch": "c5", "len": 20, "vel": 0.5 }
+						]
+					}
+				]
+			}
+		},
+		"p0": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 6 }
+						]
+					}
+				]
+			}
+		},
+		"p1": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 8, "pitch": "f4", "len": 26 }
+						]
+					}
+				]
+			}
+		},
+		"p2": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 16, "pitch": "a4", "len": 46 }
+						]
+					}
+				]
+			}
+		},
+		"p3": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 24, "pitch": "c5", "len": 6 }
+						]
+					}
+				]
+			}
+		},
+		"p4": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 32, "pitch": "d4", "len": 26 }
+						]
+					}
+				]
+			}
+		},
+		"p5": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 40, "pitch": "f4", "len": 46 }
+						]
+					}
+				]
+			}
+		},
+		"p6": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 48, "pitch": "a4", "len": 6 }
+						]
+					}
+				]
+			}
+		},
+		"p7": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 56, "pitch": "c5", "len": 26 }
+						]
+					}
+				]
+			}
+		},
+		"p8": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 64, "pitch": "d4", "len": 46 }
+						]
+					}
+				]
+			}
+		},
+		"p9": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 72, "pitch": "f4", "len": 6 }
+						]
+					}
+				]
+			}
+		},
+		"p10": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 80, "pitch": "a4", "len": 26 }
+						]
+					}
+				]
+			}
+		},
+		"p11": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 88, "pitch": "c5", "len": 46 }
+						]
+					}
+				]
+			}
+		},
+		"p12": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 96, "pitch": "d4", "len": 6 }
+						]
+					}
+				]
+			}
+		},
+		"p13": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 104, "pitch": "f4", "len": 26 }
+						]
+					}
+				]
+			}
+		},
+		"p14": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 112, "pitch": "a4", "len": 46 }
+						]
+					}
+				]
+			}
+		},
+		"p15": {
+			"t": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Take",
+						"by": "you",
+						"notes": [
+							{ "at": 120, "pitch": "c5", "len": 6 }
+						]
+					}
+				]
+			}
+		}
+	},
+	"messages": [],
+	"mix": { "panLaw": -1.5 }
+}
