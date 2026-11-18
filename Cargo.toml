@@ -1,0 +1,24 @@
+# Workspace manifest for the Undertone Sound crates.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+[workspace]
+members = ["crates/oplstream", "crates/undertone-dsp", "crates/undertone-opl", "crates/undertone-sound"]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+license = "Apache-2.0 OR MIT"
+version = "0.0.0"
+authors = ["Liminal HQ, Scott Morris"]
+repository = "https://github.com/liminal-hq-labs/undertone-sound"
+# Nothing is published until the maintainer says so; each crate opts out explicitly.
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
