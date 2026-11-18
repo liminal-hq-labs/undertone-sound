@@ -1,0 +1,29 @@
+# Manifest for the `undertone-wasm` crate.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+[package]
+name = "undertone-wasm"
+description = "WebAssembly bindings for the Undertone Sound crates: OPX import, validation and text twin, an OPL player and a voice renderer"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[lints]
+workspace = true
+
+[dependencies]
+oplstream = { path = "../oplstream" }
+undertone-dsp = { path = "../undertone-dsp" }
+serde_json = "1"
+# The version matches the `wasm-bindgen` command-line tool in the shared CI image; the two must agree.
+wasm-bindgen = "=0.2.125"
+# An integer-only OPL2 and OPL3 emulator (MIT, `no_std`).
+oplon = "=1.0.0"

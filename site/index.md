@@ -10,6 +10,9 @@ hero:
       text: Read the guide
       link: /guide/
     - theme: alt
+      text: Live demo
+      link: /demo
+    - theme: alt
       text: OPX specification
       link: /opx
     - theme: alt

@@ -75,6 +75,76 @@ pub enum ValidationError {
 	},
 }
 
+impl core::fmt::Display for ValidationError {
+	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+		match *self {
+			Self::Header(error) => error.fmt(f),
+			Self::UnknownMajor(major) => write!(f, "the major version {major} is not 0"),
+			Self::UnknownMinor(minor) => write!(
+				f,
+				"the minor version {minor} is newer than this reader knows"
+			),
+			Self::Truncated => f.write_str("the file is shorter than its header says"),
+			Self::TrailingBytes => f.write_str("the file is longer than its header says"),
+			Self::Decode(error) => error.fmt(f),
+			Self::BytesAfterEnd { offset } => {
+				write!(f, "there are bytes after END, from byte {offset}")
+			}
+			Self::TotalTicksMismatch { header, actual } => {
+				write!(
+					f,
+					"the header says {header} ticks but the waits add up to {actual}"
+				)
+			}
+			Self::MoreThanOneLoop { offset } => write!(f, "a second LOOP at byte {offset}"),
+			Self::LoopOffsetMismatch {
+				header,
+				actual: Some(actual),
+			} => {
+				write!(
+					f,
+					"the header puts the loop at byte {header} but LOOP is at byte {actual}"
+				)
+			}
+			Self::LoopOffsetMismatch {
+				header,
+				actual: None,
+			} => {
+				write!(
+					f,
+					"the header puts the loop at byte {header} but the stream has no LOOP"
+				)
+			}
+			Self::LoopInExtras { offset } => {
+				write!(f, "the LOOP at byte {offset} is in the extras tier")
+			}
+			Self::NoTickAfterLoop => f.write_str("no tick passes between LOOP and END"),
+			Self::ExtrasFlagMismatch => {
+				f.write_str("the extras flag does not match the stream's TIER commands")
+			}
+			Self::CoreWriteToBankOne { offset } => {
+				write!(
+					f,
+					"the core write to bank 1 at byte {offset} is not allowed when extras are present"
+				)
+			}
+			Self::StereoFlagMismatch => {
+				f.write_str("the stereo flag does not match the stream's writes")
+			}
+			Self::ReservedChannelWritten { offset, channel } => {
+				write!(
+					f,
+					"the write at byte {offset} is to reserved channel {channel}"
+				)
+			}
+			Self::BadSegment { offset } => write!(
+				f,
+				"the segment extension at byte {offset} is not allowed there"
+			),
+		}
+	}
+}
+
 /// The chip channel (0 to 17) that a register of `bank` belongs to, or `None` for a global
 /// register or one that belongs to no channel.
 pub fn channel_of(bank: u8, reg: u8) -> Option<u8> {
@@ -638,5 +708,29 @@ mod tests {
 		crate::fuzz::for_each_input(|bytes| {
 			let _ = validate(bytes);
 		});
+	}
+
+	#[test]
+	fn refusals_read_as_sentences() {
+		use std::string::ToString;
+		let message = ValidationError::TotalTicksMismatch {
+			header: 10,
+			actual: 12,
+		}
+		.to_string();
+		assert_eq!(
+			message,
+			"the header says 10 ticks but the waits add up to 12"
+		);
+		let message = ValidationError::Header(HeaderError::BadMagic).to_string();
+		assert_eq!(message, "the file does not start with the OPX magic bytes");
+		let decode = DecodeError {
+			offset: 40,
+			kind: DecodeErrorKind::UnknownOpcode(0x07),
+		};
+		assert_eq!(
+			decode.to_string(),
+			"byte 40 is the reserved or unknown opcode 0x07"
+		);
 	}
 }

@@ -461,3 +461,33 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`bash scripts/build-site.sh\` (VitePress build, then \`cargo doc\` into \`api/\`)"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+  wasm-bindings:
+    name: WebAssembly bindings
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/tauri-ci-desktop@sha256:553180813ab6078f116ec456326629b29bf6af9eb167ce9bc6007fa64f3f8097
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound-wasm
+
+      - name: Build the bindings
+        id: check
+        run: bash scripts/build-wasm.sh
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## WebAssembly bindings"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`bash scripts/build-wasm.sh\` (release build for \`wasm32-unknown-unknown\`, then \`wasm-bindgen --target web\`)"
+          } >> "${GITHUB_STEP_SUMMARY}"
