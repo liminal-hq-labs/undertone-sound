@@ -319,6 +319,7 @@ pub fn preview_performance(
         parse_pitch(pitch)
     };
     let event = |track_id: &str, velocity: f64, pan: f64, len: f64| PerformanceEvent {
+        pan_path: None,
         step: 0.0,
         len,
         track_id: track_id.to_string(),
