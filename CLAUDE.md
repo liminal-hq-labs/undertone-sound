@@ -13,7 +13,7 @@ Undertone Sound is a Liminal HQ Labs experiment: Shared Rust sound core for Unde
 - **Git.** Topic branches, merge commits only, branches deleted on merge. Never push, tag, publish or dispatch workflows unless asked. Never `git add -A` or `git commit -a`. `PLAN.md` stays out of git.
 - **Formatting.** Tabs everywhere except YAML. Rust uses rustfmt with hard tabs (`rustfmt.toml`).
 - **Headers.** SPDX header on every source, script, YAML, TOML and SVG file: summary line, blank, "(c) Copyright 2026 Liminal HQ, Scott Morris", `SPDX-License-Identifier: Apache-2.0 OR MIT`.
-- **CI.** One job per check. Shared images come from `liminal-hq/.github`. Dependabot is off unless the project opts in.
+- **CI.** One job per check, never a combined validate job. Shared images come from `liminal-hq/.github`. Dependabot is off unless the project opts in.
 - **Docs.** Update `SPEC.md` and `docs/decisions.md` in the same change as the behaviour.
 
 - **Core rules.** Fizz-agnostic; no "enhanced" in any name; `oplstream` core is `no_std`; no `unsafe`; frozen Undertone names; nothing published without the maintainer's say; no barrel files.
@@ -21,7 +21,7 @@ Undertone Sound is a Liminal HQ Labs experiment: Shared Rust sound core for Unde
 ## Commands
 
 ```sh
-cargo fmt --all -- --check && cargo clippy --workspace --all-targets --locked -- -D warnings && cargo test --workspace --locked
+cargo fmt --all -- --check && cargo clippy --workspace --all-targets --locked -- -D warnings && cargo nextest run --workspace --locked
 bash scripts/check-headers.sh
 bash scripts/check-banner.sh     # add --shots /tmp/shots for review frames
 docker run --rm -v "$PWD:/workdir" davidanson/markdownlint-cli2:v0.17.2 "**/*.md"
