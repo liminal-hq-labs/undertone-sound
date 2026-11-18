@@ -1,0 +1,28 @@
+# Posts the results of a finished CI run to its pull request: one comment and a check run per suite.
+#
+# This runs from the default branch with write tokens, so it never checks out or runs a pull request's
+# code. CI uploads its reports as artefacts, and the publisher reads them as data. Settings are in
+# `.github/pr-results.toml`. The publisher is pinned by commit SHA, which also pins its binary.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+name: Publish Test Results
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions: {}
+
+jobs:
+  publish:
+    name: Publish
+    if: github.event.workflow_run.conclusion != 'skipped' && github.event.workflow_run.conclusion != 'cancelled'
+    permissions:
+      actions: read # list and download the run's artefacts
+      checks: write # create and update check runs and annotations
+      pull-requests: write # create and update the sticky comment
+      contents: read # check out .github/ from the default branch
+    uses: liminal-hq-labs/pr-results/.github/workflows/publish.yml@300a1c01fb2334b62c40a8e0b299bfae8a561d09 # v0.2.0
