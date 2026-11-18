@@ -48,7 +48,7 @@ impl ChipEngine {
         }
     }
 
-    fn opl(self) -> Option<OplChip> {
+    pub fn opl(self) -> Option<OplChip> {
         match self {
             ChipEngine::Opl2 => Some(OplChip::Opl2),
             ChipEngine::Opl3 => Some(OplChip::Opl3),
@@ -211,6 +211,68 @@ pub fn render_performance(
         None => {
             let mut pass =
                 render_speaker(&sequence_speaker(song, performance), request.sample_rate);
+            if !request.wrap {
+                let length = pass.left.len()
+                    + crate::numbers::round(request.tail * f64::from(request.sample_rate)) as usize;
+                pass.left.resize(length, 0.0);
+                pass.right.clone_from(&pass.left);
+            }
+            pass
+        }
+    }
+}
+
+/// The sound one track adds to a render of a performance, with every other track playing as it
+/// does in the mix: its share of the mix, not a render of it alone.
+///
+/// - On the OPL chips the performance is sequenced a second time with the track at the chip's
+///   lowest level (`sequence_opl_hushing`), which keeps every channel choice, steal, and drop the
+///   same, and `mix` minus that render is the track. A note the track loses to a steal is silent in
+///   both renders, so it costs the track nothing here, as it costs it nothing in the mix. The
+///   hushed track still sounds at about -47 dB (total level 63), so its share reads about 0.04 dB
+///   low, and the two renders are the same length so the subtraction is sample for sample.
+/// - On the PC speaker there is one voice and nothing adds, so the track is the frames it wins
+///   (`sequence_speaker_track`) and silence elsewhere.
+///
+/// `mix` is the render of the whole `performance` at the same `request`.
+pub fn render_track_in_mix(
+    song: &Song,
+    performance: &Performance,
+    engine: ChipEngine,
+    request: RenderRequest,
+    track_id: &str,
+    mix: &RenderedSound,
+) -> RenderedSound {
+    match engine.opl() {
+        Some(chip) => {
+            let hushed =
+                crate::sequence::sequence_opl_hushing(song, performance, chip, Some(track_id));
+            let without = render_sequence(
+                &hushed,
+                chip,
+                RenderOptions {
+                    sample_rate: request.sample_rate,
+                    tail: request.tail,
+                    wrap: request.wrap,
+                },
+            );
+            let subtract = |whole: &[f32], rest: &[f32]| -> Vec<f32> {
+                whole
+                    .iter()
+                    .zip(rest)
+                    .map(|(whole, rest)| whole - rest)
+                    .collect()
+            };
+            RenderedSound {
+                sample_rate: mix.sample_rate,
+                left: subtract(&mix.left, &without.left),
+                right: subtract(&mix.right, &without.right),
+            }
+        }
+        None => {
+            let frames =
+                crate::speaker::sequence::sequence_speaker_track(song, performance, track_id);
+            let mut pass = render_speaker(&frames, request.sample_rate);
             if !request.wrap {
                 let length = pass.left.len()
                     + crate::numbers::round(request.tail * f64::from(request.sample_rate)) as usize;
