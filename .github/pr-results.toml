@@ -1,0 +1,22 @@
+# pr-results settings: the Rust tests and the CI steps, in one pull request comment.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+schema = 1
+title = "Undertone Sound"
+
+[[suite]]
+name = "Rust tests"
+check = "Undertone Sound Rust tests"
+artifact = "rust-test-results"
+files = ["**/junit.xml"]
+flavour = "nextest"
+
+[[suite]]
+name = "CI steps"
+check = "Undertone Sound CI steps"
+artifact = "steps-test-results-*"
+files = ["**/steps.xml"]
+flavour = "steps"
+required = true

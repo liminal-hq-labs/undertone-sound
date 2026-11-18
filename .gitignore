@@ -22,3 +22,6 @@ __pycache__/
 .vscode/
 .idea/
 /site/.vitepress/theme/wasm/
+
+# CI step and test reports
+/results/
