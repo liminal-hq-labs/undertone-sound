@@ -1,0 +1,4367 @@
+{
+	"constants": {
+		"AUTHORS": ["you", "claude"],
+		"DEFAULT_VELOCITY": 0.8,
+		"DRUM_PIECES": ["crash", "openhat", "hat", "clap", "rim", "snare", "tom", "kick"],
+		"ENGINE_IDS": ["undertone", "opl2", "opl3", "pc-speaker"],
+		"PRESET_IDS": ["lead", "square-lead", "soft-lead", "pluck", "bell", "pad", "organ", "bass", "sub-bass", "bass-saw", "pad-bright", "drone", "kit"],
+		"SONG_FORMAT": "fizz-audio-studio/song",
+		"SONG_VERSION": 1,
+		"TRACK_ROLES": ["melody", "harmony", "bass", "drums", "texture"]
+	},
+	"isInKey": [
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 0
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 0
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 0
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 1
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 1
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 1
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 2
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 2
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 2
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 3
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 3
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 3
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 4
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 4
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 4
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 5
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 5
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 5
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 6
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 6
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 6
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 7
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 7
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 7
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 8
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 8
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 8
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 9
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 9
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 9
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 10
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 10
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 10
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 11
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 11
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 11
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 12
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 12
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 12
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 13
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 13
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 13
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 60
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61
+		},
+		{
+			"inKey": false,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": 61
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": -1
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": -1
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": -1
+		},
+		{
+			"inKey": true,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": -12
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": -12
+		},
+		{
+			"inKey": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": -12
+		},
+		{
+			"inKey": false,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": -13
+		},
+		{
+			"inKey": true,
+			"key": { "root": "c", "scale": "major" },
+			"midi": -13
+		},
+		{
+			"inKey": true,
+			"key": { "root": "f#", "scale": "minorPentatonic" },
+			"midi": -13
+		}
+	],
+	"keyPitchClasses": [
+		{
+			"classes": [0, 2, 4, 5, 7, 9, 11],
+			"key": { "root": "c", "scale": "major" }
+		},
+		{
+			"classes": [1, 2, 4, 6, 7, 9, 11],
+			"key": { "root": "d", "scale": "major" }
+		},
+		{
+			"classes": [1, 3, 5, 6, 8, 10, 11],
+			"key": { "root": "f#", "scale": "major" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 9, 10],
+			"key": { "root": "bb", "scale": "major" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 8, 10],
+			"key": { "root": "c", "scale": "minor" }
+		},
+		{
+			"classes": [0, 2, 4, 5, 7, 9, 10],
+			"key": { "root": "d", "scale": "minor" }
+		},
+		{
+			"classes": [1, 2, 4, 6, 8, 9, 11],
+			"key": { "root": "f#", "scale": "minor" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 6, 8, 10],
+			"key": { "root": "bb", "scale": "minor" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 9, 10],
+			"key": { "root": "c", "scale": "dorian" }
+		},
+		{
+			"classes": [0, 2, 4, 5, 7, 9, 11],
+			"key": { "root": "d", "scale": "dorian" }
+		},
+		{
+			"classes": [1, 3, 4, 6, 8, 9, 11],
+			"key": { "root": "f#", "scale": "dorian" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 7, 8, 10],
+			"key": { "root": "bb", "scale": "dorian" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 7, 8, 10],
+			"key": { "root": "c", "scale": "phrygian" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 9, 10],
+			"key": { "root": "d", "scale": "phrygian" }
+		},
+		{
+			"classes": [1, 2, 4, 6, 7, 9, 11],
+			"key": { "root": "f#", "scale": "phrygian" }
+		},
+		{
+			"classes": [1, 3, 5, 6, 8, 10, 11],
+			"key": { "root": "bb", "scale": "phrygian" }
+		},
+		{
+			"classes": [0, 2, 4, 6, 7, 9, 11],
+			"key": { "root": "c", "scale": "lydian" }
+		},
+		{
+			"classes": [1, 2, 4, 6, 8, 9, 11],
+			"key": { "root": "d", "scale": "lydian" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 6, 8, 10],
+			"key": { "root": "f#", "scale": "lydian" }
+		},
+		{
+			"classes": [0, 2, 4, 5, 7, 9, 10],
+			"key": { "root": "bb", "scale": "lydian" }
+		},
+		{
+			"classes": [0, 2, 4, 5, 7, 9, 10],
+			"key": { "root": "c", "scale": "mixolydian" }
+		},
+		{
+			"classes": [0, 2, 4, 6, 7, 9, 11],
+			"key": { "root": "d", "scale": "mixolydian" }
+		},
+		{
+			"classes": [1, 3, 4, 6, 8, 10, 11],
+			"key": { "root": "f#", "scale": "mixolydian" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 8, 10],
+			"key": { "root": "bb", "scale": "mixolydian" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 6, 8, 10],
+			"key": { "root": "c", "scale": "locrian" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 8, 10],
+			"key": { "root": "d", "scale": "locrian" }
+		},
+		{
+			"classes": [0, 2, 4, 6, 7, 9, 11],
+			"key": { "root": "f#", "scale": "locrian" }
+		},
+		{
+			"classes": [1, 3, 4, 6, 8, 10, 11],
+			"key": { "root": "bb", "scale": "locrian" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 8, 11],
+			"key": { "root": "c", "scale": "harmonicMinor" }
+		},
+		{
+			"classes": [1, 2, 4, 5, 7, 9, 10],
+			"key": { "root": "d", "scale": "harmonicMinor" }
+		},
+		{
+			"classes": [1, 2, 5, 6, 8, 9, 11],
+			"key": { "root": "f#", "scale": "harmonicMinor" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 6, 9, 10],
+			"key": { "root": "bb", "scale": "harmonicMinor" }
+		},
+		{
+			"classes": [0, 2, 3, 5, 7, 9, 11],
+			"key": { "root": "c", "scale": "melodicMinor" }
+		},
+		{
+			"classes": [1, 2, 4, 5, 7, 9, 11],
+			"key": { "root": "d", "scale": "melodicMinor" }
+		},
+		{
+			"classes": [1, 3, 5, 6, 8, 9, 11],
+			"key": { "root": "f#", "scale": "melodicMinor" }
+		},
+		{
+			"classes": [0, 1, 3, 5, 7, 9, 10],
+			"key": { "root": "bb", "scale": "melodicMinor" }
+		},
+		{
+			"classes": [0, 2, 4, 7, 9],
+			"key": { "root": "c", "scale": "majorPentatonic" }
+		},
+		{
+			"classes": [2, 4, 6, 9, 11],
+			"key": { "root": "d", "scale": "majorPentatonic" }
+		},
+		{
+			"classes": [1, 3, 6, 8, 10],
+			"key": { "root": "f#", "scale": "majorPentatonic" }
+		},
+		{
+			"classes": [0, 2, 5, 7, 10],
+			"key": { "root": "bb", "scale": "majorPentatonic" }
+		},
+		{
+			"classes": [0, 3, 5, 7, 10],
+			"key": { "root": "c", "scale": "minorPentatonic" }
+		},
+		{
+			"classes": [0, 2, 5, 7, 9],
+			"key": { "root": "d", "scale": "minorPentatonic" }
+		},
+		{
+			"classes": [1, 4, 6, 9, 11],
+			"key": { "root": "f#", "scale": "minorPentatonic" }
+		},
+		{
+			"classes": [1, 3, 5, 8, 10],
+			"key": { "root": "bb", "scale": "minorPentatonic" }
+		},
+		{
+			"classes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+			"key": { "root": "c", "scale": "chromatic" }
+		},
+		{
+			"classes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+			"key": { "root": "d", "scale": "chromatic" }
+		},
+		{
+			"classes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+			"key": { "root": "f#", "scale": "chromatic" }
+		},
+		{
+			"classes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+			"key": { "root": "bb", "scale": "chromatic" }
+		}
+	],
+	"midiToName": [
+		{
+			"key": null,
+			"names": [
+				"c-1",
+				"c#-1",
+				"d-1",
+				"d#-1",
+				"e-1",
+				"f-1",
+				"f#-1",
+				"g-1",
+				"g#-1",
+				"a-1",
+				"a#-1",
+				"b-1",
+				"c0",
+				"c#0",
+				"d0",
+				"d#0",
+				"e0",
+				"f0",
+				"f#0",
+				"g0",
+				"g#0",
+				"a0",
+				"a#0",
+				"b0",
+				"c1",
+				"c#1",
+				"d1",
+				"d#1",
+				"e1",
+				"f1",
+				"f#1",
+				"g1",
+				"g#1",
+				"a1",
+				"a#1",
+				"b1",
+				"c2",
+				"c#2",
+				"d2",
+				"d#2",
+				"e2",
+				"f2",
+				"f#2",
+				"g2",
+				"g#2",
+				"a2",
+				"a#2",
+				"b2",
+				"c3",
+				"c#3",
+				"d3",
+				"d#3",
+				"e3",
+				"f3",
+				"f#3",
+				"g3",
+				"g#3",
+				"a3",
+				"a#3",
+				"b3",
+				"c4",
+				"c#4",
+				"d4",
+				"d#4",
+				"e4",
+				"f4",
+				"f#4",
+				"g4",
+				"g#4",
+				"a4",
+				"a#4",
+				"b4",
+				"c5",
+				"c#5",
+				"d5",
+				"d#5",
+				"e5",
+				"f5",
+				"f#5",
+				"g5",
+				"g#5",
+				"a5",
+				"a#5",
+				"b5",
+				"c6",
+				"c#6",
+				"d6",
+				"d#6",
+				"e6",
+				"f6",
+				"f#6",
+				"g6",
+				"g#6",
+				"a6",
+				"a#6",
+				"b6",
+				"c7",
+				"c#7",
+				"d7",
+				"d#7",
+				"e7",
+				"f7",
+				"f#7",
+				"g7",
+				"g#7",
+				"a7",
+				"a#7",
+				"b7",
+				"c8",
+				"c#8",
+				"d8",
+				"d#8",
+				"e8",
+				"f8",
+				"f#8",
+				"g8",
+				"g#8",
+				"a8",
+				"a#8",
+				"b8",
+				"c9",
+				"c#9",
+				"d9",
+				"d#9",
+				"e9",
+				"f9",
+				"f#9",
+				"g9"
+			]
+		},
+		{
+			"key": { "root": "c", "scale": "major" },
+			"names": [
+				"c-1",
+				"c#-1",
+				"d-1",
+				"d#-1",
+				"e-1",
+				"f-1",
+				"f#-1",
+				"g-1",
+				"g#-1",
+				"a-1",
+				"a#-1",
+				"b-1",
+				"c0",
+				"c#0",
+				"d0",
+				"d#0",
+				"e0",
+				"f0",
+				"f#0",
+				"g0",
+				"g#0",
+				"a0",
+				"a#0",
+				"b0",
+				"c1",
+				"c#1",
+				"d1",
+				"d#1",
+				"e1",
+				"f1",
+				"f#1",
+				"g1",
+				"g#1",
+				"a1",
+				"a#1",
+				"b1",
+				"c2",
+				"c#2",
+				"d2",
+				"d#2",
+				"e2",
+				"f2",
+				"f#2",
+				"g2",
+				"g#2",
+				"a2",
+				"a#2",
+				"b2",
+				"c3",
+				"c#3",
+				"d3",
+				"d#3",
+				"e3",
+				"f3",
+				"f#3",
+				"g3",
+				"g#3",
+				"a3",
+				"a#3",
+				"b3",
+				"c4",
+				"c#4",
+				"d4",
+				"d#4",
+				"e4",
+				"f4",
+				"f#4",
+				"g4",
+				"g#4",
+				"a4",
+				"a#4",
+				"b4",
+				"c5",
+				"c#5",
+				"d5",
+				"d#5",
+				"e5",
+				"f5",
+				"f#5",
+				"g5",
+				"g#5",
+				"a5",
+				"a#5",
+				"b5",
+				"c6",
+				"c#6",
+				"d6",
+				"d#6",
+				"e6",
+				"f6",
+				"f#6",
+				"g6",
+				"g#6",
+				"a6",
+				"a#6",
+				"b6",
+				"c7",
+				"c#7",
+				"d7",
+				"d#7",
+				"e7",
+				"f7",
+				"f#7",
+				"g7",
+				"g#7",
+				"a7",
+				"a#7",
+				"b7",
+				"c8",
+				"c#8",
+				"d8",
+				"d#8",
+				"e8",
+				"f8",
+				"f#8",
+				"g8",
+				"g#8",
+				"a8",
+				"a#8",
+				"b8",
+				"c9",
+				"c#9",
+				"d9",
+				"d#9",
+				"e9",
+				"f9",
+				"f#9",
+				"g9"
+			]
+		},
+		{
+			"key": { "root": "f", "scale": "major" },
+			"names": [
+				"c-1",
+				"db-1",
+				"d-1",
+				"eb-1",
+				"e-1",
+				"f-1",
+				"gb-1",
+				"g-1",
+				"ab-1",
+				"a-1",
+				"bb-1",
+				"b-1",
+				"c0",
+				"db0",
+				"d0",
+				"eb0",
+				"e0",
+				"f0",
+				"gb0",
+				"g0",
+				"ab0",
+				"a0",
+				"bb0",
+				"b0",
+				"c1",
+				"db1",
+				"d1",
+				"eb1",
+				"e1",
+				"f1",
+				"gb1",
+				"g1",
+				"ab1",
+				"a1",
+				"bb1",
+				"b1",
+				"c2",
+				"db2",
+				"d2",
+				"eb2",
+				"e2",
+				"f2",
+				"gb2",
+				"g2",
+				"ab2",
+				"a2",
+				"bb2",
+				"b2",
+				"c3",
+				"db3",
+				"d3",
+				"eb3",
+				"e3",
+				"f3",
+				"gb3",
+				"g3",
+				"ab3",
+				"a3",
+				"bb3",
+				"b3",
+				"c4",
+				"db4",
+				"d4",
+				"eb4",
+				"e4",
+				"f4",
+				"gb4",
+				"g4",
+				"ab4",
+				"a4",
+				"bb4",
+				"b4",
+				"c5",
+				"db5",
+				"d5",
+				"eb5",
+				"e5",
+				"f5",
+				"gb5",
+				"g5",
+				"ab5",
+				"a5",
+				"bb5",
+				"b5",
+				"c6",
+				"db6",
+				"d6",
+				"eb6",
+				"e6",
+				"f6",
+				"gb6",
+				"g6",
+				"ab6",
+				"a6",
+				"bb6",
+				"b6",
+				"c7",
+				"db7",
+				"d7",
+				"eb7",
+				"e7",
+				"f7",
+				"gb7",
+				"g7",
+				"ab7",
+				"a7",
+				"bb7",
+				"b7",
+				"c8",
+				"db8",
+				"d8",
+				"eb8",
+				"e8",
+				"f8",
+				"gb8",
+				"g8",
+				"ab8",
+				"a8",
+				"bb8",
+				"b8",
+				"c9",
+				"db9",
+				"d9",
+				"eb9",
+				"e9",
+				"f9",
+				"gb9",
+				"g9"
+			]
+		},
+		{
+			"key": { "root": "bb", "scale": "major" },
+			"names": [
+				"c-1",
+				"db-1",
+				"d-1",
+				"eb-1",
+				"e-1",
+				"f-1",
+				"gb-1",
+				"g-1",
+				"ab-1",
+				"a-1",
+				"bb-1",
+				"b-1",
+				"c0",
+				"db0",
+				"d0",
+				"eb0",
+				"e0",
+				"f0",
+				"gb0",
+				"g0",
+				"ab0",
+				"a0",
+				"bb0",
+				"b0",
+				"c1",
+				"db1",
+				"d1",
+				"eb1",
+				"e1",
+				"f1",
+				"gb1",
+				"g1",
+				"ab1",
+				"a1",
+				"bb1",
+				"b1",
+				"c2",
+				"db2",
+				"d2",
+				"eb2",
+				"e2",
+				"f2",
+				"gb2",
+				"g2",
+				"ab2",
+				"a2",
+				"bb2",
+				"b2",
+				"c3",
+				"db3",
+				"d3",
+				"eb3",
+				"e3",
+				"f3",
+				"gb3",
+				"g3",
+				"ab3",
+				"a3",
+				"bb3",
+				"b3",
+				"c4",
+				"db4",
+				"d4",
+				"eb4",
+				"e4",
+				"f4",
+				"gb4",
+				"g4",
+				"ab4",
+				"a4",
+				"bb4",
+				"b4",
+				"c5",
+				"db5",
+				"d5",
+				"eb5",
+				"e5",
+				"f5",
+				"gb5",
+				"g5",
+				"ab5",
+				"a5",
+				"bb5",
+				"b5",
+				"c6",
+				"db6",
+				"d6",
+				"eb6",
+				"e6",
+				"f6",
+				"gb6",
+				"g6",
+				"ab6",
+				"a6",
+				"bb6",
+				"b6",
+				"c7",
+				"db7",
+				"d7",
+				"eb7",
+				"e7",
+				"f7",
+				"gb7",
+				"g7",
+				"ab7",
+				"a7",
+				"bb7",
+				"b7",
+				"c8",
+				"db8",
+				"d8",
+				"eb8",
+				"e8",
+				"f8",
+				"gb8",
+				"g8",
+				"ab8",
+				"a8",
+				"bb8",
+				"b8",
+				"c9",
+				"db9",
+				"d9",
+				"eb9",
+				"e9",
+				"f9",
+				"gb9",
+				"g9"
+			]
+		},
+		{
+			"key": { "root": "d", "scale": "minor" },
+			"names": [
+				"c-1",
+				"db-1",
+				"d-1",
+				"eb-1",
+				"e-1",
+				"f-1",
+				"gb-1",
+				"g-1",
+				"ab-1",
+				"a-1",
+				"bb-1",
+				"b-1",
+				"c0",
+				"db0",
+				"d0",
+				"eb0",
+				"e0",
+				"f0",
+				"gb0",
+				"g0",
+				"ab0",
+				"a0",
+				"bb0",
+				"b0",
+				"c1",
+				"db1",
+				"d1",
+				"eb1",
+				"e1",
+				"f1",
+				"gb1",
+				"g1",
+				"ab1",
+				"a1",
+				"bb1",
+				"b1",
+				"c2",
+				"db2",
+				"d2",
+				"eb2",
+				"e2",
+				"f2",
+				"gb2",
+				"g2",
+				"ab2",
+				"a2",
+				"bb2",
+				"b2",
+				"c3",
+				"db3",
+				"d3",
+				"eb3",
+				"e3",
+				"f3",
+				"gb3",
+				"g3",
+				"ab3",
+				"a3",
+				"bb3",
+				"b3",
+				"c4",
+				"db4",
+				"d4",
+				"eb4",
+				"e4",
+				"f4",
+				"gb4",
+				"g4",
+				"ab4",
+				"a4",
+				"bb4",
+				"b4",
+				"c5",
+				"db5",
+				"d5",
+				"eb5",
+				"e5",
+				"f5",
+				"gb5",
+				"g5",
+				"ab5",
+				"a5",
+				"bb5",
+				"b5",
+				"c6",
+				"db6",
+				"d6",
+				"eb6",
+				"e6",
+				"f6",
+				"gb6",
+				"g6",
+				"ab6",
+				"a6",
+				"bb6",
+				"b6",
+				"c7",
+				"db7",
+				"d7",
+				"eb7",
+				"e7",
+				"f7",
+				"gb7",
+				"g7",
+				"ab7",
+				"a7",
+				"bb7",
+				"b7",
+				"c8",
+				"db8",
+				"d8",
+				"eb8",
+				"e8",
+				"f8",
+				"gb8",
+				"g8",
+				"ab8",
+				"a8",
+				"bb8",
+				"b8",
+				"c9",
+				"db9",
+				"d9",
+				"eb9",
+				"e9",
+				"f9",
+				"gb9",
+				"g9"
+			]
+		},
+		{
+			"key": { "root": "g", "scale": "dorian" },
+			"names": [
+				"c-1",
+				"db-1",
+				"d-1",
+				"eb-1",
+				"e-1",
+				"f-1",
+				"gb-1",
+				"g-1",
+				"ab-1",
+				"a-1",
+				"bb-1",
+				"b-1",
+				"c0",
+				"db0",
+				"d0",
+				"eb0",
+				"e0",
+				"f0",
+				"gb0",
+				"g0",
+				"ab0",
+				"a0",
+				"bb0",
+				"b0",
+				"c1",
+				"db1",
+				"d1",
+				"eb1",
+				"e1",
+				"f1",
+				"gb1",
+				"g1",
+				"ab1",
+				"a1",
+				"bb1",
+				"b1",
+				"c2",
+				"db2",
+				"d2",
+				"eb2",
+				"e2",
+				"f2",
+				"gb2",
+				"g2",
+				"ab2",
+				"a2",
+				"bb2",
+				"b2",
+				"c3",
+				"db3",
+				"d3",
+				"eb3",
+				"e3",
+				"f3",
+				"gb3",
+				"g3",
+				"ab3",
+				"a3",
+				"bb3",
+				"b3",
+				"c4",
+				"db4",
+				"d4",
+				"eb4",
+				"e4",
+				"f4",
+				"gb4",
+				"g4",
+				"ab4",
+				"a4",
+				"bb4",
+				"b4",
+				"c5",
+				"db5",
+				"d5",
+				"eb5",
+				"e5",
+				"f5",
+				"gb5",
+				"g5",
+				"ab5",
+				"a5",
+				"bb5",
+				"b5",
+				"c6",
+				"db6",
+				"d6",
+				"eb6",
+				"e6",
+				"f6",
+				"gb6",
+				"g6",
+				"ab6",
+				"a6",
+				"bb6",
+				"b6",
+				"c7",
+				"db7",
+				"d7",
+				"eb7",
+				"e7",
+				"f7",
+				"gb7",
+				"g7",
+				"ab7",
+				"a7",
+				"bb7",
+				"b7",
+				"c8",
+				"db8",
+				"d8",
+				"eb8",
+				"e8",
+				"f8",
+				"gb8",
+				"g8",
+				"ab8",
+				"a8",
+				"bb8",
+				"b8",
+				"c9",
+				"db9",
+				"d9",
+				"eb9",
+				"e9",
+				"f9",
+				"gb9",
+				"g9"
+			]
+		},
+		{
+			"key": { "root": "a", "scale": "minor" },
+			"names": [
+				"c-1",
+				"c#-1",
+				"d-1",
+				"d#-1",
+				"e-1",
+				"f-1",
+				"f#-1",
+				"g-1",
+				"g#-1",
+				"a-1",
+				"a#-1",
+				"b-1",
+				"c0",
+				"c#0",
+				"d0",
+				"d#0",
+				"e0",
+				"f0",
+				"f#0",
+				"g0",
+				"g#0",
+				"a0",
+				"a#0",
+				"b0",
+				"c1",
+				"c#1",
+				"d1",
+				"d#1",
+				"e1",
+				"f1",
+				"f#1",
+				"g1",
+				"g#1",
+				"a1",
+				"a#1",
+				"b1",
+				"c2",
+				"c#2",
+				"d2",
+				"d#2",
+				"e2",
+				"f2",
+				"f#2",
+				"g2",
+				"g#2",
+				"a2",
+				"a#2",
+				"b2",
+				"c3",
+				"c#3",
+				"d3",
+				"d#3",
+				"e3",
+				"f3",
+				"f#3",
+				"g3",
+				"g#3",
+				"a3",
+				"a#3",
+				"b3",
+				"c4",
+				"c#4",
+				"d4",
+				"d#4",
+				"e4",
+				"f4",
+				"f#4",
+				"g4",
+				"g#4",
+				"a4",
+				"a#4",
+				"b4",
+				"c5",
+				"c#5",
+				"d5",
+				"d#5",
+				"e5",
+				"f5",
+				"f#5",
+				"g5",
+				"g#5",
+				"a5",
+				"a#5",
+				"b5",
+				"c6",
+				"c#6",
+				"d6",
+				"d#6",
+				"e6",
+				"f6",
+				"f#6",
+				"g6",
+				"g#6",
+				"a6",
+				"a#6",
+				"b6",
+				"c7",
+				"c#7",
+				"d7",
+				"d#7",
+				"e7",
+				"f7",
+				"f#7",
+				"g7",
+				"g#7",
+				"a7",
+				"a#7",
+				"b7",
+				"c8",
+				"c#8",
+				"d8",
+				"d#8",
+				"e8",
+				"f8",
+				"f#8",
+				"g8",
+				"g#8",
+				"a8",
+				"a#8",
+				"b8",
+				"c9",
+				"c#9",
+				"d9",
+				"d#9",
+				"e9",
+				"f9",
+				"f#9",
+				"g9"
+			]
+		}
+	],
+	"midiToNameOutsideRange": [
+		{ "midi": -13, "name": "b-3" },
+		{ "midi": -1, "name": "b-2" },
+		{ "midi": 128, "name": "g#9" },
+		{ "midi": 140, "name": "g#10" }
+	],
+	"parsePitch": [
+		{ "midi": 60, "name": "c4" },
+		{ "midi": 62, "name": "d4" },
+		{ "midi": 60, "name": "C4" },
+		{ "midi": 61, "name": "c#4" },
+		{ "midi": 61, "name": "db4" },
+		{ "midi": 54, "name": "f#3" },
+		{ "midi": 46, "name": "bb2" },
+		{ "midi": 60, "name": "b#3" },
+		{ "midi": 59, "name": "cb4" },
+		{ "midi": 65, "name": "e#4" },
+		{ "midi": 64, "name": "fb4" },
+		{ "midi": 21, "name": "a0" },
+		{ "midi": 12, "name": "c0" },
+		{ "midi": 0, "name": "c-1" },
+		{ "midi": 7, "name": "g-1" },
+		{ "midi": 120, "name": "c9" },
+		{ "midi": 119, "name": "b8" },
+		{ "midi": 121, "name": "c#9" },
+		{ "midi": null, "name": "c10" },
+		{ "midi": 62, "name": " d4 " },
+		{ "midi": null, "name": "d 4" },
+		{ "midi": null, "name": "d" },
+		{ "midi": null, "name": "" },
+		{ "midi": null, "name": "h4" },
+		{ "midi": 63, "name": "D#4" },
+		{ "midi": 46, "name": "Bb2" },
+		{ "midi": 47, "name": "bB2" },
+		{ "midi": null, "name": "c##4" },
+		{ "midi": null, "name": "cbb4" },
+		{ "midi": null, "name": "4" },
+		{ "midi": null, "name": "d4x" },
+		{ "midi": null, "name": "d44" },
+		{ "midi": 8, "name": "ab-1" }
+	],
+	"pitchClass": [
+		{ "name": "c", "semitone": 0 },
+		{ "name": "d", "semitone": 2 },
+		{ "name": "C", "semitone": 0 },
+		{ "name": "c#", "semitone": 1 },
+		{ "name": "db", "semitone": 1 },
+		{ "name": "f#", "semitone": 6 },
+		{ "name": "bb", "semitone": 10 },
+		{ "name": "b#", "semitone": 0 },
+		{ "name": "cb", "semitone": 11 },
+		{ "name": "e#", "semitone": 5 },
+		{ "name": "fb", "semitone": 4 },
+		{ "name": "h", "semitone": null },
+		{ "name": "", "semitone": null },
+		{ "name": " a ", "semitone": 9 },
+		{ "name": "a4", "semitone": null },
+		{ "name": "c##", "semitone": null },
+		{ "name": "Eb", "semitone": 3 },
+		{ "name": "EB", "semitone": 4 }
+	],
+	"prefersFlats": [
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "c", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "d", "scale": "minor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "g", "scale": "minor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "minor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "minor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "minor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "c", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "d", "scale": "dorian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "g", "scale": "dorian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "dorian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "dorian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "dorian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "dorian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "c", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "d", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "g", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "phrygian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "lydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "lydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "lydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "lydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "lydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "lydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "lydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "mixolydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "mixolydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "mixolydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "mixolydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "mixolydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "mixolydian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "mixolydian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "locrian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "locrian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "locrian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "locrian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "locrian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "locrian" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "locrian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "harmonicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "melodicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "melodicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "melodicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "melodicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "melodicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "melodicMinor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "melodicMinor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "majorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "minorPentatonic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "d", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "e", "scale": "chromatic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "f", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "g", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "a", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c#", "scale": "chromatic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "chromatic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "eb", "scale": "chromatic" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "chromatic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "gb", "scale": "chromatic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "ab", "scale": "chromatic" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "bb", "scale": "chromatic" }
+		}
+	],
+	"prefersFlatsOddities": [
+		{
+			"flats": true,
+			"key": { "root": " Bb ", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "BB", "scale": "major" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "b", "scale": "major" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "db", "scale": "minor" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "f#", "scale": "minor" }
+		},
+		{
+			"flats": true,
+			"key": { "root": "c", "scale": "phrygian" }
+		},
+		{
+			"flats": false,
+			"key": { "root": "c", "scale": "locrian" }
+		}
+	],
+	"scales": {
+		"chromatic": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+		"dorian": [0, 2, 3, 5, 7, 9, 10],
+		"harmonicMinor": [0, 2, 3, 5, 7, 8, 11],
+		"locrian": [0, 1, 3, 5, 6, 8, 10],
+		"lydian": [0, 2, 4, 6, 7, 9, 11],
+		"major": [0, 2, 4, 5, 7, 9, 11],
+		"majorPentatonic": [0, 2, 4, 7, 9],
+		"melodicMinor": [0, 2, 3, 5, 7, 9, 11],
+		"minor": [0, 2, 3, 5, 7, 8, 10],
+		"minorPentatonic": [0, 3, 5, 7, 10],
+		"mixolydian": [0, 2, 4, 5, 7, 9, 10],
+		"phrygian": [0, 1, 3, 5, 7, 8, 10]
+	},
+	"stepInKey": [
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 21
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 33
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 34
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 36
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 38
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 40
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 48
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 50
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 36,
+			"result": 60
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 34
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 46
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 48
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 50
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 52
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 53
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 62
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 64
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 50,
+			"result": 74
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 58
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 62
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 74
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 60,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 58
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 62
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 74
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 61,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 46
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 58
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 60
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 62
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 64
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 65
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 74
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 76
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 62,
+			"result": 86
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 46
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 58
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 60
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 62
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 64
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 65
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 74
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 76
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 63,
+			"result": 86
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 57
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 69
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 70
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 72
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 74
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 76
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 84
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 86
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 73,
+			"result": 96
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 69
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 81
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 82
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 84
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 86
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 88
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 96
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 98
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "d", "scale": "minor" },
+			"midi": 84,
+			"result": 108
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 21
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 33
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 35
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 36
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 38
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 40
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 48
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 50
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 36,
+			"result": 60
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 35
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 47
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 48
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 50
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 52
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 53
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 62
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 64
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 50,
+			"result": 74
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 59
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 62
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 74
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 60,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 59
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 62
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 74
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 61,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 47
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 59
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 60
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 62
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 64
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 65
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 74
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 76
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 62,
+			"result": 86
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 47
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 59
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 60
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 62
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 64
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 65
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 74
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 76
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 63,
+			"result": 86
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 57
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 69
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 71
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 72
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 74
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 76
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 84
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 86
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 73,
+			"result": 96
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 69
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 81
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 83
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 84
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 86
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 88
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 96
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 98
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "c", "scale": "major" },
+			"midi": 84,
+			"result": 108
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 13
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 30
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 32
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 34
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 37
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 39
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 51
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 54
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 36,
+			"result": 68
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 27
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 44
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 46
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 49
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 51
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 54
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 66
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 68
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 50,
+			"result": 82
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 37
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 54
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 56
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 58
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 61
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 63
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 75
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 78
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 60,
+			"result": 92
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 39
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 56
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 58
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 61
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 63
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 66
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 78
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 80
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 61,
+			"result": 94
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 39
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 56
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 58
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 61
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 63
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 66
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 78
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 80
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 62,
+			"result": 94
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 42
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 58
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 61
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 63
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 66
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 68
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 80
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 82
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 63,
+			"result": 97
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 51
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 68
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 70
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 73
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 75
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 78
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 90
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 92
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 73,
+			"result": 106
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 61
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 78
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 80
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 82
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 85
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 87
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 99
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 102
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "f#", "scale": "majorPentatonic" },
+			"midi": 84,
+			"result": 116
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 27
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 34
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 35
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 36
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 37
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 38
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 43
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 44
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 36,
+			"result": 50
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 41
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 48
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 49
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 50
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 51
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 52
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 57
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 58
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 50,
+			"result": 64
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 51
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 58
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 59
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 61
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 62
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 67
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 68
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 60,
+			"result": 74
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 52
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 59
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 60
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 61
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 62
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 63
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 68
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 69
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 61,
+			"result": 75
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 53
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 60
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 61
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 62
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 63
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 69
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 70
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 62,
+			"result": 76
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 54
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 61
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 62
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 63
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 64
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 65
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 70
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 71
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 63,
+			"result": 77
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 64
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 71
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 72
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 73
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 74
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 75
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 80
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 81
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 73,
+			"result": 87
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 75
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 82
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 83
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 84
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 85
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 86
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 91
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 92
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "bb", "scale": "chromatic" },
+			"midi": 84,
+			"result": 98
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 21
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 33
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 35
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 36
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 39
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 40
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 48
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 51
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 36,
+			"result": 60
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 33
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 45
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 47
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 48
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 51
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 52
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 60
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 63
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 50,
+			"result": 72
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 59
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 63
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 75
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 60,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 59
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 63
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 75
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 61,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 45
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 57
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 59
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 60
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 63
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 64
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 72
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 75
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 62,
+			"result": 84
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 47
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 59
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 60
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 63
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 64
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 66
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 75
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 76
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 63,
+			"result": 87
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 57
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 69
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 71
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 72
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 75
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 76
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 84
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 87
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 73,
+			"result": 96
+		},
+		{
+			"degrees": -9,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 69
+		},
+		{
+			"degrees": -2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 81
+		},
+		{
+			"degrees": -1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 83
+		},
+		{
+			"degrees": 0,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 84
+		},
+		{
+			"degrees": 1,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 87
+		},
+		{
+			"degrees": 2,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 88
+		},
+		{
+			"degrees": 7,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 96
+		},
+		{
+			"degrees": 8,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 99
+		},
+		{
+			"degrees": 14,
+			"key": { "root": "e", "scale": "harmonicMinor" },
+			"midi": 84,
+			"result": 108
+		}
+	]
+}

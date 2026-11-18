@@ -1,0 +1,257 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Motion",
+	"tempo": 120,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "d", "scale": "minor" },
+	"engine": "opl3",
+	"instruments": {
+		"lead": { "name": "Lead", "preset": "lead" },
+		"pad": { "name": "Pad", "preset": "pad" },
+		"bass": { "name": "Bass", "preset": "bass" },
+		"kit": { "name": "Kit", "preset": "kit" }
+	},
+	"tracks": [
+		{
+			"id": "lead",
+			"name": "Lead",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.7,
+			"pan": 0.2
+		},
+		{
+			"id": "pad",
+			"name": "Pad",
+			"role": "harmony",
+			"instrument": "pad",
+			"volume": 0.5,
+			"pan": -0.3
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 0.9,
+			"pan": 0
+		},
+		{
+			"id": "drums",
+			"name": "Drums",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "a", "name": "A", "bars": 2 },
+		{ "id": "b", "name": "B", "bars": 1 }
+	],
+	"arrangement": ["a", "b", "a"],
+	"clips": {
+		"lead": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Every motion",
+						"by": "claude",
+						"comment": "A note pan, both slides, a sine wobble, a triangle wobble",
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 4, "pan": -0.7 },
+							{
+								"at": 4,
+								"pitch": "f4",
+								"len": 8,
+								"panMotion": { "kind": "slide", "from": -1, "to": 1 }
+							},
+							{
+								"at": 12,
+								"pitch": "a4",
+								"len": 8,
+								"panMotion": { "kind": "slide", "from": 1, "to": -1, "curve": "smooth" }
+							},
+							{
+								"at": 20,
+								"pitch": "d5",
+								"len": 8,
+								"panMotion": { "kind": "wobble" }
+							},
+							{
+								"at": 28,
+								"pitch": "f5",
+								"len": 4,
+								"panMotion": {
+									"kind": "wobble",
+									"centre": -0.1,
+									"depth": 0.8,
+									"period": 8,
+									"shape": "triangle",
+									"phase": 0.25
+								}
+							}
+						]
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Held across a jump",
+						"by": "you",
+						"notes": [
+							{
+								"at": 0,
+								"pitch": "d4",
+								"len": 10,
+								"panMotion": {
+									"kind": "jump",
+									"positions": [-0.6, 0, 0.6],
+									"every": 4
+								}
+							},
+							{
+								"at": 10,
+								"pitch": "a4",
+								"len": 4,
+								"panMotion": { "kind": "jump", "every": 3 }
+							},
+							{ "at": 14, "pitch": "d5", "len": 2, "pan": 0.9 }
+						],
+						"panMotion": { "kind": "wobble", "depth": 0.6, "period": 16 }
+					}
+				]
+			}
+		},
+		"pad": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Chords that move together",
+						"by": "claude",
+						"panMotion": {
+							"kind": "jump",
+							"positions": [-0.8, -0.2, 0.4, 0.9],
+							"every": "note"
+						},
+						"notes": [
+							{ "at": 0, "pitch": "d3", "len": 8 },
+							{ "at": 0, "pitch": "f3", "len": 8 },
+							{ "at": 0, "pitch": "a3", "len": 8 },
+							{ "at": 8, "pitch": "c3", "len": 8 },
+							{ "at": 8, "pitch": "e3", "len": 8 },
+							{ "at": 8, "pitch": "g3", "len": 8 },
+							{ "at": 16, "pitch": "bb2", "len": 8 },
+							{ "at": 16, "pitch": "d3", "len": 8 },
+							{ "at": 24, "pitch": "a2", "len": 8 },
+							{ "at": 24, "pitch": "c#3", "len": 8 }
+						]
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Pattern with a wobble",
+						"by": "you",
+						"mini": "d3 f3 a3 d4",
+						"panMotion": { "kind": "wobble", "depth": 0.7, "period": 16, "shape": "triangle" }
+					}
+				]
+			}
+		},
+		"bass": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Across the section",
+						"by": "you",
+						"panMotion": { "kind": "slide", "from": -1, "to": 1, "curve": "smooth" },
+						"notes": [
+							{ "at": 0, "pitch": "d2", "len": 4 },
+							{ "at": 4, "pitch": "d2", "len": 4 },
+							{ "at": 8, "pitch": "a2", "len": 4 },
+							{ "at": 12, "pitch": "a2", "len": 4 },
+							{ "at": 16, "pitch": "bb2", "len": 8 },
+							{ "at": 24, "pitch": "c3", "len": 4, "pan": 0 },
+							{ "at": 28, "pitch": "d3", "len": 4 }
+						]
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Wobble about the take pan",
+						"by": "you",
+						"pan": 0.4,
+						"notes": [
+							{
+								"at": 0,
+								"pitch": "d2",
+								"len": 8,
+								"panMotion": { "kind": "wobble", "depth": 0.3 }
+							},
+							{ "at": 8, "pitch": "a2", "len": 8 }
+						]
+					}
+				]
+			}
+		},
+		"drums": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Hats trade sides",
+						"by": "you",
+						"panMotion": {
+							"kind": "jump",
+							"positions": [-0.5, 0.5],
+							"every": 2
+						},
+						"notes": [
+							{ "at": 0, "pitch": "kick", "len": 1, "pan": 0 },
+							{ "at": 2, "pitch": "hat", "len": 1 },
+							{ "at": 4, "pitch": "hat", "len": 1 },
+							{ "at": 6, "pitch": "hat", "len": 1 },
+							{ "at": 8, "pitch": "snare", "len": 1, "pan": -0.2 },
+							{ "at": 10, "pitch": "hat", "len": 1 }
+						]
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Plain",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "kick", "len": 1 },
+							{ "at": 8, "pitch": "snare", "len": 1, "pan": 0.3 }
+						]
+					}
+				]
+			}
+		}
+	},
+	"messages": []
+}

@@ -1,19 +1,28 @@
+# Manifest for the `undertone-sound` crate.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
 [package]
-name = "fizz-audio-song"
-version = "0.1.0"
-description = "The song document for Fizz Audio Studio: types, validation, formatting, editor files, albums, the text readout and change summaries"
+name = "undertone-sound"
+description = "The Undertone song document, its validation and its compiler to timed, engine-neutral events"
 edition.workspace = true
-authors.workspace = true
 license.workspace = true
-rust-version.workspace = true
-homepage.workspace = true
+version.workspace = true
+authors.workspace = true
 repository.workspace = true
-publish = false
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+# TypeScript bindings for the wire types, written to `bindings/` by `cargo test --features ts`.
+ts = ["dep:ts-rs"]
 
 [dependencies]
-fizz-audio-mini = { path = "../fizz-audio-mini" }
-serde = { workspace = true }
-serde_json = { workspace = true, features = ["preserve_order"] }
+undertone-mini = { path = "../undertone-mini" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
 indexmap = { version = "2", features = ["serde"] }
-ts-rs = { workspace = true, features = ["indexmap-impl"] }
-chrono = { workspace = true }
+ts-rs = { version = "12", optional = true, features = ["indexmap-impl"] }
