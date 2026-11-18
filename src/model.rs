@@ -265,7 +265,109 @@ pub struct Note {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]
     pub vel: Option<f64>,
+    /// Stereo position for this note, -1 to 1, in place of the take's and the track's pan.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub pan: Option<f64>,
+    /// Stereo motion over this note's length, in place of its own `pan` and the take's.
+    #[serde(default, rename = "panMotion", skip_serializing_if = "Option::is_none")]
+    #[ts(optional, rename = "panMotion")]
+    pub pan_motion: Option<PanMotion>,
 }
+
+text_enum!(
+    /// How a `slide` moves between its two positions.
+    PanCurve, "lowercase",
+    [Linear => "linear", Smooth => "smooth"]
+);
+
+text_enum!(
+    /// The wave a `wobble` follows.
+    WobbleShape, "lowercase",
+    [Sine => "sine", Triangle => "triangle"]
+);
+
+/// How often a `jump` moves to its next position: with every note of the take (a chord moves
+/// together), or every so many steps.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum JumpEvery {
+    Note,
+    Steps(f64),
+}
+
+impl Serialize for JumpEvery {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        match self {
+            JumpEvery::Note => serializer.serialize_str("note"),
+            JumpEvery::Steps(steps) => serializer.serialize_f64(*steps),
+        }
+    }
+}
+
+impl<'de> Deserialize<'de> for JumpEvery {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let message = "expected \"note\" or a number of steps";
+        match Value::deserialize(deserializer)? {
+            Value::String(word) if word == "note" => Ok(JumpEvery::Note),
+            Value::Number(number) => number
+                .as_f64()
+                .map(JumpEvery::Steps)
+                .ok_or_else(|| serde::de::Error::custom(message)),
+            _ => Err(serde::de::Error::custom(message)),
+        }
+    }
+}
+
+/// Stereo motion: where a note or a take's notes sit over time, in place of a fixed pan.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[serde(tag = "kind", rename_all = "lowercase")]
+#[ts(export, export_to = "../../../packages/protocol/src/generated/")]
+pub enum PanMotion {
+    /// Moves from one position to another: over the note's length on a note, over the section on
+    /// a take.
+    Slide {
+        from: f64,
+        to: f64,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        curve: Option<PanCurve>,
+    },
+    /// Swings about a centre; `period` is in steps (default one bar) and `phase` counts from the
+    /// section's start.
+    Wobble {
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        centre: Option<f64>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        depth: Option<f64>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        period: Option<f64>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        shape: Option<WobbleShape>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        phase: Option<f64>,
+    },
+    /// Steps through 2 to 8 positions, one at a time.
+    Jump {
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        #[ts(optional)]
+        positions: Option<Vec<f64>>,
+        #[ts(type = "\"note\" | number")]
+        every: JumpEvery,
+    },
+}
+
+/// The positions of a `jump` that does not say: left, then right.
+pub const DEFAULT_JUMP_POSITIONS: [f64; 2] = [-0.6, 0.6];
+/// The fewest and the most positions a `jump` may list.
+pub const JUMP_POSITIONS_MIN: usize = 2;
+pub const JUMP_POSITIONS_MAX: usize = 8;
+/// How far a `wobble` that does not say swings from its centre.
+pub const DEFAULT_WOBBLE_DEPTH: f64 = 0.5;
 
 text_enum!(
     /// How a revision step came about: the model's first answer, another go, a hand edit, or the
@@ -372,6 +474,11 @@ pub struct Take {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]
     pub pan: Option<f64>,
+    /// Stereo motion for this take's notes (or its pattern's), over the whole section, in place
+    /// of the take's `pan`. A note's own `pan` or `panMotion` wins over it.
+    #[serde(default, rename = "panMotion", skip_serializing_if = "Option::is_none")]
+    #[ts(optional, rename = "panMotion")]
+    pub pan_motion: Option<PanMotion>,
     /// A word about the idea, from whoever wrote it.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]

@@ -12,8 +12,9 @@ use ts_rs::TS;
 use crate::js::{number_to_string, trim};
 use crate::mini_bridge;
 use crate::model::{
-    Author, DrumPiece, EngineId, PresetId, ScaleName, Song, StepKind, TrackRole,
-    MAX_REVISION_STEPS, SONG_FORMAT, SONG_VERSION,
+    Author, DrumPiece, EngineId, PanCurve, PresetId, ScaleName, Song, StepKind, TrackRole,
+    WobbleShape, JUMP_POSITIONS_MAX, JUMP_POSITIONS_MIN, MAX_REVISION_STEPS, SONG_FORMAT,
+    SONG_VERSION,
 };
 use crate::music::{parse_pitch, pitch_class};
 
@@ -54,6 +55,10 @@ pub enum ProblemCode {
     UnknownInstrument,
     BadVolume,
     BadPan,
+    /// A `panMotion` that does not read: an unknown kind, or a value out of range.
+    BadPanMotion,
+    /// A `pan` beside a `panMotion`, which wins.
+    PanIgnored,
     BadPriority,
     /// A field the format does not define, which is ignored.
     UnknownField,
@@ -241,9 +246,20 @@ const TRACK_FIELDS: &[&str] = &[
 const SECTION_FIELDS: &[&str] = &["id", "name", "bars"];
 const SLOT_FIELDS: &[&str] = &["active", "takes"];
 const TAKE_FIELDS: &[&str] = &[
-    "id", "name", "by", "notes", "mini", "pan", "comment", "revision",
+    "id",
+    "name",
+    "by",
+    "notes",
+    "mini",
+    "pan",
+    "panMotion",
+    "comment",
+    "revision",
 ];
-const NOTE_FIELDS: &[&str] = &["at", "pitch", "len", "vel"];
+const NOTE_FIELDS: &[&str] = &["at", "pitch", "len", "vel", "pan", "panMotion"];
+const SLIDE_FIELDS: &[&str] = &["kind", "from", "to", "curve"];
+const WOBBLE_FIELDS: &[&str] = &["kind", "centre", "depth", "period", "shape", "phase"];
+const JUMP_FIELDS: &[&str] = &["kind", "positions", "every"];
 const MESSAGE_FIELDS: &[&str] = &["by", "text", "at", "done"];
 const MIX_FIELDS: &[&str] = &["panLaw"];
 const REVISION_FIELDS: &[&str] = &[
@@ -855,6 +871,12 @@ fn check_slot(
                 );
             }
         }
+        if let Some(motion) = member(take, "panMotion") {
+            check_pan_motion(motion, &format!("{take_path}.panMotion"), false, problems);
+            if member(take, "pan").is_some() {
+                warn_motion_wins(&format!("{take_path}.pan"), problems);
+            }
+        }
         if let Some(revision) = member(take, "revision") {
             let of = check_revision(
                 revision,
@@ -1323,6 +1345,143 @@ fn check_note(note: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
             );
         }
     }
+    if let Some(pan) = member(note, "pan") {
+        if !is_position(pan) {
+            problems.error(
+                ProblemCode::BadPan,
+                format!("{path}.pan"),
+                "must be from -1 to 1 (leave it out to follow the take)",
+            );
+        }
+    }
+    if let Some(motion) = member(note, "panMotion") {
+        check_pan_motion(motion, &format!("{path}.panMotion"), true, problems);
+        if member(note, "pan").is_some() {
+            warn_motion_wins(&format!("{path}.pan"), problems);
+        }
+    }
+}
+
+fn warn_motion_wins(path: &str, problems: &mut Problems) {
+    problems.warning(
+        ProblemCode::PanIgnored,
+        path,
+        "\"panMotion\" is set beside it and wins, so this pan is ignored",
+    );
+}
+
+fn is_position(value: &Value) -> bool {
+    as_number(value).is_some_and(|n| (-1.0..=1.0).contains(&n))
+}
+
+/// Checks a `panMotion` on a note (`on_note`) or on a take.
+fn check_pan_motion(motion: &Value, path: &str, on_note: bool, problems: &mut Problems) {
+    let Some(motion) = as_object(motion) else {
+        problems.error(
+            ProblemCode::BadPanMotion,
+            path,
+            "must be an object such as { \"kind\": \"slide\", \"from\": -1, \"to\": 1 }",
+        );
+        return;
+    };
+    let bad = |key: &str, message: &str, problems: &mut Problems| {
+        problems.error(
+            ProblemCode::BadPanMotion,
+            format!("{path}.{key}"),
+            message.to_string(),
+        );
+    };
+    match member(motion, "kind").and_then(Value::as_str) {
+        Some("slide") => {
+            check_fields(motion, SLIDE_FIELDS, "slide", path, problems);
+            for key in ["from", "to"] {
+                if !member(motion, key).is_some_and(is_position) {
+                    bad(key, "must be from -1 to 1", problems);
+                }
+            }
+            if let Some(curve) = member(motion, "curve") {
+                if !curve
+                    .as_str()
+                    .is_some_and(|c| PanCurve::from_word(c).is_some())
+                {
+                    bad("curve", "must be \"linear\" or \"smooth\"", problems);
+                }
+            }
+        }
+        Some("wobble") => {
+            check_fields(motion, WOBBLE_FIELDS, "wobble", path, problems);
+            if member(motion, "centre").is_some_and(|v| !is_position(v)) {
+                bad("centre", "must be from -1 to 1", problems);
+            }
+            if let Some(depth) = member(motion, "depth") {
+                if !as_number(depth).is_some_and(|n| (0.0..=1.0).contains(&n)) {
+                    bad("depth", "must be from 0 to 1", problems);
+                }
+            }
+            if let Some(period) = member(motion, "period") {
+                if !as_number(period).is_some_and(|n| n > 0.0) {
+                    bad("period", "must be a number of steps above 0", problems);
+                }
+            }
+            if let Some(shape) = member(motion, "shape") {
+                if !shape
+                    .as_str()
+                    .is_some_and(|s| WobbleShape::from_word(s).is_some())
+                {
+                    bad("shape", "must be \"sine\" or \"triangle\"", problems);
+                }
+            }
+            if let Some(phase) = member(motion, "phase") {
+                if !as_number(phase).is_some_and(|n| (0.0..1.0).contains(&n)) {
+                    bad(
+                        "phase",
+                        "must be from 0 up to but not including 1",
+                        problems,
+                    );
+                }
+            }
+        }
+        Some("jump") => {
+            check_fields(motion, JUMP_FIELDS, "jump", path, problems);
+            if let Some(positions) = member(motion, "positions") {
+                let fine = positions.as_array().is_some_and(|list| {
+                    (JUMP_POSITIONS_MIN..=JUMP_POSITIONS_MAX).contains(&list.len())
+                        && list.iter().all(is_position)
+                });
+                if !fine {
+                    bad(
+                        "positions",
+                        &format!(
+                            "must be a list of {JUMP_POSITIONS_MIN} to {JUMP_POSITIONS_MAX} positions from -1 to 1"
+                        ),
+                        problems,
+                    );
+                }
+            }
+            match member(motion, "every") {
+                Some(Value::String(word)) if word == "note" => {
+                    if on_note {
+                        bad(
+                            "every",
+                            "\"note\" needs the take to move on each note: use a number of steps, or put the jump on the take",
+                            problems,
+                        );
+                    }
+                }
+                Some(every) if as_number(every).is_some_and(|n| n > 0.0) => {}
+                _ => bad(
+                    "every",
+                    "must be \"note\" or a number of steps above 0",
+                    problems,
+                ),
+            }
+        }
+        _ => bad(
+            "kind",
+            "must be \"slide\", \"wobble\" or \"jump\"",
+            problems,
+        ),
+    }
 }
 
 /// Fails with the message when a word is not a playable pitch for the track (a drum piece on a
@@ -1394,7 +1553,7 @@ mod tests {
             [
                 ("extra", "\"extra\" is not a song field and is ignored (the song fields are format, version, title, tempo, beatsPerBar, stepsPerBeat, key, engine, instruments, tracks, sections, arrangement, clips, messages, mix)"),
                 ("sections[0].tempo", "\"tempo\" is not a section field and is ignored (the section fields are id, name, bars)"),
-                ("clips.melody.a.takes[0].notes[0].bend", "\"bend\" is not a note field and is ignored (the note fields are at, pitch, len, vel)"),
+                ("clips.melody.a.takes[0].notes[0].bend", "\"bend\" is not a note field and is ignored (the note fields are at, pitch, len, vel, pan, panMotion)"),
             ]
         );
         assert!(found
@@ -1431,5 +1590,56 @@ mod tests {
             assert_eq!(found.problems[0].path, "tracks[0].priority");
             assert_eq!(found.problems[0].code, ProblemCode::BadPriority);
         }
+    }
+
+    #[test]
+    fn a_pan_motion_is_checked_by_kind_and_a_pan_beside_it_is_warned_about() {
+        let motion = |value: Value| {
+            let found = validate_song(&song(|s| {
+                s["clips"]["melody"]["a"]["takes"][0]["panMotion"] = value.clone();
+            }));
+            found
+                .problems
+                .iter()
+                .map(|p| format!("{}: {}", p.path, p.message))
+                .collect::<Vec<_>>()
+        };
+        assert!(
+            motion(json!({ "kind": "slide", "from": -1, "to": 1, "curve": "smooth" })).is_empty()
+        );
+        assert!(motion(json!({ "kind": "wobble" })).is_empty());
+        assert!(motion(json!({ "kind": "jump", "every": "note" })).is_empty());
+        assert_eq!(
+            motion(json!({ "kind": "wobble", "from": 1 })),
+            ["clips.melody.a.takes[0].panMotion.from: \"from\" is not a wobble field and is ignored (the wobble fields are kind, centre, depth, period, shape, phase)"]
+        );
+        assert_eq!(
+            motion(json!({ "kind": "orbit" })),
+            ["clips.melody.a.takes[0].panMotion.kind: must be \"slide\", \"wobble\" or \"jump\""]
+        );
+        assert_eq!(
+            motion(json!({ "kind": "jump", "positions": [0], "every": 0 })).len(),
+            2
+        );
+        let found = validate_song(&song(|s| {
+            let note = &mut s["clips"]["melody"]["a"]["takes"][0]["notes"][0];
+            note["pan"] = json!(0.5);
+            note["panMotion"] = json!({ "kind": "jump", "every": "note" });
+        }));
+        let seen: Vec<(&str, Severity)> = found
+            .problems
+            .iter()
+            .map(|p| (p.path.as_str(), p.severity))
+            .collect();
+        assert_eq!(
+            seen,
+            [
+                (
+                    "clips.melody.a.takes[0].notes[0].panMotion.every",
+                    Severity::Error
+                ),
+                ("clips.melody.a.takes[0].notes[0].pan", Severity::Warning),
+            ]
+        );
     }
 }
