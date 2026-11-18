@@ -28,7 +28,7 @@ Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-h
 | **Track 1: the Undertone engine** | | |
 | `undertone-mini` | Undertone's mini-notation and exact fractions | Working |
 | `undertone-dsp` | Undertone's voices, Web Audio graph and in-house renderer | Working |
-| `undertone-wasm` | WebAssembly bindings and the demo's engine | Working |
+| `undertone-wasm` | WebAssembly bindings and the demo's engine: OPX tools, an OPL2 and OPL3 player and a streaming Undertone score player | Working |
 | **Track 2: synth backends, OPX and DOS** | | |
 | `oplstream` | OPX reader, writer, stepper, validator, text twin and IMF, DRO and VGM import. The core is `no_std` | Working |
 | `undertone-sound` | The song model, validation and compiler | Working |

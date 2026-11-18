@@ -39,6 +39,6 @@ The writer takes commands in stream order, and `finish` fills in the derived hea
 
 ## What the importers do not do
 
-An import never changes a wait; it only leaves things out, and says so in its `ImportReport`. To move a stream to another grid, `retime` rounds halves up and reports how many writes did not land on a tick exactly. See [decisions](/decisions) D15 and D17.
+An import never changes a wait; it only leaves things out, and says so in its `ImportReport`. To move a stream to another grid, `retime` rounds halves up and reports how many writes did not land on a tick exactly. See [decisions](https://github.com/liminal-hq-labs/undertone-sound/blob/main/docs/decisions.md) D15 and D17.
 
 The [Rust API](/api/oplstream/index.html) lists every public item.

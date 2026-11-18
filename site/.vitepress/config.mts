@@ -8,15 +8,19 @@ import type { UserConfig } from 'vitepress';
 
 const base = '/undertone-sound/';
 
-// The specification, roadmap and decisions are rendered from the repository's own `docs/` and
-// `SPEC.md`, which link to each other as files (they read on GitHub too). The site serves the
-// same documents as pages, so a link to one of those files becomes a link to its page.
+// The OPX specification, the behaviour specification and the roadmap are rendered from the
+// repository's own `docs/` and `SPEC.md`, which link to each other as files (they read on GitHub
+// too). The site serves the same documents as pages, so a link to one of those files becomes a
+// link to its page.
 const documentPages: Record<string, string> = {
   'OPX.md': 'opx',
   'SPEC.md': 'spec',
-  'ROADMAP.md': 'roadmap',
-  'decisions.md': 'decisions'
+  'ROADMAP.md': 'roadmap'
 };
+
+// The decisions file is a contributor record, not user documentation, so the site has no page for
+// it. A link to it from a rendered document points at the file in the repository.
+const decisionsUrl = 'https://github.com/liminal-hq-labs/undertone-sound/blob/main/docs/decisions.md';
 
 type MarkdownConfig = NonNullable<NonNullable<UserConfig['markdown']>['config']>;
 
@@ -27,6 +31,10 @@ const documentLinks: MarkdownConfig = (md) => {
         if (token.type !== 'link_open') continue;
         const href = token.attrGet('href');
         const match = href?.match(/^(?:\.{0,2}\/)*(?:docs\/)?([A-Za-z]+\.md)(#.*)?$/);
+        if (match?.[1] === 'decisions.md') {
+          token.attrSet('href', decisionsUrl);
+          continue;
+        }
         const page = match ? documentPages[match[1]] : undefined;
         if (page) token.attrSet('href', `/${page}${match?.[2] ?? ''}`);
       }
@@ -86,8 +94,7 @@ export default defineConfig({
       {
         text: 'Project',
         items: [
-          { text: 'Roadmap', link: '/roadmap' },
-          { text: 'Decisions', link: '/decisions' }
+          { text: 'Roadmap', link: '/roadmap' }
         ]
       }
     ],
