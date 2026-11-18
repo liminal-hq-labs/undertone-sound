@@ -134,6 +134,51 @@ pub fn preset_patch(preset: PresetId) -> Patch {
             },
             0.0,
         ),
+        // The next three are Lieutenant Fizz's own DOS patches, field for field.
+        PresetId::BassSaw => fm(
+            Operator {
+                dr: 6.0,
+                sl: 5.0,
+                ..op(1.0, 20.0)
+            },
+            Operator {
+                dr: 5.0,
+                sl: 3.0,
+                rr: 8.0,
+                ..op(1.0, 0.0)
+            },
+            6.0,
+        ),
+        PresetId::PadBright => fm(
+            Operator {
+                ar: 7.0,
+                dr: 3.0,
+                ..op(2.0, 30.0)
+            },
+            Operator {
+                ar: 7.0,
+                dr: 3.0,
+                sl: 2.0,
+                rr: 5.0,
+                ..op(1.0, 4.0)
+            },
+            4.0,
+        ),
+        PresetId::Drone => fm(
+            Operator {
+                ar: 8.0,
+                dr: 3.0,
+                ..op(1.0, 22.0)
+            },
+            Operator {
+                ar: 8.0,
+                dr: 3.0,
+                sl: 2.0,
+                rr: 5.0,
+                ..op(1.0, 2.0)
+            },
+            7.0,
+        ),
     }
 }
 
@@ -315,5 +360,44 @@ pub fn drum_trim(song: &Song, instrument_id: &str, chip: OplChip, drum: RhythmDr
     match opl_overrides(song, instrument_id, chip).get(&format!("{}.tl", drum.as_str())) {
         Some(Value::Number(n)) => n.as_f64().unwrap_or(0.0),
         _ => 0.0,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::registers::operator_registers;
+
+    /// The registers a patch writes for its two operators: 20, 40, 60, 80 and E0 for each.
+    fn registers(patch: &Patch) -> [i32; 10] {
+        let m = operator_registers(&patch.modulator, 3);
+        let c = operator_registers(&patch.carrier, 3);
+        [
+            m.r20, m.r40, m.r60, m.r80, m.re0, c.r20, c.r40, c.r60, c.r80, c.re0,
+        ]
+    }
+
+    /// The registers Lieutenant Fizz's DOS converter writes for `bassSaw`, `padBright` and `drone`
+    /// (worked out from `fizz-dos/m4/sound/fizz-dos/patches.ts`).
+    #[test]
+    fn the_game_presets_write_the_dos_registers() {
+        // bassSaw: mod mult 1 tl 20 dr 6 sl 5, car mult 1 tl 0 dr 5 sl 3 rr 8, feedback 6.
+        assert_eq!(
+            registers(&preset_patch(PresetId::BassSaw)),
+            [0x21, 0x14, 0xf6, 0x57, 0, 0x21, 0x00, 0xf5, 0x38, 0]
+        );
+        assert_eq!(preset_patch(PresetId::BassSaw).feedback, 6.0);
+        // padBright: mod mult 2 tl 30 ar 7 dr 3, car mult 1 tl 4 ar 7 dr 3 sl 2 rr 5, feedback 4.
+        assert_eq!(
+            registers(&preset_patch(PresetId::PadBright)),
+            [0x22, 0x1e, 0x73, 0x37, 0, 0x21, 0x04, 0x73, 0x25, 0]
+        );
+        assert_eq!(preset_patch(PresetId::PadBright).feedback, 4.0);
+        // drone: mod mult 1 tl 22 ar 8 dr 3, car mult 1 tl 2 ar 8 dr 3 sl 2 rr 5, feedback 7.
+        assert_eq!(
+            registers(&preset_patch(PresetId::Drone)),
+            [0x21, 0x16, 0x83, 0x37, 0, 0x21, 0x02, 0x83, 0x25, 0]
+        );
+        assert_eq!(preset_patch(PresetId::Drone).feedback, 7.0);
     }
 }
