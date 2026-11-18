@@ -19,8 +19,13 @@
 //!
 //! The leaf rule is the caller's: it decides which words are valid (a pitch, a drum piece) and what
 //! they become. A host that validates pitches or drum names supplies its own rule.
+//!
+//! [`js`] holds JavaScript's number and string behaviours (`String(n)`, `toFixed(2)`, `Math.round`,
+//! `trim`, UTF-16 lengths and `JSON.stringify` quoting), so Rust output matches the TypeScript
+//! fixtures byte for byte.
 
 mod fraction;
+pub mod js;
 mod parse;
 mod pattern;
 
