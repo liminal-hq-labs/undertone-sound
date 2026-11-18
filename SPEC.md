@@ -40,7 +40,7 @@ OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for
 
 ## Interfaces
 
-- `undertone-sound`: `model` (`Song` and its parts, `SONG_FORMAT`, `SONG_VERSION`), `validate::validate_song` (a JSON value in, a `Validation` with the song and every problem by path out), `format::format_song` and `format_document`, `music`, `pan`, `takes::take_notes` and `compile::compile_song`, which lowers a song to a `Performance`.
+- `undertone-sound`: `model` (`Song` and its parts, `SONG_FORMAT`, `SONG_VERSION`), `validate::validate_song` (a JSON value in, a `Validation` with the song and every problem by path out), `validate::parse_song` (the same from text, ignoring a byte order mark and reporting text that is not JSON as `not-valid-json`), `validate::Problems` (the collector, public so a host can add its own checks in the same shape) and `ProblemCode`, which is `Hash`, `format::format_song` and `format_document`, `music`, `pan`, `takes::take_notes` and `compile::compile_song`, which lowers a song to a `Performance`.
 - `undertone-opl`: `sequence::sequence_opl` (a `Performance` to timed register writes, with `dropped_events` and `cut_events`), `limits::analyse_limits`, `engine::render_song` and `render_track_in_mix`, `speaker::sequence::sequence_speaker`, and `profile::OplProfile`, `opx::export_opx` (an `OplSequence` to an OPX file under `OpxOptions`) and `analyse::decode_opx` (the notes and drum hits a stream sounds).
 - The OPX file format, version 0.1, a draft: [docs/OPX.md](docs/OPX.md).
 - `oplstream` (`no_std` core): `Header`, `Decoder` and `Stepper` over the command stream, `validate`, and `print_twin`.

@@ -19,7 +19,7 @@ use crate::model::{
 use crate::music::{parse_pitch, pitch_class};
 use undertone_mini::js::{number_to_string, trim};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 #[serde(rename_all = "lowercase")]
 #[cfg_attr(feature = "ts", ts(export))]
@@ -33,11 +33,13 @@ pub enum Severity {
 
 /// A stable name for what is wrong, so a caller can react to a kind of problem without reading
 /// its message.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 #[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 #[serde(rename_all = "kebab-case")]
 #[cfg_attr(feature = "ts", ts(export))]
 pub enum ProblemCode {
+	/// The text is not JSON. Raised by [`parse_song`], never by [`validate_song`].
+	NotValidJson,
 	/// The document is not a JSON object.
 	NotAnObject,
 	/// The `format` is not the song format.
@@ -186,11 +188,41 @@ impl Validation {
 	}
 }
 
-/// Collects problems in the order the validator finds them.
-#[derive(Default)]
-pub(crate) struct Problems(pub Vec<Problem>);
+/// Collects problems in the order they are found.
+///
+/// The validator uses it, and a host can use it to add its own checks in the same list and in the
+/// same shape: every [`Problem`] carries one of this crate's [`ProblemCode`]s. A host with codes of
+/// its own keeps its own problem type and converts this one into it.
+#[derive(Debug, Clone, Default, PartialEq)]
+pub struct Problems(pub(crate) Vec<Problem>);
 
 impl Problems {
+	/// An empty collector.
+	pub fn new() -> Self {
+		Self::default()
+	}
+
+	/// What was found so far, in the order found.
+	pub fn as_slice(&self) -> &[Problem] {
+		&self.0
+	}
+
+	/// Takes the problems out, in the order found.
+	pub fn into_vec(self) -> Vec<Problem> {
+		self.0
+	}
+
+	/// How many problems there are.
+	pub fn len(&self) -> usize {
+		self.0.len()
+	}
+
+	/// Whether nothing was found.
+	pub fn is_empty(&self) -> bool {
+		self.0.is_empty()
+	}
+
+	/// Adds an error.
 	pub fn error(
 		&mut self,
 		code: ProblemCode,
@@ -200,6 +232,7 @@ impl Problems {
 		self.push(Severity::Error, code, path.into(), message.into());
 	}
 
+	/// Adds a warning.
 	pub fn warning(
 		&mut self,
 		code: ProblemCode,
@@ -218,6 +251,7 @@ impl Problems {
 		});
 	}
 
+	/// Whether any problem is an error.
 	pub fn failed(&self) -> bool {
 		self.0.iter().any(|p| p.severity == Severity::Error)
 	}
@@ -1572,6 +1606,45 @@ pub fn check_pitch_word(word: &str, drums: bool) -> Result<(), String> {
 	Ok(())
 }
 
+impl IntoIterator for Problems {
+	type Item = Problem;
+	type IntoIter = std::vec::IntoIter<Problem>;
+
+	fn into_iter(self) -> Self::IntoIter {
+		self.0.into_iter()
+	}
+}
+
+impl Extend<Problem> for Problems {
+	fn extend<T: IntoIterator<Item = Problem>>(&mut self, problems: T) {
+		self.0.extend(problems);
+	}
+}
+
+/// Reads a song document from its text: a leading byte order mark is ignored, text that is not JSON
+/// is reported as a [`ProblemCode::NotValidJson`] error at the root, and otherwise the result is
+/// [`validate_song`]'s. Never panics. The document keeps its keys in file order, as
+/// [`Validation::document`] says.
+pub fn parse_song(text: &str) -> Validation {
+	let text = text.strip_prefix('\u{FEFF}').unwrap_or(text);
+	match serde_json::from_str::<Value>(text) {
+		Ok(raw) => validate_song(&raw),
+		Err(cause) => {
+			let mut problems = Problems::new();
+			problems.error(
+				ProblemCode::NotValidJson,
+				"",
+				format!("not valid JSON: {cause}"),
+			);
+			Validation {
+				song: None,
+				problems: problems.into_vec(),
+				document: None,
+			}
+		}
+	}
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -1768,5 +1841,69 @@ mod tests {
 		assert_eq!(found.problems.len(), 1);
 		assert_eq!(found.problems[0].path, "messages[0].by");
 		assert_eq!(found.problems[0].code, ProblemCode::BadAuthor);
+	}
+
+	const FIRST_LIGHT: &str = include_str!("../../../fixtures/song/inputs/first-light.song.json");
+
+	#[test]
+	fn parse_song_reads_a_song_from_text() {
+		let validation = parse_song(FIRST_LIGHT);
+		assert!(!validation.has_errors(), "{:?}", validation.problems);
+		assert!(validation.song.is_some() && validation.document.is_some());
+	}
+
+	#[test]
+	fn parse_song_ignores_a_byte_order_mark() {
+		let with_mark = format!("\u{FEFF}{FIRST_LIGHT}");
+		assert_eq!(parse_song(&with_mark), parse_song(FIRST_LIGHT));
+	}
+
+	#[test]
+	fn parse_song_reports_text_that_is_not_json() {
+		let validation = parse_song("{ not json");
+		assert!(validation.song.is_none() && validation.document.is_none());
+		assert_eq!(validation.problems.len(), 1);
+		let problem = &validation.problems[0];
+		assert_eq!(problem.code, ProblemCode::NotValidJson);
+		assert_eq!(problem.severity, Severity::Error);
+		assert_eq!(problem.path, "");
+		assert!(
+			problem.message.starts_with("not valid JSON: "),
+			"{}",
+			problem.message
+		);
+	}
+
+	#[test]
+	fn parse_song_hands_valid_json_to_the_validator() {
+		let validation = parse_song("[]");
+		assert_eq!(validation.problems[0].code, ProblemCode::NotAnObject);
+		assert_eq!(parse_song("{}"), validate_song(&serde_json::json!({})));
+	}
+
+	#[test]
+	fn problem_codes_hash_and_collect() {
+		let mut seen = std::collections::HashSet::new();
+		seen.insert(ProblemCode::NotAnObject);
+		seen.insert(ProblemCode::NotAnObject);
+		seen.insert(ProblemCode::NotValidJson);
+		assert_eq!(seen.len(), 2);
+	}
+
+	#[test]
+	fn a_host_can_collect_problems_in_the_same_list() {
+		let mut problems = Problems::new();
+		assert!(problems.is_empty() && !problems.failed());
+		problems.warning(ProblemCode::NeedsTitle, "title", "a warning");
+		assert!(!problems.failed());
+		problems.error(ProblemCode::BadTempo, "tempo", "an error");
+		assert!(problems.failed());
+		assert_eq!(problems.len(), 2);
+		assert_eq!(problems.as_slice()[0].severity, Severity::Warning);
+		let mut more = Problems::new();
+		more.extend(problems.clone());
+		let codes: Vec<_> = more.into_iter().map(|problem| problem.code).collect();
+		assert_eq!(codes, [ProblemCode::NeedsTitle, ProblemCode::BadTempo]);
+		assert_eq!(problems.into_vec().len(), 2);
 	}
 }
