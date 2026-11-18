@@ -1,11 +1,10 @@
 {
 	"constants": {
-		"AUTHORS": ["you", "claude"],
-		"DEFAULT_VELOCITY": 0.8,
+		"AUTHOR_KINDS": ["human", "agent"],
 		"DRUM_PIECES": ["crash", "openhat", "hat", "clap", "rim", "snare", "tom", "kick"],
 		"ENGINE_IDS": ["undertone", "opl2", "opl3", "pc-speaker"],
-		"PRESET_IDS": ["lead", "square-lead", "soft-lead", "pluck", "bell", "pad", "organ", "bass", "sub-bass", "bass-saw", "pad-bright", "drone", "kit"],
-		"SONG_FORMAT": "fizz-audio-studio/song",
+		"PRESET_IDS": ["lead", "square-lead", "soft-lead", "pluck", "bell", "pad", "organ", "bass", "sub-bass", "kit"],
+		"SONG_FORMAT": "undertone-sound/song",
 		"SONG_VERSION": 1,
 		"TRACK_ROLES": ["melody", "harmony", "bass", "drums", "texture"]
 	},

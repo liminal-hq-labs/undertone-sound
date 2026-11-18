@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "Motion",
 	"tempo": 120,
@@ -60,7 +60,7 @@
 					{
 						"id": "a",
 						"name": "Every motion",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"comment": "A note pan, both slides, a sine wobble, a triangle wobble",
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 4, "pan": -0.7 },
@@ -105,7 +105,7 @@
 					{
 						"id": "a",
 						"name": "Held across a jump",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{
 								"at": 0,
@@ -136,7 +136,7 @@
 					{
 						"id": "a",
 						"name": "Chords that move together",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d3", "len": 8 },
 							{ "at": 0, "pitch": "f3", "len": 8 },
@@ -158,7 +158,7 @@
 					{
 						"id": "a",
 						"name": "Pattern with a wobble",
-						"by": "you",
+						"by": { "kind": "human" },
 						"mini": "d3 f3 a3 d4",
 						"panMotion": { "kind": "wobble", "depth": 0.7, "period": 16, "shape": "triangle" }
 					}
@@ -172,7 +172,7 @@
 					{
 						"id": "a",
 						"name": "Across the section",
-						"by": "you",
+						"by": { "kind": "human" },
 						"panMotion": { "kind": "slide", "from": -1, "to": 1, "curve": "smooth" },
 						"notes": [
 							{ "at": 0, "pitch": "d2", "len": 4 },
@@ -192,7 +192,7 @@
 					{
 						"id": "a",
 						"name": "Wobble about the take pan",
-						"by": "you",
+						"by": { "kind": "human" },
 						"pan": 0.4,
 						"notes": [
 							{
@@ -214,7 +214,7 @@
 					{
 						"id": "a",
 						"name": "Hats trade sides",
-						"by": "you",
+						"by": { "kind": "human" },
 						"panMotion": {
 							"kind": "jump",
 							"positions": [-0.5, 0.5],
@@ -237,7 +237,7 @@
 					{
 						"id": "a",
 						"name": "Plain",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 1 },
 							{ "at": 8, "pitch": "snare", "len": 1, "pan": 0.3 }

@@ -32,7 +32,7 @@ Backends extend the engine to hardware sound chips, and the interface should be 
 Done:
 
 - [x] `oplstream`: the OPX reader, writer, stepper, validator, text twin, and IMF, DRO and VGM import with a reported re-timing step, tested against Fizz 1's real Title Theme chunk (`fixtures/opx/title-theme.imf`)
-- [x] `undertone-sound`: the song model, validation, formatting and compiler (the generic part of the studio's `fizz-audio-song`), with its recorded fixtures
+- [x] `undertone-sound`: the song model, validation, formatting and compiler (the generic part of the studio's `fizz-audio-song`), with fixtures this repository writes. The format is its own: `undertone-sound/song` at version 1, a neutral author type and no product-specific presets
 - [x] `undertone-opl`: OPL2 and OPL3 sequencing and allocation, lost notes, the PC speaker and the `oplon` renderer. The reserved channels and the game's own patches are the host's, passed in as a profile
 - [x] First end-to-end proof, built: Title Theme to OPX for the OPL2 and OPL3 (`fixtures/opx/title-theme.opl2.opx` and `.opl3.opx`). The OPL2 stream matches the DOS game's own chunk note for note, with four carrier levels apart
 

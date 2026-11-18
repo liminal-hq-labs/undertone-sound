@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "First Light",
 	"tempo": 96,
@@ -71,7 +71,7 @@
 					{
 						"id": "a",
 						"name": "Whole chords",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 16, "vel": 0.7 },
 							{ "at": 0, "pitch": "f4", "len": 16, "vel": 0.7 },
@@ -96,7 +96,7 @@
 					{
 						"id": "a",
 						"name": "Pulse chords",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 3, "vel": 0.8 },
 							{ "at": 0, "pitch": "f4", "len": 3, "vel": 0.8 },
@@ -205,7 +205,7 @@
 					{
 						"id": "a",
 						"name": "Halves chords",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 8, "vel": 0.75 },
 							{ "at": 0, "pitch": "f4", "len": 8, "vel": 0.75 },
@@ -268,7 +268,7 @@
 					{
 						"id": "a",
 						"name": "Up arpeggio",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 2, "vel": 0.85 },
 							{ "at": 2, "pitch": "f4", "len": 2, "vel": 0.65 },
@@ -313,7 +313,7 @@
 					{
 						"id": "a",
 						"name": "Up down arpeggio",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 1, "vel": 0.85 },
 							{ "at": 1, "pitch": "f4", "len": 1, "vel": 0.65 },
@@ -456,7 +456,7 @@
 					{
 						"id": "a",
 						"name": "Sparse drums",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 1, "vel": 0.85 },
 							{ "at": 2, "pitch": "hat", "len": 1, "vel": 0.4 },
@@ -480,7 +480,7 @@
 					{
 						"id": "a",
 						"name": "Half time drums",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 1, "vel": 0.95 },
 							{ "at": 0, "pitch": "hat", "len": 1, "vel": 0.7 },
@@ -577,7 +577,7 @@
 					{
 						"id": "a",
 						"name": "Backbeat drums",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "kick", "len": 1, "vel": 0.95 },
 							{ "at": 0, "pitch": "hat", "len": 1, "vel": 0.7 },
@@ -691,7 +691,7 @@
 					{
 						"id": "a",
 						"name": "Root bass",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d2", "len": 15, "vel": 0.9 },
 							{ "at": 16, "pitch": "bb1", "len": 15, "vel": 0.9 },
@@ -708,7 +708,7 @@
 					{
 						"id": "a",
 						"name": "Syncopated bass",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d2", "len": 2, "vel": 0.9 },
 							{ "at": 3, "pitch": "d2", "len": 2, "vel": 0.75 },
@@ -746,7 +746,7 @@
 					{
 						"id": "b",
 						"name": "Walking bass",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d2", "len": 3, "vel": 0.9 },
 							{ "at": 4, "pitch": "f2", "len": 3, "vel": 0.75 },
@@ -791,7 +791,7 @@
 					{
 						"id": "a",
 						"name": "Octave bass",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d2", "len": 2, "vel": 0.85 },
 							{ "at": 2, "pitch": "d3", "len": 2, "vel": 0.65 },
@@ -870,7 +870,7 @@
 					{
 						"id": "a",
 						"name": "Rising line",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "d4", "len": 4, "vel": 0.9 },
 							{ "at": 4, "pitch": "f4", "len": 2 },
@@ -910,14 +910,14 @@
 					{
 						"id": "a",
 						"name": "Hook",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"mini": "<[a4 d5 f5@2] [f5 g5 f5 d5] [c5@2 a4 c5] [e5@3 ~]>",
 						"comment": "Written as mini-notation; convert it to notes to edit it in the roll"
 					},
 					{
 						"id": "b",
 						"name": "Arch melody",
-						"by": "claude",
+						"by": { "kind": "agent", "name": "Claude" },
 						"notes": [
 							{ "at": 0, "pitch": "a4", "len": 3, "vel": 0.9 },
 							{ "at": 3, "pitch": "g4", "len": 3, "vel": 0.7 },
@@ -966,7 +966,7 @@
 	},
 	"messages": [
 		{
-			"by": "claude",
+			"by": { "kind": "agent", "name": "Claude" },
 			"text": "A first sketch in D minor at 96 bpm: a sparse intro, a half-time verse with a rising melody, and a chorus with a mini-notation hook (take A) and a generated alternative (take B) to compare. Change anything; tell me what to try next.",
 			"at": "2026-11-17T07:00:00.000Z"
 		}

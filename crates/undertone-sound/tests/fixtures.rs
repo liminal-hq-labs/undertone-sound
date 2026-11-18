@@ -1,58 +1,68 @@
-// Checks the song core against the recorded fixtures in `fixtures/song/`
+// Checks the song core against the files in `fixtures/song/`, which this crate writes
 //
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-//! Each file in `fixtures/song/` holds cases the TypeScript recorded: validation problems, formatted
-//! text, pitch and scale tables and song helpers. Each test reads one file and requires every case
-//! to match; a failure names the case.
+//! Each file in `fixtures/song/` holds cases: an input and what this crate makes of it. Each test
+//! reads a file's cases, makes the results again and requires the file to hold exactly the text
+//! that gives. With `UPDATE_FIXTURES=1` the tests write the files instead, which is how a change
+//! to the format or the compiler reaches them; the diff then shows what the change did.
 
 use std::fs;
 use std::path::PathBuf;
 
-use serde_json::{Value, json};
+use serde_json::{Map, Value, json};
 use undertone_sound::format::{format_document, format_song};
 use undertone_sound::model::*;
 use undertone_sound::music;
-use undertone_sound::validate::{Problem, Severity, Validation, validate_song};
+use undertone_sound::validate::{Problem, Severity, validate_song};
 
-fn dir() -> PathBuf {
-	PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../fixtures/song")
+mod support;
+use support::{bless, expect_file, fixture_text, song_dir};
+
+/// `fixtures/chips/inputs/`, the songs the chip fixtures use that are not in `song/inputs/`.
+pub fn chips_inputs_dir() -> PathBuf {
+	PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../fixtures/chips/inputs")
 }
 
-fn load(name: &str) -> Vec<Value> {
-	let text = fs::read_to_string(dir().join(format!("{name}.json"))).unwrap();
-	match serde_json::from_str::<Value>(&text).unwrap() {
+fn load(name: &str) -> Value {
+	let text = fs::read_to_string(song_dir().join(format!("{name}.json"))).unwrap();
+	serde_json::from_str(&text).unwrap()
+}
+
+fn cases(name: &str) -> Vec<Value> {
+	match load(name) {
 		Value::Array(items) => items,
-		other => vec![other],
+		other => panic!("{name}.json holds {other}, not a list of cases"),
 	}
 }
 
 fn input_text(name: &str) -> String {
-	fs::read_to_string(dir().join("inputs").join(format!("{name}.song.json"))).unwrap()
-}
-
-/// Reads a song document's text, as a host does: JSON first, then the song format's rules.
-fn parse_song_text(text: &str) -> Validation {
-	let raw: Value = serde_json::from_str(text).expect("a recorded song is JSON");
-	validate_song(&raw)
+	fs::read_to_string(song_dir().join("inputs").join(format!("{name}.song.json"))).unwrap()
 }
 
 fn input_song(name: &str) -> Song {
-	let validation = parse_song_text(&input_text(name));
+	let raw: Value = serde_json::from_str(&input_text(name)).unwrap();
+	let validation = validate_song(&raw);
 	validation
 		.song
 		.unwrap_or_else(|| panic!("{name} does not validate: {:?}", validation.problems))
 }
 
-fn lines(value: &Value) -> String {
-	value
-		.as_array()
-		.unwrap()
-		.iter()
-		.map(|line| line.as_str().unwrap())
-		.collect::<Vec<_>>()
-		.join("\n")
+fn id(case: &Value) -> &str {
+	case["id"].as_str().unwrap()
+}
+
+/// The case with its result fields replaced.
+fn with(case: &Value, results: &[(&str, Value)], drop: &[&str]) -> Value {
+	let mut out: Map<String, Value> = case.as_object().unwrap().clone();
+	for key in drop {
+		out.shift_remove(*key);
+	}
+	for (key, value) in results {
+		out.insert((*key).to_string(), value.clone());
+	}
+	Value::Object(out)
 }
 
 fn plain(problems: &[Problem]) -> Value {
@@ -70,290 +80,268 @@ fn plain(problems: &[Problem]) -> Value {
 	)
 }
 
-/// Collects failures and prints the count for a fixture file.
-struct Tally {
-	file: &'static str,
-	passed: usize,
-	failed: Vec<String>,
+fn lines(text: &str) -> Value {
+	Value::Array(text.split('\n').map(|line| json!(line)).collect())
 }
 
-impl Tally {
-	fn new(file: &'static str) -> Tally {
-		Tally {
-			file,
-			passed: 0,
-			failed: Vec::new(),
+/// Every song document in `song/inputs/` and `chips/inputs/` is written the way `format_document`
+/// writes it, with its keys in document order.
+#[test]
+fn song_files_are_written_in_the_stable_style() {
+	for dir in [song_dir().join("inputs"), chips_inputs_dir()] {
+		let mut paths: Vec<PathBuf> = fs::read_dir(&dir)
+			.unwrap()
+			.map(|entry| entry.unwrap().path())
+			.filter(|path| path.to_string_lossy().ends_with(".song.json"))
+			.collect();
+		paths.sort();
+		assert!(!paths.is_empty(), "no songs in {}", dir.display());
+		for path in paths {
+			let raw: Value = serde_json::from_str(&fs::read_to_string(&path).unwrap())
+				.unwrap_or_else(|e| panic!("{}: {e}", path.display()));
+			expect_file(&path, &format_document(&raw));
 		}
 	}
-
-	fn check(&mut self, id: &str, ok: bool, detail: impl FnOnce() -> String) {
-		if ok {
-			self.passed += 1;
-		} else {
-			self.failed.push(format!("{id}: {}", detail()));
-		}
-	}
-
-	fn finish(self) {
-		println!(
-			"{}: {} passed, {} failed",
-			self.file,
-			self.passed,
-			self.failed.len()
-		);
-		assert!(
-			self.failed.is_empty(),
-			"{} failures:\n{}",
-			self.file,
-			self.failed.join("\n")
-		);
-	}
 }
 
-fn id(case: &Value) -> &str {
-	case["id"].as_str().unwrap()
-}
-
-/// A parse case's message may come from the JavaScript engine's JSON parser, so only its start is
-/// compared.
 #[test]
 fn validation() {
-	let mut tally = Tally::new("validation.json");
-	for case in load("validation") {
-		let result = validate_song(&case["input"]);
-		let got = plain(&result.problems);
-		let ok = result.song.is_some();
-		tally.check(
-			id(&case),
-			got == case["problems"] && ok == case["ok"].as_bool().unwrap(),
-			|| format!("got {got}\nwant {}", case["problems"]),
-		);
-	}
-	tally.finish();
+	let written: Vec<Value> = cases("validation")
+		.iter()
+		.map(|case| {
+			let result = validate_song(&case["input"]);
+			with(
+				case,
+				&[
+					("ok", json!(result.song.is_some())),
+					("problems", plain(&result.problems)),
+				],
+				&[],
+			)
+		})
+		.collect();
+	expect_file(
+		&song_dir().join("validation.json"),
+		&fixture_text(&Value::Array(written)),
+	);
 }
 
 #[test]
 fn formatted() {
-	let mut tally = Tally::new("formatted.json");
-	for case in load("formatted") {
+	let written: Vec<Value> = cases("formatted")
+		.iter()
+		.map(|case| {
+			if case["kind"] == "formatSong" {
+				let name = case["input"].as_str().unwrap();
+				let raw: Value = serde_json::from_str(&input_text(name)).unwrap();
+				let validation = validate_song(&raw);
+				let song = validation
+					.song
+					.as_ref()
+					.unwrap_or_else(|| panic!("{} does not validate", id(case)));
+				// The typed song writes the canonical key order and reads back the same song.
+				let canonical = validate_song(&serde_json::from_str(&format_song(song)).unwrap());
+				assert!(
+					canonical.song.as_ref() == Some(song),
+					"{}: the typed song does not survive format_song",
+					id(case)
+				);
+				let text = format_document(validation.document.as_ref().unwrap());
+				with(case, &[("bytes", json!(text.len()))], &[])
+			} else {
+				let text = format_document(&case["value"]);
+				with(case, &[("text", lines(&text))], &[])
+			}
+		})
+		.collect();
+	expect_file(
+		&song_dir().join("formatted.json"),
+		&fixture_text(&Value::Array(written)),
+	);
+	// A song's file is the text its case names, so the two cannot drift apart.
+	for case in cases("formatted") {
 		if case["kind"] == "formatSong" {
 			let name = case["input"].as_str().unwrap();
-			let want = input_text(name);
-			let validation = parse_song_text(&input_text(name));
-			let got = format_document(validation.document.as_ref().unwrap());
-			// The typed song writes the canonical key order and reads back the same song.
-			let canonical = parse_song_text(&format_song(validation.song.as_ref().unwrap()));
-			tally.check(
-				&format!("{}/canonical", id(&case)),
-				canonical.song == validation.song,
-				|| "typed song does not survive format_song".to_string(),
+			assert_eq!(
+				case["formatsTo"].as_str().unwrap(),
+				format!("inputs/{name}.song.json")
 			);
-			tally.check(
-				id(&case),
-				got == want && got.len() as u64 == case["bytes"].as_u64().unwrap(),
-				|| format!("formatted text differs for {name}"),
-			);
-		} else {
-			let got = format_document(&case["value"]);
-			let want = lines(&case["text"]);
-			tally.check(id(&case), got == want, || format!("{got:?} vs {want:?}"));
+			if !bless() {
+				assert_eq!(
+					case["bytes"].as_u64().unwrap() as usize,
+					input_text(name).len(),
+					"{}",
+					id(&case)
+				);
+			}
 		}
 	}
-	tally.finish();
+}
+
+fn key_of(value: &Value) -> Key {
+	serde_json::from_value(value.clone()).unwrap()
+}
+
+fn map_list(list: &Value, make: impl Fn(&Value) -> Vec<(&'static str, Value)>) -> Value {
+	Value::Array(
+		list.as_array()
+			.unwrap()
+			.iter()
+			.map(|case| with(case, &make(case), &[]))
+			.collect(),
+	)
 }
 
 #[test]
 fn music_fixtures() {
-	let mut tally = Tally::new("music.json");
-	let all = load("music");
-	let data = &all[0];
-	let key = |v: &Value| -> Key { serde_json::from_value(v.clone()).unwrap() };
-	for (n, case) in data["parsePitch"].as_array().unwrap().iter().enumerate() {
-		let got = music::parse_pitch(case["name"].as_str().unwrap());
-		tally.check(
-			&format!("parsePitch/{n}"),
-			json!(got) == case["midi"],
-			|| format!("{got:?}"),
+	let data = load("music");
+	let mut out = data.as_object().unwrap().clone();
+	let mut set = |name: &str, value: Value| {
+		out.insert(name.to_string(), value);
+	};
+	set(
+		"parsePitch",
+		map_list(&data["parsePitch"], |c| {
+			vec![(
+				"midi",
+				json!(music::parse_pitch(c["name"].as_str().unwrap())),
+			)]
+		}),
+	);
+	set(
+		"pitchClass",
+		map_list(&data["pitchClass"], |c| {
+			vec![(
+				"semitone",
+				json!(music::pitch_class(c["name"].as_str().unwrap())),
+			)]
+		}),
+	);
+	set(
+		"isInKey",
+		map_list(&data["isInKey"], |c| {
+			let midi = c["midi"].as_i64().unwrap() as i32;
+			vec![("inKey", json!(music::is_in_key(midi, &key_of(&c["key"]))))]
+		}),
+	);
+	set(
+		"keyPitchClasses",
+		map_list(&data["keyPitchClasses"], |c| {
+			let mut classes = music::key_pitch_classes(&key_of(&c["key"]));
+			classes.sort();
+			vec![("classes", json!(classes))]
+		}),
+	);
+	for table in ["prefersFlats", "prefersFlatsOddities"] {
+		set(
+			table,
+			map_list(&data[table], |c| {
+				vec![("flats", json!(music::prefers_flats(&key_of(&c["key"]))))]
+			}),
 		);
 	}
-	for (n, case) in data["pitchClass"].as_array().unwrap().iter().enumerate() {
-		let got = music::pitch_class(case["name"].as_str().unwrap());
-		tally.check(
-			&format!("pitchClass/{n}"),
-			json!(got) == case["semitone"],
-			|| format!("{got:?}"),
-		);
+	set(
+		"midiToName",
+		map_list(&data["midiToName"], |c| {
+			let key = (!c["key"].is_null()).then(|| key_of(&c["key"]));
+			let count = c["names"].as_array().unwrap().len() as i32;
+			let names: Vec<String> = (0..count)
+				.map(|midi| music::midi_to_name(midi, key.as_ref()))
+				.collect();
+			vec![("names", json!(names))]
+		}),
+	);
+	set(
+		"midiToNameOutsideRange",
+		map_list(&data["midiToNameOutsideRange"], |c| {
+			let midi = c["midi"].as_i64().unwrap() as i32;
+			vec![("name", json!(music::midi_to_name(midi, None)))]
+		}),
+	);
+	set(
+		"stepInKey",
+		map_list(&data["stepInKey"], |c| {
+			let result = music::step_in_key(
+				c["midi"].as_i64().unwrap() as i32,
+				c["degrees"].as_i64().unwrap() as i32,
+				&key_of(&c["key"]),
+			);
+			vec![("result", json!(result))]
+		}),
+	);
+	let mut scales = Map::new();
+	for (name, _) in data["scales"].as_object().unwrap() {
+		let scale = ScaleName::from_word(name).unwrap_or_else(|| panic!("unknown scale {name}"));
+		scales.insert(name.clone(), json!(music::scale_intervals(scale)));
 	}
-	for (n, case) in data["isInKey"].as_array().unwrap().iter().enumerate() {
-		let got = music::is_in_key(case["midi"].as_i64().unwrap() as i32, &key(&case["key"]));
-		tally.check(
-			&format!("isInKey/{n}"),
-			got == case["inKey"].as_bool().unwrap(),
-			String::new,
-		);
-	}
-	for (n, case) in data["keyPitchClasses"]
-		.as_array()
-		.unwrap()
-		.iter()
-		.enumerate()
-	{
-		let mut got = music::key_pitch_classes(&key(&case["key"]));
-		let mut want: Vec<i64> = case["classes"]
-			.as_array()
-			.unwrap()
-			.iter()
-			.map(|v| v.as_i64().unwrap())
-			.collect();
-		got.sort();
-		want.sort();
-		tally.check(
-			&format!("keyPitchClasses/{n}"),
-			got.iter().map(|v| i64::from(*v)).collect::<Vec<_>>() == want,
-			|| format!("{got:?}"),
-		);
-	}
-	for (n, case) in data["prefersFlats"]
-		.as_array()
-		.unwrap()
-		.iter()
-		.chain(data["prefersFlatsOddities"].as_array().unwrap())
-		.enumerate()
-	{
-		let got = music::prefers_flats(&key(&case["key"]));
-		tally.check(
-			&format!("prefersFlats/{n}"),
-			got == case["flats"].as_bool().unwrap(),
-			String::new,
-		);
-	}
-	for (n, case) in data["midiToName"].as_array().unwrap().iter().enumerate() {
-		let k = if case["key"].is_null() {
-			None
-		} else {
-			Some(key(&case["key"]))
-		};
-		let names: Vec<String> = case["names"]
-			.as_array()
-			.unwrap()
-			.iter()
-			.map(|v| v.as_str().unwrap().to_string())
-			.collect();
-		let got: Vec<String> = (0..names.len() as i32)
-			.map(|m| music::midi_to_name(m, k.as_ref()))
-			.collect();
-		tally.check(&format!("midiToName/{n}"), got == names, String::new);
-	}
-	for (n, case) in data["midiToNameOutsideRange"]
-		.as_array()
-		.unwrap()
-		.iter()
-		.enumerate()
-	{
-		let got = music::midi_to_name(case["midi"].as_i64().unwrap() as i32, None);
-		tally.check(
-			&format!("midiToNameOutsideRange/{n}"),
-			got == case["name"].as_str().unwrap(),
-			|| got.clone(),
-		);
-	}
-	for (n, case) in data["stepInKey"].as_array().unwrap().iter().enumerate() {
-		let got = music::step_in_key(
-			case["midi"].as_i64().unwrap() as i32,
-			case["degrees"].as_i64().unwrap() as i32,
-			&key(&case["key"]),
-		);
-		tally.check(
-			&format!("stepInKey/{n}"),
-			i64::from(got) == case["result"].as_i64().unwrap(),
-			|| format!("{got}"),
-		);
-	}
-	for (name, steps) in data["scales"].as_object().unwrap() {
-		let scale = ScaleName::from_word(name).unwrap();
-		let got: Vec<i64> = music::scale_intervals(scale)
-			.iter()
-			.map(|v| i64::from(*v))
-			.collect();
-		let want: Vec<i64> = steps
-			.as_array()
-			.unwrap()
-			.iter()
-			.map(|v| v.as_i64().unwrap())
-			.collect();
-		tally.check(&format!("scales/{name}"), got == want, String::new);
-	}
-	let c = &data["constants"];
+	set("scales", Value::Object(scales));
 	let words = |all: Vec<&str>| json!(all);
-	tally.check(
-		"constants/engines",
-		words(EngineId::ALL.iter().map(|e| e.as_str()).collect()) == c["ENGINE_IDS"],
-		String::new,
+	set(
+		"constants",
+		json!({
+			"ENGINE_IDS": words(EngineId::ALL.iter().map(|e| e.as_str()).collect()),
+			"PRESET_IDS": words(PresetId::ALL.iter().map(|e| e.as_str()).collect()),
+			"TRACK_ROLES": words(TrackRole::ALL.iter().map(|e| e.as_str()).collect()),
+			"DRUM_PIECES": words(DrumPiece::ALL.iter().map(|e| e.as_str()).collect()),
+			"AUTHOR_KINDS": words(AuthorKind::ALL.iter().map(|e| e.as_str()).collect()),
+			"SONG_FORMAT": SONG_FORMAT,
+			"SONG_VERSION": SONG_VERSION,
+		}),
 	);
-	tally.check(
-		"constants/presets",
-		words(PresetId::ALL.iter().map(|e| e.as_str()).collect()) == c["PRESET_IDS"],
-		String::new,
+	expect_file(
+		&song_dir().join("music.json"),
+		&fixture_text(&Value::Object(out)),
 	);
-	tally.check(
-		"constants/roles",
-		words(TrackRole::ALL.iter().map(|e| e.as_str()).collect()) == c["TRACK_ROLES"],
-		String::new,
-	);
-	tally.check(
-		"constants/drums",
-		words(DrumPiece::ALL.iter().map(|e| e.as_str()).collect()) == c["DRUM_PIECES"],
-		String::new,
-	);
-	tally.check(
-		"constants/authors",
-		words(Author::ALL.iter().map(|e| e.as_str()).collect()) == c["AUTHORS"],
-		String::new,
-	);
-	tally.check(
-		"constants/format",
-		json!(SONG_FORMAT) == c["SONG_FORMAT"] && json!(SONG_VERSION) == c["SONG_VERSION"],
-		String::new,
-	);
-	tally.finish();
 }
 
 #[test]
 fn model_fixtures() {
-	let mut tally = Tally::new("model.json");
-	for case in load("model") {
-		let song = input_song(case["input"].as_str().unwrap());
-		let mut ok = song.steps_per_bar() as u64 == case["stepsPerBar"].as_u64().unwrap();
-		for entry in case["sections"].as_array().unwrap() {
-			let section = song.find_section(entry["id"].as_str().unwrap()).unwrap();
-			ok &= u64::from(song.section_steps(section)) == entry["steps"].as_u64().unwrap();
-		}
-		for entry in case["findSection"].as_array().unwrap() {
-			let found = song
-				.find_section(entry["id"].as_str().unwrap())
-				.map(|s| s.id.clone());
-			ok &= json!(found) == entry["found"];
-		}
-		for entry in case["findTrack"].as_array().unwrap() {
-			let found = song
-				.find_track(entry["id"].as_str().unwrap())
-				.map(|t| t.id.clone());
-			ok &= json!(found) == entry["found"];
-		}
-		for entry in case["isDrumTrack"].as_array().unwrap() {
-			let track = song.find_track(entry["id"].as_str().unwrap()).unwrap();
-			ok &= song.is_drum_track(track) == entry["drums"].as_bool().unwrap();
-		}
-		for entry in case["activeTake"].as_array().unwrap() {
-			let found = song
-				.active_take(
-					entry["track"].as_str().unwrap(),
-					entry["section"].as_str().unwrap(),
-				)
-				.map(|t| t.id.clone());
-			ok &= json!(found) == entry["take"];
-		}
-		tally.check(id(&case), ok, String::new);
-	}
-	tally.finish();
+	let written: Vec<Value> = cases("model")
+		.iter()
+		.map(|case| {
+			let song = input_song(case["input"].as_str().unwrap());
+			let text = |entry: &Value, key: &str| entry[key].as_str().unwrap().to_string();
+			let list = |name: &str, make: &dyn Fn(&Value) -> Vec<(&'static str, Value)>| {
+				map_list(&case[name], make)
+			};
+			let sections = list("sections", &|e| {
+				let section = song.find_section(&text(e, "id")).unwrap();
+				vec![("steps", json!(song.section_steps(section)))]
+			});
+			let find_section = list("findSection", &|e| {
+				let found = song.find_section(&text(e, "id")).map(|s| s.id.clone());
+				vec![("found", json!(found))]
+			});
+			let find_track = list("findTrack", &|e| {
+				let found = song.find_track(&text(e, "id")).map(|t| t.id.clone());
+				vec![("found", json!(found))]
+			});
+			let is_drum_track = list("isDrumTrack", &|e| {
+				let track = song.find_track(&text(e, "id")).unwrap();
+				vec![("drums", json!(song.is_drum_track(track)))]
+			});
+			let active_take = list("activeTake", &|e| {
+				let take = song
+					.active_take(&text(e, "track"), &text(e, "section"))
+					.map(|t| t.id.clone());
+				vec![("take", json!(take))]
+			});
+			with(
+				case,
+				&[
+					("stepsPerBar", json!(song.steps_per_bar())),
+					("sections", sections),
+					("findSection", find_section),
+					("findTrack", find_track),
+					("isDrumTrack", is_drum_track),
+					("activeTake", active_take),
+				],
+				&[],
+			)
+		})
+		.collect();
+	expect_file(
+		&song_dir().join("model.json"),
+		&fixture_text(&Value::Array(written)),
+	);
 }

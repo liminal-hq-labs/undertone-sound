@@ -12,10 +12,8 @@ use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
 
-/// The `format` every song file carries, so a stray JSON file is never mistaken for one. The
-/// string is frozen: it stays byte for byte what existing song files hold until a version gate
-/// changes the format.
-pub const SONG_FORMAT: &str = "fizz-audio-studio/song";
+/// The `format` every song file carries, so a stray JSON file is never mistaken for one.
+pub const SONG_FORMAT: &str = "undertone-sound/song";
 /// The song document version this crate reads and writes.
 pub const SONG_VERSION: u32 = 1;
 
@@ -36,7 +34,7 @@ macro_rules! text_enum {
         }
 
         impl $name {
-            /// Every value, in the order the TypeScript lists them.
+            /// Every value, in declaration order.
             pub const ALL: &'static [$name] = &[$($name::$variant),+];
 
             /// The word the song file spells this value with.
@@ -58,9 +56,50 @@ macro_rules! text_enum {
 }
 
 text_enum!(
-	/// Who wrote a take or a message: the person using the tool, or the assistant.
-	Author, "lowercase", [You => "you", Claude => "claude"]
+	/// What kind of author wrote a take or a message.
+	AuthorKind, "lowercase", [Human => "human", Agent => "agent"]
 );
+
+/// Who wrote a take or a message: a person, or an agent such as a model, which may be named. A
+/// host maps its own words onto the two kinds.
+///
+/// In a song file an author is an object: `{ "kind": "human" }`, `{ "kind": "agent" }` or
+/// `{ "kind": "agent", "name": "Claude" }`. Only an agent has a name, which is free text.
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
+#[cfg_attr(feature = "ts", ts(export))]
+pub struct Author {
+	/// Whether a person or an agent wrote it.
+	pub kind: AuthorKind,
+	/// The agent's name, such as the model that wrote it. Left out when there is none.
+	#[serde(default, skip_serializing_if = "Option::is_none")]
+	#[cfg_attr(feature = "ts", ts(optional))]
+	pub name: Option<String>,
+}
+
+impl Author {
+	/// A person.
+	pub fn human() -> Author {
+		Author {
+			kind: AuthorKind::Human,
+			name: None,
+		}
+	}
+
+	/// An agent with no name given.
+	pub fn agent() -> Author {
+		Author {
+			kind: AuthorKind::Agent,
+			name: None,
+		}
+	}
+
+	/// This author with an agent's name.
+	pub fn named(mut self, name: impl Into<String>) -> Author {
+		self.name = Some(name.into());
+		self
+	}
+}
 
 text_enum!(
 	/// The sound engines a song can be played on.
@@ -87,9 +126,6 @@ text_enum!(
 		Organ => "organ",
 		Bass => "bass",
 		SubBass => "sub-bass",
-		BassSaw => "bass-saw",
-		PadBright => "pad-bright",
-		Drone => "drone",
 		Kit => "kit",
 	]
 );
@@ -589,7 +625,7 @@ pub struct Mix {
 #[cfg_attr(feature = "ts", ts(export))]
 /// A whole song.
 pub struct Song {
-	#[cfg_attr(feature = "ts", ts(type = "\"fizz-audio-studio/song\""))]
+	#[cfg_attr(feature = "ts", ts(type = "\"undertone-sound/song\""))]
 	/// The format id, `SONG_FORMAT`.
 	pub format: String,
 	#[serde(with = "whole_number")]
@@ -685,6 +721,30 @@ mod tests {
 			.unwrap()
 			.extend(extra.as_object().unwrap().clone());
 		serde_json::from_value(value).unwrap()
+	}
+
+	#[test]
+	fn an_author_is_a_kind_and_an_agent_may_carry_a_name() {
+		let written = |author: &Author| serde_json::to_value(author).unwrap();
+		assert_eq!(written(&Author::human()), json!({ "kind": "human" }));
+		assert_eq!(written(&Author::agent()), json!({ "kind": "agent" }));
+		assert_eq!(
+			written(&Author::agent().named("Claude")),
+			json!({ "kind": "agent", "name": "Claude" })
+		);
+		let read: Author =
+			serde_json::from_value(json!({ "kind": "agent", "name": "Claude" })).unwrap();
+		assert_eq!(read, Author::agent().named("Claude"));
+		assert!(serde_json::from_value::<Author>(json!("human")).is_err());
+		assert!(serde_json::from_value::<Author>(json!({ "kind": "robot" })).is_err());
+	}
+
+	#[test]
+	fn the_retired_presets_are_not_words_of_the_format() {
+		for word in ["bass-saw", "pad-bright", "drone"] {
+			assert_eq!(PresetId::from_word(word), None);
+		}
+		assert_eq!(PresetId::ALL.len(), 10);
 	}
 
 	#[test]

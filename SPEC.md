@@ -25,12 +25,16 @@ Shared Rust sound core for Undertone.
 | `undertone-opl` | OPL2 and OPL3 register sequencing and channel allocation, lost-note accounting, the PC speaker engine and an `oplon` renderer, under a host-supplied profile | Carved from the studio; matches the recorded `fixtures/chips/` register writes, speaker frames, lost notes and rendered samples. Writes OPX (`opx`) and reads notes and drum hits back out of a stream (`analyse`). The Title Theme exports for the OPL2 and OPL3 as the golden files in `fixtures/opx/`, and the OPL2 stream sounds what the DOS game's chunk sounds, with four carrier levels apart. Not played in any player or on hardware. Compiles for `wasm32-unknown-unknown` |
 | `undertone-mini` | Undertone's mini-notation: parser, pattern combinators and exact fractions, plus JavaScript number semantics (`js`) | Carved from the studio; passes the recorded `fixtures/mini/` cases |
 | `undertone-dsp` | Voices, the Web Audio graph Undertone books, and an in-house renderer, offline or streaming, native and WebAssembly | Carved from the studio; `LogGraph` matches the recorded `fixtures/undertone/graph.json` byte for byte and the engine streams in any block size. Compiles for `wasm32-unknown-unknown`; `undertone-wasm` renders one voice |
-| `undertone-sound` | The song document: model, validation, stable formatting, pitch and pan, and the compiler to timed, engine-neutral events. Optional `ts` feature for TypeScript bindings | Carved from the studio; passes the recorded `fixtures/song/` cases for validation, formatting, pitch and scales, and compilation. No sound is made here |
+| `undertone-sound` | The song document: model, validation, stable formatting, pitch and pan, and the compiler to timed, engine-neutral events. Optional `ts` feature for TypeScript bindings | Carved from the studio, and its format is now its own: the recorded `fixtures/song/` cases for validation, formatting, pitch and scales, and compilation are written by this crate and checked byte for byte. No sound is made here |
 | `undertone-wasm` | WebAssembly bindings: OPX import, validation, header and text twin views, register-write list, an OPL2 and OPL3 player through the `oplon` emulator (stereo), one `undertone-dsp` voice, and a recorded Undertone score streamed through `undertone-dsp`'s engine | Working; native tests cover its logic and the demo page drives it in a browser. Not published |
 
 ## Behaviour
 
-The song document is specified by its types, `validate_song` and the recorded cases in `fixtures/song/`, which the TypeScript implementation wrote. `compile_song` repeats that implementation's floating-point operations in the same order, so a performance matches bit for bit.
+The song document is specified by its types, `validate_song` and the recorded cases in `fixtures/song/`, which this repository writes (`UPDATE_FIXTURES=1 cargo test -p undertone-sound -- --test-threads=1`) and its tests require byte for byte. `compile_song` repeats Undertone's TypeScript floating-point operations in the same order, so a performance matches bit for bit.
+
+A song's `by` fields (on a take and on a message) are authors: `{ "kind": "human" }`, `{ "kind": "agent" }` or `{ "kind": "agent", "name": "Claude" }`. The kind is `human` or `agent`; only an agent has a name, which is non-empty free text. A host maps its own words onto the two kinds.
+
+An instrument's `preset` is one of ten: `lead`, `square-lead`, `soft-lead`, `pluck`, `bell`, `pad`, `organ`, `bass`, `sub-bass` and `kit`. A host that wants a sound of its own supplies it as data for an engine (on the chips, `OplProfile::with_patch` replaces the patch a preset plays); the song says nothing of it.
 
 OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for the format.
 
@@ -47,9 +51,9 @@ OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for
 
 ## Settings and defaults
 
-- `undertone-opl` takes an `OplProfile` from the host: the channels the music must never touch (`reserve`) and the patches of presets the crate does not hold (`with_patch`). `export_opx` never writes registers 0x104 and 0x105, which belong to the host's audio service, and sets the header's `reserved_channels` from the profile, limited to the chip's own channels. The default reserves nothing and holds the patches of ten presets; `bass-saw`, `pad-bright` and `drone` have none here and play as `lead` until the host supplies them ([decisions.md](docs/decisions.md), D35).
-- `undertone-sound` cargo feature `ts` (off by default): derives `ts-rs` bindings for the wire types, written to `bindings/` by `cargo test -p undertone-sound --features ts`.
-- The song format id is `fizz-audio-studio/song`, version 1, kept byte for byte until a version gate changes it ([decisions.md](docs/decisions.md), D31).
+- `undertone-opl` takes an `OplProfile` from the host: the channels the music must never touch (`reserve`) and the patches of presets the crate does not hold (`with_patch`). `export_opx` never writes registers 0x104 and 0x105, which belong to the host's audio service, and sets the header's `reserved_channels` from the profile, limited to the chip's own channels. The default reserves nothing and holds a patch for each of the ten presets; a host replaces the patch of the preset a sound belongs to ([decisions.md](docs/decisions.md), D35 and D51).
+- `undertone-sound` cargo feature `ts` (off by default): derives `ts-rs` bindings for the wire types, one file per type and no index, written to `bindings/` by `cargo test -p undertone-sound --features ts`, or to the directory `TS_RS_EXPORT_DIR` names ([decisions.md](docs/decisions.md), D53).
+- The song format id is `undertone-sound/song`, version 1 ([decisions.md](docs/decisions.md), D50). The engine ids `undertone`, `opl2`, `opl3` and `pc-speaker` are kept as they are until a backend interface owns them.
 
 ## Security and privacy
 

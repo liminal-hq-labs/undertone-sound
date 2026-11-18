@@ -4,8 +4,9 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
 //! The patches a preset plays on the OPL chips, the rhythm-mode drums, and an instrument's own
-//! patch edits. A host supplies the patches of presets this crate does not hold through
-//! [`PatchBank`].
+//! patch edits. Every preset has a standard patch here. A host that wants its own sound for a
+//! preset replaces the patch through [`PatchBank`] (or `OplProfile::with_patch`); a sound with no
+//! preset of its own is a patch for the preset nearest to it.
 
 use std::collections::HashMap;
 use undertone_sound::model::{DrumPiece, EngineId, PresetId, Song};
@@ -25,17 +26,16 @@ const fn op(mult: f64, tl: f64) -> Operator {
 	}
 }
 
-/// The patch this crate holds for a preset, or `None` for a preset a host supplies the sound of
-/// (`bass-saw`, `pad-bright` and `drone`). A kit has no pitched patch and plays as `lead`. The
+/// The patch this crate holds for a preset. A kit has no pitched patch and plays as `lead`. The
 /// operator settings are first guesses meant to be tuned by ear.
-pub fn standard_patch(preset: PresetId) -> Option<Patch> {
+pub fn standard_patch(preset: PresetId) -> Patch {
 	let fm = |modulator: Operator, carrier: Operator, feedback: f64| Patch {
 		modulator,
 		carrier,
 		feedback,
 		additive: false,
 	};
-	Some(match preset {
+	match preset {
 		PresetId::Lead | PresetId::Kit => fm(op(1.0, 14.0), op(1.0, 0.0), 7.0),
 		PresetId::SquareLead => fm(
 			Operator {
@@ -140,48 +140,38 @@ pub fn standard_patch(preset: PresetId) -> Option<Patch> {
 			},
 			0.0,
 		),
-		// The names a host supplies patches for: no patch is held here.
-		PresetId::BassSaw | PresetId::PadBright | PresetId::Drone => return None,
-	})
+	}
 }
 
-/// The patch for each preset a host has settled, over the ones this crate holds.
+/// The patch each preset plays: the standard ones, with any a host has replaced.
 #[derive(Debug, Clone, PartialEq)]
 pub struct PatchBank {
 	patches: HashMap<PresetId, Patch>,
 }
 
 impl PatchBank {
-	/// The patches this crate holds: every preset but the three a host supplies.
+	/// The standard patch of every preset.
 	pub fn standard() -> PatchBank {
 		PatchBank {
 			patches: PresetId::ALL
 				.iter()
-				.filter_map(|&preset| standard_patch(preset).map(|patch| (preset, patch)))
+				.map(|&preset| (preset, standard_patch(preset)))
 				.collect(),
 		}
 	}
 
-	/// Sets the patch a preset plays, replacing any it had.
+	/// Sets the patch a preset plays, replacing the one it had.
 	pub fn insert(&mut self, preset: PresetId, patch: Patch) -> &mut PatchBank {
 		self.patches.insert(preset, patch);
 		self
 	}
 
-	/// The patch a preset plays: the bank's, else the `lead` patch, so a song that names a preset
-	/// the host has not supplied still sounds.
+	/// The patch a preset plays.
 	pub fn get(&self, preset: PresetId) -> Patch {
 		self.patches
 			.get(&preset)
-			.or_else(|| self.patches.get(&PresetId::Lead))
 			.cloned()
-			.or_else(|| standard_patch(PresetId::Lead))
-			.expect("the lead patch is always held")
-	}
-
-	/// Whether the bank holds a patch for the preset.
-	pub fn contains(&self, preset: PresetId) -> bool {
-		self.patches.contains_key(&preset)
+			.unwrap_or_else(|| standard_patch(preset))
 	}
 }
 
@@ -402,22 +392,21 @@ mod tests {
 	}
 
 	#[test]
-	fn the_presets_a_host_supplies_hold_no_patch_here() {
-		for preset in [PresetId::BassSaw, PresetId::PadBright, PresetId::Drone] {
-			assert!(standard_patch(preset).is_none());
-			assert!(!PatchBank::standard().contains(preset));
+	fn every_preset_has_a_standard_patch_and_the_bank_holds_them_all() {
+		let bank = PatchBank::standard();
+		assert_eq!(bank.patches.len(), PresetId::ALL.len());
+		for &preset in PresetId::ALL {
+			assert_eq!(bank.get(preset), standard_patch(preset));
 		}
-		assert_eq!(PatchBank::standard().patches.len(), 10);
 	}
 
 	#[test]
-	fn a_preset_without_a_patch_plays_as_lead_until_the_host_supplies_one() {
-		let lead = standard_patch(PresetId::Lead).unwrap();
+	fn a_host_patch_replaces_the_standard_one_for_that_preset_only() {
 		let mut bank = PatchBank::standard();
-		assert_eq!(bank.get(PresetId::Drone), lead);
-		let other = standard_patch(PresetId::Bell).unwrap();
-		bank.insert(PresetId::Drone, other.clone());
-		assert_eq!(bank.get(PresetId::Drone), other);
-		assert_eq!(registers(&bank.get(PresetId::Drone)).len(), 10);
+		let other = standard_patch(PresetId::Bell);
+		bank.insert(PresetId::Organ, other.clone());
+		assert_eq!(bank.get(PresetId::Organ), other);
+		assert_eq!(registers(&bank.get(PresetId::Organ)).len(), 10);
+		assert_eq!(bank.get(PresetId::Bass), standard_patch(PresetId::Bass));
 	}
 }

@@ -1,7 +1,7 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
-	"title": "Fizz presets",
+	"title": "Host patches",
 	"tempo": 120,
 	"beatsPerBar": 4,
 	"stepsPerBeat": 4,
@@ -9,9 +9,9 @@
 	"engine": "opl2",
 	"instruments": {
 		"lead": { "name": "Square lead", "preset": "square-lead" },
-		"bass": { "name": "Saw bass", "preset": "bass-saw" },
-		"pad": { "name": "Bright pad", "preset": "pad-bright" },
-		"drone": { "name": "Drone", "preset": "drone" }
+		"bass": { "name": "Bass", "preset": "bass" },
+		"pad": { "name": "Pad", "preset": "pad" },
+		"drone": { "name": "Organ", "preset": "organ" }
 	},
 	"tracks": [
 		{
@@ -59,7 +59,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "a4", "len": 2 },
 							{ "at": 4, "pitch": "c5", "len": 2 },
@@ -77,7 +77,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "a2", "len": 4 },
 							{ "at": 8, "pitch": "a2", "len": 4 },
@@ -94,7 +94,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "c4", "len": 16 },
 							{ "at": 0, "pitch": "e4", "len": 16 },
@@ -112,7 +112,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "a1", "len": 32 }
 						]

@@ -1,5 +1,5 @@
 {
-	"format": "fizz-audio-studio/song",
+	"format": "undertone-sound/song",
 	"version": 1,
 	"title": "Priorities",
 	"tempo": 120,
@@ -92,7 +92,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 4, "pitch": "f5", "len": 10, "vel": 0.17 },
 							{ "at": 10, "pitch": "a4", "len": 4, "vel": 0.78 },
@@ -116,7 +116,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 1, "pitch": "f3", "len": 8 },
 							{ "at": 2, "pitch": "c4", "len": 6, "vel": 0.38 },
@@ -138,7 +138,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "f4", "len": 6, "vel": 0.84 },
 							{ "at": 2, "pitch": "f3", "len": 12 },
@@ -166,7 +166,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 0, "pitch": "f3", "len": 2 },
 							{ "at": 1, "pitch": "a3", "len": 8, "vel": 0.5 },
@@ -192,7 +192,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 2, "pitch": "f5", "len": 4, "vel": 0.53 },
 							{ "at": 4, "pitch": "a4", "len": 1, "vel": 0.97 },
@@ -218,7 +218,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 5, "pitch": "a3", "len": 6 },
 							{ "at": 16, "pitch": "c5", "len": 2 },
@@ -238,7 +238,7 @@
 					{
 						"id": "a",
 						"name": "Take",
-						"by": "you",
+						"by": { "kind": "human" },
 						"notes": [
 							{ "at": 3, "pitch": "f4", "len": 10, "vel": 0.96 },
 							{ "at": 3, "pitch": "f5", "len": 5, "vel": 0.64 },

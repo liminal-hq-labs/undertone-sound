@@ -1158,8 +1158,8 @@
 			"start": 22052
 		},
 		"frames": 44100,
-		"id": "opl2:chips-fizz:wrap",
-		"input": "chips-fizz",
+		"id": "opl2:chips-host-patches:wrap",
+		"input": "chips-host-patches",
 		"options": null,
 		"sampleRate": 11025,
 		"tail": 1.5,

@@ -54,13 +54,31 @@ fn fm(modulator: Operator, carrier: Operator, feedback: f64) -> Patch {
 	}
 }
 
-/// The host's profile: the reserved channels, and the three patches the recorded songs name that
-/// the crate does not hold, field for field as the game defines them.
+/// The song that plays three sounds of the host's own: the host replaces the patches of the
+/// presets `bass`, `pad` and `organ`, for this song only, and every other song hears the standard
+/// ones.
+const HOST_PATCHES_SONG: &str = "chips-host-patches";
+
+/// The host's profile: the reserved channels, and for the host-patches song the three patches the
+/// host plays in place of the standard ones.
+fn profile_for(input: &str) -> OplProfile {
+	let profile = OplProfile::new().reserve(RESERVED);
+	if input == HOST_PATCHES_SONG {
+		host_patches(profile)
+	} else {
+		profile
+	}
+}
+
+/// The reserved channels alone, for the checks that name no song.
 fn profile() -> OplProfile {
-	OplProfile::new()
-		.reserve(RESERVED)
+	profile_for("")
+}
+
+fn host_patches(profile: OplProfile) -> OplProfile {
+	profile
 		.with_patch(
-			PresetId::BassSaw,
+			PresetId::Bass,
 			fm(
 				Operator {
 					dr: 6.0,
@@ -77,7 +95,7 @@ fn profile() -> OplProfile {
 			),
 		)
 		.with_patch(
-			PresetId::PadBright,
+			PresetId::Pad,
 			fm(
 				Operator {
 					ar: 7.0,
@@ -95,7 +113,7 @@ fn profile() -> OplProfile {
 			),
 		)
 		.with_patch(
-			PresetId::Drone,
+			PresetId::Organ,
 			fm(
 				Operator {
 					ar: 8.0,
@@ -225,7 +243,12 @@ fn opl_sequences(file: &str, chip: OplChip) {
 		let id = case["id"].as_str().unwrap();
 		let song = song(case["input"].as_str().unwrap());
 		let performance = compile_song(&song, &options(&case["options"])).unwrap();
-		let sequence = sequence_opl(&song, &performance, chip, &profile());
+		let sequence = sequence_opl(
+			&song,
+			&performance,
+			chip,
+			&profile_for(case["input"].as_str().unwrap()),
+		);
 		expect(
 			&mut failures,
 			id,
@@ -313,8 +336,12 @@ fn lost_notes_match() {
 	for case in &cases {
 		let id = case["id"].as_str().unwrap();
 		let song = song(case["input"].as_str().unwrap());
-		let found =
-			analyse_limits_on(&song, chip_of(case["chip"].as_str().unwrap()), &profile()).unwrap();
+		let found = analyse_limits_on(
+			&song,
+			chip_of(case["chip"].as_str().unwrap()),
+			&profile_for(case["input"].as_str().unwrap()),
+		)
+		.unwrap();
 		let want = &case["lost"];
 		let Some(found) = found else {
 			expect(
@@ -505,7 +532,7 @@ fn rendered_samples_match_the_recorded_chip() {
 			&song,
 			&options(&case["options"]),
 			engine,
-			&profile(),
+			&profile_for(case["input"].as_str().unwrap()),
 			RenderRequest {
 				sample_rate: case["sampleRate"].as_u64().unwrap() as u32,
 				tail: case["tail"].as_f64().unwrap(),

@@ -79,7 +79,8 @@ export default defineConfig({
           { text: 'Overview', link: '/guide/' },
           { text: 'oplstream', link: '/guide/oplstream' },
           { text: 'undertone-mini', link: '/guide/undertone-mini' },
-          { text: 'undertone-dsp', link: '/guide/undertone-dsp' }
+          { text: 'undertone-dsp', link: '/guide/undertone-dsp' },
+          { text: 'undertone-sound', link: '/guide/undertone-sound' }
         ]
       },
       {

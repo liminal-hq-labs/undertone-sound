@@ -404,11 +404,11 @@ mod tests {
 		};
 		let take = |notes: Vec<Value>| {
 			json!({ "active": "a", "takes": [{
-            "id": "a", "name": "A", "by": "you", "notes": notes
+            "id": "a", "name": "A", "by": { "kind": "human" }, "notes": notes
         }] })
 		};
 		serde_json::from_value(json!({
-			"format": "fizz-audio-studio/song", "version": 1, "title": "Contest", "tempo": 120,
+			"format": "undertone-sound/song", "version": 1, "title": "Contest", "tempo": 120,
 			"beatsPerBar": 4, "stepsPerBeat": 4, "key": { "root": "c", "scale": "major" },
 			"engine": "opl2",
 			"instruments": {

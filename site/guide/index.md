@@ -15,7 +15,7 @@ Undertone Sound is a workspace of Rust crates on two tracks. The first, the Unde
 | Crate | What it does |
 |---|---|
 | [`oplstream`](/guide/oplstream) | Reads, writes, steps, validates and converts OPX streams of OPL register writes |
-| `undertone-sound` | The song model, validation and compiler |
+| [`undertone-sound`](/guide/undertone-sound) | The song document, its validation and formatting, and the compiler to engine-neutral events |
 | `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation, with the host's profile |
 
 ## Using the crates

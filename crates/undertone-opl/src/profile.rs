@@ -5,7 +5,7 @@
 
 //! A profile holds what belongs to the tool or game that plays the music, not to the chips:
 //! which channels the music must never touch (a game keeps some free for sound effects), and the
-//! patches of presets the crate does not hold.
+//! patches it wants in place of the standard ones.
 
 use undertone_sound::model::PresetId;
 
@@ -14,7 +14,9 @@ use crate::registers::Patch;
 
 /// What a host decides about its chips: reserved channels and preset patches.
 ///
-/// The default profile reserves nothing and holds the standard patches.
+/// The default profile reserves nothing and holds the standard patches. A sound of the host's own
+/// is a patch it supplies for the preset a song's instrument names; songs say `bass`, and the host
+/// decides what `bass` sounds like.
 ///
 /// ```
 /// use undertone_opl::profile::OplProfile;
@@ -47,7 +49,9 @@ impl OplProfile {
 		self
 	}
 
-	/// Supplies the patch a preset plays, replacing the standard one.
+	/// Supplies the patch a preset plays, replacing the standard one. Every song that names the
+	/// preset plays it, so a host with several sounds of one kind keeps them apart with the
+	/// instrument's own `opl2` or `opl3` overrides.
 	pub fn with_patch(mut self, preset: PresetId, patch: Patch) -> OplProfile {
 		self.patches.insert(preset, patch);
 		self
