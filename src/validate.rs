@@ -247,7 +247,7 @@ const NOTE_FIELDS: &[&str] = &["at", "pitch", "len", "vel"];
 const MESSAGE_FIELDS: &[&str] = &["by", "text", "at", "done"];
 const MIX_FIELDS: &[&str] = &["panLaw"];
 const REVISION_FIELDS: &[&str] = &[
-    "of", "n", "request", "model", "settings", "steps", "current",
+    "of", "n", "request", "model", "settings", "steps", "current", "folded",
 ];
 const REVISION_SETTINGS_FIELDS: &[&str] = &["think", "temperature", "bars"];
 const STEP_FIELDS: &[&str] = &["id", "kind", "at", "comment", "notes", "mini", "bars"];
@@ -1012,6 +1012,15 @@ fn check_revision<'a>(
             "must name one of the steps",
         );
     }
+    if member(revision, "folded")
+        .is_some_and(|folded| !as_integer(folded).is_some_and(|folded| folded >= 1.0))
+    {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.folded"),
+            "must be a whole number from 1 (leave it out when nothing was folded)",
+        );
+    }
     of
 }
 
@@ -1212,7 +1221,8 @@ fn check_step<'a>(
     id
 }
 
-/// Every revised take's `of` must be another take of the slot, and a chain must not loop.
+/// Every revised take's `of` must be a take of the slot, and a chain must not loop. A take may
+/// name itself, which is a trial of its own (the old version kept as a step); that is no loop.
 fn check_revision_links(
     revised: &[(String, &str, Option<&str>)],
     take_ids: &HashSet<&str>,
@@ -1220,11 +1230,14 @@ fn check_revision_links(
 ) {
     let parents: HashMap<&str, &str> = revised
         .iter()
-        .filter_map(|(_, id, of)| of.map(|of| (*id, of)))
+        .filter_map(|(_, id, of)| of.filter(|of| of != id).map(|of| (*id, of)))
         .collect();
     for (path, id, of) in revised {
         let Some(of) = of else { continue };
-        if of == id || !take_ids.contains(of) {
+        if of == id {
+            continue;
+        }
+        if !take_ids.contains(of) {
             problems.error(
                 ProblemCode::BadRevision,
                 format!("{path}.of"),

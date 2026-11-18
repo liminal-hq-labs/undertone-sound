@@ -348,6 +348,10 @@ pub struct Revision {
     pub steps: Vec<RevisionStep>,
     /// Id of the step the take is on.
     pub current: String,
+    /// How many steps were dropped by folding the history (all but the first and the current).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub folded: Option<u32>,
 }
 
 /// One idea for what a track plays in a section. A take holds either explicit `notes` or a `mini`
