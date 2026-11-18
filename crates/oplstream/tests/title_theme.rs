@@ -3,10 +3,14 @@
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
+//! The importers need the `std` feature, so without it this file is empty.
+//!
 //! The chunk in `fixtures/opx/title-theme.imf` is song 0 of the Fizz 1 DOS game's sound bundle, at
 //! 560 Hz. These tests hold the importer to a file nobody wrote by hand: the import must be exact,
 //! the result must validate, the text twin must rebuild the same bytes, and re-timing must report
 //! what it moved.
+
+#![cfg(feature = "std")]
 
 use oplstream::{
 	Chip, Command, Decoder, HEADER_LEN, Header, ImfKind, Step, assemble, import_imf, print_twin,
