@@ -5,7 +5,7 @@
 
 [package]
 name = "undertone-opl"
-description = "OPL2 and OPL3 sequencing and channel allocation for Undertone"
+description = "OPL2 and OPL3 sequencing and channel allocation for Undertone, with lost-note accounting, a PC speaker engine and an oplon renderer"
 edition.workspace = true
 license.workspace = true
 version.workspace = true
@@ -15,3 +15,14 @@ publish.workspace = true
 
 [lints]
 workspace = true
+
+[dependencies]
+undertone-sound = { path = "../undertone-sound" }
+undertone-mini = { path = "../undertone-mini" }
+oplon = "=1.0.0"
+oplstream = { path = "../oplstream", default-features = false, features = ["alloc"] }
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
+
+[dev-dependencies]
+oplstream = { path = "../oplstream" }
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }

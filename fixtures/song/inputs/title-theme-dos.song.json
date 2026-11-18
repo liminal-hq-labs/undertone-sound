@@ -1,0 +1,1082 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Title Theme (DOS)",
+	"tempo": 140,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "c", "scale": "major" },
+	"engine": "opl2",
+	"instruments": {
+		"lead": {
+			"name": "Lead (square)",
+			"preset": "square-lead",
+			"engines": {
+				"undertone": {
+					"soundType": "square",
+					"attack": 0.005,
+					"decay": 0.1,
+					"sustain": 0.3,
+					"release": 0.08,
+					"gainLevel": 0.375,
+					"filterCutoff": 2600
+				}
+			}
+		},
+		"pad": {
+			"name": "Pad (sine)",
+			"preset": "pad",
+			"engines": {
+				"undertone": {
+					"soundType": "sine",
+					"attack": 0.05,
+					"decay": 0.5,
+					"sustain": 0.7,
+					"release": 1.1,
+					"gainLevel": 0.375,
+					"filterCutoff": 1400,
+					"roomLevel": 0.3,
+					"roomSize": 6,
+					"orbit": 1,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"bass": {
+			"name": "Bass (triangle)",
+			"preset": "bass",
+			"engines": {
+				"undertone": {
+					"soundType": "triangle",
+					"attack": 0.005,
+					"decay": 0.12,
+					"sustain": 0.45,
+					"release": 0.08,
+					"gainLevel": 0.375,
+					"filterCutoff": null,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmWave": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"kit": {
+			"name": "Drum kit",
+			"preset": "kit",
+			"engines": {
+				"undertone": {
+					"kick.layers": 1,
+					"kick.soundType": "sine",
+					"kick.attack": 0.005,
+					"kick.decay": 0.12,
+					"kick.sustain": 0,
+					"kick.release": 0.06,
+					"kick.gainLevel": 0.75,
+					"kick.pitch": "c1",
+					"kick.slideTime": 0.09,
+					"snare.layers": 1,
+					"snare.soundType": "white",
+					"snare.attack": 0.005,
+					"snare.decay": 0.09,
+					"snare.sustain": 0,
+					"snare.release": 0.05,
+					"snare.gainLevel": 0.3,
+					"snare.hpfCutoff": 1600,
+					"hat.layers": 1,
+					"hat.soundType": "white",
+					"hat.attack": 0.005,
+					"hat.decay": 0.03,
+					"hat.sustain": 0,
+					"hat.release": 0.01,
+					"hat.gainLevel": 0.1,
+					"hat.hpfCutoff": 6000
+				}
+			}
+		},
+		"pad-arpeggio": { "name": "Pluck", "preset": "pluck" },
+		"lead-octave": {
+			"name": "Lead (square)",
+			"preset": "square-lead",
+			"engines": {
+				"undertone": {
+					"soundType": "square",
+					"attack": 0.005,
+					"decay": 0.1,
+					"sustain": 0.3,
+					"release": 0.08,
+					"gainLevel": 0.375,
+					"filterCutoff": 2600
+				}
+			}
+		}
+	},
+	"tracks": [
+		{
+			"id": "lead",
+			"name": "Lead",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.25,
+			"pan": 0,
+			"priority": 9
+		},
+		{
+			"id": "pad",
+			"name": "Pad",
+			"role": "harmony",
+			"instrument": "pad",
+			"volume": 0.167,
+			"pan": 0,
+			"priority": 3
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 1,
+			"pan": 0,
+			"priority": 8
+		},
+		{
+			"id": "kick",
+			"name": "Kick",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		},
+		{
+			"id": "snare",
+			"name": "Snare",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		},
+		{
+			"id": "hats",
+			"name": "Hats",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		},
+		{
+			"id": "pad-arpeggio",
+			"name": "Pad arpeggio",
+			"role": "harmony",
+			"instrument": "pad-arpeggio",
+			"volume": 0.2,
+			"pan": 0,
+			"priority": 6
+		},
+		{
+			"id": "lead-octave",
+			"name": "Lead (octave)",
+			"role": "melody",
+			"instrument": "lead-octave",
+			"volume": 0.1375,
+			"pan": 0,
+			"priority": 9
+		}
+	],
+	"sections": [
+		{ "id": "loop", "name": "Classic loop", "bars": 8 },
+		{ "id": "a", "name": "A", "bars": 8 },
+		{ "id": "b", "name": "B", "bars": 8 },
+		{ "id": "a-octave", "name": "A (octave)", "bars": 8 },
+		{ "id": "break", "name": "Break", "bars": 4 },
+		{ "id": "a2", "name": "A2", "bars": 8 }
+	],
+	"arrangement": ["a", "b", "a-octave", "break", "a2"],
+	"clips": {
+		"lead": {
+			"loop": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Classic loop",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, MUSIC.title part 1 (lead, square), gain 0.075."
+					}
+				]
+			},
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "f5", "len": 2 },
+							{ "at": 4, "pitch": "c5", "len": 2 },
+							{ "at": 6, "pitch": "f5", "len": 2 },
+							{ "at": 8, "pitch": "a5", "len": 2 },
+							{ "at": 10, "pitch": "c6", "len": 2 },
+							{ "at": 12, "pitch": "a5", "len": 2 },
+							{ "at": 14, "pitch": "f5", "len": 2 },
+							{ "at": 16, "pitch": "d5", "len": 2 },
+							{ "at": 20, "pitch": "a4", "len": 2 },
+							{ "at": 22, "pitch": "d5", "len": 2 },
+							{ "at": 24, "pitch": "f5", "len": 2 },
+							{ "at": 26, "pitch": "a5", "len": 2 },
+							{ "at": 28, "pitch": "f5", "len": 2 },
+							{ "at": 30, "pitch": "d5", "len": 2 },
+							{ "at": 32, "pitch": "a#4", "len": 2 },
+							{ "at": 34, "pitch": "d5", "len": 2 },
+							{ "at": 36, "pitch": "f5", "len": 2 },
+							{ "at": 38, "pitch": "a#5", "len": 2 },
+							{ "at": 40, "pitch": "a5", "len": 2 },
+							{ "at": 42, "pitch": "f5", "len": 2 },
+							{ "at": 44, "pitch": "d5", "len": 2 },
+							{ "at": 46, "pitch": "f5", "len": 2 },
+							{ "at": 48, "pitch": "c5", "len": 2 },
+							{ "at": 50, "pitch": "e5", "len": 2 },
+							{ "at": 52, "pitch": "g5", "len": 2 },
+							{ "at": 54, "pitch": "c6", "len": 2 },
+							{ "at": 56, "pitch": "a#5", "len": 2 },
+							{ "at": 58, "pitch": "g5", "len": 2 },
+							{ "at": 60, "pitch": "e5", "len": 2 },
+							{ "at": 62, "pitch": "g5", "len": 2 },
+							{ "at": 64, "pitch": "a5", "len": 2 },
+							{ "at": 68, "pitch": "a5", "len": 2 },
+							{ "at": 70, "pitch": "c6", "len": 2 },
+							{ "at": 72, "pitch": "f6", "len": 2 },
+							{ "at": 76, "pitch": "e6", "len": 2 },
+							{ "at": 78, "pitch": "c6", "len": 2 },
+							{ "at": 80, "pitch": "d6", "len": 2 },
+							{ "at": 84, "pitch": "c6", "len": 2 },
+							{ "at": 86, "pitch": "a5", "len": 2 },
+							{ "at": 88, "pitch": "f5", "len": 2 },
+							{ "at": 92, "pitch": "a5", "len": 2 },
+							{ "at": 94, "pitch": "d6", "len": 2 },
+							{ "at": 96, "pitch": "a#5", "len": 2 },
+							{ "at": 98, "pitch": "a5", "len": 2 },
+							{ "at": 100, "pitch": "g5", "len": 2 },
+							{ "at": 102, "pitch": "f5", "len": 2 },
+							{ "at": 104, "pitch": "g5", "len": 2 },
+							{ "at": 108, "pitch": "e5", "len": 2 },
+							{ "at": 110, "pitch": "g5", "len": 2 },
+							{ "at": 112, "pitch": "f5", "len": 2 },
+							{ "at": 116, "pitch": "c5", "len": 2 },
+							{ "at": 120, "pitch": "f5", "len": 2 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the loop over 8 bars, moved up 5 semitones. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			}
+		},
+		"pad": {
+			"loop": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Classic loop",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Imported from patterns.ts:252, MUSIC.title part 2 (pad, sine), gain 0.05."
+					}
+				]
+			},
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "f4", "len": 16 },
+							{ "at": 0, "pitch": "a4", "len": 16 },
+							{ "at": 0, "pitch": "c5", "len": 16 },
+							{ "at": 16, "pitch": "d4", "len": 16 },
+							{ "at": 16, "pitch": "f4", "len": 16 },
+							{ "at": 16, "pitch": "a4", "len": 16 },
+							{ "at": 32, "pitch": "a#3", "len": 16 },
+							{ "at": 32, "pitch": "d4", "len": 16 },
+							{ "at": 32, "pitch": "f4", "len": 16 },
+							{ "at": 48, "pitch": "c4", "len": 16 },
+							{ "at": 48, "pitch": "e4", "len": 16 },
+							{ "at": 48, "pitch": "g4", "len": 16 },
+							{ "at": 64, "pitch": "f4", "len": 16 },
+							{ "at": 64, "pitch": "a4", "len": 16 },
+							{ "at": 64, "pitch": "c5", "len": 16 },
+							{ "at": 80, "pitch": "d4", "len": 16 },
+							{ "at": 80, "pitch": "f4", "len": 16 },
+							{ "at": 80, "pitch": "a4", "len": 16 },
+							{ "at": 96, "pitch": "a#3", "len": 16 },
+							{ "at": 96, "pitch": "d4", "len": 16 },
+							{ "at": 96, "pitch": "g4", "len": 16 },
+							{ "at": 112, "pitch": "f4", "len": 16 },
+							{ "at": 112, "pitch": "a4", "len": 16 },
+							{ "at": 112, "pitch": "c5", "len": 16 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the loop over 8 bars, moved up 5 semitones. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Break",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "c4", "len": 16 },
+							{ "at": 0, "pitch": "e4", "len": 16 },
+							{ "at": 0, "pitch": "g4", "len": 16 },
+							{ "at": 16, "pitch": "a3", "len": 16 },
+							{ "at": 16, "pitch": "c4", "len": 16 },
+							{ "at": 16, "pitch": "e4", "len": 16 },
+							{ "at": 32, "pitch": "f3", "len": 16 },
+							{ "at": 32, "pitch": "a3", "len": 16 },
+							{ "at": 32, "pitch": "c4", "len": 16 },
+							{ "at": 48, "pitch": "c4", "len": 16 },
+							{ "at": 48, "pitch": "e4", "len": 16 },
+							{ "at": 48, "pitch": "g4", "len": 16 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the pad kept. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			}
+		},
+		"bass": {
+			"loop": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Classic loop",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, MUSIC.title part 3 (bass, triangle), gain 0.3."
+					}
+				]
+			},
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "f2", "len": 4 },
+							{ "at": 4, "pitch": "f3", "len": 4 },
+							{ "at": 8, "pitch": "c3", "len": 4 },
+							{ "at": 12, "pitch": "f3", "len": 4 },
+							{ "at": 16, "pitch": "d2", "len": 4 },
+							{ "at": 20, "pitch": "d3", "len": 4 },
+							{ "at": 24, "pitch": "a2", "len": 4 },
+							{ "at": 28, "pitch": "d3", "len": 4 },
+							{ "at": 32, "pitch": "a#1", "len": 4 },
+							{ "at": 36, "pitch": "a#2", "len": 4 },
+							{ "at": 40, "pitch": "f2", "len": 4 },
+							{ "at": 44, "pitch": "a#2", "len": 4 },
+							{ "at": 48, "pitch": "c2", "len": 4 },
+							{ "at": 52, "pitch": "c3", "len": 4 },
+							{ "at": 56, "pitch": "g2", "len": 4 },
+							{ "at": 60, "pitch": "c3", "len": 4 },
+							{ "at": 64, "pitch": "f2", "len": 4 },
+							{ "at": 68, "pitch": "f3", "len": 4 },
+							{ "at": 72, "pitch": "c3", "len": 4 },
+							{ "at": 76, "pitch": "f3", "len": 4 },
+							{ "at": 80, "pitch": "d2", "len": 4 },
+							{ "at": 84, "pitch": "d3", "len": 4 },
+							{ "at": 88, "pitch": "a2", "len": 4 },
+							{ "at": 92, "pitch": "d3", "len": 4 },
+							{ "at": 96, "pitch": "a#2", "len": 4 },
+							{ "at": 100, "pitch": "a#2", "len": 4 },
+							{ "at": 104, "pitch": "c3", "len": 4 },
+							{ "at": 108, "pitch": "c3", "len": 4 },
+							{ "at": 112, "pitch": "f2", "len": 4 },
+							{ "at": 116, "pitch": "c2", "len": 4 },
+							{ "at": 120, "pitch": "f2", "len": 4 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the loop over 8 bars, moved up 5 semitones. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Break",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "c2", "len": 16, "vel": 0.4 },
+							{ "at": 16, "pitch": "a1", "len": 16, "vel": 0.4 },
+							{ "at": 32, "pitch": "f1", "len": 16, "vel": 0.4 },
+							{ "at": 48, "pitch": "c2", "len": 16, "vel": 0.4 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the bass as roots, one held note a bar. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			}
+		},
+		"kick": {
+			"loop": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Classic loop",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, MUSIC.title part 4 (kick, sine), gain 0.6."
+					}
+				]
+			},
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Break",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 6, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 8, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 16, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 22, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 24, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 32, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 38, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 40, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 48, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 48, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 49, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 50, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 51, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 52, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 53, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 54, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 54, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 55, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 56, "pitch": "kick", "len": 2, "vel": 0.48 },
+							{ "at": 56, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 57, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 58, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 59, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 60, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 61, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 62, "pitch": "snare", "len": 1, "vel": 0.3 },
+							{ "at": 63, "pitch": "snare", "len": 1, "vel": 0.3 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the kick, quieter, with a snare roll in the last bar. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			}
+		},
+		"snare": {
+			"loop": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Classic loop",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Imported from patterns.ts:260, MUSIC.title part 5 (snare, triangle, noise), gain 0.24."
+					}
+				]
+			},
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Break",
+						"by": "claude",
+						"notes": [],
+						"comment": "Made by `song form` from the loop “loop”: the kick, quieter. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			}
+		},
+		"hats": {
+			"loop": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Classic loop",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Imported from patterns.ts:261, MUSIC.title part 6 (hats, triangle, noise), gain 0.08."
+					}
+				]
+			},
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			},
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Break",
+						"by": "claude",
+						"notes": [],
+						"comment": "Made by `song form` from the loop “loop”: the kick, quieter. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Made by `song form` from the loop “loop”: the loop as it is."
+					}
+				]
+			}
+		},
+		"pad-arpeggio": {
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "B",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "f4", "len": 2 },
+							{ "at": 2, "pitch": "a4", "len": 2 },
+							{ "at": 4, "pitch": "c5", "len": 2 },
+							{ "at": 6, "pitch": "a4", "len": 2 },
+							{ "at": 8, "pitch": "f4", "len": 2 },
+							{ "at": 10, "pitch": "a4", "len": 2 },
+							{ "at": 12, "pitch": "c5", "len": 2 },
+							{ "at": 14, "pitch": "a4", "len": 2 },
+							{ "at": 16, "pitch": "d4", "len": 2 },
+							{ "at": 18, "pitch": "f4", "len": 2 },
+							{ "at": 20, "pitch": "a4", "len": 2 },
+							{ "at": 22, "pitch": "f4", "len": 2 },
+							{ "at": 24, "pitch": "d4", "len": 2 },
+							{ "at": 26, "pitch": "f4", "len": 2 },
+							{ "at": 28, "pitch": "a4", "len": 2 },
+							{ "at": 30, "pitch": "f4", "len": 2 },
+							{ "at": 32, "pitch": "a#3", "len": 2 },
+							{ "at": 34, "pitch": "d4", "len": 2 },
+							{ "at": 36, "pitch": "f4", "len": 2 },
+							{ "at": 38, "pitch": "d4", "len": 2 },
+							{ "at": 40, "pitch": "a#3", "len": 2 },
+							{ "at": 42, "pitch": "d4", "len": 2 },
+							{ "at": 44, "pitch": "f4", "len": 2 },
+							{ "at": 46, "pitch": "d4", "len": 2 },
+							{ "at": 48, "pitch": "c4", "len": 2 },
+							{ "at": 50, "pitch": "e4", "len": 2 },
+							{ "at": 52, "pitch": "g4", "len": 2 },
+							{ "at": 54, "pitch": "e4", "len": 2 },
+							{ "at": 56, "pitch": "c4", "len": 2 },
+							{ "at": 58, "pitch": "e4", "len": 2 },
+							{ "at": 60, "pitch": "g4", "len": 2 },
+							{ "at": 62, "pitch": "e4", "len": 2 },
+							{ "at": 64, "pitch": "f4", "len": 2 },
+							{ "at": 66, "pitch": "a4", "len": 2 },
+							{ "at": 68, "pitch": "c5", "len": 2 },
+							{ "at": 70, "pitch": "a4", "len": 2 },
+							{ "at": 72, "pitch": "f4", "len": 2 },
+							{ "at": 74, "pitch": "a4", "len": 2 },
+							{ "at": 76, "pitch": "c5", "len": 2 },
+							{ "at": 78, "pitch": "a4", "len": 2 },
+							{ "at": 80, "pitch": "d4", "len": 2 },
+							{ "at": 82, "pitch": "f4", "len": 2 },
+							{ "at": 84, "pitch": "a4", "len": 2 },
+							{ "at": 86, "pitch": "f4", "len": 2 },
+							{ "at": 88, "pitch": "d4", "len": 2 },
+							{ "at": 90, "pitch": "f4", "len": 2 },
+							{ "at": 92, "pitch": "a4", "len": 2 },
+							{ "at": 94, "pitch": "f4", "len": 2 },
+							{ "at": 96, "pitch": "a#3", "len": 2 },
+							{ "at": 98, "pitch": "d4", "len": 2 },
+							{ "at": 100, "pitch": "g4", "len": 2 },
+							{ "at": 102, "pitch": "d4", "len": 2 },
+							{ "at": 104, "pitch": "a#3", "len": 2 },
+							{ "at": 106, "pitch": "d4", "len": 2 },
+							{ "at": 108, "pitch": "g4", "len": 2 },
+							{ "at": 110, "pitch": "d4", "len": 2 },
+							{ "at": 112, "pitch": "f4", "len": 2 },
+							{ "at": 114, "pitch": "a4", "len": 2 },
+							{ "at": 116, "pitch": "c5", "len": 2 },
+							{ "at": 118, "pitch": "a4", "len": 2 },
+							{ "at": 120, "pitch": "f4", "len": 2 },
+							{ "at": 122, "pitch": "a4", "len": 2 },
+							{ "at": 124, "pitch": "c5", "len": 2 },
+							{ "at": 126, "pitch": "a4", "len": 2 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the pad as an arpeggio, moved up 5 semitones. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "c4", "len": 2 },
+							{ "at": 2, "pitch": "e4", "len": 2 },
+							{ "at": 4, "pitch": "g4", "len": 2 },
+							{ "at": 6, "pitch": "e4", "len": 2 },
+							{ "at": 8, "pitch": "c4", "len": 2 },
+							{ "at": 10, "pitch": "e4", "len": 2 },
+							{ "at": 12, "pitch": "g4", "len": 2 },
+							{ "at": 14, "pitch": "e4", "len": 2 },
+							{ "at": 16, "pitch": "a3", "len": 2 },
+							{ "at": 18, "pitch": "c4", "len": 2 },
+							{ "at": 20, "pitch": "e4", "len": 2 },
+							{ "at": 22, "pitch": "c4", "len": 2 },
+							{ "at": 24, "pitch": "a3", "len": 2 },
+							{ "at": 26, "pitch": "c4", "len": 2 },
+							{ "at": 28, "pitch": "e4", "len": 2 },
+							{ "at": 30, "pitch": "c4", "len": 2 },
+							{ "at": 32, "pitch": "f3", "len": 2 },
+							{ "at": 34, "pitch": "a3", "len": 2 },
+							{ "at": 36, "pitch": "c4", "len": 2 },
+							{ "at": 38, "pitch": "a3", "len": 2 },
+							{ "at": 40, "pitch": "f3", "len": 2 },
+							{ "at": 42, "pitch": "a3", "len": 2 },
+							{ "at": 44, "pitch": "c4", "len": 2 },
+							{ "at": 46, "pitch": "a3", "len": 2 },
+							{ "at": 48, "pitch": "g3", "len": 2 },
+							{ "at": 50, "pitch": "b3", "len": 2 },
+							{ "at": 52, "pitch": "d4", "len": 2 },
+							{ "at": 54, "pitch": "b3", "len": 2 },
+							{ "at": 56, "pitch": "g3", "len": 2 },
+							{ "at": 58, "pitch": "b3", "len": 2 },
+							{ "at": 60, "pitch": "d4", "len": 2 },
+							{ "at": 62, "pitch": "b3", "len": 2 },
+							{ "at": 64, "pitch": "c4", "len": 2 },
+							{ "at": 66, "pitch": "e4", "len": 2 },
+							{ "at": 68, "pitch": "g4", "len": 2 },
+							{ "at": 70, "pitch": "e4", "len": 2 },
+							{ "at": 72, "pitch": "c4", "len": 2 },
+							{ "at": 74, "pitch": "e4", "len": 2 },
+							{ "at": 76, "pitch": "g4", "len": 2 },
+							{ "at": 78, "pitch": "e4", "len": 2 },
+							{ "at": 80, "pitch": "a3", "len": 2 },
+							{ "at": 82, "pitch": "c4", "len": 2 },
+							{ "at": 84, "pitch": "e4", "len": 2 },
+							{ "at": 86, "pitch": "c4", "len": 2 },
+							{ "at": 88, "pitch": "a3", "len": 2 },
+							{ "at": 90, "pitch": "c4", "len": 2 },
+							{ "at": 92, "pitch": "e4", "len": 2 },
+							{ "at": 94, "pitch": "c4", "len": 2 },
+							{ "at": 96, "pitch": "f3", "len": 2 },
+							{ "at": 98, "pitch": "a3", "len": 2 },
+							{ "at": 100, "pitch": "d4", "len": 2 },
+							{ "at": 102, "pitch": "a3", "len": 2 },
+							{ "at": 104, "pitch": "f3", "len": 2 },
+							{ "at": 106, "pitch": "a3", "len": 2 },
+							{ "at": 108, "pitch": "d4", "len": 2 },
+							{ "at": 110, "pitch": "a3", "len": 2 },
+							{ "at": 112, "pitch": "c4", "len": 2 },
+							{ "at": 114, "pitch": "e4", "len": 2 },
+							{ "at": 116, "pitch": "g4", "len": 2 },
+							{ "at": 118, "pitch": "e4", "len": 2 },
+							{ "at": 120, "pitch": "c4", "len": 2 },
+							{ "at": 122, "pitch": "e4", "len": 2 },
+							{ "at": 124, "pitch": "g4", "len": 2 },
+							{ "at": 126, "pitch": "e4", "len": 2 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the pad as an arpeggio. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			}
+		},
+		"lead-octave": {
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A (octave)",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "c6", "len": 2 },
+							{ "at": 4, "pitch": "g5", "len": 2 },
+							{ "at": 6, "pitch": "c6", "len": 2 },
+							{ "at": 8, "pitch": "e6", "len": 2 },
+							{ "at": 10, "pitch": "g6", "len": 2 },
+							{ "at": 12, "pitch": "e6", "len": 2 },
+							{ "at": 14, "pitch": "c6", "len": 2 },
+							{ "at": 16, "pitch": "a5", "len": 2 },
+							{ "at": 20, "pitch": "e5", "len": 2 },
+							{ "at": 22, "pitch": "a5", "len": 2 },
+							{ "at": 24, "pitch": "c6", "len": 2 },
+							{ "at": 26, "pitch": "e6", "len": 2 },
+							{ "at": 28, "pitch": "c6", "len": 2 },
+							{ "at": 30, "pitch": "a5", "len": 2 },
+							{ "at": 32, "pitch": "f5", "len": 2 },
+							{ "at": 34, "pitch": "a5", "len": 2 },
+							{ "at": 36, "pitch": "c6", "len": 2 },
+							{ "at": 38, "pitch": "f6", "len": 2 },
+							{ "at": 40, "pitch": "e6", "len": 2 },
+							{ "at": 42, "pitch": "c6", "len": 2 },
+							{ "at": 44, "pitch": "a5", "len": 2 },
+							{ "at": 46, "pitch": "c6", "len": 2 },
+							{ "at": 48, "pitch": "g5", "len": 2 },
+							{ "at": 50, "pitch": "b5", "len": 2 },
+							{ "at": 52, "pitch": "d6", "len": 2 },
+							{ "at": 54, "pitch": "g6", "len": 2 },
+							{ "at": 56, "pitch": "f6", "len": 2 },
+							{ "at": 58, "pitch": "d6", "len": 2 },
+							{ "at": 60, "pitch": "b5", "len": 2 },
+							{ "at": 62, "pitch": "d6", "len": 2 },
+							{ "at": 64, "pitch": "e6", "len": 2 },
+							{ "at": 68, "pitch": "e6", "len": 2 },
+							{ "at": 70, "pitch": "g6", "len": 2 },
+							{ "at": 72, "pitch": "c7", "len": 2 },
+							{ "at": 76, "pitch": "b6", "len": 2 },
+							{ "at": 78, "pitch": "g6", "len": 2 },
+							{ "at": 80, "pitch": "a6", "len": 2 },
+							{ "at": 84, "pitch": "g6", "len": 2 },
+							{ "at": 86, "pitch": "e6", "len": 2 },
+							{ "at": 88, "pitch": "c6", "len": 2 },
+							{ "at": 92, "pitch": "e6", "len": 2 },
+							{ "at": 94, "pitch": "a6", "len": 2 },
+							{ "at": 96, "pitch": "f6", "len": 2 },
+							{ "at": 98, "pitch": "e6", "len": 2 },
+							{ "at": 100, "pitch": "d6", "len": 2 },
+							{ "at": 102, "pitch": "c6", "len": 2 },
+							{ "at": 104, "pitch": "d6", "len": 2 },
+							{ "at": 108, "pitch": "b5", "len": 2 },
+							{ "at": 110, "pitch": "d6", "len": 2 },
+							{ "at": 112, "pitch": "c6", "len": 2 },
+							{ "at": 116, "pitch": "g5", "len": 2 },
+							{ "at": 120, "pitch": "c6", "len": 2 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the tune doubled an octave up. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			},
+			"a2": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "A2",
+						"by": "claude",
+						"notes": [
+							{ "at": 0, "pitch": "c6", "len": 2 },
+							{ "at": 4, "pitch": "g5", "len": 2 },
+							{ "at": 6, "pitch": "c6", "len": 2 },
+							{ "at": 8, "pitch": "e6", "len": 2 },
+							{ "at": 10, "pitch": "g6", "len": 2 },
+							{ "at": 12, "pitch": "e6", "len": 2 },
+							{ "at": 14, "pitch": "c6", "len": 2 },
+							{ "at": 16, "pitch": "a5", "len": 2 },
+							{ "at": 20, "pitch": "e5", "len": 2 },
+							{ "at": 22, "pitch": "a5", "len": 2 },
+							{ "at": 24, "pitch": "c6", "len": 2 },
+							{ "at": 26, "pitch": "e6", "len": 2 },
+							{ "at": 28, "pitch": "c6", "len": 2 },
+							{ "at": 30, "pitch": "a5", "len": 2 },
+							{ "at": 32, "pitch": "f5", "len": 2 },
+							{ "at": 34, "pitch": "a5", "len": 2 },
+							{ "at": 36, "pitch": "c6", "len": 2 },
+							{ "at": 38, "pitch": "f6", "len": 2 },
+							{ "at": 40, "pitch": "e6", "len": 2 },
+							{ "at": 42, "pitch": "c6", "len": 2 },
+							{ "at": 44, "pitch": "a5", "len": 2 },
+							{ "at": 46, "pitch": "c6", "len": 2 },
+							{ "at": 48, "pitch": "g5", "len": 2 },
+							{ "at": 50, "pitch": "b5", "len": 2 },
+							{ "at": 52, "pitch": "d6", "len": 2 },
+							{ "at": 54, "pitch": "g6", "len": 2 },
+							{ "at": 56, "pitch": "f6", "len": 2 },
+							{ "at": 58, "pitch": "d6", "len": 2 },
+							{ "at": 60, "pitch": "b5", "len": 2 },
+							{ "at": 62, "pitch": "d6", "len": 2 },
+							{ "at": 64, "pitch": "e6", "len": 2 },
+							{ "at": 68, "pitch": "e6", "len": 2 },
+							{ "at": 70, "pitch": "g6", "len": 2 },
+							{ "at": 72, "pitch": "c7", "len": 2 },
+							{ "at": 76, "pitch": "b6", "len": 2 },
+							{ "at": 78, "pitch": "g6", "len": 2 },
+							{ "at": 80, "pitch": "a6", "len": 2 },
+							{ "at": 84, "pitch": "g6", "len": 2 },
+							{ "at": 86, "pitch": "e6", "len": 2 },
+							{ "at": 88, "pitch": "c6", "len": 2 },
+							{ "at": 92, "pitch": "e6", "len": 2 },
+							{ "at": 94, "pitch": "a6", "len": 2 },
+							{ "at": 96, "pitch": "f6", "len": 2 },
+							{ "at": 98, "pitch": "e6", "len": 2 },
+							{ "at": 100, "pitch": "d6", "len": 2 },
+							{ "at": 102, "pitch": "c6", "len": 2 },
+							{ "at": 104, "pitch": "d6", "len": 2 },
+							{ "at": 108, "pitch": "b5", "len": 2 },
+							{ "at": 110, "pitch": "d6", "len": 2 },
+							{ "at": 112, "pitch": "c6", "len": 2 },
+							{ "at": 116, "pitch": "g5", "len": 2 },
+							{ "at": 120, "pitch": "c6", "len": 2 }
+						],
+						"comment": "Made by `song form` from the loop “loop”: the tune doubled an octave up. The loop was a mini pattern; this part needs its notes, so the take is notes."
+					}
+				]
+			}
+		}
+	},
+	"messages": []
+}

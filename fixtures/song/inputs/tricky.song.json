@@ -1,0 +1,182 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Tricky “Quotes” & é",
+	"tempo": 133.5,
+	"beatsPerBar": 3,
+	"stepsPerBeat": 3,
+	"key": { "root": "bb", "scale": "major" },
+	"engine": "opl3",
+	"mix": { "panLaw": -4.5 },
+	"instruments": {
+		"lead": {
+			"name": "Lead",
+			"preset": "lead",
+			"engines": {
+				"undertone": { "attack": 0.02, "filterCutoff": 1200 },
+				"opl3": { "feedback": 3 }
+			}
+		},
+		"bass": { "name": "Round bass", "preset": "bass" },
+		"pad": { "name": "Soft pad", "preset": "pad" },
+		"kit": { "name": "Kit", "preset": "kit" }
+	},
+	"tracks": [
+		{
+			"id": "melody",
+			"name": "Melody",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.7,
+			"pan": 0.3
+		},
+		{
+			"id": "pad",
+			"name": "Pad",
+			"role": "harmony",
+			"instrument": "pad",
+			"volume": 0.5,
+			"pan": -0.4,
+			"mute": true
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 0.9,
+			"pan": 0
+		},
+		{
+			"id": "drums",
+			"name": "Drums",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "a", "name": "A", "bars": 2 },
+		{ "id": "b", "name": "B", "bars": 3 },
+		{ "id": "c", "name": "Coda", "bars": 1 }
+	],
+	"arrangement": ["a", "b", "a", "c", "b"],
+	"clips": {
+		"melody": {
+			"a": {
+				"active": "m",
+				"takes": [
+					{
+						"id": "m",
+						"name": "Triplets",
+						"by": "claude",
+						"mini": "bb4 [d5 f5 a5] <c5 eb5> ~",
+						"comment": "Triplet run, then the alternation moves each bar"
+					},
+					{
+						"id": "n",
+						"name": "Plain notes",
+						"by": "you",
+						"pan": -0.25,
+						"notes": [
+							{ "at": 0, "pitch": "bb4", "len": 2, "vel": 0.5 },
+							{ "at": 5, "pitch": "f5", "len": 20 },
+							{ "at": 17, "pitch": "d5", "len": 1, "vel": 1 }
+						]
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{ "id": "a", "name": "Euclid", "by": "claude", "mini": "bb4(3,8) d5*3 [f5, a5]@2" }
+				]
+			},
+			"c": {
+				"active": null,
+				"takes": [
+					{
+						"id": "a",
+						"name": "Silent",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "bb4", "len": 3 }
+						]
+					}
+				]
+			}
+		},
+		"pad": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{ "id": "a", "name": "Chords", "by": "you", "mini": "bb3 [d4, f4]/2" }
+				]
+			}
+		},
+		"bass": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Root and fifth",
+						"by": "claude",
+						"mini": "bb2 ~ f2!2 <d3 g2>/2"
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Walk",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "bb2", "len": 3 },
+							{ "at": 3, "pitch": "d3", "len": 3 },
+							{ "at": 9, "pitch": "f3", "len": 9, "vel": 0.65 },
+							{ "at": 26, "pitch": "eb3", "len": 5 }
+						]
+					}
+				]
+			}
+		},
+		"drums": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{ "id": "a", "name": "Pulse", "by": "claude", "mini": "kick(3,8,2) snare@2" }
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Grid",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "kick", "len": 1, "vel": 0.95 },
+							{ "at": 3, "pitch": "hat", "len": 1, "vel": 0.3 },
+							{ "at": 6, "pitch": "snare", "len": 1 },
+							{ "at": 9, "pitch": "kick", "len": 1 },
+							{ "at": 24, "pitch": "crash", "len": 3, "vel": 1 }
+						]
+					}
+				]
+			}
+		}
+	},
+	"messages": [
+		{ "by": "you", "text": "Try the coda an octave up?", "at": "2026-03-01T09:30:00.000Z" },
+		{
+			"by": "claude",
+			"text": "Done: see “Plain notes”.",
+			"at": "2026-03-01T09:45:10.250Z",
+			"done": true
+		}
+	]
+}

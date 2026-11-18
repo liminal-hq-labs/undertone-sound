@@ -1,0 +1,3946 @@
+[
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:null:pan:-1",
+		"law": null,
+		"pan": -1,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.95",
+		"law": null,
+		"pan": -0.95,
+		"panGains": { "left": 1, "right": 0.03930639869651891 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.9",
+		"law": null,
+		"pan": -0.9,
+		"panGains": { "left": 0.9981002057589512, "right": 0.0785521897752323 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.89",
+		"law": null,
+		"pan": -0.89,
+		"panGains": { "left": 0.9974524808847838, "right": 0.08638874713372591 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −21.0 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −21.0 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9974524808847838, "output": 16 },
+				{ "gain": 0.08638874713372591, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.6",
+		"law": null,
+		"pan": -0.6,
+		"panGains": { "left": 0.9521849730989788, "right": 0.3093836522168582 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −0.8 dB, right −10.5 dB. When no second channel is free, one channel to the left.", "label": "L90·R10" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −0.8 dB, right −10.5 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L90·R10" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9521849730989788, "output": 16 },
+				{ "gain": 0.3093836522168582, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.34",
+		"law": null,
+		"pan": -0.34,
+		"panGains": { "left": 0.8696621715292159, "right": 0.4960465448580743 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to the left.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8696621715292159, "output": 16 },
+				{ "gain": 0.4960465448580743, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.33",
+		"law": null,
+		"pan": -0.33,
+		"panGains": { "left": 0.8657394487001056, "right": 0.5028614861161889 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to both sides.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8657394487001056, "output": 16 },
+				{ "gain": 0.5028614861161889, "output": 32 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.1",
+		"law": null,
+		"pan": -0.1,
+		"panGains": { "left": 0.7613082098629621, "right": 0.6502186377287233 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.09",
+		"law": null,
+		"pan": -0.09,
+		"panGains": { "left": 0.7561779765880147, "right": 0.6561778226805601 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 1,
+		"id": "law:null:pan:-0.01",
+		"law": null,
+		"pan": -0.01,
+		"panGains": { "left": 0.7134840856939204, "right": 0.7023638136436523 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 1,
+		"id": "law:null:pan:0",
+		"law": null,
+		"pan": 0,
+		"panGains": { "left": 0.707945784384138, "right": 0.7079457843841379 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.05",
+		"law": null,
+		"pan": 0.05,
+		"panGains": { "left": 0.6796061627785143, "right": 0.7351938049031754 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.1",
+		"law": null,
+		"pan": 0.1,
+		"panGains": { "left": 0.6502186377287232, "right": 0.7613082098629622 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.11",
+		"law": null,
+		"pan": 0.11,
+		"panGains": { "left": 0.6442193442285082, "right": 0.7663914820614433 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.8 dB, right −2.3 dB. When no second channel is free, one channel to both sides.", "label": "L41·R59" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.8 dB, right −2.3 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L41·R59" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7663914820614433, "output": 32 },
+				{ "gain": 0.6442193442285082, "output": 16 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.33",
+		"law": null,
+		"pan": 0.33,
+		"panGains": { "left": 0.502861486116189, "right": 0.8657394487001056 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to both sides.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8657394487001056, "output": 32 },
+				{ "gain": 0.502861486116189, "output": 16 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.34",
+		"law": null,
+		"pan": 0.34,
+		"panGains": { "left": 0.49604654485807437, "right": 0.8696621715292158 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to the right.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8696621715292158, "output": 32 },
+				{ "gain": 0.49604654485807437, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.5",
+		"law": null,
+		"pan": 0.5,
+		"panGains": { "left": 0.38313749762363597, "right": 0.9249757430166713 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −8.3 dB, right −0.8 dB. When no second channel is free, one channel to the right.", "label": "L15·R85" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −8.3 dB, right −0.8 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L15·R85" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9249757430166713, "output": 32 },
+				{ "gain": 0.38313749762363597, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.89",
+		"law": null,
+		"pan": 0.89,
+		"panGains": { "left": 0.08638874713372593, "right": 0.9974524808847838 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −21.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −21.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9974524808847838, "output": 32 },
+				{ "gain": 0.08638874713372593, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 1,
+		"id": "law:null:pan:0.9",
+		"law": null,
+		"pan": 0.9,
+		"panGains": { "left": 0.07855218977523237, "right": 0.9981002057589512 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:null:pan:1",
+		"law": null,
+		"pan": 1,
+		"panGains": { "left": 6.13049939473831e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:null:pan:1.5",
+		"law": null,
+		"pan": 1.5,
+		"panGains": { "left": 6.13049939473831e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:null:pan:-2",
+		"law": null,
+		"pan": -2,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:0:pan:-1",
+		"law": 0,
+		"pan": -1,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.95",
+		"law": 0,
+		"pan": -0.95,
+		"panGains": { "left": 1, "right": 0.05552176390274385 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.9",
+		"law": 0,
+		"pan": -0.9,
+		"panGains": { "left": 1, "right": 0.11095791726984727 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.89",
+		"law": 0,
+		"pan": -0.89,
+		"panGains": { "left": 1, "right": 0.12202734875930919 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −18.0 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −18.0 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.12202734875930919, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.6",
+		"law": 0,
+		"pan": -0.6,
+		"panGains": { "left": 1, "right": 0.43701602444882104 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −7.5 dB. When no second channel is free, one channel to the left.", "label": "L84·R16" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −7.5 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L84·R16" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.43701602444882104, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.34",
+		"law": 0,
+		"pan": -0.34,
+		"panGains": { "left": 1, "right": 0.7006843684924252 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to the left.", "label": "L67·R33" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L67·R33" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.7006843684924252, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.33",
+		"law": 0,
+		"pan": -0.33,
+		"panGains": { "left": 1, "right": 0.7103107288839106 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to both sides.", "label": "L66·R34" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L66·R34" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.7103107288839106, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.1",
+		"law": 0,
+		"pan": -0.1,
+		"panGains": { "left": 1, "right": 0.9184582380052831 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.09",
+		"law": 0,
+		"pan": -0.09,
+		"panGains": { "left": 1, "right": 0.9268758104851035 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 1,
+		"id": "law:0:pan:-0.01",
+		"law": 0,
+		"pan": -0.01,
+		"panGains": { "left": 1, "right": 0.9921152567560784 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 1,
+		"id": "law:0:pan:0",
+		"law": 0,
+		"pan": 0,
+		"panGains": { "left": 1, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.05",
+		"law": 0,
+		"pan": 0.05,
+		"panGains": { "left": 0.9599692204816545, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.1",
+		"law": 0,
+		"pan": 0.1,
+		"panGains": { "left": 0.9184582380052829, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.11",
+		"law": 0,
+		"pan": 0.11,
+		"panGains": { "left": 0.9099840106950179, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −0.8 dB, right 0 dB. When no second channel is free, one channel to both sides.", "label": "L45·R55" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −0.8 dB, right 0 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L45·R55" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.9099840106950179, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.33",
+		"law": 0,
+		"pan": 0.33,
+		"panGains": { "left": 0.7103107288839108, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to both sides.", "label": "L34·R66" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L34·R66" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.7103107288839108, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.34",
+		"law": 0,
+		"pan": 0.34,
+		"panGains": { "left": 0.7006843684924252, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L33·R67" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L33·R67" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.7006843684924252, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.5",
+		"law": 0,
+		"pan": 0.5,
+		"panGains": { "left": 0.5411961001461971, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −5.3 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L23·R77" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −5.3 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L23·R77" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.5411961001461971, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.89",
+		"law": 0,
+		"pan": 0.89,
+		"panGains": { "left": 0.12202734875930922, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −18.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −18.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.12202734875930922, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 1,
+		"id": "law:0:pan:0.9",
+		"law": 0,
+		"pan": 0.9,
+		"panGains": { "left": 0.11095791726984737, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:0:pan:1",
+		"law": 0,
+		"pan": 1,
+		"panGains": { "left": 8.659560562354934e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:0:pan:1.5",
+		"law": 0,
+		"pan": 1.5,
+		"panGains": { "left": 8.659560562354934e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:0:pan:-2",
+		"law": 0,
+		"pan": -2,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-1",
+		"law": -1.5,
+		"pan": -1,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.95",
+		"law": -1.5,
+		"pan": -0.95,
+		"panGains": { "left": 1, "right": 0.04671574240334025 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.9",
+		"law": -1.5,
+		"pan": -0.9,
+		"panGains": { "left": 1, "right": 0.093359452517919 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.89",
+		"law": -1.5,
+		"pan": -0.89,
+		"panGains": { "left": 1, "right": 0.10267321839392658 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −19.5 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −19.5 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.10267321839392658, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.6",
+		"law": -1.5,
+		"pan": -0.6,
+		"panGains": { "left": 1, "right": 0.36770315979233587 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −9.0 dB. When no second channel is free, one channel to the left.", "label": "L88·R12" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −9.0 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L88·R12" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.36770315979233587, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.34",
+		"law": -1.5,
+		"pan": -0.34,
+		"panGains": { "left": 1, "right": 0.5895524234762582 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −4.5 dB. When no second channel is free, one channel to the left.", "label": "L74·R26" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −4.5 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L74·R26" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.5895524234762582, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.33",
+		"law": -1.5,
+		"pan": -0.33,
+		"panGains": { "left": 1, "right": 0.5976519963413798 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −4.5 dB. When no second channel is free, one channel to both sides.", "label": "L74·R26" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −4.5 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L74·R26" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.5976519963413798, "output": 32 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.1",
+		"law": -1.5,
+		"pan": -0.1,
+		"panGains": { "left": 0.9048165031882196, "right": 0.7727862992616515 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −1.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −1.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8413951416451951, "output": 48 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.09",
+		"law": -1.5,
+		"pan": -0.09,
+		"panGains": { "left": 0.898719209513673, "right": 0.7798688038506187 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −1.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −1.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8413951416451951, "output": 48 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-0.01",
+		"law": -1.5,
+		"pan": -0.01,
+		"panGains": { "left": 0.8479774250880889, "right": 0.8347609569866398 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −1.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −1.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8413951416451951, "output": 48 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0",
+		"law": -1.5,
+		"pan": 0,
+		"panGains": { "left": 0.8413951416451952, "right": 0.8413951416451951 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −1.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −1.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8413951416451951, "output": 48 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.05",
+		"law": -1.5,
+		"pan": 0.05,
+		"panGains": { "left": 0.8077134382421892, "right": 0.8737794747253208 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −1.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −1.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8413951416451951, "output": 48 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.1",
+		"law": -1.5,
+		"pan": 0.1,
+		"panGains": { "left": 0.7727862992616514, "right": 0.9048165031882197 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −1.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −1.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8413951416451951, "output": 48 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.11",
+		"law": -1.5,
+		"pan": 0.11,
+		"panGains": { "left": 0.7656561255735974, "right": 0.9108579835187831 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −2.3 dB, right −0.8 dB. When no second channel is free, one channel to both sides.", "label": "L41·R59" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −2.3 dB, right −0.8 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L41·R59" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9108579835187831, "output": 32 },
+				{ "gain": 0.7656561255735974, "output": 16 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.33",
+		"law": -1.5,
+		"pan": 0.33,
+		"panGains": { "left": 0.5976519963413799, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −4.5 dB, right 0 dB. When no second channel is free, one channel to both sides.", "label": "L26·R74" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −4.5 dB, right 0 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L26·R74" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.5976519963413799, "output": 16 }
+			],
+			"fallback": { "gain": 0.8413951416451951, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.34",
+		"law": -1.5,
+		"pan": 0.34,
+		"panGains": { "left": 0.5895524234762582, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −4.5 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L26·R74" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −4.5 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L26·R74" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.5895524234762582, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.5",
+		"law": -1.5,
+		"pan": 0.5,
+		"panGains": { "left": 0.45535976934033673, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.8 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L17·R83" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.8 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L17·R83" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.45535976934033673, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.89",
+		"law": -1.5,
+		"pan": 0.89,
+		"panGains": { "left": 0.10267321839392661, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −19.5 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −19.5 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.10267321839392661, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:0.9",
+		"law": -1.5,
+		"pan": 0.9,
+		"panGains": { "left": 0.09335945251791908, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:1",
+		"law": -1.5,
+		"pan": 1,
+		"panGains": { "left": 7.286112185947775e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:1.5",
+		"law": -1.5,
+		"pan": 1.5,
+		"panGains": { "left": 7.286112185947775e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.8413951416451951,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:-1.5:pan:-2",
+		"law": -1.5,
+		"pan": -2,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-1",
+		"law": -3,
+		"pan": -1,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.95",
+		"law": -3,
+		"pan": -0.95,
+		"panGains": { "left": 1, "right": 0.03930639869651891 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.9",
+		"law": -3,
+		"pan": -0.9,
+		"panGains": { "left": 0.9981002057589512, "right": 0.0785521897752323 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.89",
+		"law": -3,
+		"pan": -0.89,
+		"panGains": { "left": 0.9974524808847838, "right": 0.08638874713372591 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −21.0 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −21.0 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9974524808847838, "output": 16 },
+				{ "gain": 0.08638874713372591, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.6",
+		"law": -3,
+		"pan": -0.6,
+		"panGains": { "left": 0.9521849730989788, "right": 0.3093836522168582 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −0.8 dB, right −10.5 dB. When no second channel is free, one channel to the left.", "label": "L90·R10" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −0.8 dB, right −10.5 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L90·R10" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9521849730989788, "output": 16 },
+				{ "gain": 0.3093836522168582, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.34",
+		"law": -3,
+		"pan": -0.34,
+		"panGains": { "left": 0.8696621715292159, "right": 0.4960465448580743 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to the left.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8696621715292159, "output": 16 },
+				{ "gain": 0.4960465448580743, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.33",
+		"law": -3,
+		"pan": -0.33,
+		"panGains": { "left": 0.8657394487001056, "right": 0.5028614861161889 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to both sides.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −1.5 dB, right −6.0 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8657394487001056, "output": 16 },
+				{ "gain": 0.5028614861161889, "output": 32 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.1",
+		"law": -3,
+		"pan": -0.1,
+		"panGains": { "left": 0.7613082098629621, "right": 0.6502186377287233 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.09",
+		"law": -3,
+		"pan": -0.09,
+		"panGains": { "left": 0.7561779765880147, "right": 0.6561778226805601 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-0.01",
+		"law": -3,
+		"pan": -0.01,
+		"panGains": { "left": 0.7134840856939204, "right": 0.7023638136436523 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0",
+		"law": -3,
+		"pan": 0,
+		"panGains": { "left": 0.707945784384138, "right": 0.7079457843841379 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.05",
+		"law": -3,
+		"pan": 0.05,
+		"panGains": { "left": 0.6796061627785143, "right": 0.7351938049031754 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.1",
+		"law": -3,
+		"pan": 0.1,
+		"panGains": { "left": 0.6502186377287232, "right": 0.7613082098629622 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −3.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −3.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7079457843841379, "output": 48 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.11",
+		"law": -3,
+		"pan": 0.11,
+		"panGains": { "left": 0.6442193442285082, "right": 0.7663914820614433 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.8 dB, right −2.3 dB. When no second channel is free, one channel to both sides.", "label": "L41·R59" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.8 dB, right −2.3 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L41·R59" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7663914820614433, "output": 32 },
+				{ "gain": 0.6442193442285082, "output": 16 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.33",
+		"law": -3,
+		"pan": 0.33,
+		"panGains": { "left": 0.502861486116189, "right": 0.8657394487001056 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to both sides.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8657394487001056, "output": 32 },
+				{ "gain": 0.502861486116189, "output": 16 }
+			],
+			"fallback": { "gain": 0.7079457843841379, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.34",
+		"law": -3,
+		"pan": 0.34,
+		"panGains": { "left": 0.49604654485807437, "right": 0.8696621715292158 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to the right.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.0 dB, right −1.5 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8696621715292158, "output": 32 },
+				{ "gain": 0.49604654485807437, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.5",
+		"law": -3,
+		"pan": 0.5,
+		"panGains": { "left": 0.38313749762363597, "right": 0.9249757430166713 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −8.3 dB, right −0.8 dB. When no second channel is free, one channel to the right.", "label": "L15·R85" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −8.3 dB, right −0.8 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L15·R85" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9249757430166713, "output": 32 },
+				{ "gain": 0.38313749762363597, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.89",
+		"law": -3,
+		"pan": 0.89,
+		"panGains": { "left": 0.08638874713372593, "right": 0.9974524808847838 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −21.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −21.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.9974524808847838, "output": 32 },
+				{ "gain": 0.08638874713372593, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 1,
+		"id": "law:-3:pan:0.9",
+		"law": -3,
+		"pan": 0.9,
+		"panGains": { "left": 0.07855218977523237, "right": 0.9981002057589512 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:-3:pan:1",
+		"law": -3,
+		"pan": 1,
+		"panGains": { "left": 6.13049939473831e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:-3:pan:1.5",
+		"law": -3,
+		"pan": 1.5,
+		"panGains": { "left": 6.13049939473831e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.7079457843841379,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:-3:pan:-2",
+		"law": -3,
+		"pan": -2,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-1",
+		"law": -4.5,
+		"pan": -1,
+		"panGains": { "left": 0.8423934819709558, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.95",
+		"law": -4.5,
+		"pan": -0.95,
+		"panGains": { "left": 0.8417440271253049, "right": 0.033072212898820036 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.9",
+		"law": -4.5,
+		"pan": -0.9,
+		"panGains": { "left": 0.839796664000651, "right": 0.06609343084247182 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.89",
+		"law": -4.5,
+		"pan": -0.89,
+		"panGains": { "left": 0.8392516714384038, "right": 0.07268707213113225 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −1.5 dB, right −22.5 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −1.5 dB, right −22.5 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8392516714384038, "output": 16 },
+				{ "gain": 0.07268707213113225, "output": 32 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.6",
+		"law": -4.5,
+		"pan": -0.6,
+		"panGains": { "left": 0.8011638103130414, "right": 0.2603139018797112 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −2.3 dB, right −12.0 dB. When no second channel is free, one channel to the left.", "label": "L90·R10" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −2.3 dB, right −12.0 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L90·R10" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8011638103130414, "output": 16 },
+				{ "gain": 0.2603139018797112, "output": 32 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.34",
+		"law": -4.5,
+		"pan": -0.34,
+		"panGains": { "left": 0.7317295259972925, "right": 0.417371152873469 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right −7.5 dB. When no second channel is free, one channel to the left.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right −7.5 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7317295259972925, "output": 16 },
+				{ "gain": 0.417371152873469, "output": 32 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.33",
+		"law": -4.5,
+		"pan": -0.33,
+		"panGains": { "left": 0.7284289660668584, "right": 0.423105211338644 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right −7.5 dB. When no second channel is free, one channel to both sides.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right −7.5 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7284289660668584, "output": 16 },
+				{ "gain": 0.423105211338644, "output": 32 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.1",
+		"law": -4.5,
+		"pan": -0.1,
+		"panGains": { "left": 0.6405610290732968, "right": 0.547090802792105 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −4.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −4.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5956621435290105, "output": 48 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.09",
+		"law": -4.5,
+		"pan": -0.09,
+		"panGains": { "left": 0.6362444757202496, "right": 0.5521048320587456 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −4.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −4.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5956621435290105, "output": 48 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-0.01",
+		"law": -4.5,
+		"pan": -0.01,
+		"panGains": { "left": 0.6003220433440286, "right": 0.5909655004671602 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −4.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −4.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5956621435290105, "output": 48 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0",
+		"law": -4.5,
+		"pan": 0,
+		"panGains": { "left": 0.5956621435290105, "right": 0.5956621435290105 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −4.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −4.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5956621435290105, "output": 48 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.05",
+		"law": -4.5,
+		"pan": 0.05,
+		"panGains": { "left": 0.5718173235939755, "right": 0.6185884956131772 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −4.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −4.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5956621435290105, "output": 48 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.1",
+		"law": -4.5,
+		"pan": 0.1,
+		"panGains": { "left": 0.5470908027921049, "right": 0.6405610290732969 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −4.5 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −4.5 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5956621435290105, "output": 48 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.11",
+		"law": -4.5,
+		"pan": 0.11,
+		"panGains": { "left": 0.5420430263877203, "right": 0.644838069604759 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −5.3 dB, right −3.8 dB. When no second channel is free, one channel to both sides.", "label": "L41·R59" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −5.3 dB, right −3.8 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L41·R59" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.644838069604759, "output": 32 },
+				{ "gain": 0.5420430263877203, "output": 16 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.33",
+		"law": -4.5,
+		"pan": 0.33,
+		"panGains": { "left": 0.42310521133864404, "right": 0.7284289660668584 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −7.5 dB, right −3.0 dB. When no second channel is free, one channel to both sides.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −7.5 dB, right −3.0 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7284289660668584, "output": 32 },
+				{ "gain": 0.42310521133864404, "output": 16 }
+			],
+			"fallback": { "gain": 0.5956621435290105, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.34",
+		"law": -4.5,
+		"pan": 0.34,
+		"panGains": { "left": 0.41737115287346904, "right": 0.7317295259972925 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −7.5 dB, right −3.0 dB. When no second channel is free, one channel to the right.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −7.5 dB, right −3.0 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7317295259972925, "output": 32 },
+				{ "gain": 0.41737115287346904, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.5",
+		"law": -4.5,
+		"pan": 0.5,
+		"panGains": { "left": 0.3223700290826248, "right": 0.7782700963138817 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −9.8 dB, right −2.3 dB. When no second channel is free, one channel to the right.", "label": "L15·R85" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −9.8 dB, right −2.3 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L15·R85" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7782700963138817, "output": 32 },
+				{ "gain": 0.3223700290826248, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.89",
+		"law": -4.5,
+		"pan": 0.89,
+		"panGains": { "left": 0.07268707213113226, "right": 0.8392516714384038 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −22.5 dB, right −1.5 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −22.5 dB, right −1.5 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8392516714384038, "output": 32 },
+				{ "gain": 0.07268707213113226, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:0.9",
+		"law": -4.5,
+		"pan": 0.9,
+		"panGains": { "left": 0.06609343084247189, "right": 0.839796664000651 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 32 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:1",
+		"law": -4.5,
+		"pan": 1,
+		"panGains": { "left": 5.1581724065916226e-17, "right": 0.8423934819709558 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 32 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:1.5",
+		"law": -4.5,
+		"pan": 1.5,
+		"panGains": { "left": 5.1581724065916226e-17, "right": 0.8423934819709558 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 32 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5956621435290105,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 0.8423934819709558,
+		"id": "law:-4.5:pan:-2",
+		"law": -4.5,
+		"pan": -2,
+		"panGains": { "left": 0.8423934819709558, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.8423934819709558, "output": 16 }
+			],
+			"fallback": { "gain": 0.8423934819709558, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-1",
+		"law": -6,
+		"pan": -1,
+		"panGains": { "left": 0.7087857830839414, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.95",
+		"law": -6,
+		"pan": -0.95,
+		"panGains": { "left": 0.7082393349320928, "right": 0.02782679925652273 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.9",
+		"law": -6,
+		"pan": -0.9,
+		"panGains": { "left": 0.70660083305999, "right": 0.055610691605518486 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.89",
+		"law": -6,
+		"pan": -0.89,
+		"panGains": { "left": 0.7061422789658824, "right": 0.06115854935154852 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right −24.0 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right −24.0 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7061422789658824, "output": 16 },
+				{ "gain": 0.06115854935154852, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.6",
+		"law": -6,
+		"pan": -0.6,
+		"panGains": { "left": 0.6740953376593456, "right": 0.219026852344293 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.8 dB, right −13.5 dB. When no second channel is free, one channel to the left.", "label": "L90·R10" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.8 dB, right −13.5 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L90·R10" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6740953376593456, "output": 16 },
+				{ "gain": 0.219026852344293, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.34",
+		"law": -6,
+		"pan": -0.34,
+		"panGains": { "left": 0.6156736681724634, "right": 0.3511740602905908 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to the left.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6156736681724634, "output": 16 },
+				{ "gain": 0.3511740602905908, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.33",
+		"law": -6,
+		"pan": -0.33,
+		"panGains": { "left": 0.6128965930822873, "right": 0.35599866922509854 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to both sides.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6128965930822873, "output": 16 },
+				{ "gain": 0.35599866922509854, "output": 32 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.1",
+		"law": -6,
+		"pan": -0.1,
+		"panGains": { "left": 0.5389649377895185, "right": 0.4603195435080466 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.09",
+		"law": -6,
+		"pan": -0.09,
+		"panGains": { "left": 0.5353330107696123, "right": 0.46453832337306483 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-0.01",
+		"law": -6,
+		"pan": -0.01,
+		"panGains": { "left": 0.5051080506921818, "right": 0.49723550097298985 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0",
+		"law": -6,
+		"pan": 0,
+		"panGains": { "left": 0.5011872336272722, "right": 0.5011872336272722 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.05",
+		"law": -6,
+		"pan": 0.05,
+		"panGains": { "left": 0.48112431798052935, "right": 0.5204773548865373 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.1",
+		"law": -6,
+		"pan": 0.1,
+		"panGains": { "left": 0.46031954350804655, "right": 0.5389649377895186 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.11",
+		"law": -6,
+		"pan": 0.11,
+		"panGains": { "left": 0.45607236896528613, "right": 0.5425636189133103 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.8 dB, right −5.3 dB. When no second channel is free, one channel to both sides.", "label": "L41·R59" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.8 dB, right −5.3 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L41·R59" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5425636189133103, "output": 32 },
+				{ "gain": 0.45607236896528613, "output": 16 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.33",
+		"law": -6,
+		"pan": 0.33,
+		"panGains": { "left": 0.3559986692250986, "right": 0.6128965930822873 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to both sides.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6128965930822873, "output": 32 },
+				{ "gain": 0.3559986692250986, "output": 16 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.34",
+		"law": -6,
+		"pan": 0.34,
+		"panGains": { "left": 0.35117406029059084, "right": 0.6156736681724633 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to the right.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6156736681724633, "output": 32 },
+				{ "gain": 0.35117406029059084, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.5",
+		"law": -6,
+		"pan": 0.5,
+		"panGains": { "left": 0.2712405762821407, "right": 0.654832677926238 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −11.3 dB, right −3.8 dB. When no second channel is free, one channel to the right.", "label": "L15·R85" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −11.3 dB, right −3.8 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L15·R85" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.654832677926238, "output": 32 },
+				{ "gain": 0.2712405762821407, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.89",
+		"law": -6,
+		"pan": 0.89,
+		"panGains": { "left": 0.06115854935154854, "right": 0.7061422789658824 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −24.0 dB, right −3.0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −24.0 dB, right −3.0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7061422789658824, "output": 32 },
+				{ "gain": 0.06115854935154854, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:0.9",
+		"law": -6,
+		"pan": 0.9,
+		"panGains": { "left": 0.055610691605518535, "right": 0.70660083305999 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:1",
+		"law": -6,
+		"pan": 1,
+		"panGains": { "left": 4.340061202674495e-17, "right": 0.7087857830839414 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:1.5",
+		"law": -6,
+		"pan": 1.5,
+		"panGains": { "left": 4.340061202674495e-17, "right": 0.7087857830839414 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-6:pan:-2",
+		"law": -6,
+		"pan": -2,
+		"panGains": { "left": 0.7087857830839414, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-1",
+		"law": -9,
+		"pan": -1,
+		"panGains": { "left": 0.7087857830839414, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.95",
+		"law": -9,
+		"pan": -0.95,
+		"panGains": { "left": 0.7082393349320928, "right": 0.02782679925652273 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.9",
+		"law": -9,
+		"pan": -0.9,
+		"panGains": { "left": 0.70660083305999, "right": 0.055610691605518486 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.89",
+		"law": -9,
+		"pan": -0.89,
+		"panGains": { "left": 0.7061422789658824, "right": 0.06115854935154852 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right −24.0 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right −24.0 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7061422789658824, "output": 16 },
+				{ "gain": 0.06115854935154852, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.6",
+		"law": -9,
+		"pan": -0.6,
+		"panGains": { "left": 0.6740953376593456, "right": 0.219026852344293 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.8 dB, right −13.5 dB. When no second channel is free, one channel to the left.", "label": "L90·R10" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.8 dB, right −13.5 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L90·R10" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6740953376593456, "output": 16 },
+				{ "gain": 0.219026852344293, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.34",
+		"law": -9,
+		"pan": -0.34,
+		"panGains": { "left": 0.6156736681724634, "right": 0.3511740602905908 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to the left.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6156736681724634, "output": 16 },
+				{ "gain": 0.3511740602905908, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.33",
+		"law": -9,
+		"pan": -0.33,
+		"panGains": { "left": 0.6128965930822873, "right": 0.35599866922509854 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to both sides.", "label": "L75·R25" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −4.5 dB, right −9.0 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L75·R25" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6128965930822873, "output": 16 },
+				{ "gain": 0.35599866922509854, "output": 32 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.1",
+		"law": -9,
+		"pan": -0.1,
+		"panGains": { "left": 0.5389649377895185, "right": 0.4603195435080466 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.09",
+		"law": -9,
+		"pan": -0.09,
+		"panGains": { "left": 0.5353330107696123, "right": 0.46453832337306483 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-0.01",
+		"law": -9,
+		"pan": -0.01,
+		"panGains": { "left": 0.5051080506921818, "right": 0.49723550097298985 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0",
+		"law": -9,
+		"pan": 0,
+		"panGains": { "left": 0.5011872336272722, "right": 0.5011872336272722 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.05",
+		"law": -9,
+		"pan": 0.05,
+		"panGains": { "left": 0.48112431798052935, "right": 0.5204773548865373 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.1",
+		"law": -9,
+		"pan": 0.1,
+		"panGains": { "left": 0.46031954350804655, "right": 0.5389649377895186 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at −6.0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at −6.0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5011872336272722, "output": 48 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.11",
+		"law": -9,
+		"pan": 0.11,
+		"panGains": { "left": 0.45607236896528613, "right": 0.5425636189133103 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −6.8 dB, right −5.3 dB. When no second channel is free, one channel to both sides.", "label": "L41·R59" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −6.8 dB, right −5.3 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L41·R59" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.5425636189133103, "output": 32 },
+				{ "gain": 0.45607236896528613, "output": 16 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.33",
+		"law": -9,
+		"pan": 0.33,
+		"panGains": { "left": 0.3559986692250986, "right": 0.6128965930822873 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to both sides.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6128965930822873, "output": 32 },
+				{ "gain": 0.3559986692250986, "output": 16 }
+			],
+			"fallback": { "gain": 0.5011872336272722, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.34",
+		"law": -9,
+		"pan": 0.34,
+		"panGains": { "left": 0.35117406029059084, "right": 0.6156736681724633 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to the right.", "label": "L25·R75" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −9.0 dB, right −4.5 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L25·R75" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.6156736681724633, "output": 32 },
+				{ "gain": 0.35117406029059084, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.5",
+		"law": -9,
+		"pan": 0.5,
+		"panGains": { "left": 0.2712405762821407, "right": 0.654832677926238 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −11.3 dB, right −3.8 dB. When no second channel is free, one channel to the right.", "label": "L15·R85" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −11.3 dB, right −3.8 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L15·R85" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.654832677926238, "output": 32 },
+				{ "gain": 0.2712405762821407, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.89",
+		"law": -9,
+		"pan": 0.89,
+		"panGains": { "left": 0.06115854935154854, "right": 0.7061422789658824 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −24.0 dB, right −3.0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −24.0 dB, right −3.0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7061422789658824, "output": 32 },
+				{ "gain": 0.06115854935154854, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:0.9",
+		"law": -9,
+		"pan": 0.9,
+		"panGains": { "left": 0.055610691605518535, "right": 0.70660083305999 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:1",
+		"law": -9,
+		"pan": 1,
+		"panGains": { "left": 4.340061202674495e-17, "right": 0.7087857830839414 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:1.5",
+		"law": -9,
+		"pan": 1.5,
+		"panGains": { "left": 4.340061202674495e-17, "right": 0.7087857830839414 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 32 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 0.5011872336272722,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 0.7087857830839414,
+		"id": "law:-9:pan:-2",
+		"law": -9,
+		"pan": -2,
+		"panGains": { "left": 0.7087857830839414, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 0.7087857830839414, "output": 16 }
+			],
+			"fallback": { "gain": 0.7087857830839414, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:2:pan:-1",
+		"law": 2,
+		"pan": -1,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.9992290362407229, "right": 0.039259815759068645 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.95",
+		"law": 2,
+		"pan": -0.95,
+		"panGains": { "left": 1, "right": 0.05552176390274385 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.996917333733128, "right": 0.07845909572784493 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.9",
+		"law": 2,
+		"pan": -0.9,
+		"panGains": { "left": 1, "right": 0.11095791726984727 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.9962703764929413, "right": 0.08628636579792336 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.89",
+		"law": 2,
+		"pan": -0.89,
+		"panGains": { "left": 1, "right": 0.12202734875930919 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −18.0 dB. When no second channel is free, one channel to the left.", "label": "L99·R1" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −18.0 dB. When no second channel is free, one channel to the left.", "heard": -0.89, "label": "L99·R1" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.12202734875930919, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.9510565162951535, "right": 0.3090169943749474 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.6",
+		"law": 2,
+		"pan": -0.6,
+		"panGains": { "left": 1, "right": 0.43701602444882104 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −7.5 dB. When no second channel is free, one channel to the left.", "label": "L84·R16" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −7.5 dB. When no second channel is free, one channel to the left.", "heard": -0.6, "label": "L84·R16" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.43701602444882104, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.8686315144381913, "right": 0.4954586684324075 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.34",
+		"law": 2,
+		"pan": -0.34,
+		"panGains": { "left": 1, "right": 0.7006843684924252 },
+		"panOutput": 16,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to the left.", "label": "L67·R33" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to the left.", "heard": -0.34, "label": "L67·R33" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.7006843684924252, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.8647134405201551, "right": 0.5022655331433724 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.33",
+		"law": 2,
+		"pan": -0.33,
+		"panGains": { "left": 1, "right": 0.7103107288839106 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to both sides.", "label": "L66·R34" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left 0 dB, right −3.0 dB. When no second channel is free, one channel to both sides.", "heard": -0.33, "label": "L66·R34" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 },
+				{ "gain": 0.7103107288839106, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7604059656000309, "right": 0.6494480483301837 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.1",
+		"law": 2,
+		"pan": -0.1,
+		"panGains": { "left": 1, "right": 0.9184582380052831 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7552818122851835, "right": 0.6554001709117939 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.09",
+		"law": 2,
+		"pan": -0.09,
+		"panGains": { "left": 1, "right": 0.9268758104851035 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7126385189252054, "right": 0.7015314257708557 },
+		"hardGain": 1,
+		"id": "law:2:pan:-0.01",
+		"law": 2,
+		"pan": -0.01,
+		"panGains": { "left": 1, "right": 0.9921152567560784 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.7071067811865476, "right": 0.7071067811865475 },
+		"hardGain": 1,
+		"id": "law:2:pan:0",
+		"law": 2,
+		"pan": 0,
+		"panGains": { "left": 1, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.6788007455329418, "right": 0.7343225094356856 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.05",
+		"law": 2,
+		"pan": 0.05,
+		"panGains": { "left": 0.9599692204816545, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.6494480483301835, "right": 0.760405965600031 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.1",
+		"law": 2,
+		"pan": 0.1,
+		"panGains": { "left": 0.9184582380052829, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 1, "detail": "One channel, to both sides at 0 dB (the pan law).", "label": "C" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, to both sides at 0 dB (the pan law).", "heard": 0, "label": "C" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 48 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.6434558647337789, "right": 0.7654832134930881 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.11",
+		"law": 2,
+		"pan": 0.11,
+		"panGains": { "left": 0.9099840106950179, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −0.8 dB, right 0 dB. When no second channel is free, one channel to both sides.", "label": "L45·R55" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −0.8 dB, right 0 dB. When no second channel is free, one channel to both sides.", "heard": 0.11, "label": "L45·R55" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.9099840106950179, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.5022655331433725, "right": 0.8647134405201551 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.33",
+		"law": 2,
+		"pan": 0.33,
+		"panGains": { "left": 0.7103107288839108, "right": 1 },
+		"panOutput": 48,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to both sides.", "label": "L34·R66" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to both sides.", "heard": 0.33, "label": "L34·R66" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.7103107288839108, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 48 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.49545866843240755, "right": 0.8686315144381912 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.34",
+		"law": 2,
+		"pan": 0.34,
+		"panGains": { "left": 0.7006843684924252, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L33·R67" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −3.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.34, "label": "L33·R67" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.7006843684924252, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.38268343236508984, "right": 0.9238795325112867 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.5",
+		"law": 2,
+		"pan": 0.5,
+		"panGains": { "left": 0.5411961001461971, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −5.3 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L23·R77" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −5.3 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.5, "label": "L23·R77" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.5411961001461971, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.08628636579792338, "right": 0.9962703764929413 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.89",
+		"law": 2,
+		"pan": 0.89,
+		"panGains": { "left": 0.12202734875930922, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 2, "detail": "Two channels: left −18.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "label": "L1·R99" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "Two channels: left −18.0 dB, right 0 dB. When no second channel is free, one channel to the right.", "heard": 0.89, "label": "L1·R99" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 },
+				{ "gain": 0.12202734875930922, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 0.078459095727845, "right": 0.996917333733128 },
+		"hardGain": 1,
+		"id": "law:2:pan:0.9",
+		"law": 2,
+		"pan": 0.9,
+		"panGains": { "left": 0.11095791726984737, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:2:pan:1",
+		"law": 2,
+		"pan": 1,
+		"panGains": { "left": 8.659560562354934e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 6.123233995736766e-17, "right": 1 },
+		"hardGain": 1,
+		"id": "law:2:pan:1.5",
+		"law": 2,
+		"pan": 1.5,
+		"panGains": { "left": 8.659560562354934e-17, "right": 1 },
+		"panOutput": 32,
+		"placement": { "channels": 1, "detail": "One channel, right only.", "label": "R" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, right only.", "heard": 1, "label": "R" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 32 }
+			],
+			"fallback": { "gain": 1, "output": 32 }
+		}
+	},
+	{
+		"centreGain": 1,
+		"equalPower": { "left": 1, "right": 0 },
+		"hardGain": 1,
+		"id": "law:2:pan:-2",
+		"law": 2,
+		"pan": -2,
+		"panGains": { "left": 1, "right": 0 },
+		"panOutput": 16,
+		"placement": { "channels": 1, "detail": "One channel, left only.", "label": "L" },
+		"placements": {
+			"opl2": { "detail": "The OPL2 is a mono chip, so every track plays in the centre.", "heard": null, "label": "mono" },
+			"opl3": { "detail": "One channel, left only.", "heard": -1, "label": "L" },
+			"pc-speaker": { "detail": "The PC speaker is one mono speaker, so pan has no effect.", "heard": null, "label": "mono" }
+		},
+		"plan": {
+			"channels": [
+				{ "gain": 1, "output": 16 }
+			],
+			"fallback": { "gain": 1, "output": 16 }
+		}
+	}
+]
