@@ -69,7 +69,7 @@ pub fn round3(value: f64) -> f64 {
 }
 
 fn clamp(value: f64) -> f64 {
-    value.max(-1.0).min(1.0)
+    value.clamp(-1.0, 1.0)
 }
 
 fn fraction(value: f64) -> f64 {
