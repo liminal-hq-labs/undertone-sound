@@ -5,7 +5,7 @@
 
 [package]
 name = "undertone-dsp"
-description = "Fizz-agnostic DSP voices and graph for Undertone, rendered natively and to WebAssembly"
+description = "Undertone's voices, Web Audio graph and in-house renderer in Rust, for native and WebAssembly"
 edition.workspace = true
 license.workspace = true
 version.workspace = true
@@ -15,3 +15,8 @@ publish.workspace = true
 
 [lints]
 workspace = true
+
+[dependencies]
+undertone-mini = { path = "../undertone-mini" }
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
+indexmap = { version = "2", features = ["serde"] }

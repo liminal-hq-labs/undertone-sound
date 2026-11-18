@@ -1,0 +1,22 @@
+# Manifest for the `undertone-mini` crate.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+[package]
+name = "undertone-mini"
+description = "Undertone's mini-notation in Rust: the parser, pattern combinators and exact fraction time, plus JavaScript number semantics"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+
+[dev-dependencies]
+serde_json = { version = "1", features = ["float_roundtrip"] }

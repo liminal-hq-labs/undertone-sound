@@ -23,7 +23,8 @@ Shared Rust sound core for Undertone.
 |---|---|---|
 | `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Working: header, decoder and stepper, validator, text twin, `alloc` writer and `std` importers and re-timing. Not yet run against real files or on hardware |
 | `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation | Empty shell |
-| `undertone-dsp` | Voices and node graph, native and WebAssembly | Empty shell |
+| `undertone-mini` | Undertone's mini-notation: parser, pattern combinators and exact fractions, plus JavaScript number semantics (`js`) | Carved from the studio; passes the recorded `fixtures/mini/` cases |
+| `undertone-dsp` | Voices, the Web Audio graph Undertone books, and an in-house renderer, offline or streaming, native and WebAssembly | Carved from the studio; `LogGraph` matches the recorded `fixtures/undertone/graph.json` byte for byte and the engine streams in any block size. Compiles for `wasm32-unknown-unknown`; no bindings yet |
 | `undertone-sound` | Song model and compiler | Empty shell |
 
 ## Behaviour

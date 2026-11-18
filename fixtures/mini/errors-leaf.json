@@ -1,0 +1,98 @@
+[
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"d4 h4\": \"h4\" is not a note name such as \"d4\", \"f#3\" or \"bb2\"", "position": 3 },
+		"from": "not a note name",
+		"group": "errors-leaf",
+		"id": "errors-leaf/001",
+		"leaf": "pitch",
+		"pattern": "d4 h4"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"hello\": \"hello\" is not a note name such as \"d4\", \"f#3\" or \"bb2\"", "position": 0 },
+		"from": "a word that is not a note",
+		"group": "errors-leaf",
+		"id": "errors-leaf/002",
+		"leaf": "pitch",
+		"pattern": "hello"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"kick\": \"kick\" is not a note name such as \"d4\", \"f#3\" or \"bb2\"", "position": 0 },
+		"from": "a drum on a pitched track",
+		"group": "errors-leaf",
+		"id": "errors-leaf/003",
+		"leaf": "pitch",
+		"pattern": "kick"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"c-1\": \"c-1\" is out of range (c0 to c9)", "position": 0 },
+		"from": "out of range low",
+		"group": "errors-leaf",
+		"id": "errors-leaf/004",
+		"leaf": "pitch",
+		"pattern": "c-1"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 0 in \"c#9\": \"c#9\" is out of range (c0 to c9)", "position": 0 },
+		"from": "out of range high",
+		"group": "errors-leaf",
+		"id": "errors-leaf/005",
+		"leaf": "pitch",
+		"pattern": "c#9"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"d4 b-1\": \"b-1\" is out of range (c0 to c9)", "position": 3 },
+		"from": "out of range low, second word",
+		"group": "errors-leaf",
+		"id": "errors-leaf/006",
+		"leaf": "pitch",
+		"pattern": "d4 b-1"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 5 in \"kick d4\": \"d4\" is not a drum piece (crash, openhat, hat, clap, rim, snare, tom, kick)", "position": 5 },
+		"from": "a pitch on a drum track",
+		"group": "errors-leaf",
+		"id": "errors-leaf/007",
+		"leaf": "drum",
+		"pattern": "kick d4"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 6 in \"snare kik\": \"kik\" is not a drum piece (crash, openhat, hat, clap, rim, snare, tom, kick)", "position": 6 },
+		"from": "a misspelt drum",
+		"group": "errors-leaf",
+		"id": "errors-leaf/008",
+		"leaf": "drum",
+		"pattern": "snare kik"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 7 in \"d4 [f4 zz]\": \"zz\" is not a note name such as \"d4\", \"f#3\" or \"bb2\"", "position": 7 },
+		"from": "a leaf error inside brackets",
+		"group": "errors-leaf",
+		"id": "errors-leaf/009",
+		"leaf": "pitch",
+		"pattern": "d4 [f4 zz]"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 4 in \"<d4 zz>\": \"zz\" is not a note name such as \"d4\", \"f#3\" or \"bb2\"", "position": 4 },
+		"from": "a leaf error inside an alternation",
+		"group": "errors-leaf",
+		"id": "errors-leaf/010",
+		"leaf": "pitch",
+		"pattern": "<d4 zz>"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 5 in \"d4*2 zz\": \"zz\" is not a note name such as \"d4\", \"f#3\" or \"bb2\"", "position": 5 },
+		"from": "a leaf error after a modifier",
+		"group": "errors-leaf",
+		"id": "errors-leaf/011",
+		"leaf": "pitch",
+		"pattern": "d4*2 zz"
+	},
+	{
+		"error": { "message": "Mini-notation error at position 3 in \"d4 é zz\": unexpected \"é\"", "position": 3 },
+		"from": "a leaf error after a multi-byte word",
+		"group": "errors-leaf",
+		"id": "errors-leaf/012",
+		"leaf": "pitch",
+		"pattern": "d4 é zz"
+	}
+]
