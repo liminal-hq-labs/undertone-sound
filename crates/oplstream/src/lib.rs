@@ -11,6 +11,8 @@
 
 #![no_std]
 
+#[cfg(feature = "alloc")]
+extern crate alloc;
 #[cfg(test)]
 extern crate std;
 
@@ -21,7 +23,11 @@ mod examples;
 mod fuzz;
 mod header;
 mod validate;
+#[cfg(feature = "alloc")]
+mod writer;
 
 pub use command::{Command, DecodeError, DecodeErrorKind, Decoder, Step, Stepper, TickState};
 pub use header::{Chip, HEADER_LEN, Header, HeaderError, MAGIC, VERSION_MAJOR, VERSION_MINOR};
 pub use validate::{ValidationError, channel_of, validate};
+#[cfg(feature = "alloc")]
+pub use writer::{WriteError, Writer};
