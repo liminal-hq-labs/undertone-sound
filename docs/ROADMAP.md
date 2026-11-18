@@ -23,13 +23,15 @@ The plan for Undertone Sound, kept current in the repository. Decisions live in 
 Each crate moves from the studio with its history and fixtures, behind a version gate agreed with the studio. The studio depends on these crates by path or git dependency with a `[patch]` until then, and no wire type or song format changes before the gate.
 
 - [ ] `undertone-opl`: OPL sequencing and allocation (from the studio's `fizz-audio-chips`)
-- [ ] `undertone-dsp`: the in-house DSP and graph port (from `fizz-audio-undertone`)
+- [x] `undertone-mini`: Undertone's mini-notation, exact fractions and JavaScript number semantics (from `fizz-audio-mini`, with `js` from `fizz-audio-song`), with its recorded fixtures
+- [x] `undertone-dsp`: the in-house DSP and graph port (the Fizz-agnostic core of `fizz-audio-undertone`), with its recorded graph fixture. The studio glue and the `web-audio-api` comparison harness stay in the studio
 - [ ] `undertone-sound`: the song model and compiler (from `fizz-audio-song`)
 - [ ] First end-to-end proof: Title Theme to OPX OPL2 and OPL3, played by Fizz 2's own player
 
 ## Later
 
-- [ ] WebAssembly build and parity canary against the TypeScript library
+- [x] `undertone-mini` and `undertone-dsp` compile for `wasm32-unknown-unknown` (no bindings yet)
+- [ ] WebAssembly bindings, build and parity canary against the TypeScript library
 - [ ] Publishing plan: names, versions, release flow, then crates.io
 
 ## Not here
