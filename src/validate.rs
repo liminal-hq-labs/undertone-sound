@@ -54,6 +54,9 @@ pub enum ProblemCode {
     UnknownInstrument,
     BadVolume,
     BadPan,
+    BadPriority,
+    /// A field the format does not define, which is ignored.
+    UnknownField,
     BadSections,
     BadBars,
     BadArrangement,
@@ -202,6 +205,89 @@ fn member<'a>(object: &'a Map<String, Value>, key: &str) -> Option<&'a Value> {
 
 const ID_MESSAGE: &str = "ids are lower-case letters, digits and hyphens";
 
+/// The fields the format defines for each kind of object, so a field it does not define (a note's
+/// `bend`, a section's `tempo`) is warned about rather than dropped without a word. The same lists
+/// are in `apps/studio/src/song/validate.ts`, and `docs/SONG-FORMAT.md` documents them.
+const SONG_FIELDS: &[&str] = &[
+    "format",
+    "version",
+    "title",
+    "tempo",
+    "beatsPerBar",
+    "stepsPerBeat",
+    "key",
+    "engine",
+    "instruments",
+    "tracks",
+    "sections",
+    "arrangement",
+    "clips",
+    "messages",
+    "mix",
+];
+const KEY_FIELDS: &[&str] = &["root", "scale"];
+const INSTRUMENT_FIELDS: &[&str] = &["name", "preset", "engines"];
+const TRACK_FIELDS: &[&str] = &[
+    "id",
+    "name",
+    "role",
+    "instrument",
+    "volume",
+    "pan",
+    "mute",
+    "solo",
+    "priority",
+];
+const SECTION_FIELDS: &[&str] = &["id", "name", "bars"];
+const SLOT_FIELDS: &[&str] = &["active", "takes"];
+const TAKE_FIELDS: &[&str] = &[
+    "id", "name", "by", "notes", "mini", "pan", "comment", "revision",
+];
+const NOTE_FIELDS: &[&str] = &["at", "pitch", "len", "vel"];
+const MESSAGE_FIELDS: &[&str] = &["by", "text", "at", "done"];
+const MIX_FIELDS: &[&str] = &["panLaw"];
+const REVISION_FIELDS: &[&str] = &[
+    "of", "n", "request", "model", "settings", "steps", "current",
+];
+const REVISION_SETTINGS_FIELDS: &[&str] = &["think", "temperature", "bars"];
+const STEP_FIELDS: &[&str] = &["id", "kind", "at", "comment", "notes", "mini", "bars"];
+const BAR_FIELDS: &[&str] = &["bar", "notes"];
+
+/// Warns about each key of `object` that is not in `known`: it does nothing, and a typo or a
+/// field from another format would otherwise pass without a word. `what` names the kind of
+/// object in the message (`note`), and `path` is where it is (`""` for the song itself).
+fn check_fields(
+    object: &Map<String, Value>,
+    known: &[&str],
+    what: &str,
+    path: &str,
+    problems: &mut Problems,
+) {
+    for key in object.keys() {
+        if known.contains(&key.as_str()) {
+            continue;
+        }
+        let at = if path.is_empty() {
+            key.clone()
+        } else {
+            format!("{path}.{key}")
+        };
+        let article = if what.starts_with(['a', 'e', 'i', 'o', 'u']) {
+            "an"
+        } else {
+            "a"
+        };
+        problems.warning(
+            ProblemCode::UnknownField,
+            at,
+            format!(
+                "\"{key}\" is not {article} {what} field and is ignored (the {what} fields are {})",
+                known.join(", ")
+            ),
+        );
+    }
+}
+
 fn word_list<T: Copy>(all: &[T], word: impl Fn(T) -> &'static str) -> String {
     all.iter()
         .map(|item| word(*item))
@@ -221,6 +307,7 @@ pub fn validate_song(raw: &Value) -> Validation {
         };
     };
 
+    check_fields(raw, SONG_FIELDS, "song", "", &mut problems);
     if member(raw, "format").and_then(Value::as_str) != Some(SONG_FORMAT) {
         problems.error(
             ProblemCode::WrongFormat,
@@ -271,6 +358,7 @@ pub fn validate_song(raw: &Value) -> Validation {
             "must be { \"root\": \"d\", \"scale\": \"minor\" }",
         ),
         Some(key) => {
+            check_fields(key, KEY_FIELDS, "key", "key", &mut problems);
             if !member(key, "root")
                 .and_then(Value::as_str)
                 .is_some_and(|root| pitch_class(root).is_some())
@@ -329,6 +417,13 @@ pub fn validate_song(raw: &Value) -> Validation {
                     problems.error(ProblemCode::NotAnObject, &path, "must be an object");
                     continue;
                 };
+                check_fields(
+                    instrument,
+                    INSTRUMENT_FIELDS,
+                    "instrument",
+                    &path,
+                    &mut problems,
+                );
                 instrument_ids.insert(id);
                 if member(instrument, "name").and_then(Value::as_str).is_none() {
                     problems.error(
@@ -393,6 +488,7 @@ pub fn validate_song(raw: &Value) -> Validation {
                     problems.error(ProblemCode::NotAnObject, path, "must be an object");
                     continue;
                 };
+                check_fields(track, TRACK_FIELDS, "track", &path, &mut problems);
                 let Some(id) = member(track, "id")
                     .and_then(Value::as_str)
                     .filter(|id| is_valid_id(id))
@@ -460,6 +556,15 @@ pub fn validate_song(raw: &Value) -> Validation {
                         "must be from -1 to 1",
                     );
                 }
+                if member(track, "priority").is_some_and(|value| {
+                    !as_integer(value).is_some_and(|n| (0.0..=9.0).contains(&n))
+                }) {
+                    problems.error(
+                        ProblemCode::BadPriority,
+                        format!("{path}.priority"),
+                        "must be a whole number from 0 to 9 (leave it out to use the role's)",
+                    );
+                }
             }
         }
     }
@@ -473,6 +578,7 @@ pub fn validate_song(raw: &Value) -> Validation {
                     problems.error(ProblemCode::NotAnObject, path, "must be an object");
                     continue;
                 };
+                check_fields(section, SECTION_FIELDS, "section", &path, &mut problems);
                 let Some(id) = member(section, "id")
                     .and_then(Value::as_str)
                     .filter(|id| is_valid_id(id))
@@ -597,6 +703,7 @@ pub fn validate_song(raw: &Value) -> Validation {
                     problems.error(ProblemCode::NotAnObject, path, "must be an object");
                     continue;
                 };
+                check_fields(message, MESSAGE_FIELDS, "message", &path, &mut problems);
                 if !member(message, "by")
                     .and_then(Value::as_str)
                     .is_some_and(|by| Author::from_word(by).is_some())
@@ -633,6 +740,7 @@ pub fn validate_song(raw: &Value) -> Validation {
                 "must be an object such as { \"panLaw\": -3 }",
             ),
             Some(mix) => {
+                check_fields(mix, MIX_FIELDS, "mix", "mix", &mut problems);
                 if let Some(pan_law) = member(mix, "panLaw") {
                     if !as_number(pan_law).is_some_and(|n| (-6.0..=0.0).contains(&n)) {
                         problems.error(
@@ -687,6 +795,7 @@ fn check_slot(
         );
         return;
     };
+    check_fields(slot, SLOT_FIELDS, "clip slot", path, problems);
     let Some(takes) = member(slot, "takes").and_then(Value::as_array) else {
         problems.error(
             ProblemCode::BadTakes,
@@ -704,6 +813,7 @@ fn check_slot(
             problems.error(ProblemCode::NotAnObject, take_path, "must be an object");
             continue;
         };
+        check_fields(take, TAKE_FIELDS, "take", &take_path, problems);
         let Some(id) = member(take, "id")
             .and_then(Value::as_str)
             .filter(|id| is_valid_id(id))
@@ -824,6 +934,7 @@ fn check_revision<'a>(
         problems.error(ProblemCode::BadRevision, path, "must be an object");
         return None;
     };
+    check_fields(revision, REVISION_FIELDS, "revision", path, problems);
     let of = member(revision, "of").and_then(Value::as_str);
     if of.is_none() {
         problems.error(
@@ -909,6 +1020,13 @@ fn check_revision_settings(settings: &Value, path: &str, bars: f64, problems: &m
         problems.error(ProblemCode::BadRevision, path, "must be an object");
         return;
     };
+    check_fields(
+        settings,
+        REVISION_SETTINGS_FIELDS,
+        "revision settings",
+        path,
+        problems,
+    );
     if member(settings, "think").is_some_and(|think| !think.is_boolean()) {
         problems.error(
             ProblemCode::BadRevision,
@@ -955,6 +1073,7 @@ fn check_step<'a>(
         problems.error(ProblemCode::NotAnObject, path, "must be an object");
         return None;
     };
+    check_fields(step, STEP_FIELDS, "revision step", path, problems);
     let id = member(step, "id")
         .and_then(Value::as_str)
         .filter(|id| is_valid_id(id));
@@ -1057,6 +1176,7 @@ fn check_step<'a>(
                         );
                         continue;
                     };
+                    check_fields(entry, BAR_FIELDS, "revision bar", &entry_path, problems);
                     if !member(entry, "bar")
                         .and_then(as_integer)
                         .is_some_and(|bar| bar >= 1.0 && bar <= bars)
@@ -1139,6 +1259,7 @@ fn check_note(note: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
         );
         return;
     };
+    check_fields(note, NOTE_FIELDS, "note", path, problems);
     let at = member(note, "at").and_then(as_integer);
     if !at.is_some_and(|at| at >= 0.0 && at < steps) {
         problems.error(
@@ -1212,4 +1333,90 @@ pub fn check_pitch_word(word: &str, drums: bool) -> Result<(), String> {
         return Err(format!("\"{word}\" is out of range (c0 to c9)"));
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    fn song(change: impl FnOnce(&mut Value)) -> Value {
+        let mut song = json!({
+            "format": "fizz-audio-studio/song", "version": 1, "title": "T", "tempo": 120,
+            "beatsPerBar": 4, "stepsPerBeat": 4, "key": { "root": "c", "scale": "major" },
+            "engine": "opl2",
+            "instruments": { "lead": { "name": "Lead", "preset": "lead" } },
+            "tracks": [{
+                "id": "melody", "name": "Melody", "role": "melody", "instrument": "lead",
+                "volume": 0.8, "pan": 0, "priority": 5
+            }],
+            "sections": [{ "id": "a", "name": "A", "bars": 1 }],
+            "arrangement": ["a"],
+            "clips": { "melody": { "a": { "active": "a", "takes": [{
+                "id": "a", "name": "A", "by": "you",
+                "notes": [{ "at": 0, "pitch": "c4", "len": 2 }]
+            }] } } },
+            "messages": []
+        });
+        change(&mut song);
+        song
+    }
+
+    #[test]
+    fn a_field_the_format_does_not_define_is_a_warning_and_the_song_still_reads() {
+        let raw = song(|song| {
+            song["clips"]["melody"]["a"]["takes"][0]["notes"][0]["bend"] = json!([[0, 2]]);
+            song["sections"][0]["tempo"] = json!(90);
+            song["extra"] = json!(true);
+        });
+        let found = validate_song(&raw);
+        assert!(found.song.is_some() && !found.has_errors());
+        let seen: Vec<(&str, &str)> = found
+            .problems
+            .iter()
+            .map(|p| (p.path.as_str(), p.message.as_str()))
+            .collect();
+        assert_eq!(
+            seen,
+            [
+                ("extra", "\"extra\" is not a song field and is ignored (the song fields are format, version, title, tempo, beatsPerBar, stepsPerBeat, key, engine, instruments, tracks, sections, arrangement, clips, messages, mix)"),
+                ("sections[0].tempo", "\"tempo\" is not a section field and is ignored (the section fields are id, name, bars)"),
+                ("clips.melody.a.takes[0].notes[0].bend", "\"bend\" is not a note field and is ignored (the note fields are at, pitch, len, vel)"),
+            ]
+        );
+        assert!(found
+            .problems
+            .iter()
+            .all(|p| p.severity == Severity::Warning && p.code == ProblemCode::UnknownField));
+        // The unknown fields stay in the document, so a file keeps what it carried.
+        assert_eq!(found.document.unwrap()["extra"], json!(true));
+    }
+
+    #[test]
+    fn an_instrument_takes_an_article_and_defined_fields_draw_nothing() {
+        let raw = song(|song| {
+            song["instruments"]["lead"]["gain"] = json!(1);
+            song["mix"] = json!({ "panLaw": -3 });
+        });
+        let found = validate_song(&raw);
+        assert_eq!(found.problems.len(), 1);
+        assert!(found.problems[0]
+            .message
+            .starts_with("\"gain\" is not an instrument field"));
+    }
+
+    #[test]
+    fn a_track_priority_is_a_whole_number_from_0_to_9() {
+        for good in [json!(0), json!(9), json!(9.0)] {
+            let found = validate_song(&song(|s| s["tracks"][0]["priority"] = good.clone()));
+            assert!(found.problems.is_empty(), "{good}");
+            assert!(found.song.is_some(), "{good}");
+        }
+        for bad in [json!(10), json!(-1), json!(4.5), json!("5"), json!(null)] {
+            let found = validate_song(&song(|s| s["tracks"][0]["priority"] = bad.clone()));
+            assert_eq!(found.problems.len(), 1, "{bad}");
+            assert_eq!(found.problems[0].path, "tracks[0].priority");
+            assert_eq!(found.problems[0].code, ProblemCode::BadPriority);
+        }
+    }
 }
