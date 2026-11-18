@@ -1,0 +1,3572 @@
+[
+	{
+		"bars": null,
+		"from": "every node kind: FM, a plain and a filtered oscillator, a shaped wave, two orbits, a kit",
+		"graph": {
+			"buffers": [
+				{
+					"channels": ["rms 0.155751042 peak 0.984067917 head -0.765812755 0.748852134 0.0734420791 0.955840051", "rms 0.155190644 peak 0.98520416 head 0.83404392 -0.0657028258 0.573673248 0.827252686"],
+					"id": "b0",
+					"length": 73600,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.155378931 peak 0.986396372 head -0.545677066 0.239375606 0.0747069195 0.345956385", "rms 0.15586705 peak 0.979857981 head -0.657481611 0.294778109 0.92996645 -0.289943963"],
+					"id": "b1",
+					"length": 53867,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.577051024 peak 0.999815106 head 0.813391924 0.244594991 -0.286028177 -0.666594148"],
+					"id": "b2",
+					"length": 19248,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.574842751 peak 0.999749541 head -0.224977404 0.262908965 -0.0486837551 -0.699899554"],
+					"id": "b3",
+					"length": 2928,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.579585105 peak 0.999676585 head -0.701359928 0.920100868 0.0272089876 0.926123798"],
+					"id": "b4",
+					"length": 10128,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.155178446 peak 0.977138162 head -0.519331098 -0.170128837 -0.428254187 0.288126588", "rms 0.154128615 peak 0.984415948 head 0.380290776 -0.545430779 -0.612846792 0.839788258"],
+					"id": "b5",
+					"length": 53867,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.575839007 peak 0.999989331 head 0.146207914 0.717687607 -0.286042929 -0.917202413"],
+					"id": "b6",
+					"length": 8736,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.577795674 peak 0.999956906 head -0.668118119 0.82381767 0.180673063 -0.453145981"],
+					"id": "b7",
+					"length": 38448,
+					"sampleRate": 48000
+				}
+			],
+			"channels": 2,
+			"counts": { "biquad": 15, "bufferSource": 5, "compressor": 1, "convolver": 2, "delay": 2, "destination": 1, "gain": 49, "oscillator": 19, "stereoPanner": 18 },
+			"length": 192000,
+			"nodes": [
+				{ "id": "n0", "kind": "destination" },
+				{
+					"id": "n1",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 1 @0"]
+					},
+					"to": ["n2"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n2",
+					"kind": "compressor",
+					"params": {
+						"attack": ["set 0.003 @0"],
+						"knee": ["set 0 @0"],
+						"ratio": ["set 20 @0"],
+						"release": ["set 0.1 @0"],
+						"threshold": ["set -2 @0"]
+					},
+					"to": ["n3"]
+				},
+				{
+					"id": "n3",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.877000821 @0"]
+					},
+					"to": ["n0"]
+				},
+				{
+					"id": "n4",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.2048 @0.008", "lin 0.106496 @0.128", "set 0.106496 @0.375", "lin 0 @0.535"]
+					},
+					"to": ["n9"]
+				},
+				{
+					"id": "n5",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 659.255114 @0"]
+					},
+					"start": [0],
+					"stop": [0.555],
+					"to": ["n4"],
+					"type": "sine"
+				},
+				{
+					"id": "n6",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 1318.51023 @0"]
+					},
+					"start": [0],
+					"stop": [0.555],
+					"to": ["n7"],
+					"type": "sine"
+				},
+				{
+					"id": "n7",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 2241.46739 @0"]
+					},
+					"to": ["n8"]
+				},
+				{
+					"id": "n8",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.0001 @0", "exp 1 @0.004", "exp 0.14 @0.164", "set 0.14 @0.375", "exp 0.0001 @0.475"]
+					},
+					"to": ["n5.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n9",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set -0.5 @0"]
+					},
+					"to": ["n1", "n16"]
+				},
+				{
+					"id": "n10",
+					"kind": "gain",
+					"to": ["n11"]
+				},
+				{
+					"buffer": "b5",
+					"channelCountMode": "clamped-max",
+					"id": "n11",
+					"kind": "convolver",
+					"to": ["n1"]
+				},
+				{
+					"id": "n12",
+					"kind": "gain",
+					"to": ["n13"]
+				},
+				{
+					"id": "n13",
+					"kind": "delay",
+					"maxDelayTime": 5,
+					"params": {
+						"delayTime": ["set 0.375 @0"]
+					},
+					"to": ["n14", "n15"]
+				},
+				{
+					"id": "n14",
+					"kind": "gain",
+					"to": ["n1"]
+				},
+				{
+					"id": "n15",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @0"]
+					},
+					"to": ["n13"]
+				},
+				{
+					"id": "n16",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.12 @0"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n17",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.48 @0.005", "lin 0.384 @0.305", "set 0.384 @1", "lin 0 @1.1"]
+					},
+					"to": ["n19"]
+				},
+				{
+					"id": "n18",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 55 @0"]
+					},
+					"start": [0],
+					"stop": [1.12],
+					"to": ["n17"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n19",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n20",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.088 @0.4", "lin 0.0704 @0.7", "set 0.0704 @2", "lin 0 @2.9"]
+					},
+					"to": ["n25"]
+				},
+				{
+					"id": "n21",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 220 @0"]
+					},
+					"start": [0],
+					"stop": [2.92],
+					"to": ["n20"],
+					"type": "sine"
+				},
+				{
+					"id": "n22",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 440 @0"]
+					},
+					"start": [0],
+					"stop": [2.92],
+					"to": ["n23"],
+					"type": "sine"
+				},
+				{
+					"id": "n23",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 264 @0"]
+					},
+					"to": ["n24"]
+				},
+				{
+					"id": "n24",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.0001 @0", "exp 1 @0.5", "exp 0.5 @1.1", "set 0.5 @2", "exp 0.0001 @2.8"]
+					},
+					"to": ["n21.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n25",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1", "n26"]
+				},
+				{
+					"id": "n26",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.35 @0"]
+					},
+					"to": ["n10"]
+				},
+				{
+					"id": "n27",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.088 @0.4", "lin 0.0704 @0.7", "set 0.0704 @2", "lin 0 @2.9"]
+					},
+					"to": ["n32"]
+				},
+				{
+					"id": "n28",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 261.625565 @0"]
+					},
+					"start": [0],
+					"stop": [2.92],
+					"to": ["n27"],
+					"type": "sine"
+				},
+				{
+					"id": "n29",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @0"]
+					},
+					"start": [0],
+					"stop": [2.92],
+					"to": ["n30"],
+					"type": "sine"
+				},
+				{
+					"id": "n30",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 313.950678 @0"]
+					},
+					"to": ["n31"]
+				},
+				{
+					"id": "n31",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.0001 @0", "exp 1 @0.5", "exp 0.5 @1.1", "set 0.5 @2", "exp 0.0001 @2.8"]
+					},
+					"to": ["n28.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n32",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1", "n33"]
+				},
+				{
+					"id": "n33",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.35 @0"]
+					},
+					"to": ["n10"]
+				},
+				{
+					"id": "n34",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.76 @0.001", "lin 0 @0.281", "lin 0 @0.331"]
+					},
+					"to": ["n36"]
+				},
+				{
+					"id": "n35",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 195.997718 @0", "exp 48.9994295 @0.05"]
+					},
+					"start": [0],
+					"stop": [0.351],
+					"to": ["n34"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n36",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n37",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.25", "lin 0.2016 @0.27", "lin 0.14112 @0.47", "set 0.14112 @0.75", "lin 0 @1.05"]
+					},
+					"to": ["n45"]
+				},
+				{
+					"id": "n38",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 783.990872 @0.25", "exp 391.995436 @0.3"]
+					},
+					"start": [0.25],
+					"stop": [1.07],
+					"to": ["n41"],
+					"type": "custom",
+					"wave": "w0"
+				},
+				{
+					"id": "n39",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 2 @0.25"]
+					},
+					"start": [0.25],
+					"stop": [1.07],
+					"to": ["n40"],
+					"type": "sine"
+				},
+				{
+					"id": "n40",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 600 @0.25"]
+					},
+					"to": ["n41.frequency", "n42.frequency", "n43.frequency", "n44.frequency"]
+				},
+				{
+					"id": "n41",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1000 @0.25"]
+					},
+					"to": ["n42"],
+					"type": "allpass"
+				},
+				{
+					"id": "n42",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1000 @0.25"]
+					},
+					"to": ["n43"],
+					"type": "allpass"
+				},
+				{
+					"id": "n43",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1000 @0.25"]
+					},
+					"to": ["n44"],
+					"type": "allpass"
+				},
+				{
+					"id": "n44",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1000 @0.25"]
+					},
+					"to": ["n37"],
+					"type": "allpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n45",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set -0.8 @0.25"]
+					},
+					"to": ["n1", "n52", "n53"]
+				},
+				{
+					"id": "n46",
+					"kind": "gain",
+					"to": ["n47"]
+				},
+				{
+					"buffer": "b1",
+					"channelCountMode": "clamped-max",
+					"id": "n47",
+					"kind": "convolver",
+					"to": ["n1"]
+				},
+				{
+					"id": "n48",
+					"kind": "gain",
+					"to": ["n49"]
+				},
+				{
+					"id": "n49",
+					"kind": "delay",
+					"maxDelayTime": 5,
+					"params": {
+						"delayTime": ["set 0.25 @0.25"]
+					},
+					"to": ["n50", "n51"]
+				},
+				{
+					"id": "n50",
+					"kind": "gain",
+					"to": ["n1"]
+				},
+				{
+					"id": "n51",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.4 @0.25"]
+					},
+					"to": ["n49"]
+				},
+				{
+					"id": "n52",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.2 @0.25"]
+					},
+					"to": ["n46"]
+				},
+				{
+					"id": "n53",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.2 @0.25"]
+					},
+					"to": ["n48"]
+				},
+				{
+					"id": "n54",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.25", "lin 0.144 @0.251", "lin 0 @0.571", "lin 0 @0.651", "cancel @0.375", "set 0.0882 @0.375", "target 0 @0.375 tau 0.001"]
+					},
+					"to": ["n57"]
+				},
+				{
+					"buffer": "b2",
+					"id": "n55",
+					"kind": "bufferSource",
+					"start": [0.25],
+					"stop": [0.671, 0.38],
+					"to": ["n56"]
+				},
+				{
+					"id": "n56",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @0.25"]
+					},
+					"to": ["n54"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n57",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.25"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n58",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.375", "lin 0.16 @0.376", "lin 0 @0.416", "lin 0 @0.436"]
+					},
+					"to": ["n61"]
+				},
+				{
+					"buffer": "b3",
+					"id": "n59",
+					"kind": "bufferSource",
+					"start": [0.375],
+					"stop": [0.456],
+					"to": ["n60"]
+				},
+				{
+					"id": "n60",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 7000 @0.375"]
+					},
+					"to": ["n58"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n61",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.375"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n62",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.5", "lin 0.1536 @0.508", "lin 0.079872 @0.628", "set 0.079872 @0.75", "lin 0 @0.91"]
+					},
+					"to": ["n67"]
+				},
+				{
+					"id": "n63",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 880 @0.5"]
+					},
+					"start": [0.5],
+					"stop": [0.93],
+					"to": ["n62"],
+					"type": "sine"
+				},
+				{
+					"id": "n64",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 1760 @0.5"]
+					},
+					"start": [0.5],
+					"stop": [0.93],
+					"to": ["n65"],
+					"type": "sine"
+				},
+				{
+					"id": "n65",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 2992 @0.5"]
+					},
+					"to": ["n66"]
+				},
+				{
+					"id": "n66",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.0001 @0.5", "exp 1 @0.504", "exp 0.14 @0.664", "set 0.14 @0.75", "exp 0.0001 @0.85"]
+					},
+					"to": ["n63.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n67",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set -0.5 @0.5"]
+					},
+					"to": ["n1", "n68"]
+				},
+				{
+					"id": "n68",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.12 @0.5"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n69",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.5", "lin 0.144 @0.501", "lin 0 @0.661", "lin 0 @0.711"]
+					},
+					"to": ["n72"]
+				},
+				{
+					"buffer": "b4",
+					"id": "n70",
+					"kind": "bufferSource",
+					"start": [0.5],
+					"stop": [0.731],
+					"to": ["n71"]
+				},
+				{
+					"id": "n71",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1200 @0.5"]
+					},
+					"to": ["n69"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n72",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.5"]
+					},
+					"to": ["n1", "n73"]
+				},
+				{
+					"id": "n73",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.12 @0.5"]
+					},
+					"to": ["n10"]
+				},
+				{
+					"id": "n74",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.5", "lin 0.16 @0.501", "lin 0 @0.581", "lin 0 @0.611"]
+					},
+					"to": ["n76"]
+				},
+				{
+					"id": "n75",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 246.941651 @0.5", "exp 164.813778 @0.53"]
+					},
+					"start": [0.5],
+					"stop": [0.631],
+					"to": ["n74"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n76",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n77",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.75", "lin 0.17 @0.752", "lin 0 @0.872", "lin 0 @0.932"]
+					},
+					"to": ["n81"]
+				},
+				{
+					"buffer": "b6",
+					"id": "n78",
+					"kind": "bufferSource",
+					"start": [0.75],
+					"stop": [0.952],
+					"to": ["n79"]
+				},
+				{
+					"id": "n79",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 3200 @0.75", "set 3200 @0.75", "set 3200 @0.75"]
+					},
+					"to": ["n80"],
+					"type": "lowpass"
+				},
+				{
+					"id": "n80",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 900 @0.75"]
+					},
+					"to": ["n77"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n81",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.75"]
+					},
+					"to": ["n1", "n82"]
+				},
+				{
+					"id": "n82",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.25 @0.75"]
+					},
+					"to": ["n10"]
+				},
+				{
+					"id": "n83",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1", "lin 0.144 @1.002", "lin 0 @1.702", "lin 0 @2.602"]
+					},
+					"to": ["n88"]
+				},
+				{
+					"id": "n84",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 1046.50226 @1"]
+					},
+					"start": [1],
+					"stop": [2.622],
+					"to": ["n83"],
+					"type": "sine"
+				},
+				{
+					"id": "n85",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 3662.75791 @1"]
+					},
+					"start": [1],
+					"stop": [2.622],
+					"to": ["n86"],
+					"type": "sine"
+				},
+				{
+					"id": "n86",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 5232.51131 @1"]
+					},
+					"to": ["n87"]
+				},
+				{
+					"id": "n87",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.0001 @1", "set 1 @1", "exp 0.0001 @1.35", "exp 0.0001 @1.55"]
+					},
+					"to": ["n84.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n88",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0.6 @1"]
+					},
+					"to": ["n1", "n89"]
+				},
+				{
+					"id": "n89",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @1"]
+					},
+					"to": ["n10"]
+				},
+				{
+					"id": "n90",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1", "lin 0.168 @1.005", "lin 0.0756 @1.125", "set 0.0756 @1.25", "lin 0 @1.33"]
+					},
+					"to": ["n94"]
+				},
+				{
+					"id": "n91",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 110 @1"]
+					},
+					"start": [1],
+					"stop": [1.35],
+					"to": ["n92"],
+					"type": "sawtooth"
+				},
+				{
+					"id": "n92",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 900 @1", "lin 2100 @1.01", "lin 2100 @1.21", "set 2100 @1.25"]
+					},
+					"to": ["n93"],
+					"type": "lowpass"
+				},
+				{
+					"id": "n93",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 80 @1"]
+					},
+					"to": ["n90"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n94",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0.25 @1"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n95",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1", "lin 0.56 @1.001", "lin 0 @1.321", "lin 0 @1.381"]
+					},
+					"to": ["n97"]
+				},
+				{
+					"id": "n96",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 110 @1", "exp 73.416192 @1.08"]
+					},
+					"start": [1],
+					"stop": [1.401],
+					"to": ["n95"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n97",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n98",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.25", "lin 0.112 @1.251", "lin 0 @1.276", "lin 0 @1.286"]
+					},
+					"to": ["n101"]
+				},
+				{
+					"id": "n99",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 1318.51023 @1.25"]
+					},
+					"start": [1.25],
+					"stop": [1.306],
+					"to": ["n100"],
+					"type": "square"
+				},
+				{
+					"id": "n100",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 3000 @1.25", "set 3000 @1.25", "set 3000 @1.25"]
+					},
+					"to": ["n98"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n101",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.25"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n102",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.5", "lin 0.168 @1.505", "lin 0.0756 @1.625", "set 0.0756 @2", "lin 0 @2.08"]
+					},
+					"to": ["n106"]
+				},
+				{
+					"id": "n103",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 82.4068892 @1.5"]
+					},
+					"start": [1.5],
+					"stop": [2.1],
+					"to": ["n104"],
+					"type": "sawtooth"
+				},
+				{
+					"id": "n104",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 900 @1.5", "lin 2100 @1.51", "lin 2100 @1.71", "set 2100 @2"]
+					},
+					"to": ["n105"],
+					"type": "lowpass"
+				},
+				{
+					"id": "n105",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 80 @1.5"]
+					},
+					"to": ["n102"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n106",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0.25 @1.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n107",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.5", "lin 0.16 @1.501", "lin 0 @2.151", "lin 0 @2.301"]
+					},
+					"to": ["n110"]
+				},
+				{
+					"buffer": "b7",
+					"id": "n108",
+					"kind": "bufferSource",
+					"start": [1.5],
+					"stop": [2.321],
+					"to": ["n109"]
+				},
+				{
+					"id": "n109",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 4200 @1.5"]
+					},
+					"to": ["n107"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n110",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.5"]
+					},
+					"to": ["n1", "n111"]
+				},
+				{
+					"id": "n111",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @1.5"]
+					},
+					"to": ["n10"]
+				}
+			],
+			"sampleRate": 48000,
+			"waves": [
+				{
+					"disableNormalization": false,
+					"id": "w0",
+					"imag": "0 0.5 3.57161104e-17 4.33776319e-16 -2.2554618e-17 -5.62334983e-17 8.94808087e-18 6.64155622e-17 -6.86848429e-18 -2.36537425e-18 1.90238637e-17 -1.10012044e-18 -9.75618173e-19 5.54741432e-17 4.74379148e-18 -3.07705828e-17 1.95247513e-17 2.64315969e-17 -1.07323376e-17 -5.71053069e-18 -7.37799777e-18 2.24154365e-17 -1.91145227e-18 -1.89816146e-17 1.07574772e-17 -8.73141414e-18 -8.80972499e-18 8.28307563e-18 -9.15100647e-18 6.24646432e-18 6.68937653e-19 3.84689939e-18 -2.00197561e-19 -9.28683615e-17 6.16589164e-17 4.85338761e-17 4.67297489e-19 -1.6848822e-17 -1.18450278e-18 -7.43778969e-18 6.19678055e-18 5.49453068e-18 2.28418316e-17 3.04402465e-18 3.51172581e-18 -1.04260491e-18 6.26803057e-18 -8.76483886e-18 4.49814861e-18 -1.157182e-17 -6.02180868e-19 -3.86904996e-17 3.20822993e-18 2.01374672e-17 4.27289741e-18 -4.00819961e-18 -1.88948434e-17 -4.04018966e-17 4.60334614e-18 1.1625686e-17 3.23170863e-17 1.55785241e-17 7.8288476e-18 -5.29128247e-18 -4.20948905e-18",
+					"real": "0 5.88914744e-17 -0.212206721 2.61024039e-17 -0.0424414426 1.93061291e-17 -0.0181892607 -4.81460707e-17 -0.010105201 3.9304893e-17 -0.00643062778 2.38243088e-17 -0.00445201155 -3.37801802e-17 -0.00326484162 -3.88743331e-18 -0.00249667303 -2.08769129e-19 -0.00197108393 1.25012782e-17 -0.00159566314 -3.41986144e-17 -0.00131817826 2.6222259e-17 -0.00110728969 -4.05472232e-18 -0.000943265273 -7.14978029e-18 -0.000813176914 -4.24879874e-18 -0.000708266976 -1.41893652e-17 -0.000622431573 2.57966324e-18 -0.000551310775 -3.93889147e-17 -0.000491723127 1.48034079e-17 -0.000441302807 -2.04195043e-17 -0.000398261065 -3.03545672e-17 -0.000361225131 1.99183114e-19 -0.000329127331 3.6096642e-19 -0.000301127118 1.54926809e-17 -0.000276555511 1.27275419e-17 -0.000254874671 9.92035723e-17 -0.000235648287 2.29090897e-17 -0.000218519315 -3.49800102e-19 -0.000203193384 2.97523731e-17 -0.000189426035 -1.03819521e-17 -0.000177012844 -3.48678673e-18 -0.000165781865 1.94841194e-18 -0.000155587593"
+				}
+			]
+		},
+		"id": "voices",
+		"input": "undertone-voices",
+		"render": { "channels": 2, "master": true, "seed": 0, "tail": 2 },
+		"score": {
+			"cps": 0.5,
+			"events": [
+				"tick 0 midi 76 gate 36 level 0.64 pan -0.5 voice v0",
+				"tick 0 midi 33 gate 96 level 0.8 pan 0 voice v1",
+				"tick 0 midi 57 gate 192 level 0.4 pan 0 voice v2",
+				"tick 0 midi 60 gate 192 level 0.4 pan 0 voice v2",
+				"tick 0 note 48.99942949771866 gate 12 level 0.8 pan 0 voice v3",
+				"tick 24 midi 67 gate 48 level 0.56 pan -0.8 voice v4",
+				"tick 24 note c4 gate 12 level 0.8 pan 0 voice v5",
+				"tick 36 note c4 gate 12 level 0.8 pan 0 voice v6",
+				"tick 48 midi 81 gate 24 level 0.48 pan -0.5 voice v0",
+				"tick 48 note c4 gate 12 level 0.8 pan 0 voice v7",
+				"tick 48 note e3 gate 12 level 0.8 pan 0 voice v8",
+				"tick 72 note c4 gate 12 level 0.5 pan 0 voice v9",
+				"tick 96 midi 84 gate 12 level 0.48 pan 0.6 voice v10",
+				"tick 96 midi 45 gate 24 level 0.56 pan 0.25 voice v11",
+				"tick 96 note d2 gate 12 level 0.8 pan 0 voice v12",
+				"tick 120 note e6 gate 12 level 0.8 pan 0 voice v13",
+				"tick 144 midi 40 gate 48 level 0.56 pan 0.25 voice v11",
+				"tick 144 note c4 gate 12 level 0.8 pan 0 voice v14"
+			],
+			"seconds": 2,
+			"voices": [
+				{
+					"attack": 0.008,
+					"decay": 0.12,
+					"delayFeedback": 0.3,
+					"delayLevel": 0.12,
+					"delayTime": 0.375,
+					"fmAttack": 0.004,
+					"fmDecay": 0.16,
+					"fmHarmonicity": 2,
+					"fmIndex": 1.7,
+					"fmRelease": 0.1,
+					"fmSustain": 0.14,
+					"gainLevel": 0.32,
+					"id": "v0",
+					"release": 0.16,
+					"sustain": 0.52
+				},
+				{ "attack": 0.005, "decay": 0.3, "gainLevel": 0.6, "id": "v1", "release": 0.1, "soundType": "sine", "sustain": 0.8 },
+				{
+					"attack": 0.4,
+					"decay": 0.3,
+					"fmAttack": 0.5,
+					"fmDecay": 0.6,
+					"fmHarmonicity": 2,
+					"fmIndex": 0.6,
+					"fmRelease": 0.8,
+					"fmSustain": 0.5,
+					"gainLevel": 0.22,
+					"id": "v2",
+					"release": 0.9,
+					"roomLevel": 0.35,
+					"roomSize": 4,
+					"sustain": 0.8
+				},
+				{ "attack": 0.001, "decay": 0.28, "gainLevel": 0.95, "id": "v3", "pitchDecay": 0.05, "pitchEnvAmount": 24, "release": 0.05, "soundType": "sine", "sustain": 0 },
+				{
+					"attack": 0.02,
+					"decay": 0.2,
+					"delayFeedback": 0.4,
+					"delayLevel": 0.2,
+					"delayTime": 0.25,
+					"gainLevel": 0.36,
+					"id": "v4",
+					"orbit": 1,
+					"phaserRate": 2,
+					"release": 0.3,
+					"roomLevel": 0.2,
+					"slideTime": 0.05,
+					"soundType": "halfsine",
+					"sustain": 0.7
+				},
+				{ "attack": 0.001, "cutGroup": 1, "decay": 0.32, "gainLevel": 0.18, "hpfCutoff": 6000, "id": "v5", "release": 0.08, "soundType": "white", "sustain": 0 },
+				{ "attack": 0.001, "cutGroup": 1, "decay": 0.04, "gainLevel": 0.2, "hpfCutoff": 7000, "id": "v6", "release": 0.02, "soundType": "white", "sustain": 0 },
+				{ "attack": 0.001, "decay": 0.16, "gainLevel": 0.18, "hpfCutoff": 1200, "id": "v7", "release": 0.05, "roomLevel": 0.12, "soundType": "white", "sustain": 0 },
+				{ "attack": 0.001, "decay": 0.08, "gainLevel": 0.2, "id": "v8", "pitchDecay": 0.03, "pitchEnvAmount": 7, "release": 0.03, "soundType": "triangle", "sustain": 0 },
+				{ "attack": 0.002, "decay": 0.12, "filterCutoff": 3200, "gainLevel": 0.34, "hpfCutoff": 900, "id": "v9", "release": 0.06, "roomLevel": 0.25, "soundType": "white", "sustain": 0 },
+				{
+					"attack": 0.002,
+					"decay": 0.7,
+					"fmAttack": 0,
+					"fmDecay": 0.35,
+					"fmHarmonicity": 3.5,
+					"fmIndex": 1.4285714285714286,
+					"fmRelease": 0.2,
+					"gainLevel": 0.3,
+					"id": "v10",
+					"release": 0.9,
+					"roomLevel": 0.3,
+					"sustain": 0
+				},
+				{
+					"attack": 0.005,
+					"decay": 0.12,
+					"filterAttack": 0.01,
+					"filterCutoff": 900,
+					"filterDecay": 0.2,
+					"filterEnvAmount": 1200,
+					"gainLevel": 0.3,
+					"hpfCutoff": 80,
+					"id": "v11",
+					"release": 0.08,
+					"soundType": "sawtooth",
+					"sustain": 0.45
+				},
+				{ "attack": 0.001, "decay": 0.32, "gainLevel": 0.7, "id": "v12", "pitchDecay": 0.08, "pitchEnvAmount": 7, "release": 0.06, "soundType": "sine", "sustain": 0 },
+				{ "attack": 0.001, "decay": 0.025, "filterCutoff": 3000, "gainLevel": 0.14, "id": "v13", "release": 0.01, "soundType": "square", "sustain": 0 },
+				{ "attack": 0.001, "decay": 0.65, "gainLevel": 0.2, "hpfCutoff": 4200, "id": "v14", "release": 0.15, "roomLevel": 0.3, "soundType": "white", "sustain": 0 }
+			]
+		}
+	},
+	{
+		"bars": null,
+		"from": "kit keys, per-speaker gains, a nudge, stepped pitches, a linear FM envelope, looped noise, a seam cut",
+		"graph": {
+			"buffers": [
+				{
+					"channels": ["rms 0.203245885 peak 0.790558636 head -0.0260396041 -0.0192345325 -0.000714470167 0.00154534599"],
+					"id": "b0",
+					"length": 96000,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.155751042 peak 0.984067917 head -0.765812755 0.748852134 0.0734420791 0.955840051", "rms 0.155190644 peak 0.98520416 head 0.83404392 -0.0657028258 0.573673248 0.827252686"],
+					"id": "b1",
+					"length": 73600,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.576587389 peak 0.99973315 head 0.813391924 0.244594991 -0.286028177 -0.666594148"],
+					"id": "b2",
+					"length": 4368,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.171167044 peak 0.561775267 head 0.148775071 0.155211776 0.213626146 0.0641883314"],
+					"id": "b3",
+					"length": 7200,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.575839007 peak 0.999989331 head 0.146207914 0.717687607 -0.286042929 -0.917202413"],
+					"id": "b4",
+					"length": 8736,
+					"sampleRate": 48000
+				}
+			],
+			"channels": 2,
+			"counts": { "biquad": 6, "bufferSource": 4, "channelMerger": 1, "compressor": 1, "convolver": 1, "delay": 1, "destination": 1, "gain": 23, "oscillator": 9, "stereoPanner": 10 },
+			"length": 192000,
+			"nodes": [
+				{ "id": "n0", "kind": "destination" },
+				{
+					"id": "n1",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 1 @0"]
+					},
+					"to": ["n2"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n2",
+					"kind": "compressor",
+					"params": {
+						"attack": ["set 0.003 @0"],
+						"knee": ["set 0 @0"],
+						"ratio": ["set 20 @0"],
+						"release": ["set 0.1 @0"],
+						"threshold": ["set -2 @0"]
+					},
+					"to": ["n3"]
+				},
+				{
+					"id": "n3",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.877000821 @0"]
+					},
+					"to": ["n0"]
+				},
+				{
+					"id": "n4",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.6 @0.005", "lin 0 @0.125", "lin 0 @0.185"]
+					},
+					"to": ["n6"]
+				},
+				{
+					"id": "n5",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @0", "exp 32.7031957 @0.09"]
+					},
+					"start": [0],
+					"stop": [0.205],
+					"to": ["n4"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n6",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n7",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.056 @0.01", "lin 0.028 @0.51", "set 0.028 @2", "lin 0 @3.2"]
+					},
+					"to": ["n10"]
+				},
+				{
+					"buffer": "b0",
+					"id": "n8",
+					"kind": "bufferSource",
+					"loop": true,
+					"start": [0],
+					"stop": [3.22],
+					"to": ["n9"]
+				},
+				{
+					"id": "n9",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 700 @0", "lin 400 @0.05", "lin 550 @0.15", "set 550 @2", "lin 700 @2.2"]
+					},
+					"to": ["n7"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n10",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1", "n17"]
+				},
+				{
+					"id": "n11",
+					"kind": "gain",
+					"to": ["n12"]
+				},
+				{
+					"buffer": "b1",
+					"channelCountMode": "clamped-max",
+					"id": "n12",
+					"kind": "convolver",
+					"to": ["n1"]
+				},
+				{
+					"id": "n13",
+					"kind": "gain",
+					"to": ["n14"]
+				},
+				{
+					"id": "n14",
+					"kind": "delay",
+					"maxDelayTime": 5,
+					"to": ["n15", "n16"]
+				},
+				{
+					"id": "n15",
+					"kind": "gain",
+					"to": ["n1"]
+				},
+				{
+					"id": "n16",
+					"kind": "gain",
+					"to": ["n14"]
+				},
+				{
+					"id": "n17",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.4 @0"]
+					},
+					"to": ["n11"]
+				},
+				{
+					"id": "n18",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.125", "lin 0.196 @0.128", "lin 0.049 @0.328", "set 0.049 @0.5", "lin 0 @0.65"]
+					},
+					"to": ["n23"]
+				},
+				{
+					"id": "n19",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 659.255114 @0.125", "set 493.883301 @0.158333333", "set 329.627557 @0.191666667"]
+					},
+					"start": [0.125],
+					"stop": [0.67],
+					"to": ["n18"],
+					"type": "sine"
+				},
+				{
+					"id": "n20",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 1318.51023 @0.125", "set 987.766603 @0.158333333", "set 659.255114 @0.191666667"]
+					},
+					"start": [0.125],
+					"stop": [0.67],
+					"to": ["n21"],
+					"type": "custom",
+					"wave": "w0"
+				},
+				{
+					"id": "n21",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 3955.53068 @0.125", "set 2963.29981 @0.158333333", "set 1977.76534 @0.191666667"]
+					},
+					"to": ["n22"]
+				},
+				{
+					"id": "n22",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.125", "set 1 @0.125", "lin 0.1 @0.245", "set 0.1 @0.5", "lin 0 @0.6"]
+					},
+					"to": ["n19.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n23",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set -0.3 @0.125"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n24",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.25", "lin 0.16 @0.251", "lin 0 @0.311", "lin 0 @0.341"]
+					},
+					"to": ["n27"]
+				},
+				{
+					"buffer": "b2",
+					"id": "n25",
+					"kind": "bufferSource",
+					"start": [0.25],
+					"stop": [0.361],
+					"to": ["n26"]
+				},
+				{
+					"id": "n26",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 7000 @0.25"]
+					},
+					"to": ["n24"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n27",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.25"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n28",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.45", "lin 0.1024 @0.454", "lin 0.06144 @0.574", "set 0.06144 @0.7", "lin 0 @0.8"]
+					},
+					"to": ["n32", "n33"]
+				},
+				{
+					"id": "n29",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @0.45"]
+					},
+					"start": [0.45],
+					"stop": [0.82],
+					"to": ["n30"],
+					"type": "square"
+				},
+				{
+					"id": "n30",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2400 @0.45", "set 2400 @0.45", "set 2400 @0.45", "set 2400 @0.7"]
+					},
+					"to": ["n28"],
+					"type": "lowpass"
+				},
+				{
+					"id": "n31",
+					"kind": "channelMerger",
+					"numberOfInputs": 2,
+					"to": ["n1"]
+				},
+				{
+					"id": "n32",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.8 @0.45"]
+					},
+					"to": ["n31"]
+				},
+				{
+					"id": "n33",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @0.45"]
+					},
+					"to": ["n31:0>1"]
+				},
+				{
+					"id": "n34",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.5", "lin 0.32 @0.51", "lin 0 @0.6", "lin 0 @0.65"]
+					},
+					"to": ["n37"]
+				},
+				{
+					"buffer": "b3",
+					"id": "n35",
+					"kind": "bufferSource",
+					"start": [0.5],
+					"stop": [0.67],
+					"to": ["n36"]
+				},
+				{
+					"id": "n36",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1600 @0.5"]
+					},
+					"to": ["n34"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n37",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n38",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.5", "lin 0.16 @0.501", "lin 0 @0.581", "lin 0 @0.611"]
+					},
+					"to": ["n40"]
+				},
+				{
+					"id": "n39",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 246.941651 @0.5", "exp 164.813778 @0.53"]
+					},
+					"start": [0.5],
+					"stop": [0.631],
+					"to": ["n38"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n40",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n41",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.75", "lin 0.272 @0.752", "lin 0 @0.872", "lin 0 @0.932"]
+					},
+					"to": ["n45"]
+				},
+				{
+					"buffer": "b4",
+					"id": "n42",
+					"kind": "bufferSource",
+					"start": [0.75],
+					"stop": [0.952],
+					"to": ["n43"]
+				},
+				{
+					"id": "n43",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1800 @0.75", "set 1800 @0.75", "set 1800 @0.75"]
+					},
+					"to": ["n44"],
+					"type": "lowpass"
+				},
+				{
+					"id": "n44",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 900 @0.75"]
+					},
+					"to": ["n41"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n45",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.75"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n46",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1", "lin 0.56 @1.001", "lin 0 @1.321", "lin 0 @1.381"]
+					},
+					"to": ["n48"]
+				},
+				{
+					"id": "n47",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 164.813778 @1", "exp 110 @1.08"]
+					},
+					"start": [1],
+					"stop": [1.401],
+					"to": ["n46"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n48",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n49",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.5", "lin 0.525 @1.505", "lin 0 @1.625", "lin 0 @1.685"]
+					},
+					"to": ["n51"]
+				},
+				{
+					"id": "n50",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @1.5", "exp 32.7031957 @1.59"]
+					},
+					"start": [1.5],
+					"stop": [1.705],
+					"to": ["n49"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n51",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n52",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.5", "lin 0.1056 @1.51", "lin 0.09504 @1.56", "set 0.09504 @2", "lin 0 @2.08"]
+					},
+					"to": ["n56"]
+				},
+				{
+					"id": "n53",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 195.997718 @1.5"]
+					},
+					"start": [1.5],
+					"stop": [2.1],
+					"to": ["n52"],
+					"type": "sine"
+				},
+				{
+					"id": "n54",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 391.995436 @1.5"]
+					},
+					"start": [1.5],
+					"stop": [2.1],
+					"to": ["n55"],
+					"type": "sine"
+				},
+				{
+					"id": "n55",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 235.197262 @1.5"]
+					},
+					"to": ["n53.frequency"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n56",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0.1 @1.5"]
+					},
+					"to": ["n1"]
+				}
+			],
+			"sampleRate": 48000,
+			"waves": [
+				{
+					"disableNormalization": false,
+					"id": "w0",
+					"imag": "0 -2.94710456e-17 1.8522264e-16 -3.17841834e-17 -7.16561418e-17 -8.06204967e-17 4.04022474e-17 5.86383307e-17 4.03833943e-17 2.80776996e-17 8.51467793e-18 -4.59953217e-17 5.96138678e-17 3.23942093e-17 7.58634736e-17 8.78683855e-18 -6.97153445e-18 1.06261779e-16 -3.84158558e-17 3.24805107e-17 -8.90776905e-18 2.20036296e-17 1.84339483e-17 -1.44032493e-17 -1.44628063e-17 2.97269522e-18 -1.91843301e-17 4.81499717e-17 -6.72997455e-18 -1.05292283e-17 4.34208941e-18 3.81277985e-17 -6.3640497e-18 -2.83699127e-18 -5.5918938e-17 4.39342027e-17 5.2222162e-18 -2.04427961e-17 3.62639951e-18 -1.40446334e-17 1.58613537e-19 -4.88384771e-17 2.18385145e-17 2.82479003e-17 4.34752895e-19 1.23571996e-16 6.62353957e-18 -1.12279114e-17 -4.28918956e-18 -2.25981177e-17 7.76264139e-17 -1.4643274e-17 -6.50238077e-18 5.32939101e-17 -4.64911636e-17 -2.6119505e-17 -2.42630735e-17 3.50142906e-17 3.98638454e-17 5.116214e-17 2.93549062e-17 2.81034944e-17 -1.10583857e-17 1.613746e-17 -3.60816183e-18",
+					"real": "0 4.81093538e-17 -0.424413443 -7.95363937e-18 -0.0848828852 -3.71274658e-17 -0.0363785215 1.56435339e-17 -0.0202104021 6.57448974e-17 -0.0128612556 3.73342477e-17 -0.0089040231 -2.19571057e-17 -0.00652968325 -1.52836507e-18 -0.00499334605 2.3511517e-17 -0.00394216785 -1.98357117e-17 -0.00319132628 -4.99095106e-17 -0.00263635651 2.96996221e-17 -0.00221457938 -3.74070925e-18 -0.00188653055 -2.81981503e-17 -0.00162635383 -2.10359574e-17 -0.00141653395 -1.8114329e-17 -0.00124486315 2.92734587e-18 -0.00110262155 -5.74107285e-17 -0.000983446254 -5.22640504e-18 -0.000882605615 -1.62947963e-18 -0.00079652213 -2.16807612e-17 -0.000722450262 1.16960427e-17 -0.000658254663 3.89943264e-17 -0.000602254237 -3.96909051e-18 -0.000553111022 1.41825079e-17 -0.000509749341 1.20683349e-16 -0.000471296575 -6.48304195e-17 -0.00043703863 1.38153191e-17 -0.000406386767 -7.84103693e-17 -0.00037885207 1.16165275e-17 -0.000354025688 -8.28292343e-18 -0.00033156373 9.87746296e-19 -0.000311175187"
+				}
+			]
+		},
+		"id": "corners",
+		"input": "undertone-corners",
+		"render": { "channels": 2, "master": true, "seed": 0, "tail": 2 },
+		"score": {
+			"cps": 0.5,
+			"events": [
+				"tick 0 note c1 gate 12 level 0.8 pan 0 voice v0",
+				"tick 0 midi 48 gate 192 level 0.4 pan 0 voice v1",
+				"tick 12 midi 64 gate 36 level 0.56 pan -0.3 voice v2",
+				"tick 24 note c4 gate 12 level 0.8 pan 0 voice v3",
+				"tick 48 note c4 gate 12 level 0.8 pan 0 voice v4",
+				"tick 48 note e3 gate 12 level 0.8 pan 0 voice v5",
+				"tick 48 midi 72 gate 24 level 0.64 pan 0.3 voice v6",
+				"tick 72 note c4 gate 12 level 0.8 pan 0 voice v7",
+				"tick 96 note 110.00000000000001 gate 12 level 0.8 pan 0 voice v8",
+				"tick 144 note c1 gate 12 level 0.7 pan 0 voice v0",
+				"tick 144 midi 55 gate 48 level 0.48 pan 0.1 voice v9"
+			],
+			"seconds": 2,
+			"voices": [
+				{ "attack": 0.005, "decay": 0.12, "gainLevel": 0.75, "id": "v0", "release": 0.06, "slideTime": 0.09, "soundType": "sine", "sustain": 0 },
+				{
+					"attack": 0.01,
+					"decay": 0.5,
+					"filterAttack": 0.05,
+					"filterCutoff": 700,
+					"filterDecay": 0.1,
+					"filterEnvAmount": -300,
+					"filterRelease": 0.2,
+					"filterSustain": 0.5,
+					"gainLevel": 0.14,
+					"id": "v1",
+					"release": 1.2,
+					"roomLevel": 0.4,
+					"roomSize": 4,
+					"soundType": "brown",
+					"sustain": 0.5
+				},
+				{
+					"attack": 0.003,
+					"decay": 0.2,
+					"fmAttack": 0,
+					"fmDecay": 0.12,
+					"fmEnvCurve": "lin",
+					"fmHarmonicity": 2,
+					"fmIndex": 3,
+					"fmRelease": 0.1,
+					"fmSustain": 0.1,
+					"fmWave": "abssine",
+					"gainLevel": 0.35,
+					"id": "v2",
+					"pitchStepRate": 30,
+					"pitchSteps": [12, 7, 0],
+					"release": 0.15,
+					"sustain": 0.25
+				},
+				{ "attack": 0.001, "cutGroup": 1, "decay": 0.06, "gainLevel": 0.2, "hpfCutoff": 7000, "id": "v3", "release": 0.03, "soundType": "white", "sustain": 0 },
+				{ "decay": 0.09, "gainLevel": 0.4, "hpfCutoff": 1600, "id": "v4", "soundType": "pink", "sustain": 0 },
+				{ "attack": 0.001, "decay": 0.08, "gainLevel": 0.2, "id": "v5", "pitchDecay": 0.03, "pitchEnvAmount": 7, "release": 0.03, "soundType": "triangle", "sustain": 0 },
+				{
+					"attack": 0.004,
+					"channelGains": [0.8, 0.3],
+					"decay": 0.12,
+					"filterCutoff": 2400,
+					"gainLevel": 0.16,
+					"id": "v6",
+					"nudgeTime": -0.05,
+					"release": 0.1,
+					"soundType": "square",
+					"sustain": 0.6
+				},
+				{ "attack": 0.002, "decay": 0.12, "filterCutoff": 1800, "gainLevel": 0.34, "hpfCutoff": 900, "id": "v7", "release": 0.06, "soundType": "white", "sustain": 0 },
+				{ "attack": 0.001, "decay": 0.32, "gainLevel": 0.7, "id": "v8", "pitchDecay": 0.08, "pitchEnvAmount": 7, "release": 0.06, "soundType": "sine", "sustain": 0 },
+				{ "attack": 0.01, "decay": 0.05, "fmHarmonicity": 2, "fmIndex": 0.6, "gainLevel": 0.22, "id": "v9", "release": 0.08, "soundType": "sine", "sustain": 0.9 }
+			]
+		}
+	},
+	{
+		"bars": 2,
+		"from": "Fizz 1 Title Theme, imported with its web voices as Undertone overrides; bars 1 and 2",
+		"graph": {
+			"buffers": [
+				{
+					"channels": ["rms 0.155257647 peak 0.990507603 head 0.481167257 0.481048167 -0.50894165 0.319374084", "rms 0.156194022 peak 0.985369444 head 0.935221612 0.174134508 0.532230794 -0.401774198"],
+					"id": "b0",
+					"length": 113067,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.568573477 peak 0.999402106 head 0.332251966 -0.245814994 -0.402451396 -0.701981008"],
+					"id": "b1",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.581533492 peak 0.999946237 head 0.945758879 0.436478853 -0.466796488 -0.676212668"],
+					"id": "b2",
+					"length": 6960,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.565131115 peak 0.999991894 head 0.716085315 -0.293786258 -0.109848328 -0.977304757"],
+					"id": "b3",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.571533352 peak 0.99959904 head 0.59603548 0.61013639 -0.519599259 -0.263924271"],
+					"id": "b4",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.574104574 peak 0.999851108 head 0.114202134 -0.646159291 0.478493065 -0.364070654"],
+					"id": "b5",
+					"length": 6960,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.575001257 peak 0.999907851 head -0.668118119 0.82381767 0.180673063 -0.453145981"],
+					"id": "b6",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.56364201 peak 0.99985671 head -0.472729772 -0.581178486 0.840657175 0.275330186"],
+					"id": "b7",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.580901733 peak 0.999875963 head -0.754107356 0.815966785 -0.556277096 -0.0522250049"],
+					"id": "b8",
+					"length": 6960,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.577459047 peak 0.997604251 head 0.830388248 0.920281649 0.474297047 0.18541041"],
+					"id": "b9",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.58593104 peak 0.998606205 head -0.193629757 0.613636792 -0.561333656 -0.787972987"],
+					"id": "b10",
+					"length": 2400,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.576826868 peak 0.999998927 head -0.224530295 -0.574760139 0.381419301 -0.241733447"],
+					"id": "b11",
+					"length": 6960,
+					"sampleRate": 48000
+				},
+				{
+					"channels": ["rms 0.570657171 peak 0.999778092 head 0.34390074 0.589390397 0.242206052 -0.447590023"],
+					"id": "b12",
+					"length": 2400,
+					"sampleRate": 48000
+				}
+			],
+			"channels": 2,
+			"counts": { "biquad": 32, "bufferSource": 12, "compressor": 1, "convolver": 1, "delay": 1, "destination": 1, "gain": 58, "oscillator": 34, "stereoPanner": 46 },
+			"length": 260571,
+			"nodes": [
+				{ "id": "n0", "kind": "destination" },
+				{
+					"id": "n1",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 1 @0"]
+					},
+					"to": ["n2"]
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n2",
+					"kind": "compressor",
+					"params": {
+						"attack": ["set 0.003 @0"],
+						"knee": ["set 0 @0"],
+						"ratio": ["set 20 @0"],
+						"release": ["set 0.1 @0"],
+						"threshold": ["set -2 @0"]
+					},
+					"to": ["n3"]
+				},
+				{
+					"id": "n3",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.877000821 @0"]
+					},
+					"to": ["n0"]
+				},
+				{
+					"id": "n4",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.075 @0.005", "lin 0.0225 @0.105", "set 0.0225 @0.214285714", "lin 0 @0.294285714"]
+					},
+					"to": ["n7"]
+				},
+				{
+					"id": "n5",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @0"]
+					},
+					"start": [0],
+					"stop": [0.314285714],
+					"to": ["n6"],
+					"type": "square"
+				},
+				{
+					"id": "n6",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @0", "set 2600 @0", "set 2600 @0", "set 2600 @0.214285714"]
+					},
+					"to": ["n4"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n7",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n8",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.0501 @0.05", "lin 0.03507 @0.55", "set 0.03507 @1.71428571", "lin 0 @2.81428571"]
+					},
+					"to": ["n11"]
+				},
+				{
+					"id": "n9",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 261.625565 @0"]
+					},
+					"start": [0],
+					"stop": [2.83428571],
+					"to": ["n10"],
+					"type": "sine"
+				},
+				{
+					"id": "n10",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1400 @0", "set 1400 @0", "set 1400 @0", "set 1400 @1.71428571"]
+					},
+					"to": ["n8"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n11",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1", "n18"]
+				},
+				{
+					"id": "n12",
+					"kind": "gain",
+					"to": ["n13"]
+				},
+				{
+					"buffer": "b0",
+					"channelCountMode": "clamped-max",
+					"id": "n13",
+					"kind": "convolver",
+					"to": ["n1"]
+				},
+				{
+					"id": "n14",
+					"kind": "gain",
+					"to": ["n15"]
+				},
+				{
+					"id": "n15",
+					"kind": "delay",
+					"maxDelayTime": 5,
+					"to": ["n16", "n17"]
+				},
+				{
+					"id": "n16",
+					"kind": "gain",
+					"to": ["n1"]
+				},
+				{
+					"id": "n17",
+					"kind": "gain",
+					"to": ["n15"]
+				},
+				{
+					"id": "n18",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @0"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n19",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.0501 @0.05", "lin 0.03507 @0.55", "set 0.03507 @1.71428571", "lin 0 @2.81428571"]
+					},
+					"to": ["n22"]
+				},
+				{
+					"id": "n20",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 329.627557 @0"]
+					},
+					"start": [0],
+					"stop": [2.83428571],
+					"to": ["n21"],
+					"type": "sine"
+				},
+				{
+					"id": "n21",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1400 @0", "set 1400 @0", "set 1400 @0", "set 1400 @1.71428571"]
+					},
+					"to": ["n19"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n22",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1", "n23"]
+				},
+				{
+					"id": "n23",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @0"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n24",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.0501 @0.05", "lin 0.03507 @0.55", "set 0.03507 @1.71428571", "lin 0 @2.81428571"]
+					},
+					"to": ["n27"]
+				},
+				{
+					"id": "n25",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 391.995436 @0"]
+					},
+					"start": [0],
+					"stop": [2.83428571],
+					"to": ["n26"],
+					"type": "sine"
+				},
+				{
+					"id": "n26",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1400 @0", "set 1400 @0", "set 1400 @0", "set 1400 @1.71428571"]
+					},
+					"to": ["n24"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n27",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1", "n28"]
+				},
+				{
+					"id": "n28",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @0"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n29",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.3 @0.005", "lin 0.135 @0.125", "set 0.135 @0.428571429", "lin 0 @0.508571429"]
+					},
+					"to": ["n31"]
+				},
+				{
+					"id": "n30",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @0"]
+					},
+					"start": [0],
+					"stop": [0.528571429],
+					"to": ["n29"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n31",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n32",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0", "lin 0.6 @0.005", "lin 0 @0.125", "lin 0 @0.185"]
+					},
+					"to": ["n34"]
+				},
+				{
+					"id": "n33",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @0", "exp 32.7031957 @0.09"]
+					},
+					"start": [0],
+					"stop": [0.205],
+					"to": ["n32"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n34",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n35",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.214285714", "lin 0.08 @0.219285714", "lin 0 @0.249285714", "lin 0 @0.259285714"]
+					},
+					"to": ["n38"]
+				},
+				{
+					"buffer": "b1",
+					"id": "n36",
+					"kind": "bufferSource",
+					"start": [0.214285714],
+					"stop": [0.279285714],
+					"to": ["n37"]
+				},
+				{
+					"id": "n37",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @0.214285714"]
+					},
+					"to": ["n35"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n38",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.214285714"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n39",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.428571429", "lin 0.075 @0.433571429", "lin 0.0225 @0.533571429", "set 0.0225 @0.642857143", "lin 0 @0.722857143"]
+					},
+					"to": ["n42"]
+				},
+				{
+					"id": "n40",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 391.995436 @0.428571429"]
+					},
+					"start": [0.428571429],
+					"stop": [0.742857143],
+					"to": ["n41"],
+					"type": "square"
+				},
+				{
+					"id": "n41",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @0.428571429", "set 2600 @0.428571429", "set 2600 @0.428571429", "set 2600 @0.642857143"]
+					},
+					"to": ["n39"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n42",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.428571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n43",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.428571429", "lin 0.3 @0.433571429", "lin 0.135 @0.553571429", "set 0.135 @0.857142857", "lin 0 @0.937142857"]
+					},
+					"to": ["n45"]
+				},
+				{
+					"id": "n44",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 130.812783 @0.428571429"]
+					},
+					"start": [0.428571429],
+					"stop": [0.957142857],
+					"to": ["n43"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n45",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.428571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n46",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.428571429", "lin 0.24 @0.433571429", "lin 0 @0.523571429", "lin 0 @0.573571429"]
+					},
+					"to": ["n49"]
+				},
+				{
+					"buffer": "b2",
+					"id": "n47",
+					"kind": "bufferSource",
+					"start": [0.428571429],
+					"stop": [0.593571429],
+					"to": ["n48"]
+				},
+				{
+					"id": "n48",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1600 @0.428571429"]
+					},
+					"to": ["n46"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n49",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.428571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n50",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.642857143", "lin 0.075 @0.647857143", "lin 0.0225 @0.747857143", "set 0.0225 @0.857142857", "lin 0 @0.937142857"]
+					},
+					"to": ["n53"]
+				},
+				{
+					"id": "n51",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @0.642857143"]
+					},
+					"start": [0.642857143],
+					"stop": [0.957142857],
+					"to": ["n52"],
+					"type": "square"
+				},
+				{
+					"id": "n52",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @0.642857143", "set 2600 @0.642857143", "set 2600 @0.642857143", "set 2600 @0.857142857"]
+					},
+					"to": ["n50"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n53",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.642857143"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n54",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.642857143", "lin 0.6 @0.647857143", "lin 0 @0.767857143", "lin 0 @0.827857143"]
+					},
+					"to": ["n56"]
+				},
+				{
+					"id": "n55",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @0.642857143", "exp 32.7031957 @0.732857143"]
+					},
+					"start": [0.642857143],
+					"stop": [0.847857143],
+					"to": ["n54"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n56",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.642857143"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n57",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.642857143", "lin 0.08 @0.647857143", "lin 0 @0.677857143", "lin 0 @0.687857143"]
+					},
+					"to": ["n60"]
+				},
+				{
+					"buffer": "b3",
+					"id": "n58",
+					"kind": "bufferSource",
+					"start": [0.642857143],
+					"stop": [0.707857143],
+					"to": ["n59"]
+				},
+				{
+					"id": "n59",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @0.642857143"]
+					},
+					"to": ["n57"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n60",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.642857143"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n61",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.857142857", "lin 0.075 @0.862142857", "lin 0.0225 @0.962142857", "set 0.0225 @1.07142857", "lin 0 @1.15142857"]
+					},
+					"to": ["n64"]
+				},
+				{
+					"id": "n62",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 659.255114 @0.857142857"]
+					},
+					"start": [0.857142857],
+					"stop": [1.17142857],
+					"to": ["n63"],
+					"type": "square"
+				},
+				{
+					"id": "n63",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @0.857142857", "set 2600 @0.857142857", "set 2600 @0.857142857", "set 2600 @1.07142857"]
+					},
+					"to": ["n61"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n64",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.857142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n65",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.857142857", "lin 0.3 @0.862142857", "lin 0.135 @0.982142857", "set 0.135 @1.28571429", "lin 0 @1.36571429"]
+					},
+					"to": ["n67"]
+				},
+				{
+					"id": "n66",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 97.998859 @0.857142857"]
+					},
+					"start": [0.857142857],
+					"stop": [1.38571429],
+					"to": ["n65"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n67",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.857142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n68",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @0.857142857", "lin 0.6 @0.862142857", "lin 0 @0.982142857", "lin 0 @1.04214286"]
+					},
+					"to": ["n70"]
+				},
+				{
+					"id": "n69",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @0.857142857", "exp 32.7031957 @0.947142857"]
+					},
+					"start": [0.857142857],
+					"stop": [1.06214286],
+					"to": ["n68"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n70",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @0.857142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n71",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.07142857", "lin 0.075 @1.07642857", "lin 0.0225 @1.17642857", "set 0.0225 @1.28571429", "lin 0 @1.36571429"]
+					},
+					"to": ["n74"]
+				},
+				{
+					"id": "n72",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 783.990872 @1.07142857"]
+					},
+					"start": [1.07142857],
+					"stop": [1.38571429],
+					"to": ["n73"],
+					"type": "square"
+				},
+				{
+					"id": "n73",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @1.07142857", "set 2600 @1.07142857", "set 2600 @1.07142857", "set 2600 @1.28571429"]
+					},
+					"to": ["n71"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n74",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.07142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n75",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.07142857", "lin 0.08 @1.07642857", "lin 0 @1.10642857", "lin 0 @1.11642857"]
+					},
+					"to": ["n78"]
+				},
+				{
+					"buffer": "b4",
+					"id": "n76",
+					"kind": "bufferSource",
+					"start": [1.07142857],
+					"stop": [1.13642857],
+					"to": ["n77"]
+				},
+				{
+					"id": "n77",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @1.07142857"]
+					},
+					"to": ["n75"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n78",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.07142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n79",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.28571429", "lin 0.075 @1.29071429", "lin 0.0225 @1.39071429", "set 0.0225 @1.5", "lin 0 @1.58"]
+					},
+					"to": ["n82"]
+				},
+				{
+					"id": "n80",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 659.255114 @1.28571429"]
+					},
+					"start": [1.28571429],
+					"stop": [1.6],
+					"to": ["n81"],
+					"type": "square"
+				},
+				{
+					"id": "n81",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @1.28571429", "set 2600 @1.28571429", "set 2600 @1.28571429", "set 2600 @1.5"]
+					},
+					"to": ["n79"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n82",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.28571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n83",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.28571429", "lin 0.3 @1.29071429", "lin 0.135 @1.41071429", "set 0.135 @1.71428571", "lin 0 @1.79428571"]
+					},
+					"to": ["n85"]
+				},
+				{
+					"id": "n84",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 130.812783 @1.28571429"]
+					},
+					"start": [1.28571429],
+					"stop": [1.81428571],
+					"to": ["n83"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n85",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.28571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n86",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.28571429", "lin 0.24 @1.29071429", "lin 0 @1.38071429", "lin 0 @1.43071429"]
+					},
+					"to": ["n89"]
+				},
+				{
+					"buffer": "b5",
+					"id": "n87",
+					"kind": "bufferSource",
+					"start": [1.28571429],
+					"stop": [1.45071429],
+					"to": ["n88"]
+				},
+				{
+					"id": "n88",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1600 @1.28571429"]
+					},
+					"to": ["n86"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n89",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.28571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n90",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.5", "lin 0.075 @1.505", "lin 0.0225 @1.605", "set 0.0225 @1.71428571", "lin 0 @1.79428571"]
+					},
+					"to": ["n93"]
+				},
+				{
+					"id": "n91",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @1.5"]
+					},
+					"start": [1.5],
+					"stop": [1.81428571],
+					"to": ["n92"],
+					"type": "square"
+				},
+				{
+					"id": "n92",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @1.5", "set 2600 @1.5", "set 2600 @1.5", "set 2600 @1.71428571"]
+					},
+					"to": ["n90"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n93",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n94",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.5", "lin 0.08 @1.505", "lin 0 @1.535", "lin 0 @1.545"]
+					},
+					"to": ["n97"]
+				},
+				{
+					"buffer": "b6",
+					"id": "n95",
+					"kind": "bufferSource",
+					"start": [1.5],
+					"stop": [1.565],
+					"to": ["n96"]
+				},
+				{
+					"id": "n96",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @1.5"]
+					},
+					"to": ["n94"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n97",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.5"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n98",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.71428571", "lin 0.075 @1.71928571", "lin 0.0225 @1.81928571", "set 0.0225 @1.92857143", "lin 0 @2.00857143"]
+					},
+					"to": ["n101"]
+				},
+				{
+					"id": "n99",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 440 @1.71428571"]
+					},
+					"start": [1.71428571],
+					"stop": [2.02857143],
+					"to": ["n100"],
+					"type": "square"
+				},
+				{
+					"id": "n100",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @1.71428571", "set 2600 @1.71428571", "set 2600 @1.71428571", "set 2600 @1.92857143"]
+					},
+					"to": ["n98"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n101",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.71428571"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n102",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.71428571", "lin 0.0501 @1.76428571", "lin 0.03507 @2.26428571", "set 0.03507 @3.42857143", "lin 0 @4.52857143"]
+					},
+					"to": ["n105"]
+				},
+				{
+					"id": "n103",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 220 @1.71428571"]
+					},
+					"start": [1.71428571],
+					"stop": [4.54857143],
+					"to": ["n104"],
+					"type": "sine"
+				},
+				{
+					"id": "n104",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1400 @1.71428571", "set 1400 @1.71428571", "set 1400 @1.71428571", "set 1400 @3.42857143"]
+					},
+					"to": ["n102"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n105",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.71428571"]
+					},
+					"to": ["n1", "n106"]
+				},
+				{
+					"id": "n106",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @1.71428571"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n107",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.71428571", "lin 0.0501 @1.76428571", "lin 0.03507 @2.26428571", "set 0.03507 @3.42857143", "lin 0 @4.52857143"]
+					},
+					"to": ["n110"]
+				},
+				{
+					"id": "n108",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 261.625565 @1.71428571"]
+					},
+					"start": [1.71428571],
+					"stop": [4.54857143],
+					"to": ["n109"],
+					"type": "sine"
+				},
+				{
+					"id": "n109",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1400 @1.71428571", "set 1400 @1.71428571", "set 1400 @1.71428571", "set 1400 @3.42857143"]
+					},
+					"to": ["n107"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n110",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.71428571"]
+					},
+					"to": ["n1", "n111"]
+				},
+				{
+					"id": "n111",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @1.71428571"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n112",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.71428571", "lin 0.0501 @1.76428571", "lin 0.03507 @2.26428571", "set 0.03507 @3.42857143", "lin 0 @4.52857143"]
+					},
+					"to": ["n115"]
+				},
+				{
+					"id": "n113",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 329.627557 @1.71428571"]
+					},
+					"start": [1.71428571],
+					"stop": [4.54857143],
+					"to": ["n114"],
+					"type": "sine"
+				},
+				{
+					"id": "n114",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1400 @1.71428571", "set 1400 @1.71428571", "set 1400 @1.71428571", "set 1400 @3.42857143"]
+					},
+					"to": ["n112"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n115",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.71428571"]
+					},
+					"to": ["n1", "n116"]
+				},
+				{
+					"id": "n116",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0.3 @1.71428571"]
+					},
+					"to": ["n12"]
+				},
+				{
+					"id": "n117",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.71428571", "lin 0.3 @1.71928571", "lin 0.135 @1.83928571", "set 0.135 @2.14285714", "lin 0 @2.22285714"]
+					},
+					"to": ["n119"]
+				},
+				{
+					"id": "n118",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 55 @1.71428571"]
+					},
+					"start": [1.71428571],
+					"stop": [2.24285714],
+					"to": ["n117"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n119",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.71428571"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n120",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.71428571", "lin 0.6 @1.71928571", "lin 0 @1.83928571", "lin 0 @1.89928571"]
+					},
+					"to": ["n122"]
+				},
+				{
+					"id": "n121",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @1.71428571", "exp 32.7031957 @1.80428571"]
+					},
+					"start": [1.71428571],
+					"stop": [1.91928571],
+					"to": ["n120"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n122",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.71428571"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n123",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @1.92857143", "lin 0.08 @1.93357143", "lin 0 @1.96357143", "lin 0 @1.97357143"]
+					},
+					"to": ["n126"]
+				},
+				{
+					"buffer": "b7",
+					"id": "n124",
+					"kind": "bufferSource",
+					"start": [1.92857143],
+					"stop": [1.99357143],
+					"to": ["n125"]
+				},
+				{
+					"id": "n125",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @1.92857143"]
+					},
+					"to": ["n123"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n126",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @1.92857143"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n127",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.14285714", "lin 0.075 @2.14785714", "lin 0.0225 @2.24785714", "set 0.0225 @2.35714286", "lin 0 @2.43714286"]
+					},
+					"to": ["n130"]
+				},
+				{
+					"id": "n128",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 329.627557 @2.14285714"]
+					},
+					"start": [2.14285714],
+					"stop": [2.45714286],
+					"to": ["n129"],
+					"type": "square"
+				},
+				{
+					"id": "n129",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @2.14285714", "set 2600 @2.14285714", "set 2600 @2.14285714", "set 2600 @2.35714286"]
+					},
+					"to": ["n127"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n130",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.14285714"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n131",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.14285714", "lin 0.3 @2.14785714", "lin 0.135 @2.26785714", "set 0.135 @2.57142857", "lin 0 @2.65142857"]
+					},
+					"to": ["n133"]
+				},
+				{
+					"id": "n132",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 110 @2.14285714"]
+					},
+					"start": [2.14285714],
+					"stop": [2.67142857],
+					"to": ["n131"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n133",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.14285714"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n134",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.14285714", "lin 0.24 @2.14785714", "lin 0 @2.23785714", "lin 0 @2.28785714"]
+					},
+					"to": ["n137"]
+				},
+				{
+					"buffer": "b8",
+					"id": "n135",
+					"kind": "bufferSource",
+					"start": [2.14285714],
+					"stop": [2.30785714],
+					"to": ["n136"]
+				},
+				{
+					"id": "n136",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1600 @2.14285714"]
+					},
+					"to": ["n134"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n137",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.14285714"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n138",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.35714286", "lin 0.075 @2.36214286", "lin 0.0225 @2.46214286", "set 0.0225 @2.57142857", "lin 0 @2.65142857"]
+					},
+					"to": ["n141"]
+				},
+				{
+					"id": "n139",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 440 @2.35714286"]
+					},
+					"start": [2.35714286],
+					"stop": [2.67142857],
+					"to": ["n140"],
+					"type": "square"
+				},
+				{
+					"id": "n140",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @2.35714286", "set 2600 @2.35714286", "set 2600 @2.35714286", "set 2600 @2.57142857"]
+					},
+					"to": ["n138"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n141",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.35714286"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n142",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.35714286", "lin 0.6 @2.36214286", "lin 0 @2.48214286", "lin 0 @2.54214286"]
+					},
+					"to": ["n144"]
+				},
+				{
+					"id": "n143",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @2.35714286", "exp 32.7031957 @2.44714286"]
+					},
+					"start": [2.35714286],
+					"stop": [2.56214286],
+					"to": ["n142"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n144",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.35714286"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n145",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.35714286", "lin 0.08 @2.36214286", "lin 0 @2.39214286", "lin 0 @2.40214286"]
+					},
+					"to": ["n148"]
+				},
+				{
+					"buffer": "b9",
+					"id": "n146",
+					"kind": "bufferSource",
+					"start": [2.35714286],
+					"stop": [2.42214286],
+					"to": ["n147"]
+				},
+				{
+					"id": "n147",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @2.35714286"]
+					},
+					"to": ["n145"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n148",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.35714286"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n149",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.57142857", "lin 0.075 @2.57642857", "lin 0.0225 @2.67642857", "set 0.0225 @2.78571429", "lin 0 @2.86571429"]
+					},
+					"to": ["n152"]
+				},
+				{
+					"id": "n150",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @2.57142857"]
+					},
+					"start": [2.57142857],
+					"stop": [2.88571429],
+					"to": ["n151"],
+					"type": "square"
+				},
+				{
+					"id": "n151",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @2.57142857", "set 2600 @2.57142857", "set 2600 @2.57142857", "set 2600 @2.78571429"]
+					},
+					"to": ["n149"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n152",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.57142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n153",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.57142857", "lin 0.3 @2.57642857", "lin 0.135 @2.69642857", "set 0.135 @3", "lin 0 @3.08"]
+					},
+					"to": ["n155"]
+				},
+				{
+					"id": "n154",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 82.4068892 @2.57142857"]
+					},
+					"start": [2.57142857],
+					"stop": [3.1],
+					"to": ["n153"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n155",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.57142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n156",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.57142857", "lin 0.6 @2.57642857", "lin 0 @2.69642857", "lin 0 @2.75642857"]
+					},
+					"to": ["n158"]
+				},
+				{
+					"id": "n157",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 65.4063913 @2.57142857", "exp 32.7031957 @2.66142857"]
+					},
+					"start": [2.57142857],
+					"stop": [2.77642857],
+					"to": ["n156"],
+					"type": "sine"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n158",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.57142857"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n159",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.78571429", "lin 0.075 @2.79071429", "lin 0.0225 @2.89071429", "set 0.0225 @3", "lin 0 @3.08"]
+					},
+					"to": ["n162"]
+				},
+				{
+					"id": "n160",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 659.255114 @2.78571429"]
+					},
+					"start": [2.78571429],
+					"stop": [3.1],
+					"to": ["n161"],
+					"type": "square"
+				},
+				{
+					"id": "n161",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @2.78571429", "set 2600 @2.78571429", "set 2600 @2.78571429", "set 2600 @3"]
+					},
+					"to": ["n159"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n162",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.78571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n163",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @2.78571429", "lin 0.08 @2.79071429", "lin 0 @2.82071429", "lin 0 @2.83071429"]
+					},
+					"to": ["n166"]
+				},
+				{
+					"buffer": "b10",
+					"id": "n164",
+					"kind": "bufferSource",
+					"start": [2.78571429],
+					"stop": [2.85071429],
+					"to": ["n165"]
+				},
+				{
+					"id": "n165",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @2.78571429"]
+					},
+					"to": ["n163"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n166",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @2.78571429"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n167",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @3", "lin 0.075 @3.005", "lin 0.0225 @3.105", "set 0.0225 @3.21428571", "lin 0 @3.29428571"]
+					},
+					"to": ["n170"]
+				},
+				{
+					"id": "n168",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 523.251131 @3"]
+					},
+					"start": [3],
+					"stop": [3.31428571],
+					"to": ["n169"],
+					"type": "square"
+				},
+				{
+					"id": "n169",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @3", "set 2600 @3", "set 2600 @3", "set 2600 @3.21428571"]
+					},
+					"to": ["n167"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n170",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @3"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n171",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @3", "lin 0.3 @3.005", "lin 0.135 @3.125", "set 0.135 @3.42857143", "lin 0 @3.50857143"]
+					},
+					"to": ["n173"]
+				},
+				{
+					"id": "n172",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 110 @3"]
+					},
+					"start": [3],
+					"stop": [3.52857143],
+					"to": ["n171"],
+					"type": "triangle"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n173",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @3"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n174",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @3", "lin 0.24 @3.005", "lin 0 @3.095", "lin 0 @3.145"]
+					},
+					"to": ["n177"]
+				},
+				{
+					"buffer": "b11",
+					"id": "n175",
+					"kind": "bufferSource",
+					"start": [3],
+					"stop": [3.165],
+					"to": ["n176"]
+				},
+				{
+					"id": "n176",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 1600 @3"]
+					},
+					"to": ["n174"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n177",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @3"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n178",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @3.21428571", "lin 0.075 @3.21928571", "lin 0.0225 @3.31928571", "set 0.0225 @3.42857143", "lin 0 @3.50857143"]
+					},
+					"to": ["n181"]
+				},
+				{
+					"id": "n179",
+					"kind": "oscillator",
+					"params": {
+						"frequency": ["set 440 @3.21428571"]
+					},
+					"start": [3.21428571],
+					"stop": [3.52857143],
+					"to": ["n180"],
+					"type": "square"
+				},
+				{
+					"id": "n180",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 2600 @3.21428571", "set 2600 @3.21428571", "set 2600 @3.21428571", "set 2600 @3.42857143"]
+					},
+					"to": ["n178"],
+					"type": "lowpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n181",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @3.21428571"]
+					},
+					"to": ["n1"]
+				},
+				{
+					"id": "n182",
+					"kind": "gain",
+					"params": {
+						"gain": ["set 0 @3.21428571", "lin 0.08 @3.21928571", "lin 0 @3.24928571", "lin 0 @3.25928571"]
+					},
+					"to": ["n185"]
+				},
+				{
+					"buffer": "b12",
+					"id": "n183",
+					"kind": "bufferSource",
+					"start": [3.21428571],
+					"stop": [3.27928571],
+					"to": ["n184"]
+				},
+				{
+					"id": "n184",
+					"kind": "biquad",
+					"params": {
+						"frequency": ["set 6000 @3.21428571"]
+					},
+					"to": ["n182"],
+					"type": "highpass"
+				},
+				{
+					"channelCountMode": "clamped-max",
+					"id": "n185",
+					"kind": "stereoPanner",
+					"params": {
+						"pan": ["set 0 @3.21428571"]
+					},
+					"to": ["n1"]
+				}
+			],
+			"sampleRate": 48000,
+			"waves": []
+		},
+		"id": "title-theme",
+		"input": "title-theme",
+		"render": { "channels": 2, "master": true, "seed": 0, "tail": 2 },
+		"score": {
+			"cps": 0.291666667,
+			"events": [
+				"tick 0 midi 72 gate 24 level 0.2 pan 0 voice v0",
+				"tick 0 midi 60 gate 192 level 0.1336 pan 0 voice v1",
+				"tick 0 midi 64 gate 192 level 0.1336 pan 0 voice v1",
+				"tick 0 midi 67 gate 192 level 0.1336 pan 0 voice v1",
+				"tick 0 midi 36 gate 48 level 0.8 pan 0 voice v2",
+				"tick 0 note c1 gate 24 level 0.8 pan 0 voice v3",
+				"tick 24 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 48 midi 67 gate 24 level 0.2 pan 0 voice v0",
+				"tick 48 midi 48 gate 48 level 0.8 pan 0 voice v2",
+				"tick 48 note c4 gate 48 level 0.8 pan 0 voice v5",
+				"tick 72 midi 72 gate 24 level 0.2 pan 0 voice v0",
+				"tick 72 note c1 gate 24 level 0.8 pan 0 voice v3",
+				"tick 72 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 96 midi 76 gate 24 level 0.2 pan 0 voice v0",
+				"tick 96 midi 43 gate 48 level 0.8 pan 0 voice v2",
+				"tick 96 note c1 gate 24 level 0.8 pan 0 voice v3",
+				"tick 120 midi 79 gate 24 level 0.2 pan 0 voice v0",
+				"tick 120 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 144 midi 76 gate 24 level 0.2 pan 0 voice v0",
+				"tick 144 midi 48 gate 48 level 0.8 pan 0 voice v2",
+				"tick 144 note c4 gate 48 level 0.8 pan 0 voice v5",
+				"tick 168 midi 72 gate 24 level 0.2 pan 0 voice v0",
+				"tick 168 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 192 midi 69 gate 24 level 0.2 pan 0 voice v0",
+				"tick 192 midi 57 gate 192 level 0.1336 pan 0 voice v1",
+				"tick 192 midi 60 gate 192 level 0.1336 pan 0 voice v1",
+				"tick 192 midi 64 gate 192 level 0.1336 pan 0 voice v1",
+				"tick 192 midi 33 gate 48 level 0.8 pan 0 voice v2",
+				"tick 192 note c1 gate 24 level 0.8 pan 0 voice v3",
+				"tick 216 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 240 midi 64 gate 24 level 0.2 pan 0 voice v0",
+				"tick 240 midi 45 gate 48 level 0.8 pan 0 voice v2",
+				"tick 240 note c4 gate 48 level 0.8 pan 0 voice v5",
+				"tick 264 midi 69 gate 24 level 0.2 pan 0 voice v0",
+				"tick 264 note c1 gate 24 level 0.8 pan 0 voice v3",
+				"tick 264 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 288 midi 72 gate 24 level 0.2 pan 0 voice v0",
+				"tick 288 midi 40 gate 48 level 0.8 pan 0 voice v2",
+				"tick 288 note c1 gate 24 level 0.8 pan 0 voice v3",
+				"tick 312 midi 76 gate 24 level 0.2 pan 0 voice v0",
+				"tick 312 note c4 gate 24 level 0.8 pan 0 voice v4",
+				"tick 336 midi 72 gate 24 level 0.2 pan 0 voice v0",
+				"tick 336 midi 45 gate 48 level 0.8 pan 0 voice v2",
+				"tick 336 note c4 gate 48 level 0.8 pan 0 voice v5",
+				"tick 360 midi 69 gate 24 level 0.2 pan 0 voice v0",
+				"tick 360 note c4 gate 24 level 0.8 pan 0 voice v4"
+			],
+			"seconds": 3.42857143,
+			"voices": [
+				{ "attack": 0.005, "decay": 0.1, "filterCutoff": 2600, "gainLevel": 0.375, "id": "v0", "release": 0.08, "soundType": "square", "sustain": 0.3 },
+				{ "attack": 0.05, "decay": 0.5, "filterCutoff": 1400, "gainLevel": 0.375, "id": "v1", "orbit": 1, "release": 1.1, "roomLevel": 0.3, "roomSize": 6, "soundType": "sine", "sustain": 0.7 },
+				{ "attack": 0.005, "decay": 0.12, "gainLevel": 0.375, "id": "v2", "release": 0.08, "soundType": "triangle", "sustain": 0.45 },
+				{ "attack": 0.005, "decay": 0.12, "gainLevel": 0.75, "id": "v3", "release": 0.06, "slideTime": 0.09, "soundType": "sine", "sustain": 0 },
+				{ "attack": 0.005, "decay": 0.03, "gainLevel": 0.1, "hpfCutoff": 6000, "id": "v4", "release": 0.01, "soundType": "white", "sustain": 0 },
+				{ "attack": 0.005, "decay": 0.09, "gainLevel": 0.3, "hpfCutoff": 1600, "id": "v5", "release": 0.05, "soundType": "white", "sustain": 0 }
+			]
+		}
+	}
+]
