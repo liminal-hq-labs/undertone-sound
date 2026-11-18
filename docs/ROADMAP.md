@@ -26,7 +26,8 @@ Each crate moves from the studio with its history and fixtures, behind a version
 - [x] `undertone-mini`: Undertone's mini-notation, exact fractions and JavaScript number semantics (from `fizz-audio-mini`, with `js` from `fizz-audio-song`), with its recorded fixtures
 - [x] `undertone-dsp`: the in-house DSP and graph port (the Fizz-agnostic core of `fizz-audio-undertone`), with its recorded graph fixture. The studio glue and the `web-audio-api` comparison harness stay in the studio
 - [x] `undertone-sound`: the song model, validation, formatting and compiler (the generic part of `fizz-audio-song`), with its recorded fixtures. The editor file, album, text readout and change summary stay in the studio
-- [ ] First end-to-end proof: Title Theme to OPX OPL2 and OPL3, played by Fizz 2's own player
+- [x] First end-to-end proof, built: Title Theme to OPX for the OPL2 and OPL3 (`fixtures/opx/title-theme.opl2.opx` and `.opl3.opx`). The OPL2 stream matches the DOS game's own chunk note for note, with four carrier levels apart
+- [ ] First end-to-end proof, played: the same files loaded by Fizz 2's own player, which is the studio's loading test
 
 ## Later
 
