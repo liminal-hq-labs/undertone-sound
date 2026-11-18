@@ -1,0 +1,19 @@
+[package]
+name = "fizz-audio-song"
+version = "0.1.0"
+description = "The song document for Fizz Audio Studio: types, validation, formatting, editor files, albums, the text readout and change summaries"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+rust-version.workspace = true
+homepage.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+fizz-audio-mini = { path = "../fizz-audio-mini" }
+serde = { workspace = true }
+serde_json = { workspace = true, features = ["preserve_order"] }
+indexmap = { version = "2", features = ["serde"] }
+ts-rs = { workspace = true, features = ["indexmap-impl"] }
+chrono = { workspace = true }
