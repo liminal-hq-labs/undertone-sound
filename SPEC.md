@@ -21,7 +21,7 @@ Shared Rust sound core for Undertone.
 
 | Crate | Role | State |
 |---|---|---|
-| `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Header only |
+| `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Working: header, decoder and stepper, validator, text twin, `alloc` writer and `std` importers and re-timing. Not yet run against real files or on hardware |
 | `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation | Empty shell |
 | `undertone-mini` | Undertone's mini-notation: parser, pattern combinators and exact fractions, plus JavaScript number semantics (`js`) | Carved from the studio; passes the recorded `fixtures/mini/` cases |
 | `undertone-dsp` | Voices, the Web Audio graph Undertone books, and an in-house renderer, offline or streaming, native and WebAssembly | Carved from the studio; `LogGraph` matches the recorded `fixtures/undertone/graph.json` byte for byte and the engine streams in any block size. Compiles for `wasm32-unknown-unknown`; no bindings yet |
@@ -34,7 +34,9 @@ OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for
 ## Interfaces
 
 - The OPX file format, version 0.1, a draft: [docs/OPX.md](docs/OPX.md).
-- `oplstream::Header`: parse and write of the 32-byte header.
+- `oplstream` (`no_std` core): `Header`, `Decoder` and `Stepper` over the command stream, `validate`, and `print_twin`.
+- `oplstream` with `alloc`: `Writer` and the twin `assemble`.
+- `oplstream` with `std`: `import_imf`, `import_dro`, `import_vgm` and the explicit, reported `retime`.
 
 ## Settings and defaults
 

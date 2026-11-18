@@ -100,7 +100,12 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 
 ## Testing
 
-- `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, `cargo test --workspace --locked` — Rust
+- `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, `cargo nextest run --workspace --locked` and `cargo test --workspace --doc --locked` — Rust
+- `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` — docs
+- `cargo test -p oplstream --no-default-features --locked` and again with `--features alloc` — the feature tiers
+- `cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked` — the `no_std` core on a bare-metal target (`rustup target add thumbv7em-none-eabi`)
+- `cargo build --workspace --release --target wasm32-unknown-unknown --locked` — WebAssembly (`rustup target add wasm32-unknown-unknown`)
+- `cargo deny check licenses bans sources` and `cargo deny check advisories` — dependency policy (`deny.toml`)
 - `bash scripts/check-headers.sh` — SPDX headers
 - `bash scripts/check-banner.sh` — hero banner rules and text fit (needs `xmllint`, `rsvg-convert`, `python3` and Chromium; `--shots DIR` writes frames to look at)
 - `docker run --rm -v "$PWD:/workdir" davidanson/markdownlint-cli2:v0.17.2 "**/*.md"` — markdown

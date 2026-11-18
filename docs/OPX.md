@@ -4,7 +4,7 @@ OPX (file extension `.OPX`) is an open, standalone format for a stream of timed 
 
 Everything below stands on its own. [SOUND.md](SOUND.md) and [MUSIC.md](MUSIC.md) say how Fizz 2 makes and plays streams, and [FAP.md](FAP.md#audio-sections) says how a pack stores them; none of them is needed to read an OPX file.
 
-Status in one line: this is a draft, version 0.1, experimental. The engine's `OplStep` record exists and plays today; the format below, the `oplstream` crate and the text twin are proposals that nothing reads or writes yet (see [Status](#status)).
+Status in one line: this is a draft, version 0.1, experimental. The engine's `OplStep` record exists and plays today; the format below is read, written and validated by the `oplstream` crate in this repository, but no game or tool outside it uses it yet (see [Status](#status)).
 
 ## Purpose and non-goals
 
@@ -244,7 +244,7 @@ Extension commands (`F0` to `FF`) are how the format grows without breaking read
 
 | Version | Date | Change |
 | --- | --- | --- |
-| 0.1 | 2026-10-30 | First specification: the 32-byte header, the command set and the text twin. Nothing reads or writes it yet |
+| 0.1 | 2026-10-30 | First specification: the 32-byte header, the command set and the text twin. Nothing read or wrote it yet |
 
 ### Possible future extensions
 
@@ -581,11 +581,14 @@ What exists today:
 - The earlier compact record layout, `I3`, in an earlier draft of [FAP.md](FAP.md#audio-sections). It is folded into OPX and is no longer a separate layout. Its measurements are kept in FAP.md with that caveat.
 - id's IMF, DRO, Rdos RAW and VGM, which are other people's formats.
 
+What is built, in `crates/oplstream` of this repository:
+
+- The header, decoder, stepper, validator, writer, text twin, IMF, DRO and VGM importers, and the re-timing step, with tests for every worked example and every refused file. The DRO and VGM readers were written from the published layouts and have not been run against real files.
+
 What is only proposed:
 
 - OPX itself (this document, version 0.1), the extension `.OPX`, and its use as the pack's audio payload.
-- The `oplstream` crate and its importers, exporters and re-timing step.
-- The text twin.
+- Exporters to IMF, DRO and VGM.
 - The tier idea for one OPL3 stream with skippable extras. The format has the tier command; the lowering that uses it is not built.
 
 What is open:

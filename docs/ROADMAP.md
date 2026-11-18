@@ -11,12 +11,12 @@ The plan for Undertone Sound, kept current in the repository. Decisions live in 
 ## Next: `oplstream`
 
 - [x] Header parse and write
-- [ ] Command decoder and stepper (`no_std`, no allocation)
-- [ ] Validator for the rules in the specification
-- [ ] Writer with `finish` filling the derived header fields (`alloc`)
-- [ ] Text twin: parser and printer
-- [ ] IMF, DRO and VGM import, and the explicit, reported re-timing step (`std`)
-- [ ] Fixtures and a conformance corpus, including the examples in the specification
+- [x] Command decoder and stepper (`no_std`, no allocation)
+- [x] Validator for the rules in the specification
+- [x] Writer with `finish` filling the derived header fields (`alloc`)
+- [x] Text twin: parser and printer
+- [x] IMF, DRO and VGM import, and the explicit, reported re-timing step (`std`)
+- [ ] Fixtures and a conformance corpus, including the examples in the specification (the five examples and the nine refused files are tests; a corpus of files is not built)
 
 ## Then: the carve-out
 

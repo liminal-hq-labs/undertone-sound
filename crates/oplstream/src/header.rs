@@ -9,6 +9,13 @@ pub const MAGIC: [u8; 4] = [b'O', b'P', b'X', 0x1A];
 /// The header's length in bytes; the command stream follows it.
 pub const HEADER_LEN: usize = 32;
 
+/// The format's major version.
+pub const VERSION_MAJOR: u8 = 0;
+
+/// The highest minor version of [`VERSION_MAJOR`] that this crate reads, and the lowest that can
+/// express every stream it writes.
+pub const VERSION_MINOR: u8 = 1;
+
 /// The sound chip a stream drives.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Chip {
