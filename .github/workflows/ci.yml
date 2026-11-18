@@ -40,10 +40,23 @@ jobs:
           persist-credentials: false
 
       - name: Run markdownlint-cli2
+        id: check
         uses: DavidAnson/markdownlint-cli2-action@v24
         with:
           globs: '**/*.md'
 
+      - name: Write the step report
+        if: always()
+        run: bash scripts/step-report.sh outcome results "Markdown lint" "Run markdownlint-cli2" "${{ steps.check.outcome }}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-markdown
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   headers:
     name: Licence headers
@@ -56,8 +69,25 @@ jobs:
           persist-credentials: false
 
       - name: Check SPDX headers
-        run: bash scripts/check-headers.sh
+        run: bash scripts/step-report.sh run results "Licence headers" "Check SPDX headers" -- bash scripts/check-headers.sh
 
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-headers
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload the event file
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: event-file
+          path: ${{ github.event_path }}
+          if-no-files-found: ignore
+          retention-days: 14
 
   shell:
     name: Shell scripts
@@ -70,8 +100,16 @@ jobs:
           persist-credentials: false
 
       - name: Run shellcheck
-        run: shellcheck scripts/*.sh
+        run: bash scripts/step-report.sh run results "Shell scripts" "Run shellcheck" -- shellcheck scripts/*.sh
 
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-shell
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   workflows:
     name: Workflow lint
@@ -84,8 +122,16 @@ jobs:
           persist-credentials: false
 
       - name: Run actionlint
-        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.7
+        run: bash scripts/step-report.sh run results "Workflow lint" "Run actionlint" -- docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.7
 
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-workflows
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   banner:
     name: Hero banner
@@ -106,8 +152,16 @@ jobs:
       - name: Check the banner
         env:
           BANNER_REQUIRE_RENDER: '1'
-        run: bash scripts/check-banner.sh
+        run: bash scripts/step-report.sh run results "Hero banner" "Check the banner" -- bash scripts/check-banner.sh
 
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-banner
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   rust-format:
     name: Rust format
@@ -123,7 +177,7 @@ jobs:
 
       - name: Check formatting
         id: check
-        run: cargo fmt --all -- --check
+        run: bash scripts/step-report.sh run results "Rust format" "Check formatting" -- cargo fmt --all -- --check
 
       - name: Job summary
         if: always()
@@ -133,6 +187,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo fmt --all -- --check\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-rust-format
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   rust-clippy:
     name: Rust Clippy
@@ -153,7 +216,7 @@ jobs:
 
       - name: Run clippy
         id: check
-        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+        run: bash scripts/step-report.sh run results "Rust Clippy" "Run clippy" -- cargo clippy --workspace --all-targets --locked -- -D warnings
 
       - name: Job summary
         if: always()
@@ -163,6 +226,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo clippy --workspace --all-targets --locked -- -D warnings\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-rust-clippy
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   rust-tests:
     name: Rust tests
@@ -183,7 +255,7 @@ jobs:
 
       - name: Run the tests
         id: check
-        run: cargo nextest run --workspace --locked
+        run: bash scripts/step-report.sh run results "Rust tests" "Run the tests" -- cargo nextest run --profile ci --workspace --locked
 
       - name: Job summary
         if: always()
@@ -191,8 +263,26 @@ jobs:
           {
             echo "## Rust tests"
             echo "- Result: \`${{ steps.check.outcome }}\`"
-            echo "- Command: \`cargo nextest run --workspace --locked\`"
+            echo "- Command: \`cargo nextest run --profile ci --workspace --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-rust-tests
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload the Rust test results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rust-test-results
+          path: target/nextest/ci/junit.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   rust-doctests:
     name: Rust doc tests
@@ -213,7 +303,7 @@ jobs:
 
       - name: Run the doc tests
         id: check
-        run: cargo test --workspace --doc --locked
+        run: bash scripts/step-report.sh run results "Rust doc tests" "Run the doc tests" -- cargo test --workspace --doc --locked
 
       - name: Job summary
         if: always()
@@ -223,6 +313,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo test --workspace --doc --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-rust-doctests
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   rust-docs:
     name: Rust docs
@@ -245,7 +344,7 @@ jobs:
         id: check
         env:
           RUSTDOCFLAGS: '-D warnings'
-        run: cargo doc --workspace --no-deps --locked
+        run: bash scripts/step-report.sh run results "Rust docs" "Build the docs" -- cargo doc --workspace --no-deps --locked
 
       - name: Job summary
         if: always()
@@ -255,6 +354,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo doc --workspace --no-deps --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-rust-docs
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   oplstream-core:
     name: oplstream core features
@@ -275,7 +383,7 @@ jobs:
 
       - name: Test without default features
         id: check
-        run: cargo test -p oplstream --no-default-features --locked
+        run: bash scripts/step-report.sh run results "oplstream core features" "Test without default features" -- cargo test -p oplstream --no-default-features --locked
 
       - name: Job summary
         if: always()
@@ -285,6 +393,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo test -p oplstream --no-default-features --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-oplstream-core
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   oplstream-alloc:
     name: oplstream alloc feature
@@ -305,7 +422,7 @@ jobs:
 
       - name: Test with the alloc feature only
         id: check
-        run: cargo test -p oplstream --no-default-features --features alloc --locked
+        run: bash scripts/step-report.sh run results "oplstream alloc feature" "Test with the alloc feature only" -- cargo test -p oplstream --no-default-features --features alloc --locked
 
       - name: Job summary
         if: always()
@@ -315,6 +432,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo test -p oplstream --no-default-features --features alloc --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-oplstream-alloc
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   no-std-build:
     name: no_std build
@@ -338,7 +464,7 @@ jobs:
 
       - name: Build the oplstream core for a bare-metal target
         id: check
-        run: cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked
+        run: bash scripts/step-report.sh run results "no_std build" "Build the oplstream core for a bare-metal target" -- cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked
 
       - name: Job summary
         if: always()
@@ -348,6 +474,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-no-std-build
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   wasm-build:
     name: WebAssembly build
@@ -371,7 +506,7 @@ jobs:
 
       - name: Build the workspace for WebAssembly
         id: check
-        run: cargo build --workspace --release --target wasm32-unknown-unknown --locked
+        run: bash scripts/step-report.sh run results "WebAssembly build" "Build the workspace for WebAssembly" -- cargo build --workspace --release --target wasm32-unknown-unknown --locked
 
       - name: Job summary
         if: always()
@@ -381,6 +516,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo build --workspace --release --target wasm32-unknown-unknown --locked\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-wasm-build
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   dependency-licences:
     name: Dependency licences
@@ -396,7 +540,7 @@ jobs:
 
       - name: Check licences, bans and sources
         id: check
-        run: cargo deny check licenses bans sources
+        run: bash scripts/step-report.sh run results "Dependency licences" "Check licences, bans and sources" -- cargo deny check licenses bans sources
 
       - name: Job summary
         if: always()
@@ -406,6 +550,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo deny check licenses bans sources\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-dependency-licences
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   advisories:
     name: Security advisories
@@ -421,7 +574,7 @@ jobs:
 
       - name: Check advisories
         id: check
-        run: cargo deny check advisories
+        run: bash scripts/step-report.sh run results "Security advisories" "Check advisories" -- cargo deny check advisories
 
       - name: Job summary
         if: always()
@@ -431,6 +584,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo deny check advisories\`"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-advisories
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   docs-site:
     name: Docs site
@@ -451,7 +613,7 @@ jobs:
 
       - name: Build the site
         id: check
-        run: bash scripts/build-site.sh
+        run: bash scripts/step-report.sh run results "Docs site" "Build the site" -- bash scripts/build-site.sh
 
       - name: Job summary
         if: always()
@@ -461,6 +623,15 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`bash scripts/build-site.sh\` (VitePress build, then \`cargo doc\` into \`api/\`)"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-docs-site
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
 
   wasm-bindings:
     name: WebAssembly bindings
@@ -481,7 +652,7 @@ jobs:
 
       - name: Build the bindings
         id: check
-        run: bash scripts/build-wasm.sh
+        run: bash scripts/step-report.sh run results "WebAssembly bindings" "Build the bindings" -- bash scripts/build-wasm.sh
 
       - name: Job summary
         if: always()
@@ -491,3 +662,12 @@ jobs:
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`bash scripts/build-wasm.sh\` (release build for \`wasm32-unknown-unknown\`, then \`wasm-bindgen --target web\`)"
           } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-wasm-bindings
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14

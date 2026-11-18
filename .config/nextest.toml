@@ -1,0 +1,12 @@
+# nextest settings: the `ci` profile writes the JUnit report that pr-results reads.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+# A test that fails once and then passes shows as flaky in the pull request comment, not as a failure.
+[profile.ci]
+retries = 1
+
+# Written to `target/nextest/ci/junit.xml`.
+[profile.ci.junit]
+path = "junit.xml"
