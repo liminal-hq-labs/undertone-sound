@@ -5,11 +5,21 @@
 
 //! The reference implementation of OPX; the format is specified in `docs/OPX.md`.
 //!
-//! The core is `no_std`. The `alloc` feature adds the writer and the `std` feature adds the
-//! importers and the re-timing step. Only the header exists so far.
+//! The core is `no_std` and allocation-free: the header, the command decoder and stepper, the
+//! validator and the text twin printer. The `alloc` feature adds the writer and the twin
+//! assembler, and the `std` feature adds the importers and the re-timing step.
 
 #![no_std]
 
+#[cfg(test)]
+extern crate std;
+
+mod command;
+#[cfg(test)]
+mod examples;
+#[cfg(test)]
+mod fuzz;
 mod header;
 
+pub use command::{Command, DecodeError, DecodeErrorKind, Decoder, Step, Stepper, TickState};
 pub use header::{Chip, HEADER_LEN, Header, HeaderError, MAGIC};
