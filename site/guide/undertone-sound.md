@@ -24,7 +24,7 @@ A take or a message says who wrote it with an author object: `{ "kind": "human" 
 
 ## Presets and host sounds
 
-An instrument names one of ten presets: `lead`, `square-lead`, `soft-lead`, `pluck`, `bell`, `pad`, `organ`, `bass`, `sub-bass` and `kit`. A sound of a host's own is not a preset of the format. The host supplies it as data for the engine, such as `OplProfile::with_patch` in `undertone-opl`, and the song keeps saying `bass` or `pad` (see [decisions](/decisions) D51).
+An instrument names one of ten presets: `lead`, `square-lead`, `soft-lead`, `pluck`, `bell`, `pad`, `organ`, `bass`, `sub-bass` and `kit`. A sound of a host's own is not a preset of the format. The host supplies it as data for the engine, such as `OplProfile::with_patch` in `undertone-opl`, and the song keeps saying `bass` or `pad` (see [decisions](https://github.com/liminal-hq-labs/undertone-sound/blob/main/docs/decisions.md) D51).
 
 ## TypeScript types
 
