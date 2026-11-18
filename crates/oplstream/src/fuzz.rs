@@ -66,6 +66,33 @@ pub fn for_each_input(mut check: impl FnMut(&[u8])) {
 	}
 }
 
+/// Runs `check` on every truncation of `seed`, on single and multiple byte mutations of it, and
+/// on mutations that are then truncated.
+#[cfg(feature = "std")]
+pub fn for_each_mutation(seed: &[u8], mut check: impl FnMut(&[u8])) {
+	let mut rng = Rng::new(0xD1B5_4A32_D192_ED03);
+	for cut in 0..=seed.len() {
+		check(&seed[..cut]);
+	}
+	if seed.is_empty() {
+		return;
+	}
+	for _ in 0..3000 {
+		let mut copy = seed.to_vec();
+		for _ in 0..1 + rng.below(4) {
+			let at = rng.below(copy.len());
+			copy[at] = if rng.below(4) == 0 {
+				[0, 0xFF, 0x7F, 0x80][rng.below(4)]
+			} else {
+				rng.next() as u8
+			};
+		}
+		check(&copy);
+		copy.truncate(rng.below(copy.len() + 1));
+		check(&copy);
+	}
+}
+
 #[test]
 fn the_decoder_and_stepper_never_panic() {
 	for_each_input(|bytes| {

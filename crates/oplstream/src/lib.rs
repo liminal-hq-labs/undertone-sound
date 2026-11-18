@@ -13,25 +13,45 @@
 
 #[cfg(feature = "alloc")]
 extern crate alloc;
-#[cfg(test)]
+#[cfg(any(test, feature = "std"))]
 extern crate std;
 
 mod command;
+#[cfg(feature = "std")]
+mod dro;
 #[cfg(test)]
 mod examples;
 #[cfg(test)]
 mod fuzz;
 mod header;
+#[cfg(feature = "std")]
+mod imf;
+#[cfg(feature = "std")]
+mod import;
+#[cfg(feature = "std")]
+mod retime;
 mod twin;
 mod validate;
+#[cfg(feature = "std")]
+mod vgm;
 #[cfg(feature = "alloc")]
 mod writer;
 
 pub use command::{Command, DecodeError, DecodeErrorKind, Decoder, Step, Stepper, TickState};
+#[cfg(feature = "std")]
+pub use dro::{DRO_GRID_HZ, import_dro};
 pub use header::{Chip, HEADER_LEN, Header, HeaderError, MAGIC, VERSION_MAJOR, VERSION_MINOR};
+#[cfg(feature = "std")]
+pub use imf::{ImfKind, import_imf};
+#[cfg(feature = "std")]
+pub use import::{ImportError, ImportReport, Imported};
+#[cfg(feature = "std")]
+pub use retime::{RetimeError, RetimeReport, Retimed, retime};
 pub use twin::{PrintError, print_twin};
 #[cfg(feature = "alloc")]
 pub use twin::{TwinError, TwinErrorKind, assemble};
 pub use validate::{ValidationError, channel_of, validate};
+#[cfg(feature = "std")]
+pub use vgm::{VGM_GRID_HZ, import_vgm};
 #[cfg(feature = "alloc")]
 pub use writer::{WriteError, Writer};
