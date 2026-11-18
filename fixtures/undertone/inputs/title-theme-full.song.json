@@ -1,0 +1,1072 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Title Theme",
+	"tempo": 140,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "c", "scale": "mixolydian" },
+	"engine": "undertone",
+	"instruments": {
+		"lead": {
+			"name": "Lead (square)",
+			"preset": "square-lead",
+			"engines": {
+				"undertone": {
+					"soundType": "square",
+					"attack": 0.005,
+					"decay": 0.1,
+					"sustain": 0.3,
+					"release": 0.08,
+					"gainLevel": 0.450781,
+					"filterCutoff": 2600,
+					"filterEnvAmount": 3639.9999999999995,
+					"filterAttack": 0.001,
+					"filterDecay": 0.15000000000000002,
+					"filterSustain": 0.2,
+					"filterRelease": 0.08
+				}
+			}
+		},
+		"partner-of-lead": {
+			"name": "Partner of Lead (sine)",
+			"preset": "soft-lead",
+			"engines": {
+				"undertone": {
+					"soundType": "sine",
+					"attack": 0.01,
+					"decay": 0.1,
+					"sustain": 0.5,
+					"release": 0.08,
+					"gainLevel": 0.450781,
+					"filterCutoff": 3200,
+					"nudgeTime": 0.002,
+					"roomLevel": null
+				}
+			}
+		},
+		"pad": {
+			"name": "Pad (sine)",
+			"preset": "pad",
+			"engines": {
+				"undertone": {
+					"soundType": "sine",
+					"attack": 0.05,
+					"decay": 0.5,
+					"sustain": 0.7,
+					"release": 1.1,
+					"gainLevel": 0.450781,
+					"filterCutoff": 1400,
+					"filterEnvAmount": 1120,
+					"filterAttack": 0.3,
+					"filterDecay": 1,
+					"filterSustain": 0.2,
+					"filterRelease": 1.1,
+					"roomLevel": 0.3,
+					"roomSize": 6,
+					"orbit": 1,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"bass": {
+			"name": "Bass (triangle)",
+			"preset": "bass",
+			"engines": {
+				"undertone": {
+					"soundType": "triangle",
+					"attack": 0.005,
+					"decay": 0.12,
+					"sustain": 0.45,
+					"release": 0.08,
+					"gainLevel": 0.450781,
+					"filterCutoff": 2600,
+					"filterEnvAmount": 3639.9999999999995,
+					"filterAttack": 0.001,
+					"filterDecay": 0.18,
+					"filterSustain": 0.2,
+					"filterRelease": 0.08,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmWave": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"bass-break-and-build": {
+			"name": "Bass (break and build) (triangle)",
+			"preset": "bass",
+			"engines": {
+				"undertone": {
+					"soundType": "triangle",
+					"attack": 0.005,
+					"decay": 0.12,
+					"sustain": 0.5,
+					"release": 0.08,
+					"gainLevel": 0.450781,
+					"filterCutoff": 2600,
+					"filterEnvAmount": 3639.9999999999995,
+					"filterAttack": 0.001,
+					"filterDecay": 0.18,
+					"filterSustain": 0.2,
+					"filterRelease": 0.08,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmWave": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"partner-of-bass": {
+			"name": "Partner of Bass (sine)",
+			"preset": "bass",
+			"engines": {
+				"undertone": {
+					"soundType": "sine",
+					"attack": 0.01,
+					"decay": 0.12,
+					"sustain": 0.5,
+					"release": 0.08,
+					"gainLevel": 0.31875,
+					"filterCutoff": 3200,
+					"nudgeTime": 0.002,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmWave": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"kick": {
+			"name": "Kick (kit)",
+			"preset": "kit",
+			"engines": {
+				"undertone": {
+					"kick.layers": 1,
+					"kick.soundType": "sine",
+					"kick.attack": 0.005,
+					"kick.decay": 0.12,
+					"kick.sustain": 0,
+					"kick.release": 0.06,
+					"kick.gainLevel": 1.06066,
+					"kick.pitch": "c1",
+					"kick.slideTime": 0.09
+				}
+			}
+		},
+		"snare": {
+			"name": "Snare (kit)",
+			"preset": "kit",
+			"engines": {
+				"undertone": {
+					"snare.layers": 1,
+					"snare.soundType": "white",
+					"snare.attack": 0.005,
+					"snare.decay": 0.09,
+					"snare.sustain": 0,
+					"snare.release": 0.05,
+					"snare.gainLevel": 0.424264,
+					"snare.hpfCutoff": 1600
+				}
+			}
+		},
+		"hats": {
+			"name": "Hats (kit)",
+			"preset": "kit",
+			"engines": {
+				"undertone": {
+					"hat.layers": 1,
+					"hat.soundType": "white",
+					"hat.attack": 0.005,
+					"hat.decay": 0.03,
+					"hat.sustain": 0,
+					"hat.release": 0.01,
+					"hat.gainLevel": 0.141421,
+					"hat.hpfCutoff": 6000
+				}
+			}
+		},
+		"arpeggio": {
+			"name": "Arpeggio (triangle)",
+			"preset": "pluck",
+			"engines": {
+				"undertone": {
+					"soundType": "triangle",
+					"attack": 0.005,
+					"decay": 0.1,
+					"sustain": 0.2,
+					"release": 0.1,
+					"gainLevel": 0.450781,
+					"filterCutoff": 2400,
+					"filterEnvAmount": 3360,
+					"filterAttack": 0.001,
+					"filterDecay": 0.15000000000000002,
+					"filterSustain": 0.2,
+					"filterRelease": 0.1,
+					"roomLevel": 0.3,
+					"roomSize": 6,
+					"orbit": 1,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"partner-of-arpeggio": {
+			"name": "Partner of Arpeggio (sine)",
+			"preset": "pluck",
+			"engines": {
+				"undertone": {
+					"soundType": "sine",
+					"attack": 0.01,
+					"decay": 0.1,
+					"sustain": 0.5,
+					"release": 0.1,
+					"gainLevel": 0.450781,
+					"filterCutoff": 3200,
+					"nudgeTime": 0.002,
+					"roomLevel": 0.3,
+					"roomSize": 6,
+					"orbit": 1,
+					"fmIndex": null,
+					"fmHarmonicity": null,
+					"fmAttack": null,
+					"fmDecay": null,
+					"fmSustain": null,
+					"fmRelease": null
+				}
+			}
+		},
+		"snare-build": {
+			"name": "Snare (build) (kit)",
+			"preset": "kit",
+			"engines": {
+				"undertone": {
+					"snare.layers": 1,
+					"snare.soundType": "white",
+					"snare.attack": 0.001,
+					"snare.decay": 0.05,
+					"snare.sustain": 0,
+					"snare.release": 0.03,
+					"snare.gainLevel": 0.353554,
+					"snare.hpfCutoff": 1500
+				}
+			}
+		}
+	},
+	"tracks": [
+		{
+			"id": "lead",
+			"name": "Lead",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.188,
+			"pan": -0.15,
+			"priority": 9
+		},
+		{
+			"id": "partner-of-lead",
+			"name": "Partner of Lead",
+			"role": "melody",
+			"instrument": "partner-of-lead",
+			"volume": 0.11,
+			"pan": 0.15,
+			"priority": 8
+		},
+		{
+			"id": "pad",
+			"name": "Pad",
+			"role": "harmony",
+			"instrument": "pad",
+			"volume": 0.147,
+			"pan": 0,
+			"priority": 3
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 0.75,
+			"pan": 0,
+			"priority": 8,
+			"solo": false
+		},
+		{
+			"id": "bass-break-and-build",
+			"name": "Bass (break and build)",
+			"role": "bass",
+			"instrument": "bass-break-and-build",
+			"volume": 0.375,
+			"pan": 0,
+			"priority": 8,
+			"solo": false
+		},
+		{
+			"id": "partner-of-bass",
+			"name": "Partner of Bass",
+			"role": "bass",
+			"instrument": "partner-of-bass",
+			"volume": 0.441,
+			"pan": -0.22,
+			"priority": 7,
+			"solo": false
+		},
+		{
+			"id": "partner-of-bass-break-and-build",
+			"name": "Partner of Bass (break and build)",
+			"role": "bass",
+			"instrument": "partner-of-bass",
+			"volume": 0.221,
+			"pan": -0.22,
+			"priority": 7,
+			"solo": false
+		},
+		{
+			"id": "kick",
+			"name": "Kick",
+			"role": "drums",
+			"instrument": "kick",
+			"volume": 0.75,
+			"pan": 0
+		},
+		{
+			"id": "kick-break-and-build",
+			"name": "Kick (break and build)",
+			"role": "drums",
+			"instrument": "kick",
+			"volume": 0.45,
+			"pan": 0
+		},
+		{
+			"id": "snare",
+			"name": "Snare",
+			"role": "drums",
+			"instrument": "snare",
+			"volume": 0.75,
+			"pan": 0
+		},
+		{
+			"id": "hats",
+			"name": "Hats",
+			"role": "drums",
+			"instrument": "hats",
+			"volume": 0.75,
+			"pan": 0.25
+		},
+		{
+			"id": "arpeggio",
+			"name": "Arpeggio",
+			"role": "melody",
+			"instrument": "arpeggio",
+			"volume": 0.15,
+			"pan": 0,
+			"priority": 6,
+			"solo": false
+		},
+		{
+			"id": "partner-of-arpeggio",
+			"name": "Partner of Arpeggio",
+			"role": "melody",
+			"instrument": "partner-of-arpeggio",
+			"volume": 0.088,
+			"pan": 0,
+			"priority": 5
+		},
+		{
+			"id": "lead-octave-up",
+			"name": "Lead (octave up)",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.103,
+			"pan": -0.15,
+			"priority": 9
+		},
+		{
+			"id": "partner-of-lead-octave-up",
+			"name": "Partner of Lead (octave up)",
+			"role": "melody",
+			"instrument": "partner-of-lead",
+			"volume": 0.061,
+			"pan": 0.15,
+			"priority": 8
+		},
+		{
+			"id": "snare-build",
+			"name": "Snare (build)",
+			"role": "drums",
+			"instrument": "snare-build",
+			"volume": 0.75,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "a", "name": "A", "bars": 8 },
+		{ "id": "b", "name": "B", "bars": 8 },
+		{ "id": "a-octave", "name": "A octave", "bars": 8 },
+		{ "id": "break", "name": "Breakdown", "bars": 3 },
+		{ "id": "build", "name": "Build", "bars": 1 },
+		{ "id": "a-final", "name": "A′", "bars": 8 }
+	],
+	"arrangement": ["a", "b", "a-octave", "break", "build", "a-final"],
+	"clips": {
+		"lead": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, the notes as written; PATTERNS.songs.title stream 1, section 1 (A), gain 0.047812, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[f5 ~ c5 f5 a5 c6 a5 f5] [d5 ~ a4 d5 f5 a5 f5 d5] [a#4 d5 f5 a#5 a5 f5 d5 f5] [c5 e5 g5 c6 a#5 g5 e5 g5] [a5 ~ a5 c6 f6 ~ e6 c6] [d6 ~ c6 a5 f5 ~ a5 d6] [a#5 a5 g5 f5 g5 ~ e5 g5] [f5 ~ c5 ~ f5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 1, section 2 (B), gain 0.047812, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, the notes as written; PATTERNS.songs.title stream 1, section 3 (A octave), gain 0.047812, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, the notes as written; PATTERNS.songs.title stream 1, section 6 (A′), gain 0.047812, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"partner-of-lead": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, the notes as written; PATTERNS.songs.title stream 2, section 1 (A), gain 0.028125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Lead: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Lead does not follow it here."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[f5 ~ c5 f5 a5 c6 a5 f5] [d5 ~ a4 d5 f5 a5 f5 d5] [a#4 d5 f5 a#5 a5 f5 d5 f5] [c5 e5 g5 c6 a#5 g5 e5 g5] [a5 ~ a5 c6 f6 ~ e6 c6] [d6 ~ c6 a5 f5 ~ a5 d6] [a#5 a5 g5 f5 g5 ~ e5 g5] [f5 ~ c5 ~ f5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 2, section 2 (B), gain 0.028125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Lead: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Lead does not follow it here."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, the notes as written; PATTERNS.songs.title stream 2, section 3 (A octave), gain 0.028125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Lead: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Lead does not follow it here."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c5 ~ g4 c5 e5 g5 e5 c5] [a4 ~ e4 a4 c5 e5 c5 a4] [f4 a4 c5 f5 e5 c5 a4 c5] [g4 b4 d5 g5 f5 d5 b4 d5] [e5 ~ e5 g5 c6 ~ b5 g5] [a5 ~ g5 e5 c5 ~ e5 a5] [f5 e5 d5 c5 d5 ~ b4 d5] [c5 ~ g4 ~ c5 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:248, the notes as written; PATTERNS.songs.title stream 2, section 6 (A′), gain 0.028125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Lead: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Lead does not follow it here."
+					}
+				]
+			}
+		},
+		"pad": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Imported from patterns.ts:252, the notes as written; PATTERNS.songs.title stream 3, section 1 (A), gain 0.0375, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[f4,a4,c5] [d4,f4,a4] [a#3,d4,f4] [c4,e4,g4] [f4,a4,c5] [d4,f4,a4] [a#3,d4,g4] [f4,a4,c5]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 3, section 2 (B), gain 0.0375, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Imported from patterns.ts:252, the notes as written; PATTERNS.songs.title stream 3, section 3 (A octave), gain 0.0375, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Imported from patterns.ts:252, the notes as written; PATTERNS.songs.title stream 3, section 4 (Breakdown), gain 0.0375, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"build": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Imported from patterns.ts:252, the notes as written; PATTERNS.songs.title stream 3, section 5 (Build), gain 0.0375, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4] [c4,e4,g4] [a3,c4,e4] [f3,a3,d4] [c4,e4,g4]>",
+						"comment": "Imported from patterns.ts:252, the notes as written; PATTERNS.songs.title stream 3, section 6 (A′), gain 0.0375, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"bass": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, the notes as written; PATTERNS.songs.title stream 4, section 1 (A), gain 0.19125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[f2 f3 c3 f3] [d2 d3 a2 d3] [a#1 a#2 f2 a#2] [c2 c3 g2 c3] [f2 f3 c3 f3] [d2 d3 a2 d3] [a#2 a#2 c3 c3] [f2 c2 f2 ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 4, section 2 (B), gain 0.19125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, the notes as written; PATTERNS.songs.title stream 4, section 3 (A octave), gain 0.19125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, the notes as written; PATTERNS.songs.title stream 4, section 6 (A′), gain 0.19125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"bass-break-and-build": {
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<c2 a1 f1 g1 c2 a1 f2 c2>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 4, section 4 (Breakdown), gain 0.095625, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"build": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<c2 a1 f1 g1 c2 a1 f2 c2>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 4, section 5 (Build), gain 0.095625, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"partner-of-bass": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, the notes as written; PATTERNS.songs.title stream 5, section 1 (A), gain 0.1125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: a partner of a centred part is panned in the game without the √2 make-up, so its gain is left as it is. Partner layer of Bass: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Bass does not follow it here."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[f2 f3 c3 f3] [d2 d3 a2 d3] [a#1 a#2 f2 a#2] [c2 c3 g2 c3] [f2 f3 c3 f3] [d2 d3 a2 d3] [a#2 a#2 c3 c3] [f2 c2 f2 ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 5, section 2 (B), gain 0.1125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: a partner of a centred part is panned in the game without the √2 make-up, so its gain is left as it is. Partner layer of Bass: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Bass does not follow it here."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, the notes as written; PATTERNS.songs.title stream 5, section 3 (A octave), gain 0.1125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: a partner of a centred part is panned in the game without the √2 make-up, so its gain is left as it is. Partner layer of Bass: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Bass does not follow it here."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c2 c3 g2 c3] [a1 a2 e2 a2] [f1 f2 c2 f2] [g1 g2 d2 g2] [c2 c3 g2 c3] [a1 a2 e2 a2] [f2 f2 g2 g2] [c2 g1 c2 ~]>",
+						"comment": "Imported from patterns.ts:256, the notes as written; PATTERNS.songs.title stream 5, section 6 (A′), gain 0.1125, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: a partner of a centred part is panned in the game without the √2 make-up, so its gain is left as it is. Partner layer of Bass: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Bass does not follow it here."
+					}
+				]
+			}
+		},
+		"partner-of-bass-break-and-build": {
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<c2 a1 f1 g1 c2 a1 f2 c2>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 5, section 4 (Breakdown), gain 0.05625, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: a partner of a centred part is panned in the game without the √2 make-up, so its gain is left as it is. Partner layer of Bass (break and build): the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Bass (break and build) does not follow it here."
+					}
+				]
+			},
+			"build": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<c2 a1 f1 g1 c2 a1 f2 c2>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 5, section 5 (Build), gain 0.05625, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: a partner of a centred part is panned in the game without the √2 make-up, so its gain is left as it is. Partner layer of Bass (break and build): the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Bass (break and build) does not follow it here."
+					}
+				]
+			}
+		},
+		"kick": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, the notes as written; PATTERNS.songs.title stream 6, section 1 (A), gain 0.45, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, the notes as written; PATTERNS.songs.title stream 6, section 2 (B), gain 0.45, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, the notes as written; PATTERNS.songs.title stream 6, section 3 (A octave), gain 0.45, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, the notes as written; PATTERNS.songs.title stream 6, section 6 (A′), gain 0.45, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"kick-break-and-build": {
+			"break": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, the notes as written; PATTERNS.songs.title stream 6, section 4 (Breakdown), gain 0.27, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"build": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "kick ~ ~ kick kick ~ ~ ~",
+						"comment": "Imported from patterns.ts:259, the notes as written; PATTERNS.songs.title stream 6, section 5 (Build), gain 0.27, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"snare": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Imported from patterns.ts:260, the notes as written; PATTERNS.songs.title stream 7, section 1 (A), gain 0.18, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Imported from patterns.ts:260, the notes as written; PATTERNS.songs.title stream 7, section 2 (B), gain 0.18, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Imported from patterns.ts:260, the notes as written; PATTERNS.songs.title stream 7, section 3 (A octave), gain 0.18, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "~ snare ~ snare",
+						"comment": "Imported from patterns.ts:260, the notes as written; PATTERNS.songs.title stream 7, section 6 (A′), gain 0.18, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"hats": {
+			"a": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Imported from patterns.ts:261, the notes as written; PATTERNS.songs.title stream 8, section 1 (A), gain 0.06, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Imported from patterns.ts:261, the notes as written; PATTERNS.songs.title stream 8, section 2 (B), gain 0.06, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Imported from patterns.ts:261, the notes as written; PATTERNS.songs.title stream 8, section 3 (A octave), gain 0.06, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "[~ hat]*4",
+						"comment": "Imported from patterns.ts:261, the notes as written; PATTERNS.songs.title stream 8, section 6 (A′), gain 0.06, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"arpeggio": {
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[f4 a4 c5 a4 f4 a4 c5 a4] [d4 f4 a4 f4 d4 f4 a4 f4] [a#3 d4 f4 d4 a#3 d4 f4 d4] [c4 e4 g4 e4 c4 e4 g4 e4] [f4 a4 c5 a4 f4 a4 c5 a4] [d4 f4 a4 f4 d4 f4 a4 f4] [a#3 d4 g4 d4 a#3 d4 g4 d4] [f4 a4 c5 a4 f4 a4 c5 a4]>",
+						"panMotion": {
+							"kind": "jump",
+							"positions": [-0.3, 0.3],
+							"every": 2
+						},
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 9, section 2 (B), gain 0.03825, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Pan: a jump between -0.3 and 0.3 every 2 steps (an eighth) from the section's start, which is the game's alternation by position in the bar."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c4 e4 g4 e4 c4 e4 g4 e4] [a3 c4 e4 c4 a3 c4 e4 c4] [f3 a3 c4 a3 f3 a3 c4 a3] [g3 b3 d4 b3 g3 b3 d4 b3] [c4 e4 g4 e4 c4 e4 g4 e4] [a3 c4 e4 c4 a3 c4 e4 c4] [f3 a3 d4 a3 f3 a3 d4 a3] [c4 e4 g4 e4 c4 e4 g4 e4]>",
+						"panMotion": {
+							"kind": "jump",
+							"positions": [-0.3, 0.3],
+							"every": 2
+						},
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 9, section 6 (A′), gain 0.03825, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Pan: a jump between -0.3 and 0.3 every 2 steps (an eighth) from the section's start, which is the game's alternation by position in the bar."
+					}
+				]
+			}
+		},
+		"partner-of-arpeggio": {
+			"b": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[f4 a4 c5 a4 f4 a4 c5 a4] [d4 f4 a4 f4 d4 f4 a4 f4] [a#3 d4 f4 d4 a#3 d4 f4 d4] [c4 e4 g4 e4 c4 e4 g4 e4] [f4 a4 c5 a4 f4 a4 c5 a4] [d4 f4 a4 f4 d4 f4 a4 f4] [a#3 d4 g4 d4 a#3 d4 g4 d4] [f4 a4 c5 a4 f4 a4 c5 a4]>",
+						"panMotion": {
+							"kind": "jump",
+							"positions": [0.3, -0.3],
+							"every": 2
+						},
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 10, section 2 (B), gain 0.0225, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Arpeggio: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Arpeggio does not follow it here. Pan: a jump between 0.3 and -0.3 every 2 steps (an eighth) from the section's start, which is the game's alternation by position in the bar."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c4 e4 g4 e4 c4 e4 g4 e4] [a3 c4 e4 c4 a3 c4 e4 c4] [f3 a3 c4 a3 f3 a3 c4 a3] [g3 b3 d4 b3 g3 b3 d4 b3] [c4 e4 g4 e4 c4 e4 g4 e4] [a3 c4 e4 c4 a3 c4 e4 c4] [f3 a3 d4 a3 f3 a3 d4 a3] [c4 e4 g4 e4 c4 e4 g4 e4]>",
+						"panMotion": {
+							"kind": "jump",
+							"positions": [0.3, -0.3],
+							"every": 2
+						},
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 10, section 6 (A′), gain 0.0225, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Arpeggio: the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Arpeggio does not follow it here. Pan: a jump between 0.3 and -0.3 every 2 steps (an eighth) from the section's start, which is the game's alternation by position in the bar."
+					}
+				]
+			}
+		},
+		"lead-octave-up": {
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c6 ~ g5 c6 e6 g6 e6 c6] [a5 ~ e5 a5 c6 e6 c6 a5] [f5 a5 c6 f6 e6 c6 a5 c6] [g5 b5 d6 g6 f6 d6 b5 d6] [e6 ~ e6 g6 c7 ~ b6 g6] [a6 ~ g6 e6 c6 ~ e6 a6] [f6 e6 d6 c6 d6 ~ b5 d6] [c6 ~ g5 ~ c6 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 11, section 3 (A octave), gain 0.026297, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "<[c6 ~ g5 c6 e6 g6 e6 c6] [a5 ~ e5 a5 c6 e6 c6 a5] [f5 a5 c6 f6 e6 c6 a5 c6] [g5 b5 d6 g6 f6 d6 b5 d6] [e6 ~ e6 g6 c7 ~ b6 g6] [a6 ~ g6 e6 c6 ~ e6 a6] [f6 e6 d6 c6 d6 ~ b5 d6] [c6 ~ g5 ~ c6 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 11, section 6 (A′), gain 0.026297, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		},
+		"partner-of-lead-octave-up": {
+			"a-octave": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c6 ~ g5 c6 e6 g6 e6 c6] [a5 ~ e5 a5 c6 e6 c6 a5] [f5 a5 c6 f6 e6 c6 a5 c6] [g5 b5 d6 g6 f6 d6 b5 d6] [e6 ~ e6 g6 c7 ~ b6 g6] [a6 ~ g6 e6 c6 ~ e6 a6] [f6 e6 d6 c6 d6 ~ b5 d6] [c6 ~ g5 ~ c6 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 12, section 3 (A octave), gain 0.015469, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Lead (octave up): the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Lead (octave up) does not follow it here."
+					}
+				]
+			},
+			"a-final": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Partner",
+						"by": "claude",
+						"mini": "<[c6 ~ g5 c6 e6 g6 e6 c6] [a5 ~ e5 a5 c6 e6 c6 a5] [f5 a5 c6 f6 e6 c6 a5 c6] [g5 b5 d6 g6 f6 d6 b5 d6] [e6 ~ e6 g6 c7 ~ b6 g6] [a6 ~ g6 e6 c6 ~ e6 a6] [f6 e6 d6 c6 d6 ~ b5 d6] [c6 ~ g5 ~ c6 ~ ~ ~]>",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 12, section 6 (A′), gain 0.015469, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level. Partner layer of Lead (octave up): the same notes on a sine, half the level, 2 ms late, panned opposite. Today a partner is a duplicated track, so an edit to Lead (octave up) does not follow it here."
+					}
+				]
+			}
+		},
+		"snare-build": {
+			"build": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Full song",
+						"by": "claude",
+						"mini": "snare*16",
+						"comment": "Imported from patterns.ts:244, MUSIC.title, the loop these notes come from; PATTERNS.songs.title stream 13, section 5 (Build), gain 0.15, cue trim 0.75 in the volume. The cue's settings are songs.ts:16. Level rule: the instrument gain is √2 times the game gain (1.4142), the make-up that keeps a panned part as loud as a centred one in the game; the studio sends every Undertone voice through a stereo panner (3.01 dB down at the centre), so it is the game's own level."
+					}
+				]
+			}
+		}
+	},
+	"messages": []
+}
