@@ -25,3 +25,6 @@ __pycache__/
 # TypeScript bindings written by `cargo test --features ts`
 /crates/*/bindings/
 /site/.vitepress/theme/wasm/
+
+# CI step and test reports
+/results/

@@ -112,6 +112,8 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 - `docker run --rm -v "$PWD:/mnt" -w /mnt koalaman/shellcheck:stable scripts/*.sh` — shell scripts
 - `docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint` — workflows
 
+Pull requests get one comment and a check run per suite from [pr-results](https://github.com/liminal-hq-labs/pr-results). Each CI job runs its check through `scripts/step-report.sh`, which writes a JUnit step report to `results/steps.xml` and keeps the command's exit status, and uploads it as `steps-test-results-<job>`. The `Rust tests` job also uploads nextest's JUnit (`cargo nextest run --profile ci`, the `ci` profile in `.config/nextest.toml`) as `rust-test-results`, and the `Licence headers` job uploads the `event-file`. `.github/workflows/publish-test-results.yml` runs after CI from the default branch, with the write tokens and none of the pull request's code, and reads those artefacts. Settings are in `.github/pr-results.toml`. Keep the job names stable, because check names come from them, and keep a new job's results in the same shape. To see the comment locally, run `pr-results render --config .github/pr-results.toml <junit files> --out DIR`.
+
 State exactly what was and was not run when reporting results.
 
 ## Documentation
