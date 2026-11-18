@@ -15,14 +15,14 @@ Done in the lab:
 - [x] `undertone-mini`: mini-notation, exact fractions and pattern combinators, with recorded fixtures
 - [x] `undertone-dsp`: voices, effects, master bus, DSP kernels, the `Graph` trait and an in-house renderer that plays offline or streams in blocks of any size, matching the TypeScript library's recorded Web Audio graph byte for byte
 - [x] `undertone-mini` and `undertone-dsp` compile for `wasm32-unknown-unknown`
-- [x] `undertone-wasm`: first bindings, with a browser demo that plays Title Theme through the Undertone engine (a two-bar excerpt for now), the OPL2 chip and the OPL3 chip
+- [x] `undertone-wasm`: first bindings, with a browser demo that plays Title Theme through the Undertone engine the OPL2 chip and the OPL3 chip
 - [x] The layering rule (D42), enforced by `scripts/check-layering.sh`: the engine crates depend on nothing else in the lab, so the promotion is a path filter
 
 Next:
 
 - [ ] The execution plan for the Rust-first Undertone, written in the Undertone repository
 - [ ] The promotion of the engine crates into the Undertone repository, with their history and fixtures
-- [ ] The demo's Undertone card plays the full Title Theme, from a recorded events-only score the studio is producing
+- [x] The demo's Undertone card plays the full Title Theme, from a recorded events-only score the studio is producing
 - [ ] The lab depends on Undertone for the engine, and the engine's bindings leave `undertone-wasm` (the OPX bindings stay in the lab)
 
 No new engine-crate work starts in the lab: schedulers, renames and the bindings split happen after the promotion, in the Undertone repository.

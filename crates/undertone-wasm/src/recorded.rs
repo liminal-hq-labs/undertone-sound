@@ -3,14 +3,20 @@
 // (c) Copyright 2026 Liminal HQ, Scott Morris
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-//! `fixtures/undertone/graph.json` holds, for each case, the score Undertone's TypeScript booked
+//! `fixtures/undertone/graph.json` and `fixtures/undertone/scores/title-theme.score.json` hold, for each case, the score Undertone's TypeScript booked
 //! (one line an event, each distinct voice listed once) beside the graph it made. The browser
 //! demo reads the same score the native tests read, books it on the in-house renderer and streams
 //! it a block at a time, so the Undertone version of Title Theme is the recorded one and nothing
 //! is copied into the site.
 //!
-//! The file does not record the tick rate. It is the tempo times four steps a beat times twelve
-//! ticks a step, over 60 seconds, and the caller supplies it: 112 for `title-theme` (140 bpm).
+//! `fixtures/undertone/scores/title-theme.score.json` is the whole rich Title Theme, events only,
+//! with no graph beside it. Its extra header fields (`bars`, `input`, `lengthTicks`, `render`) are
+//! not needed to play it: the render is the export's, and the length is the recorded seconds at
+//! the tick rate. A drum layer's `note c1` is a note name the engine resolves.
+//!
+//! The files do not record the tick rate. It is the tempo times four steps a beat times twelve
+//! ticks a step, over 60 seconds, and the caller supplies it: 112 for both Title Theme cases
+//! (140 bpm).
 
 use serde_json::Value;
 use undertone_dsp::params::Patch;
@@ -21,6 +27,9 @@ use undertone_dsp::score::{Score, ScoreEvent, ScorePitch, score};
 
 /// The ticks a second `title-theme` was recorded at: 140 bpm, four steps a beat, twelve ticks a step.
 pub const TITLE_THEME_TICKS_PER_SECOND: f64 = 112.0;
+
+/// The case of `fixtures/undertone/scores/title-theme.score.json`: the rich Title Theme, whole.
+pub const FULL_ID: &str = "title-theme-full";
 
 /// A case of the recorded file, read back.
 #[derive(Debug, Clone)]
@@ -229,6 +238,7 @@ mod tests {
 	use super::*;
 
 	const GRAPH: &str = include_str!("../../../fixtures/undertone/graph.json");
+	const FULL: &str = include_str!("../../../fixtures/undertone/scores/title-theme.score.json");
 
 	fn peak(samples: &[f32]) -> f32 {
 		samples.iter().fold(0.0, |peak, s| peak.max(s.abs()))
@@ -285,5 +295,65 @@ mod tests {
 		);
 		assert!(read_case("not json", "voices", 96.0).is_err());
 		assert!(ScorePlayer::new(&read_case(GRAPH, "voices", 96.0).unwrap(), 0).is_err());
+	}
+
+	fn full() -> RecordedScore {
+		read_case(FULL, FULL_ID, TITLE_THEME_TICKS_PER_SECOND).unwrap()
+	}
+
+	#[test]
+	fn the_full_title_theme_reads_back() {
+		let recorded = full();
+		assert_eq!(recorded.events, 1_560);
+		assert_eq!(recorded.voices, 12);
+		assert_eq!(recorded.bars, None);
+		assert!(recorded.from.contains("rich Title Theme"));
+		assert_eq!(recorded.score.length_ticks, 6_912.0);
+		assert_eq!(recorded.score.ticks_per_second, 112.0);
+		assert!((recorded.score.seconds - 61.714_285).abs() < 1e-5);
+	}
+
+	#[test]
+	fn the_full_title_theme_renders_the_pass_and_tail_in_range() {
+		let mut player = ScorePlayer::new(&full(), 48_000).unwrap();
+		assert!((player.total_frames() as f64 / 48_000.0 - 63.7143).abs() < 0.001);
+		let all = player.render(player.total_frames());
+		let top = peak(&all);
+		assert!(top > 0.5 && top < 1.0, "peak {top}");
+		let (left, right): (Vec<f32>, Vec<f32>) =
+			all.as_chunks::<2>().0.iter().map(|[l, r]| (*l, *r)).unzip();
+		assert!(peak(&left) > 0.1 && peak(&right) > 0.1);
+		// The tail has died away by its end.
+		assert!(peak(&all[all.len() - 48_000..]) < 0.01);
+	}
+
+	#[test]
+	fn the_full_title_theme_matches_the_studios_level() {
+		// The studio's in-house render reports a peak of -2.0 dBFS and an RMS of -18.1 dBFS.
+		let mut player = ScorePlayer::new(&full(), 48_000).unwrap();
+		let all = player.render(player.total_frames());
+		let db = |linear: f64| 20.0 * linear.log10();
+		let top = db(f64::from(peak(&all)));
+		let mean_square = all.iter().map(|s| f64::from(*s).powi(2)).sum::<f64>() / all.len() as f64;
+		let rms = db(mean_square.sqrt());
+		eprintln!("measured peak {top:.3} dBFS rms {rms:.3} dBFS");
+		assert!((top + 2.0).abs() < 0.2, "peak {top:.2} dBFS");
+		assert!((rms + 18.1).abs() < 0.5, "rms {rms:.2} dBFS");
+	}
+
+	#[test]
+	fn the_full_title_theme_is_the_same_in_blocks_of_any_size() {
+		let recorded = full();
+		let mut whole = ScorePlayer::new(&recorded, 44_100).unwrap();
+		let frames = whole.total_frames();
+		let all = whole.render(frames);
+		for block in [128, 4_096] {
+			let mut parts = ScorePlayer::new(&recorded, 44_100).unwrap();
+			let mut joined = Vec::with_capacity(all.len());
+			while joined.len() < all.len() {
+				joined.extend(parts.render(block.min((all.len() - joined.len()) / 2)));
+			}
+			assert!(joined == all, "block size {block}");
+		}
 	}
 }

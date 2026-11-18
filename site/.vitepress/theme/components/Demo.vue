@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, reactive, ref, shallowRef } from 'vue';
 import wasmUrl from '../wasm/undertone_wasm_bg.wasm?url';
-import graphUrl from '../../../../fixtures/undertone/graph.json?url';
+import scoreUrl from '../../../../fixtures/undertone/scores/title-theme.score.json?url';
 import opl2Url from '../../../../fixtures/opx/title-theme.opl2.opx?url';
 import opl3Url from '../../../../fixtures/opx/title-theme.opl3.opx?url';
 
@@ -45,8 +45,10 @@ interface Measured {
 
 /** The sample rate every version is rendered at, so the buffers do not depend on the sound card. */
 const SAMPLE_RATE = 48_000;
-/** `title-theme` in `fixtures/undertone/graph.json` is recorded at 140 bpm: 140 / 60 * 4 * 12. */
+/** The recorded Title Theme score is at 140 bpm: 140 / 60 * 4 * 12 ticks a second. */
 const TITLE_THEME_TICKS_PER_SECOND = 112;
+/** The case of `fixtures/undertone/scores/title-theme.score.json`. */
+const TITLE_THEME_CASE = 'title-theme-full';
 /** Half a second for the chip's last notes to ring out. */
 const CHIP_TAIL_SECONDS = 0.5;
 
@@ -64,13 +66,13 @@ const waveform = ref('triangle');
 const midi = ref(69);
 
 const stats = reactive<Record<'opl2' | 'opl3' | 'file', Stats | null>>({ opl2: null, opl3: null, file: null });
-const undertoneStats = ref<{ events: number; voices: number; bars: number; passSeconds: number; frames: number } | null>(null);
+const undertoneStats = ref<{ events: number; voices: number; passSeconds: number; frames: number } | null>(null);
 const measured = reactive<Record<CardId, Measured | null>>({ undertone: null, opl2: null, opl3: null, file: null });
 const cardError = reactive<Record<CardId, string>>({ undertone: '', opl2: '', opl3: '', file: '' });
 const headers = reactive<Record<'opl2' | 'opl3' | 'file', string>>({ opl2: '', opl3: '', file: '' });
 const twins = reactive<Record<'opl2' | 'opl3' | 'file', string>>({ opl2: '', opl3: '', file: '' });
 
-let graphText = '';
+let scoreText = '';
 const streams: Record<'opl2' | 'opl3' | 'file', Uint8Array | null> = { opl2: null, opl3: null, file: null };
 let fileBytes: Uint8Array | null = null;
 let context: AudioContext | null = null;
@@ -134,7 +136,6 @@ const undertoneRows = computed<Row[]>(() => {
 		{ id: 'output', label: 'Output', value: 'stereo, master bus' },
 		{ id: 'events', label: 'Score events', value: number.format(s.events) },
 		{ id: 'voices', label: 'Voices', value: number.format(s.voices) },
-		{ id: 'bars', label: 'Bars', value: String(s.bars) },
 		{ id: 'score', label: 'Score length', value: `${s.passSeconds.toFixed(2)} s` }
 	];
 	const m = measured.undertone;
@@ -206,15 +207,14 @@ async function loadFixtures(): Promise<void> {
 	const m = wasm.value;
 	if (!m) return;
 	try {
-		const response = await fetch(graphUrl);
+		const response = await fetch(scoreUrl);
 		if (!response.ok) throw new Error(`The recorded score could not be fetched (${response.status})`);
-		graphText = await response.text();
-		const probe = new m.ScorePlayer(graphText, 'title-theme', TITLE_THEME_TICKS_PER_SECOND, SAMPLE_RATE);
+		scoreText = await response.text();
+		const probe = new m.ScorePlayer(scoreText, TITLE_THEME_CASE, TITLE_THEME_TICKS_PER_SECOND, SAMPLE_RATE);
 		undertoneStats.value = {
 			events: probe.events(),
 			voices: probe.voices(),
-			bars: probe.bars(),
-			passSeconds: probe.passSeconds(),
+				passSeconds: probe.passSeconds(),
 			frames: probe.totalFrames()
 		};
 		probe.free();
@@ -343,7 +343,7 @@ function ensureRendered(id: CardId): Promise<AudioBuffer | null> {
 		try {
 			let buffer: AudioBuffer;
 			if (id === 'undertone') {
-				const player = new m.ScorePlayer(graphText, 'title-theme', TITLE_THEME_TICKS_PER_SECOND, SAMPLE_RATE);
+				const player = new m.ScorePlayer(scoreText, TITLE_THEME_CASE, TITLE_THEME_TICKS_PER_SECOND, SAMPLE_RATE);
 				buffer = await renderStream(id, player, player.totalFrames());
 			} else {
 				const opx = streams[id];
@@ -458,13 +458,13 @@ onBeforeUnmount(() => {
 <template>
 	<div class="demo" data-testid="demo">
 		<p class="intro note wide">
-			One song, three engines. Press Play on a version; only one plays at a time. Switching between the two chip versions while one plays carries on from the same moment, because they are one arrangement on one grid. The Undertone version is a different arrangement with a different length, so it always starts from its beginning.
+			One song, three engines. Press Play on a version; only one plays at a time. Switching between the two chip versions while one plays carries on from the same moment, because they are one arrangement on one grid. The Undertone version is a different arrangement of about the same length, and nothing here ties its timeline to the chips', so it always starts from its beginning.
 		</p>
 
 		<section class="card" data-testid="card-undertone">
 			<h2>Undertone engine</h2>
 			<p class="note">
-				The original, software-synthesised version: the recorded <code>title-theme</code> score from <code>fixtures/undertone/graph.json</code>, the one the Rust tests check, booked and rendered in your browser by <code>undertone-dsp</code> as rich software voices through the master bus. It is the first two bars of the studio's eight-bar arrangement, not the whole song, and not the DOS arrangement the chip versions play.
+				The original, software-synthesised version: the rich Title Theme (sections a, b, a-octave, break, build and a-final, 36 bars at 140 bpm, about 61.7 s), recorded as an events-only score from <code>fixtures/undertone/scores/title-theme.score.json</code>, booked and rendered in your browser by <code>undertone-dsp</code> as software voices through the master bus with a two-second tail. It is not the DOS arrangement the chip versions play.
 			</p>
 			<dl v-if="undertoneRows.length" class="stats" data-testid="stats-undertone">
 				<div v-for="row in undertoneRows" :key="row.id">
@@ -502,7 +502,7 @@ onBeforeUnmount(() => {
 		</section>
 
 		<p class="note wide" data-testid="honesty">
-			The Undertone version and the chip versions are different arrangements of Title Theme: rich software voices on one side, DOS chip music on the other. The chip files are lowered from the studio's DOS arrangement (<code>title-theme-dos</code>, 36 bars at 140 bpm), so the notes are not the same ones. The figures on each card are measured from the samples rendered in your browser.
+			The Undertone version and the chip versions are different arrangements of Title Theme: rich software voices on one side, DOS chip music on the other. The chip files are lowered from the studio's DOS arrangement (<code>title-theme-dos</code>, 36 bars at 140 bpm), so the notes are not the same ones. Both run 36 bars at 140 bpm, which makes them about the same length (61.7 s of music), but they are different arrangements. The figures on each card are measured from the samples rendered in your browser.
 		</p>
 
 		<section class="panel wide">

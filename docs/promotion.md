@@ -17,6 +17,7 @@ The layering rule is what makes the move a path filter: these two crates depend 
 
 - `fixtures/mini/`: the recorded results of Undertone's mini-notation, run by `crates/undertone-mini/tests/fixtures.rs`
 - `fixtures/undertone/graph.json`: the recorded Web Audio graph for three scores, run by `crates/undertone-dsp/tests/fixtures.rs` (and `tests/streaming.rs` for block-size independence)
+- `fixtures/undertone/scores/title-theme.score.json`: an events-only recorded score, read by the demo's `ScorePlayer` and by `crates/undertone-wasm` tests; it moves with the engine only if the bindings do
 - The engine part of `fixtures/README.md`
 
 Both are recorded from the TypeScript reference implementation and checked byte for byte. They are not written here.

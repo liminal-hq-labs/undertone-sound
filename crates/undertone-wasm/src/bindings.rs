@@ -175,16 +175,17 @@ pub struct ScorePlayer {
 
 #[wasm_bindgen]
 impl ScorePlayer {
-	/// Reads the case `case_id` from the text of `fixtures/undertone/graph.json` (`title-theme`
-	/// is recorded at 112 ticks a second) and books it at `sample_rate` frames a second.
+	/// Reads the case `case_id` from the text of a recorded score file, such as
+	/// `fixtures/undertone/scores/title-theme.score.json` (case `title-theme-full`, recorded at
+	/// 112 ticks a second) and books it at `sample_rate` frames a second.
 	#[wasm_bindgen(constructor)]
 	pub fn new(
-		graph_json: &str,
+		score_json: &str,
 		case_id: &str,
 		ticks_per_second: f64,
 		sample_rate: u32,
 	) -> Result<ScorePlayer, String> {
-		let recorded = recorded::read_case(graph_json, case_id, ticks_per_second)?;
+		let recorded = recorded::read_case(score_json, case_id, ticks_per_second)?;
 		Ok(ScorePlayer {
 			inner: recorded::ScorePlayer::new(&recorded, sample_rate)?,
 			recorded,
