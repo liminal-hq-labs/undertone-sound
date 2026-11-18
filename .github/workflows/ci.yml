@@ -403,6 +403,40 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  crate-layering:
+    name: Crate layering
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check that the engine crates depend on no supporting crate
+        id: check
+        run: bash scripts/step-report.sh run results "Crate layering" "Check the engine crates' dependencies" -- bash scripts/check-layering.sh
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Crate layering"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`bash scripts/check-layering.sh\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-crate-layering
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
   oplstream-core:
     name: oplstream core features
     runs-on: ubuntu-24.04

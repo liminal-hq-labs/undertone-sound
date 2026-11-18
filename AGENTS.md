@@ -89,6 +89,7 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 
 ## Architecture rules
 
+- **Engine below, backends above.** `undertone-mini` and `undertone-dsp` are the Undertone engine and may depend only on each other and on registry crates, so they can be promoted to the Undertone repository with their history. Song, OPL, OPX and binding crates depend on the engine, never the reverse. `scripts/check-layering.sh` enforces it.
 - **Fizz-agnostic.** Fizz concepts (rooms, role pans, the level rule, captions, cue sheets, mix profiles) stay out of every crate. Reserved channels and similar host choices are passed in.
 - **`oplstream` core is `no_std`** and allocation-free. Writers need `alloc` and importers need `std`.
 - **No `unsafe`.** The workspace forbids it.
@@ -106,6 +107,7 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 - `cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked` — the `no_std` core on a bare-metal target (`rustup target add thumbv7em-none-eabi`)
 - `cargo build --workspace --release --target wasm32-unknown-unknown --locked` — WebAssembly (`rustup target add wasm32-unknown-unknown`)
 - `cargo deny check licenses bans sources` and `cargo deny check advisories` — dependency policy (`deny.toml`)
+- `bash scripts/check-layering.sh` — the engine crates depend on no supporting crate
 - `bash scripts/check-headers.sh` — SPDX headers
 - `bash scripts/check-banner.sh` — hero banner rules and text fit (needs `xmllint`, `rsvg-convert`, `python3` and Chromium; `--shots DIR` writes frames to look at)
 - `docker run --rm -v "$PWD:/workdir" davidanson/markdownlint-cli2:v0.17.2 "**/*.md"` — markdown
