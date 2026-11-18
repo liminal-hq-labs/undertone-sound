@@ -16,7 +16,7 @@ Undertone Sound is a Liminal HQ Labs experiment: Shared Rust sound core for Unde
 - **CI.** One job per check, never a combined validate job. Shared images come from `liminal-hq/.github`. Dependabot is off unless the project opts in.
 - **Docs.** Update `SPEC.md` and `docs/decisions.md` in the same change as the behaviour.
 
-- **Core rules.** Fizz-agnostic; no "enhanced" in any name; `oplstream` core is `no_std`; no `unsafe`; frozen Undertone names; nothing published without the maintainer's say; no barrel files.
+- **Core rules.** Fizz-agnostic; `oplstream` core is `no_std`; no `unsafe`; frozen Undertone names; nothing published without the maintainer's say; no barrel files.
 
 ## Commands
 

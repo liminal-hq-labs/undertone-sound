@@ -90,7 +90,6 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 ## Architecture rules
 
 - **Fizz-agnostic.** Fizz concepts (rooms, role pans, the level rule, captions, cue sheets, mix profiles) stay out of every crate. Reserved channels and similar host choices are passed in.
-- **No "enhanced".** No format, field, crate or type name uses that word; use a neutral term.
 - **`oplstream` core is `no_std`** and allocation-free. Writers need `alloc` and importers need `std`.
 - **No `unsafe`.** The workspace forbids it.
 - **Frozen names.** Undertone's `VoiceParams` field names and builder method names do not change.
