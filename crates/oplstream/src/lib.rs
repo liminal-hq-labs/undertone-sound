@@ -22,12 +22,16 @@ mod examples;
 #[cfg(test)]
 mod fuzz;
 mod header;
+mod twin;
 mod validate;
 #[cfg(feature = "alloc")]
 mod writer;
 
 pub use command::{Command, DecodeError, DecodeErrorKind, Decoder, Step, Stepper, TickState};
 pub use header::{Chip, HEADER_LEN, Header, HeaderError, MAGIC, VERSION_MAJOR, VERSION_MINOR};
+pub use twin::{PrintError, print_twin};
+#[cfg(feature = "alloc")]
+pub use twin::{TwinError, TwinErrorKind, assemble};
 pub use validate::{ValidationError, channel_of, validate};
 #[cfg(feature = "alloc")]
 pub use writer::{WriteError, Writer};
