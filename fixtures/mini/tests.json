@@ -2560,7 +2560,7 @@
 		]
 	},
 	{
-		"from": "tools/fizz/enhanced.test.ts",
+		"from": "tools/fizz/importer.test.ts",
 		"group": "tests",
 		"id": "tests/019",
 		"leaf": "drum",
@@ -2789,7 +2789,7 @@
 		]
 	},
 	{
-		"from": "tools/fizz/enhanced.test.ts",
+		"from": "tools/fizz/importer.test.ts",
 		"group": "tests",
 		"id": "tests/020",
 		"leaf": "drum",
