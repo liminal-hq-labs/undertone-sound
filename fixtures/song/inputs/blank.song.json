@@ -1,0 +1,56 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Blank",
+	"tempo": 100,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "c", "scale": "major" },
+	"engine": "undertone",
+	"instruments": {
+		"melody": { "name": "FM lead", "preset": "lead" },
+		"chords": { "name": "Soft pad", "preset": "pad" },
+		"bass": { "name": "Round bass", "preset": "bass" },
+		"drums": { "name": "Drum kit", "preset": "kit" }
+	},
+	"tracks": [
+		{
+			"id": "melody",
+			"name": "Melody",
+			"role": "melody",
+			"instrument": "melody",
+			"volume": 0.8,
+			"pan": 0
+		},
+		{
+			"id": "chords",
+			"name": "Chords",
+			"role": "harmony",
+			"instrument": "chords",
+			"volume": 0.8,
+			"pan": 0
+		},
+		{
+			"id": "bass",
+			"name": "Bass",
+			"role": "bass",
+			"instrument": "bass",
+			"volume": 0.8,
+			"pan": 0
+		},
+		{
+			"id": "drums",
+			"name": "Drums",
+			"role": "drums",
+			"instrument": "drums",
+			"volume": 0.8,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "idea", "name": "Idea", "bars": 4 }
+	],
+	"arrangement": ["idea"],
+	"clips": {},
+	"messages": []
+}

@@ -5,7 +5,7 @@
 
 [package]
 name = "undertone-sound"
-description = "The Undertone shared sound core: one grammar, a renderer per target"
+description = "The Undertone song document, its validation and its compiler to timed, engine-neutral events"
 edition.workspace = true
 license.workspace = true
 version.workspace = true
@@ -15,3 +15,14 @@ publish.workspace = true
 
 [lints]
 workspace = true
+
+[features]
+# TypeScript bindings for the wire types, written to `bindings/` by `cargo test --features ts`.
+ts = ["dep:ts-rs"]
+
+[dependencies]
+undertone-mini = { path = "../undertone-mini" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip", "preserve_order"] }
+indexmap = { version = "2", features = ["serde"] }
+ts-rs = { version = "12", optional = true, features = ["indexmap-impl"] }

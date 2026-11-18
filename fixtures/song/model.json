@@ -1,0 +1,133 @@
+[
+	{
+		"activeTake": [
+			{ "section": "verse", "take": "a", "track": "melody" },
+			{ "section": "chorus", "take": "a", "track": "melody" },
+			{ "section": "nowhere", "take": null, "track": "melody" },
+			{ "section": "verse", "take": "a", "track": "drums" },
+			{ "section": "chorus", "take": null, "track": "drums" },
+			{ "section": "nowhere", "take": null, "track": "drums" }
+		],
+		"findSection": [
+			{ "found": null, "id": "nowhere" },
+			{ "found": "verse", "id": "verse" },
+			{ "found": "chorus", "id": "chorus" }
+		],
+		"findTrack": [
+			{ "found": null, "id": "nowhere" },
+			{ "found": "melody", "id": "melody" },
+			{ "found": "drums", "id": "drums" }
+		],
+		"id": "model/fixture",
+		"input": "fixture",
+		"isDrumTrack": [
+			{ "drums": false, "id": "melody" },
+			{ "drums": true, "id": "drums" }
+		],
+		"sections": [
+			{ "id": "verse", "steps": 16 },
+			{ "id": "chorus", "steps": 32 }
+		],
+		"stepsPerBar": 16
+	},
+	{
+		"activeTake": [
+			{ "section": "a", "take": "m", "track": "melody" },
+			{ "section": "b", "take": "a", "track": "melody" },
+			{ "section": "c", "take": null, "track": "melody" },
+			{ "section": "nowhere", "take": null, "track": "melody" },
+			{ "section": "a", "take": "a", "track": "pad" },
+			{ "section": "b", "take": null, "track": "pad" },
+			{ "section": "c", "take": null, "track": "pad" },
+			{ "section": "nowhere", "take": null, "track": "pad" },
+			{ "section": "a", "take": "a", "track": "bass" },
+			{ "section": "b", "take": "a", "track": "bass" },
+			{ "section": "c", "take": null, "track": "bass" },
+			{ "section": "nowhere", "take": null, "track": "bass" },
+			{ "section": "a", "take": "a", "track": "drums" },
+			{ "section": "b", "take": "a", "track": "drums" },
+			{ "section": "c", "take": null, "track": "drums" },
+			{ "section": "nowhere", "take": null, "track": "drums" }
+		],
+		"findSection": [
+			{ "found": null, "id": "nowhere" },
+			{ "found": "a", "id": "a" },
+			{ "found": "b", "id": "b" },
+			{ "found": "c", "id": "c" }
+		],
+		"findTrack": [
+			{ "found": null, "id": "nowhere" },
+			{ "found": "melody", "id": "melody" },
+			{ "found": "pad", "id": "pad" },
+			{ "found": "bass", "id": "bass" },
+			{ "found": "drums", "id": "drums" }
+		],
+		"id": "model/tricky",
+		"input": "tricky",
+		"isDrumTrack": [
+			{ "drums": false, "id": "melody" },
+			{ "drums": false, "id": "pad" },
+			{ "drums": false, "id": "bass" },
+			{ "drums": true, "id": "drums" }
+		],
+		"sections": [
+			{ "id": "a", "steps": 18 },
+			{ "id": "b", "steps": 27 },
+			{ "id": "c", "steps": 9 }
+		],
+		"stepsPerBar": 9
+	},
+	{
+		"activeTake": [
+			{ "section": "intro", "take": null, "track": "melody" },
+			{ "section": "verse", "take": "a", "track": "melody" },
+			{ "section": "chorus", "take": "a", "track": "melody" },
+			{ "section": "nowhere", "take": null, "track": "melody" },
+			{ "section": "intro", "take": "a", "track": "chords" },
+			{ "section": "verse", "take": "a", "track": "chords" },
+			{ "section": "chorus", "take": "a", "track": "chords" },
+			{ "section": "nowhere", "take": null, "track": "chords" },
+			{ "section": "intro", "take": "a", "track": "bass" },
+			{ "section": "verse", "take": "b", "track": "bass" },
+			{ "section": "chorus", "take": "a", "track": "bass" },
+			{ "section": "nowhere", "take": null, "track": "bass" },
+			{ "section": "intro", "take": "a", "track": "drums" },
+			{ "section": "verse", "take": "a", "track": "drums" },
+			{ "section": "chorus", "take": "a", "track": "drums" },
+			{ "section": "nowhere", "take": null, "track": "drums" },
+			{ "section": "intro", "take": "a", "track": "shimmer" },
+			{ "section": "verse", "take": null, "track": "shimmer" },
+			{ "section": "chorus", "take": "a", "track": "shimmer" },
+			{ "section": "nowhere", "take": null, "track": "shimmer" }
+		],
+		"findSection": [
+			{ "found": null, "id": "nowhere" },
+			{ "found": "intro", "id": "intro" },
+			{ "found": "verse", "id": "verse" },
+			{ "found": "chorus", "id": "chorus" }
+		],
+		"findTrack": [
+			{ "found": null, "id": "nowhere" },
+			{ "found": "melody", "id": "melody" },
+			{ "found": "chords", "id": "chords" },
+			{ "found": "bass", "id": "bass" },
+			{ "found": "drums", "id": "drums" },
+			{ "found": "shimmer", "id": "shimmer" }
+		],
+		"id": "model/first-light",
+		"input": "first-light",
+		"isDrumTrack": [
+			{ "drums": false, "id": "melody" },
+			{ "drums": false, "id": "chords" },
+			{ "drums": false, "id": "bass" },
+			{ "drums": true, "id": "drums" },
+			{ "drums": false, "id": "shimmer" }
+		],
+		"sections": [
+			{ "id": "intro", "steps": 64 },
+			{ "id": "verse", "steps": 128 },
+			{ "id": "chorus", "steps": 128 }
+		],
+		"stepsPerBar": 16
+	}
+]

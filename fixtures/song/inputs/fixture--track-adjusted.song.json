@@ -1,0 +1,71 @@
+{
+	"format": "fizz-audio-studio/song",
+	"version": 1,
+	"title": "Fixture",
+	"tempo": 120,
+	"beatsPerBar": 4,
+	"stepsPerBeat": 4,
+	"key": { "root": "d", "scale": "minor" },
+	"engine": "undertone",
+	"instruments": {
+		"lead": { "name": "Lead", "preset": "lead" },
+		"kit": { "name": "Kit", "preset": "kit" }
+	},
+	"tracks": [
+		{
+			"id": "melody",
+			"name": "Melody",
+			"role": "melody",
+			"instrument": "lead",
+			"volume": 0.9,
+			"pan": 0.5
+		},
+		{
+			"id": "drums",
+			"name": "Drums",
+			"role": "drums",
+			"instrument": "kit",
+			"volume": 1,
+			"pan": 0
+		}
+	],
+	"sections": [
+		{ "id": "verse", "name": "Verse", "bars": 1 },
+		{ "id": "chorus", "name": "Chorus", "bars": 2 }
+	],
+	"arrangement": ["verse", "chorus"],
+	"clips": {
+		"melody": {
+			"verse": {
+				"active": "a",
+				"takes": [
+					{
+						"id": "a",
+						"name": "Main",
+						"by": "you",
+						"notes": [
+							{ "at": 0, "pitch": "d4", "len": 4 },
+							{ "at": 8, "pitch": "f4", "len": 8, "vel": 1 }
+						]
+					},
+					{ "id": "b", "name": "Claude idea", "by": "claude", "mini": "a4 ~ c5 ~" }
+				]
+			},
+			"chorus": {
+				"active": "a",
+				"takes": [
+					{ "id": "a", "name": "Hook", "by": "claude", "mini": "d5 <f5 e5>" }
+				]
+			}
+		},
+		"drums": {
+			"verse": {
+				"active": "a",
+				"takes": [
+					{ "id": "a", "name": "Beat", "by": "claude", "mini": "kick hat snare hat" }
+				]
+			}
+		}
+	},
+	"messages": []
+}

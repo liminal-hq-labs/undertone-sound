@@ -24,11 +24,12 @@ The plan for Undertone Sound, kept current in the repository. Decisions live in 
 
 Each crate moves from the studio with its history and fixtures, behind a version gate agreed with the studio. The studio depends on these crates by path or git dependency with a `[patch]` until then, and no wire type or song format changes before the gate.
 
-- [ ] `undertone-opl`: OPL sequencing and allocation (from the studio's `fizz-audio-chips`)
+- [x] `undertone-opl`: OPL2 and OPL3 sequencing and allocation, lost notes, the PC speaker and the `oplon` renderer (the generic part of the studio's `fizz-audio-chips`), with its recorded fixtures. The reserved channels and the game's own patches are the host's, passed in as a profile. The IMF writer and reader, the voice parameter tables and the stereo views stay in the studio
 - [x] `undertone-mini`: Undertone's mini-notation, exact fractions and JavaScript number semantics (from `fizz-audio-mini`, with `js` from `fizz-audio-song`), with its recorded fixtures
 - [x] `undertone-dsp`: the in-house DSP and graph port (the Fizz-agnostic core of `fizz-audio-undertone`), with its recorded graph fixture. The studio glue and the `web-audio-api` comparison harness stay in the studio
-- [ ] `undertone-sound`: the song model and compiler (from `fizz-audio-song`)
-- [ ] First end-to-end proof: Title Theme to OPX OPL2 and OPL3, played by Fizz 2's own player
+- [x] `undertone-sound`: the song model, validation, formatting and compiler (the generic part of `fizz-audio-song`), with its recorded fixtures. The editor file, album, text readout and change summary stay in the studio
+- [x] First end-to-end proof, built: Title Theme to OPX for the OPL2 and OPL3 (`fixtures/opx/title-theme.opl2.opx` and `.opl3.opx`). The OPL2 stream matches the DOS game's own chunk note for note, with four carrier levels apart
+- [ ] First end-to-end proof, played: the same files loaded by Fizz 2's own player, which is the studio's loading test
 
 ## Later
 

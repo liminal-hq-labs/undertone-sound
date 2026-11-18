@@ -364,6 +364,45 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+  song-bindings:
+    name: Song TypeScript bindings
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Build and test with the `ts` feature
+        id: check
+        run: bash scripts/step-report.sh run results "Song TypeScript bindings" "Build and test with the ts feature" -- cargo test -p undertone-sound --features ts --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Song TypeScript bindings"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo test -p undertone-sound --features ts --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload the step report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: steps-test-results-song-bindings
+          path: results/steps.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
   oplstream-core:
     name: oplstream core features
     runs-on: ubuntu-24.04

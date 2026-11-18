@@ -101,6 +101,7 @@ Use `#` comments for shell, YAML, TOML and Dockerfiles, and an XML comment for S
 
 - `cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets --locked -- -D warnings`, `cargo nextest run --workspace --locked` and `cargo test --workspace --doc --locked` — Rust
 - `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` — docs
+- `cargo test -p undertone-sound --features ts --locked` — the song crate's TypeScript bindings
 - `cargo test -p oplstream --no-default-features --locked` and again with `--features alloc` — the feature tiers
 - `cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked` — the `no_std` core on a bare-metal target (`rustup target add thumbv7em-none-eabi`)
 - `cargo build --workspace --release --target wasm32-unknown-unknown --locked` — WebAssembly (`rustup target add wasm32-unknown-unknown`)
