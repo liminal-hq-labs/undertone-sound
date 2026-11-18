@@ -1,0 +1,63 @@
+# Builds the documentation site and deploys it to GitHub Pages from main.
+#
+# The build runs in the shared tauri-ci-desktop image, pinned by digest (current pins:
+# https://github.com/liminal-hq/.github/blob/main/docs/reference/recommended-image-pins.md). It
+# carries the pinned Rust toolchain for `cargo doc`, Bun for VitePress and, for the WebAssembly
+# demo, the wasm32 target and wasm-bindgen-cli.
+#
+# (c) Copyright 2026 Liminal HQ, Scott Morris
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build the site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/tauri-ci-desktop@sha256:553180813ab6078f116ec456326629b29bf6af9eb167ce9bc6007fa64f3f8097
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Build the site
+        run: bash scripts/build-site.sh
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/.vitepress/dist
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-24.04
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -5,8 +5,9 @@ The plan for Undertone Sound, kept current in the repository. Decisions live in 
 ## Now
 
 - [x] Repository from the Labs template, public, with house settings, labels and topics
-- [ ] Scaffold merged: workspace, CI, hero banner, docs
-- [ ] `docs/OPX.md` moved here from Fizz 2
+- [x] Scaffold merged: workspace, CI, hero banner, docs
+- [x] `docs/OPX.md` moved here from Fizz 2
+- [ ] Documentation site in `site/`, deployed to GitHub Pages from `main` (the Rust API is built into it)
 
 ## Next: `oplstream`
 
@@ -16,7 +17,8 @@ The plan for Undertone Sound, kept current in the repository. Decisions live in 
 - [x] Writer with `finish` filling the derived header fields (`alloc`)
 - [x] Text twin: parser and printer
 - [x] IMF, DRO and VGM import, and the explicit, reported re-timing step (`std`)
-- [ ] Fixtures and a conformance corpus, including the examples in the specification (the five examples and the nine refused files are tests; a corpus of files is not built)
+- [x] Title Theme, Fizz 1's song 0, as a real IMF fixture (`fixtures/opx/title-theme.imf`) with import, validation, twin and re-timing tests
+- [ ] A conformance corpus of files, including the examples in the specification (the five examples and the nine refused files are tests; a corpus of files is not built)
 
 ## Then: the carve-out
 
@@ -32,7 +34,8 @@ Each crate moves from the studio with its history and fixtures, behind a version
 ## Later
 
 - [x] `undertone-mini` and `undertone-dsp` compile for `wasm32-unknown-unknown` (no bindings yet)
-- [ ] WebAssembly bindings, build and parity canary against the TypeScript library
+- [ ] WebAssembly bindings (`undertone-wasm`) and a browser demo page that imports Title Theme and plays it through an OPL emulator
+- [ ] Parity canary against the TypeScript library
 - [ ] Publishing plan: names, versions, release flow, then crates.io
 
 ## Not here

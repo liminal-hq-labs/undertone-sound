@@ -1,5 +1,5 @@
 # One job per check, so a pull request's checks list names exactly what passed or failed.
-# Rust jobs run in the shared ci-rust image, pinned by digest (current pins:
+# Rust jobs run in the shared ci-rust image (the site build in tauri-ci-desktop), pinned by digest (current pins:
 # https://github.com/liminal-hq/.github/blob/main/docs/reference/recommended-image-pins.md).
 #
 # (c) Copyright 2026 Liminal HQ, Scott Morris
@@ -460,4 +460,34 @@ jobs:
             echo "## Security advisories"
             echo "- Result: \`${{ steps.check.outcome }}\`"
             echo "- Command: \`cargo deny check advisories\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  docs-site:
+    name: Docs site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/tauri-ci-desktop@sha256:553180813ab6078f116ec456326629b29bf6af9eb167ce9bc6007fa64f3f8097
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound-site
+
+      - name: Build the site
+        id: check
+        run: bash scripts/build-site.sh
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Docs site"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`bash scripts/build-site.sh\` (VitePress build, then \`cargo doc\` into \`api/\`)"
           } >> "${GITHUB_STEP_SUMMARY}"
