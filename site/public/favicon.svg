@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Undertone Sound favicon: three equaliser bars in the project's teal, indigo and violet.
+
+	(c) Copyright 2026 Liminal HQ, Scott Morris
+	SPDX-License-Identifier: Apache-2.0 OR MIT
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+	<rect width="32" height="32" rx="6" fill="#080a12"/>
+	<rect x="6" y="14" width="5" height="12" rx="1.5" fill="#2dd4bf"/>
+	<rect x="13.5" y="6" width="5" height="20" rx="1.5" fill="#818cf8"/>
+	<rect x="21" y="10" width="5" height="16" rx="1.5" fill="#c084fc"/>
+</svg>

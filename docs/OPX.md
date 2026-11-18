@@ -2,7 +2,7 @@
 
 OPX (file extension `.OPX`) is an open, standalone format for a stream of timed OPL2 or OPL3 register writes, or of PC speaker divisors. It takes IMF's simplicity (a write, then a wait) and VGM's structure (a header, a loop point, a count of commands, room to grow), and puts both on an exact timed grid. It is the one stream format that Lieutenant Fizz 2 uses for its music and sound effects, and it is specified here so that anyone else can read, write, play or convert it.
 
-Everything below stands on its own. [SOUND.md](SOUND.md) and [MUSIC.md](MUSIC.md) say how Fizz 2 makes and plays streams, and [FAP.md](FAP.md#audio-sections) says how a pack stores them; none of them is needed to read an OPX file.
+Everything below stands on its own. Fizz 2's SOUND.md and MUSIC.md say how it makes and plays streams, and its FAP.md says how a pack stores them; none of them is needed to read an OPX file.
 
 Status in one line: this is a draft, version 0.1, experimental. The engine's `OplStep` record exists and plays today; the format below is read, written and validated by the `oplstream` crate in this repository, but no game or tool outside it uses it yet (see [Status](#status)).
 
@@ -167,7 +167,7 @@ For Lieutenant Fizz 2's music and sound effects.
 
 - **Grids.** OPL music and OPL effects: `grid_hz` 560. In the engine, OPL effects step at 560 Hz (`OPL_TICK_HZ` in `fizz-sfx`) and speaker divisor lists step at 140 Hz (`SPEAKER_TICK_HZ`). A speaker effect is a speaker stream with `grid_hz` 140: for each 140 Hz step that has a divisor, `SPK d` and a one-tick wait (equal consecutive divisors may be held with a longer wait), and the list's final 0 is `SPK 0`. The speaker's tone is 1,193,180 divided by the divisor.
 - **At most 16 writes per tick** in music, because the 560 Hz interrupt has to finish in about 1.79 ms and 16 writes are about 0.7 ms on an ISA bus by estimate (not measured on a 486).
-- **Never channels 5 and 14, and never registers 0x104 and 0x105, in music.** Channel 5 is the effects' default channel and the left of the OPL3 pair; channel 14 is the right (see [SOUND.md](SOUND.md#reserved-channels)). The audio service owns 0x104 and 0x105. A music stream sets `reserved_channels` to 0x00004020 (bits 5 and 14) on OPL3 and 0x00000020 on OPL2.
+- **Never channels 5 and 14, and never registers 0x104 and 0x105, in music.** Channel 5 is the effects' default channel and the left of the OPL3 pair; channel 14 is the right (see "Reserved channels" in Fizz 2's SOUND.md). The audio service owns 0x104 and 0x105. A music stream sets `reserved_channels` to 0x00004020 (bits 5 and 14) on OPL3 and 0x00000020 on OPL2.
 - **Key-on registers are never dropped by compaction.** Writes to 0xB0 to 0xB8 (either bank) and 0xBD are kept even when they repeat the held value, because rewriting them can have side effects on the chip. Every other register is last-write-wins: a write that sets a register to the value it already holds may be dropped and its wait added to the previous wait. A register's first write is always kept.
 - **Stereo.** OPL3 stereo bits (0x10 and 0x20 in 0xC0 to 0xC8) are ignored by an OPL2, so a stereo-authored OPL3 stream played on an OPL2 sounds centred. Flag bit 1 says a stream authors them.
 - **Core and extras (idea, not built).** The tier above is meant for one OPL3 stream whose core is a complete bank-0 arrangement and whose extras are in bank 1 so that an OPL2 plays the core only. M4.5's `opl3-core-extras` roadmap item is the experiment to measure whether it is worth the lowering. Until it is, OPL2 and OPL3 forms of a song are two separate streams.
@@ -557,7 +557,7 @@ Each of these is a change to a valid file above, and a conforming reader refuses
 
 ## Pack integration
 
-In a Fizz Asset Pack (`.FAP`, see [FAP.md](FAP.md#audio-sections)), each music section (`OPL3`, `OPL2`) and each effect stream in an `FXPK` effect set (OPL3, OPL2 and the speaker) holds a **complete OPX file**, header and command stream. The pack deflates the section as a whole. The same bytes, taken out of the pack, are a standalone `.OPX` file that any OPX reader plays, and a file written by a tool is packed unchanged. The pack's own header and directory carry only what the container needs (tag, count, checksum); nothing about the stream is duplicated outside the OPX header. For a very long song, the pack stores several OPX files as segments, using the `F1` extension (see [FAP.md](FAP.md#audio-sections)).
+In a Fizz Asset Pack (`.FAP`, see "Audio sections" in Fizz 2's FAP.md), each music section (`OPL3`, `OPL2`) and each effect stream in an `FXPK` effect set (OPL3, OPL2 and the speaker) holds a **complete OPX file**, header and command stream. The pack deflates the section as a whole. The same bytes, taken out of the pack, are a standalone `.OPX` file that any OPX reader plays, and a file written by a tool is packed unchanged. The pack's own header and directory carry only what the container needs (tag, count, checksum); nothing about the stream is duplicated outside the OPX header. For a very long song, the pack stores several OPX files as segments, using the `F1` extension (see "Audio sections" in Fizz 2's FAP.md).
 
 ## The `oplstream` crate
 
@@ -578,7 +578,7 @@ This specification follows the repository's documentation terms. Reference code 
 What exists today:
 
 - The engine's runtime layout: `fizz_sfx::OplStep`, a 4-byte record with the bank in bit 15 of the wait, used by `fizz-sfx` for effects and by `fizz-music` for music, and the steppers `OplPlayer`, `OplPair`, `SpeakerPlayer` and `MusicPlayer`.
-- The earlier compact record layout, `I3`, in an earlier draft of [FAP.md](FAP.md#audio-sections). It is folded into OPX and is no longer a separate layout. Its measurements are kept in FAP.md with that caveat.
+- The earlier compact record layout, `I3`, in an earlier draft of Fizz 2's FAP.md ("Audio sections"). It is folded into OPX and is no longer a separate layout. Its measurements are kept in FAP.md with that caveat.
 - id's IMF, DRO, Rdos RAW and VGM, which are other people's formats.
 
 What is built, in `crates/oplstream` of this repository:
