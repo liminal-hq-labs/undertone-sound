@@ -7,6 +7,8 @@
 # JavaScript dependencies and build output
 node_modules/
 /dist/
+/site/.vitepress/cache/
+/site/.vitepress/dist/
 
 # Python bytecode
 __pycache__/

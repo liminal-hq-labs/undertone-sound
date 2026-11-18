@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/liminal-hq-labs/undertone-sound/actions/workflows/ci.yml"><img src="https://github.com/liminal-hq-labs/undertone-sound/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
-  <img src="https://img.shields.io/badge/status-experimental-a3e635" alt="Status: experimental">
+  <img src="https://img.shields.io/badge/status-experimental-2dd4bf" alt="Status: experimental">
   <img src="https://img.shields.io/badge/licence-Apache--2.0%20OR%20MIT-3fb950" alt="Licence: Apache-2.0 OR MIT">
 </p>
 
@@ -12,7 +12,7 @@ Shared Rust sound core for Undertone.
 
 Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-hq/undertone) family: one sound grammar for songs and effects, with a renderer per target, from OPL2 and OPL3 chips to the browser. It starts with `oplstream`, the reference implementation of OPX, a small, exact, loopable stream of timed OPL register writes.
 
-> **Status:** experimental. Only the OPX header parses and writes so far, and nothing is released or published. The [roadmap](docs/ROADMAP.md) lists what comes next.
+> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-opl` and `undertone-sound` are empty shells. The crates compile for WebAssembly, and a browser demo is coming. The [roadmap](docs/ROADMAP.md) lists what comes next.
 
 ## What it's for
 
@@ -21,18 +21,30 @@ Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-h
 - Writing a composer's tool that lowers songs to chip register writes.
 - Keeping a browser renderer and a chip renderer in step from one song.
 
+## Crates
+
+| Crate | What it holds | State |
+|---|---|---|
+| `oplstream` | OPX reader, writer, stepper, validator, text twin and IMF, DRO and VGM import. The core is `no_std` | Working |
+| `undertone-mini` | Undertone's mini-notation and exact fractions | Working |
+| `undertone-dsp` | Undertone's voices, Web Audio graph and in-house renderer | Working |
+| `undertone-opl` | OPL sequencing and channel allocation | Planned, empty |
+| `undertone-sound` | The song model and compiler | Planned, empty |
+
 ## Install and run
 
 From source, with the pinned Rust toolchain:
 
 ```sh
 cargo test --workspace
+cargo run -p oplstream --example oplstream_guide
 ```
 
 The crates are not published yet.
 
 ## Documentation
 
+- [The documentation site](https://liminal-hq-labs.github.io/undertone-sound/) — guides, the OPX specification and the Rust API. Its source is in `site/`, and `bash scripts/build-site.sh` builds it
 - [SPEC.md](SPEC.md) — behaviour and interfaces
 - [docs/OPX.md](docs/OPX.md) — the OPX format
 - [docs/ROADMAP.md](docs/ROADMAP.md) — what is built and what is next

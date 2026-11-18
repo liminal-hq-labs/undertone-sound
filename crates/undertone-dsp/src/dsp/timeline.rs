@@ -5,7 +5,7 @@
 
 //! Events are kept as the browsers keep them: sorted by time (a ramp's time is its end), a new
 //! event after those already at its time, and one of the same type at the same time replacing the
-//! old (Chromium's `InsertEvent`); `cancelScheduledValues(t)` removes every event at or after `t`.
+//! old, matching Chromium's `InsertEvent` behaviour; `cancelScheduledValues(t)` removes every event at or after `t`.
 //! The timeline is then read once into segments, each a formula from the specification's
 //! "computation of value": a held value, a linear or an exponential ramp from the previous event's
 //! time and value, or `setTargetAtTime`'s approach `V1 + (V0 − V1)·e^{−(t − T0)/τ}`. A ramp after a
