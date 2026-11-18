@@ -12,7 +12,7 @@ Shared Rust sound core for Undertone.
 
 Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-hq/undertone) family: one sound grammar for songs and effects, with a renderer per target, from OPL2 and OPL3 chips to the browser. It starts with `oplstream`, the reference implementation of OPX, a small, exact, loopable stream of timed OPL register writes.
 
-> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-opl` and `undertone-sound` are empty shells. The crates compile for WebAssembly, and a browser demo is coming. The [roadmap](docs/ROADMAP.md) lists what comes next.
+> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-opl` and `undertone-sound` are empty shells. `undertone-wasm` binds them for the browser, and the site has a live demo that imports Title Theme and plays it through an OPL emulator. The [roadmap](docs/ROADMAP.md) lists what comes next.
 
 ## What it's for
 
@@ -30,6 +30,7 @@ Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-h
 | `undertone-dsp` | Undertone's voices, Web Audio graph and in-house renderer | Working |
 | `undertone-opl` | OPL sequencing and channel allocation | Planned, empty |
 | `undertone-sound` | The song model and compiler | Planned, empty |
+| `undertone-wasm` | WebAssembly bindings and the demo's engine | Working |
 
 ## Install and run
 
@@ -44,7 +45,7 @@ The crates are not published yet.
 
 ## Documentation
 
-- [The documentation site](https://liminal-hq-labs.github.io/undertone-sound/) — guides, the OPX specification and the Rust API. Its source is in `site/`, and `bash scripts/build-site.sh` builds it
+- [The documentation site](https://liminal-hq-labs.github.io/undertone-sound/) — guides, the OPX specification, the Rust API and a live demo. Its source is in `site/`, and `bash scripts/build-site.sh` builds it
 - [SPEC.md](SPEC.md) — behaviour and interfaces
 - [docs/OPX.md](docs/OPX.md) — the OPX format
 - [docs/ROADMAP.md](docs/ROADMAP.md) — what is built and what is next

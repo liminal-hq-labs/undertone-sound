@@ -124,10 +124,11 @@ State exactly what was and was not run when reporting results.
 ```text
 README.md SPEC.md AGENTS.md CLAUDE.md LICENSE-APACHE LICENSE-MIT
 .editorconfig .markdownlint.jsonc .gitignore rustfmt.toml
-Cargo.toml crates/  workspace and crates (oplstream, undertone-dsp, undertone-mini, undertone-opl, undertone-sound)
+Cargo.toml crates/  workspace and crates (oplstream, undertone-dsp, undertone-mini, undertone-opl, undertone-sound, undertone-wasm)
+site/          documentation site and browser demo (VitePress and Bun)
 assets/        hero banner
 fixtures/      golden files recorded from the TypeScript implementation
 docs/          decisions, roadmap and the OPX specification
-scripts/       header check, banner check and its Chromium text-fit harness
+scripts/       header check, banner check and its Chromium text-fit harness, site and WebAssembly builds
 .github/       CI workflow, issue and pull request templates, release notes configuration
 ```

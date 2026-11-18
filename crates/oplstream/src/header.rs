@@ -42,6 +42,18 @@ pub enum HeaderError {
 	ZeroGrid,
 }
 
+impl core::fmt::Display for HeaderError {
+	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+		match self {
+			Self::Truncated => write!(f, "the header is shorter than {HEADER_LEN} bytes"),
+			Self::BadMagic => f.write_str("the file does not start with the OPX magic bytes"),
+			Self::UnknownChip(chip) => write!(f, "the chip byte {chip} is not 0, 1 or 2"),
+			Self::ReservedNotZero => f.write_str("a reserved header field is not zero"),
+			Self::ZeroGrid => f.write_str("the grid is zero ticks a second"),
+		}
+	}
+}
+
 /// A parsed OPX header. Field names follow the specification.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Header {
