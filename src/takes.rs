@@ -26,6 +26,8 @@ pub fn take_notes(
     let mut notes: Vec<Note> = mini_bridge::onsets(source, drums, section.bars)?
         .into_iter()
         .map(|onset| Note {
+            pan: None,
+            pan_motion: None,
             at: onset.begin * per_bar,
             pitch: onset.value,
             len: (onset.end - onset.begin) * per_bar,
