@@ -22,7 +22,7 @@ The plan for Undertone Sound, kept current in the repository. Decisions live in 
 
 Each crate moves from the studio with its history and fixtures, behind a version gate agreed with the studio. The studio depends on these crates by path or git dependency with a `[patch]` until then, and no wire type or song format changes before the gate.
 
-- [ ] `undertone-opl`: OPL sequencing and allocation (from the studio's `fizz-audio-chips`)
+- [x] `undertone-opl`: OPL2 and OPL3 sequencing and allocation, lost notes, the PC speaker and the `oplon` renderer (the generic part of the studio's `fizz-audio-chips`), with its recorded fixtures. The reserved channels and the game's own patches are the host's, passed in as a profile. The IMF writer and reader, the voice parameter tables and the stereo views stay in the studio
 - [x] `undertone-mini`: Undertone's mini-notation, exact fractions and JavaScript number semantics (from `fizz-audio-mini`, with `js` from `fizz-audio-song`), with its recorded fixtures
 - [x] `undertone-dsp`: the in-house DSP and graph port (the Fizz-agnostic core of `fizz-audio-undertone`), with its recorded graph fixture. The studio glue and the `web-audio-api` comparison harness stay in the studio
 - [x] `undertone-sound`: the song model, validation, formatting and compiler (the generic part of `fizz-audio-song`), with its recorded fixtures. The editor file, album, text readout and change summary stay in the studio
