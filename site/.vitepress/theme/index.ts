@@ -5,6 +5,7 @@
 
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
+import Demo from './components/Demo.vue';
 import CrateCards from './components/CrateCards.vue';
 import HeroBanner from './components/HeroBanner.vue';
 import Layout from './Layout.vue';
@@ -14,6 +15,7 @@ export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp({ app }) {
+    app.component('Demo', Demo);
     app.component('CrateCards', CrateCards);
     app.component('HeroBanner', HeroBanner);
   }

@@ -9,6 +9,7 @@ Undertone Sound is a workspace of Rust crates. Three hold code today, and two ar
 | [`undertone-dsp`](/guide/undertone-dsp) | Renders Undertone's voices and Web Audio graph to samples |
 | `undertone-opl` | Planned: OPL sequencing and channel allocation |
 | `undertone-sound` | Planned: the song model and compiler |
+| `undertone-wasm` | Binds the crates for JavaScript; it runs the [demo](/demo) |
 
 ## Using the crates
 
