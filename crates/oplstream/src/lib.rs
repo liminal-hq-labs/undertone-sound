@@ -20,6 +20,8 @@ mod examples;
 #[cfg(test)]
 mod fuzz;
 mod header;
+mod validate;
 
 pub use command::{Command, DecodeError, DecodeErrorKind, Decoder, Step, Stepper, TickState};
-pub use header::{Chip, HEADER_LEN, Header, HeaderError, MAGIC};
+pub use header::{Chip, HEADER_LEN, Header, HeaderError, MAGIC, VERSION_MAJOR, VERSION_MINOR};
+pub use validate::{ValidationError, channel_of, validate};
