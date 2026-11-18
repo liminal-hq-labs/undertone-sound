@@ -249,15 +249,30 @@ fn lost_notes_match() {
             .iter()
             .map(|(k, v)| (k.clone(), json!(v.iter().collect::<Vec<_>>())))
             .collect();
+        let cut_by_slot: serde_json::Map<String, Value> = found
+            .cut_by_slot
+            .iter()
+            .map(|(k, v)| (k.clone(), json!(v.iter().collect::<Vec<_>>())))
+            .collect();
+        let tracks = |losses: &[fizz_audio_chips::limits::TrackLoss]| {
+            losses
+                .iter()
+                .map(|t| json!({"trackId": t.track_id, "name": t.name, "count": t.count}))
+                .collect::<Vec<_>>()
+        };
         let got = json!({
             "engineName": found.engine_name,
             "capacity": found.capacity,
             "total": found.total,
             "dropped": found.dropped,
-            "byTrack": found.by_track.iter().map(|t| json!({"trackId": t.track_id, "name": t.name, "count": t.count})).collect::<Vec<_>>(),
+            "byTrack": tracks(&found.by_track),
             "bySlot": by_slot,
+            "cut": found.cut,
+            "cutByTrack": tracks(&found.cut_by_track),
+            "cutBySlot": cut_by_slot,
             "demand": join(found.demand.iter().map(u8::to_string).collect::<Vec<_>>().join(",")),
             "lost": found.lost.iter().map(u16::to_string).collect::<Vec<_>>().join(","),
+            "cutAt": found.cut_at.iter().map(u16::to_string).collect::<Vec<_>>().join(","),
         });
         expect(
             &mut failures,

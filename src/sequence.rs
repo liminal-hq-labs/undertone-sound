@@ -11,7 +11,7 @@
 use std::collections::HashMap;
 
 use fizz_audio_song::compile::{Performance, PerformanceEvent};
-use fizz_audio_song::model::{Song, TrackRole};
+use fizz_audio_song::model::{Song, Track, TrackRole};
 
 use crate::numbers::{max, to_int32};
 use crate::patches::{
@@ -63,6 +63,9 @@ pub struct OplSequence {
     pub dropped: usize,
     /// The notes that found no channel, in performance order.
     pub dropped_events: Vec<PerformanceEvent>,
+    /// The notes that started and were ended early because a more important note took their
+    /// channel, in the order they were cut. A note is counted once, though it holds two channels.
+    pub cut_events: Vec<PerformanceEvent>,
 }
 
 /// Channels kept free for the game's sound effects: 5 on the first bank, and 14 (its partner on
@@ -77,15 +80,13 @@ pub fn melodic_channels(chip: OplChip) -> &'static [usize] {
     }
 }
 
-/// How much a track's notes matter when channels run out.
-fn priority_of(role: TrackRole) -> i32 {
-    match role {
-        TrackRole::Melody => 9,
-        TrackRole::Bass => 8,
-        TrackRole::Drums => 7,
-        TrackRole::Harmony => 5,
-        TrackRole::Texture => 4,
-    }
+/// How much a track's notes matter when channels run out: its own `priority`, else its role's. A
+/// note an event names a track the song does not have for is treated as a melody's.
+fn priority_of(track: Option<&Track>) -> i32 {
+    track.map_or_else(
+        || i32::from(TrackRole::Melody.default_priority()),
+        |track| i32::from(track.effective_priority()),
+    )
 }
 
 /// A short silence before a note ends, so the next note on the channel re-triggers the envelope.
@@ -109,6 +110,9 @@ struct Channel {
     /// The scheduled key-off of the note now on the channel (an index into the writes), cancelled if the note is stolen.
     key_off: Option<usize>,
     note_start: f64,
+    /// The note now on the channel, so a steal can say which note it cut. Left empty on the
+    /// second channel of a stereo pair: that note is the first channel's.
+    event: Option<PerformanceEvent>,
     /// On the first channel of a stereo pair, its second channel.
     partner: Option<usize>,
     /// On the second channel of a stereo pair, the first.
@@ -122,6 +126,8 @@ struct Sequencer {
     cancelled: Vec<bool>,
     channels: Vec<Channel>,
     numbers: &'static [usize],
+    /// Notes ended early by a steal (`OplSequence::cut_events`).
+    cut_events: Vec<PerformanceEvent>,
 }
 
 impl Sequencer {
@@ -182,6 +188,13 @@ impl Sequencer {
         let time = self.release(index, start);
         let paired_with = self.channels[index].paired_with;
         let partner = self.channels[index].partner;
+        // A sounding note taken from its channel is cut, unless it is the second half of a pair,
+        // whose note carries on alone on the first channel.
+        if sounding && paired_with.is_none() {
+            if let Some(event) = self.channels[index].event.clone() {
+                self.cut_events.push(event);
+            }
+        }
         if let (true, Some(first)) = (sounding, paired_with) {
             // The second channel of a pair gives way: its note carries on alone on its single-channel placement.
             let number = self.numbers[first];
@@ -293,6 +306,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
             track_id: None,
             key_off: None,
             note_start: -1.0,
+            event: None,
             partner: None,
             paired_with: None,
             fallback: None,
@@ -304,6 +318,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         cancelled: Vec::new(),
         channels,
         numbers,
+        cut_events: Vec::new(),
     };
     let plain = |register: u16, value: i32| RegisterWrite { register, value };
 
@@ -334,10 +349,10 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         }
     }
 
-    let roles: HashMap<&str, TrackRole> = song
+    let priorities: HashMap<&str, i32> = song
         .tracks
         .iter()
-        .map(|track| (track.id.as_str(), track.role))
+        .map(|track| (track.id.as_str(), priority_of(Some(track))))
         .collect();
     let mut patches: HashMap<String, Patch> = HashMap::new();
     let pan_law = song
@@ -366,12 +381,10 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
             start + 0.01,
             (event.step + event.len) / performance.steps_per_second - KEY_GAP,
         );
-        let priority = priority_of(
-            roles
-                .get(event.track_id.as_str())
-                .copied()
-                .unwrap_or(TrackRole::Melody),
-        );
+        let priority = priorities
+            .get(event.track_id.as_str())
+            .copied()
+            .unwrap_or_else(|| priority_of(None));
         let (plan_channels, plan_fallback) = if chip == OplChip::Opl3 {
             let plan = stereo_plan(event.pan, pan_law);
             (plan.channels, plan.fallback)
@@ -452,6 +465,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
             channel.patch_key = Some(patch_key);
             channel.track_id = Some(event.track_id.clone());
             channel.note_start = start;
+            channel.event = (i == 0).then(|| event.clone());
         }
         if let Some(second) = partner {
             s.channels[index].partner = Some(second);
@@ -468,7 +482,10 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
     sequence_drums(song, &drum_hits, chip, &mut s);
 
     let Sequencer {
-        writes, cancelled, ..
+        writes,
+        cancelled,
+        cut_events,
+        ..
     } = s;
     let mut kept: Vec<TimedWrite> = writes
         .into_iter()
@@ -483,6 +500,7 @@ pub fn sequence_opl(song: &Song, performance: &Performance, chip: OplChip) -> Op
         seconds,
         dropped: dropped_events.len(),
         dropped_events,
+        cut_events,
     }
 }
 
