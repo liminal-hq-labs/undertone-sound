@@ -27,7 +27,7 @@ Both are recorded from the TypeScript reference implementation and checked byte 
 - `oplstream`, `undertone-opl`, `undertone-sound` (the song model and compiler, with Rust-written fixtures in `fixtures/song/`), the Title Theme proof (`fixtures/opx/`), and the OPX bindings now inside `undertone-wasm`
 - Fizz concepts, the studio's UI and the game's sound configuration (they are the studio's)
 
-`undertone-wasm` mixes the engine with OPX today. At the promotion its engine bindings go to the Undertone repository and the OPX bindings stay here.
+`undertone-wasm` mixes the engine with OPX today. At the promotion the OPX player and importer stay in the lab as `undertone-sound-wasm`, and the Undertone repository builds its own bindings. The scripts, CI jobs and site that name `undertone-wasm` (`scripts/build-wasm.sh`, `scripts/build-site.sh`, `WebAssembly build`, `WebAssembly bindings`, the Pages workflow) follow the rename.
 
 ## Checks to carry over
 
@@ -39,4 +39,4 @@ The lab depends on Undertone for the engine (a git or path dependency, then crat
 
 ## Open pull requests
 
-None at the time of writing. Check `gh pr list` in the lab before starting.
+None at the time of writing (`main` at `26bbb05`, a candidate snapshot). Check `gh pr list` in the lab before starting.
