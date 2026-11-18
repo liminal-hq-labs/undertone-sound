@@ -18,6 +18,6 @@ The crate has no dependencies. The caller supplies the rule for what a word mean
 
 ## JavaScript semantics
 
-The `js` module holds JavaScript's number and string behaviours (`String(n)`, `toFixed(2)`, `Math.round`, `trim`, UTF-16 lengths and `JSON.stringify` quoting), so Rust output matches the TypeScript fixtures byte for byte (see [decisions](/decisions) D12).
+The `js` module holds JavaScript's number and string behaviours (`String(n)`, `toFixed(2)`, `Math.round`, `trim`, UTF-16 lengths and `JSON.stringify` quoting), so Rust output matches the TypeScript fixtures byte for byte (see [decisions](https://github.com/liminal-hq-labs/undertone-sound/blob/main/docs/decisions.md) D12).
 
 The [Rust API](/api/undertone_mini/index.html) lists every public item.

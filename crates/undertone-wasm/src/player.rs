@@ -279,6 +279,83 @@ mod tests {
 		assert!(looped.tick() <= 200);
 	}
 
+	const OPL2_TITLE: &[u8] = include_bytes!("../../../fixtures/opx/title-theme.opl2.opx");
+	const OPL3_TITLE: &[u8] = include_bytes!("../../../fixtures/opx/title-theme.opl3.opx");
+
+	/// The whole stream and half a second of tail, split into its two channels.
+	fn whole(file: &[u8]) -> (Vec<f32>, Vec<f32>) {
+		let mut player = OplPlayer::new(file, RATE).unwrap();
+		let frames = usize::try_from(player.total_frames()).unwrap() + RATE as usize / 2;
+		let samples = player.render(frames);
+		assert!(player.ended());
+		samples
+			.as_chunks::<2>()
+			.0
+			.iter()
+			.map(|[l, r]| (*l, *r))
+			.unzip()
+	}
+
+	#[test]
+	fn the_opl2_title_theme_plays_the_same_in_both_channels() {
+		let (left, right) = whole(OPL2_TITLE);
+		assert!(peak(&left) > 0.05, "peak {}", peak(&left));
+		assert!(left == right, "an OPL2 is mono, so the channels are equal");
+	}
+
+	/// Channel 0 keyed on with the chip's output choice `choice` (bit 4 left, bit 5 right).
+	fn panned(choice: u8) -> (Vec<f32>, Vec<f32>) {
+		let mut writer = Writer::new(Chip::Opl3, 560);
+		writer.write(1, 0x05, 0x01).wait(1);
+		for (reg, val) in [
+			(0x20, 0x01),
+			(0x40, 0x10),
+			(0x60, 0xF0),
+			(0x80, 0x00),
+			(0x23, 0x01),
+			(0x43, 0x00),
+			(0x63, 0xF0),
+			(0x83, 0x00),
+			(0xA0, 0x98),
+			(0xC0, choice),
+			(0xB0, 0x31),
+		] {
+			writer.write(0, reg, val);
+		}
+		writer.wait(100);
+		let mut player = OplPlayer::new(&writer.finish().unwrap(), RATE).unwrap();
+		player
+			.render(8_000)
+			.as_chunks::<2>()
+			.0
+			.iter()
+			.map(|[l, r]| (*l, *r))
+			.unzip()
+	}
+
+	#[test]
+	fn an_opl3_voice_can_sit_on_one_output_only() {
+		let (left, right) = panned(0x10);
+		assert!(peak(&left) > 0.05);
+		assert_eq!(peak(&right), 0.0);
+		let (left, right) = panned(0x20);
+		assert_eq!(peak(&left), 0.0);
+		assert!(peak(&right) > 0.05);
+	}
+
+	#[test]
+	fn the_opl3_title_theme_is_stereo_with_signal_on_both_sides() {
+		let (left, right) = whole(OPL3_TITLE);
+		assert!(peak(&left) > 0.05 && peak(&right) > 0.05);
+		assert!(peak(&left) <= 1.0 && peak(&right) <= 1.0);
+		// Every note sits on both outputs, four steps quieter than a full-scale one, so the two
+		// channels carry the same notes at the same level.
+		assert!(left == right, "both outputs carry every note");
+		let frames = left.len();
+		assert_eq!(frames, right.len());
+		assert!(frames > 60 * RATE as usize, "about 61.7 s and a tail");
+	}
+
 	#[test]
 	fn refusals_are_readable() {
 		assert!(
