@@ -1,4 +1,6 @@
 # One job per check, so a pull request's checks list names exactly what passed or failed.
+# Rust jobs run in the shared ci-rust image, pinned by digest (current pins:
+# https://github.com/liminal-hq/.github/blob/main/docs/reference/recommended-image-pins.md).
 #
 # (c) Copyright 2026 Liminal HQ, Scott Morris
 # SPDX-License-Identifier: Apache-2.0 OR MIT
@@ -26,6 +28,7 @@ defaults:
     shell: bash
 
 jobs:
+
   markdown:
     name: Markdown lint
     runs-on: ubuntu-24.04
@@ -41,6 +44,7 @@ jobs:
         with:
           globs: '**/*.md'
 
+
   headers:
     name: Licence headers
     runs-on: ubuntu-24.04
@@ -53,6 +57,35 @@ jobs:
 
       - name: Check SPDX headers
         run: bash scripts/check-headers.sh
+
+
+  shell:
+    name: Shell scripts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Run shellcheck
+        run: shellcheck scripts/*.sh
+
+
+  workflows:
+    name: Workflow lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Run actionlint
+        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.7
+
 
   banner:
     name: Hero banner
@@ -75,14 +108,13 @@ jobs:
           BANNER_REQUIRE_RENDER: '1'
         run: bash scripts/check-banner.sh
 
-  # Rust: one job per check in the shared ci-rust image (digest from
-  # https://github.com/liminal-hq/.github/blob/main/docs/reference/recommended-image-pins.md).
-  fmt:
-    name: Format
+
+  rust-format:
+    name: Rust format
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     container:
-      image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -90,14 +122,24 @@ jobs:
           persist-credentials: false
 
       - name: Check formatting
+        id: check
         run: cargo fmt --all -- --check
 
-  clippy:
-    name: Clippy
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Rust format"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo fmt --all -- --check\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  rust-clippy:
+    name: Rust Clippy
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     container:
-      image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -110,14 +152,24 @@ jobs:
           shared-key: undertone-sound
 
       - name: Run clippy
+        id: check
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
 
-  test:
-    name: Tests
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Rust Clippy"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo clippy --workspace --all-targets --locked -- -D warnings\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  rust-tests:
+    name: Rust tests
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     container:
-      image: ghcr.io/liminal-hq/ci-rust@sha256:f12097be8cc22eb5145a46bc9f75b38a67fedd5833add4392e11ce85023e64df
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -130,4 +182,252 @@ jobs:
           shared-key: undertone-sound
 
       - name: Run the tests
+        id: check
         run: cargo nextest run --workspace --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Rust tests"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo nextest run --workspace --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  rust-doctests:
+    name: Rust doc tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Run the doc tests
+        id: check
+        run: cargo test --workspace --doc --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Rust doc tests"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo test --workspace --doc --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  rust-docs:
+    name: Rust docs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Build the docs
+        id: check
+        env:
+          RUSTDOCFLAGS: '-D warnings'
+        run: cargo doc --workspace --no-deps --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Rust docs"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo doc --workspace --no-deps --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  oplstream-core:
+    name: oplstream core features
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Test without default features
+        id: check
+        run: cargo test -p oplstream --no-default-features --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## oplstream core features"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo test -p oplstream --no-default-features --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  oplstream-alloc:
+    name: oplstream alloc feature
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Test with the alloc feature only
+        id: check
+        run: cargo test -p oplstream --no-default-features --features alloc --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## oplstream alloc feature"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo test -p oplstream --no-default-features --features alloc --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  no-std-build:
+    name: no_std build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Add the bare-metal target
+        run: rustup target add thumbv7em-none-eabi
+
+      - name: Build the oplstream core for a bare-metal target
+        id: check
+        run: cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## no_std build"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo build -p oplstream --no-default-features --target thumbv7em-none-eabi --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  wasm-build:
+    name: WebAssembly build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Cache Rust build output
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: undertone-sound
+
+      - name: Add the WebAssembly target
+        run: rustup target add wasm32-unknown-unknown
+
+      - name: Build the workspace for WebAssembly
+        id: check
+        run: cargo build --workspace --release --target wasm32-unknown-unknown --locked
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## WebAssembly build"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo build --workspace --release --target wasm32-unknown-unknown --locked\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  dependency-licences:
+    name: Dependency licences
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check licences, bans and sources
+        id: check
+        run: cargo deny check licenses bans sources
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Dependency licences"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo deny check licenses bans sources\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  advisories:
+    name: Security advisories
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container:
+      image: ghcr.io/liminal-hq/ci-rust@sha256:0ef31efa5876407765cd5572a23323932183a5357eaac92eee67d79657d45c02
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Check advisories
+        id: check
+        run: cargo deny check advisories
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Security advisories"
+            echo "- Result: \`${{ steps.check.outcome }}\`"
+            echo "- Command: \`cargo deny check advisories\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
