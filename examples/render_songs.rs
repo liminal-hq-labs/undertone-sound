@@ -4,11 +4,14 @@
 // SPDX-License-Identifier: MIT
 
 //! `cargo run --release -p fizz-audio-undertone --example render_songs -- <song.json>… [--rate 44100]
-//! [--tracks] [--wav <folder>]`: each song's whole pass as the export renders it (a 2 s tail,
-//! stereo, the master bus), with its length, peak, RMS and how long the render took a second of
+//! [--no-master] [--tracks] [--wav <folder>]`: each song's whole pass as the export renders it (a 2 s
+//! tail, stereo, the master bus), with its length, peak, RMS and how long the render took a second of
 //! sound, then the same as a stream in blocks of 128 and 512 frames with the worst block's time
-//! against its real-time budget. `--tracks` adds each track's solo and in-mix levels; `--wav` writes 16-bit files to look
-//! at (nothing here listens to them).
+//! against its real-time budget. A `pass:` line gives the figures over the pass alone (peak over the
+//! pass and the tail): RMS, integrated loudness (ITU-R BS.1770, K-weighted and gated) and the side
+//! signal's RMS against the mid's, a measure of width. `--no-master` leaves the master bus out, to
+//! compare with a render that has none. `--tracks` adds each track's solo and in-mix levels; `--wav`
+//! writes 16-bit files to look at (nothing here listens to them).
 
 use std::path::PathBuf;
 use std::time::Instant;
@@ -24,6 +27,86 @@ fn db(value: f64) -> String {
     } else {
         format!("{:.1}", 20.0 * value.log10())
     }
+}
+
+/// Integrated loudness in LUFS of stereo `left` and `right` (ITU-R BS.1770-4: the K-weighting
+/// filters at any rate, 400 ms blocks every 100 ms, the absolute gate at -70 LUFS and the relative
+/// gate 10 LU under the mean of the blocks that pass it).
+fn lufs(left: &[f32], right: &[f32], rate: f64) -> f64 {
+    let shelf = {
+        let (f0, gain, q) = (1681.974450955533, 3.999843853973347, 0.7071752369554196);
+        let k = (std::f64::consts::PI * f0 / rate).tan();
+        let vh = 10f64.powf(gain / 20.0);
+        let vb = vh.powf(0.4996667741545416);
+        let a0 = 1.0 + k / q + k * k;
+        [
+            (vh + vb * k / q + k * k) / a0,
+            2.0 * (k * k - vh) / a0,
+            (vh - vb * k / q + k * k) / a0,
+            2.0 * (k * k - 1.0) / a0,
+            (1.0 - k / q + k * k) / a0,
+        ]
+    };
+    let highpass = {
+        let (f0, q) = (38.13547087602444, 0.5003270373238773);
+        let k = (std::f64::consts::PI * f0 / rate).tan();
+        let a0 = 1.0 + k / q + k * k;
+        [
+            1.0,
+            -2.0,
+            1.0,
+            2.0 * (k * k - 1.0) / a0,
+            (1.0 - k / q + k * k) / a0,
+        ]
+    };
+    let weigh = |input: &[f32]| -> Vec<f64> {
+        let mut out: Vec<f64> = input.iter().map(|s| f64::from(*s)).collect();
+        for [b0, b1, b2, a1, a2] in [shelf, highpass] {
+            let (mut x1, mut x2, mut y1, mut y2) = (0.0, 0.0, 0.0, 0.0);
+            for sample in &mut out {
+                let x = *sample;
+                let y = b0 * x + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
+                (x2, x1, y2, y1) = (x1, x, y1, y);
+                *sample = y;
+            }
+        }
+        out
+    };
+    let (l, r) = (weigh(left), weigh(right));
+    let block = (0.4 * rate).round() as usize;
+    let hop = (0.1 * rate).round() as usize;
+    let mut powers = Vec::new();
+    let mut start = 0;
+    while start + block <= l.len() {
+        let sum: f64 = (start..start + block)
+            .map(|n| l[n] * l[n] + r[n] * r[n])
+            .sum();
+        powers.push(sum / block as f64);
+        start += hop;
+    }
+    let loudness = |power: f64| -0.691 + 10.0 * power.log10();
+    let mean = |set: &[f64]| set.iter().sum::<f64>() / set.len().max(1) as f64;
+    let loud: Vec<f64> = powers
+        .into_iter()
+        .filter(|p| loudness(*p) > -70.0)
+        .collect();
+    if loud.is_empty() {
+        return f64::NEG_INFINITY;
+    }
+    let gate = loudness(mean(&loud)) - 10.0;
+    let gated: Vec<f64> = loud.into_iter().filter(|p| loudness(*p) > gate).collect();
+    loudness(mean(&gated))
+}
+
+/// The side signal's RMS against the mid's, in dB (more negative is narrower).
+fn side_to_mid(left: &[f32], right: &[f32]) -> f64 {
+    let (mut mid, mut side) = (0f64, 0f64);
+    for (l, r) in left.iter().zip(right) {
+        let (l, r) = (f64::from(*l), f64::from(*r));
+        mid += ((l + r) / 2.0).powi(2);
+        side += ((l - r) / 2.0).powi(2);
+    }
+    10.0 * (side / mid.max(1e-30)).log10()
 }
 
 fn wav(path: &PathBuf, sound: &Rendered) {
@@ -54,12 +137,14 @@ fn main() {
     let mut paths = Vec::new();
     let mut rate = 48_000.0;
     let mut tracks = false;
+    let mut master = true;
     let mut wav_folder: Option<PathBuf> = None;
     let mut args = std::env::args().skip(1);
     while let Some(arg) = args.next() {
         match arg.as_str() {
             "--rate" => rate = args.next().unwrap().parse().unwrap(),
             "--tracks" => tracks = true,
+            "--no-master" => master = false,
             "--wav" => wav_folder = Some(args.next().unwrap().into()),
             _ => paths.push(PathBuf::from(arg)),
         }
@@ -72,6 +157,7 @@ fn main() {
         let performance = compile_song(&song, &CompileOptions::default()).unwrap();
         let request = RenderRequest {
             sample_rate: rate,
+            master,
             ..RenderRequest::EXPORT
         };
         let started = Instant::now();
@@ -89,6 +175,24 @@ fn main() {
             db(sound.rms()),
             took,
             took / seconds
+        );
+        let pass = sound
+            .frames()
+            .saturating_sub((request.tail * rate).round() as usize);
+        let (left, right) = (&sound.channels[0][..pass], &sound.channels[1][..pass]);
+        let pass_rms = Rendered {
+            sample_rate: rate,
+            channels: vec![left.to_vec(), right.to_vec()],
+        }
+        .rms();
+        println!(
+            "  pass: {:.3} s, peak {} dBFS, RMS {} dBFS, {:.1} LUFS, side-to-mid {:.1} dB{}",
+            pass as f64 / rate,
+            db(sound.peak()),
+            db(pass_rms),
+            lufs(left, right, rate),
+            side_to_mid(left, right),
+            if master { "" } else { ", no master bus" }
         );
         // Streaming: prepare an engine, then time each block as an audio callback would see it.
         for block in [128usize, 512] {
