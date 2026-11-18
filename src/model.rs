@@ -141,6 +141,29 @@ mod whole_number {
     }
 }
 
+/// An optional small whole number that JSON may spell with a fraction part (`9.0`).
+mod whole_priority {
+    use serde::{Deserialize, Deserializer, Serializer};
+
+    pub fn serialize<S: Serializer>(value: &Option<u8>, serializer: S) -> Result<S::Ok, S::Error> {
+        match value {
+            Some(value) => serializer.serialize_u8(*value),
+            None => serializer.serialize_none(),
+        }
+    }
+
+    pub fn deserialize<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Option<u8>, D::Error> {
+        let Some(number) = Option::<f64>::deserialize(deserializer)? else {
+            return Ok(None);
+        };
+        if number.fract() == 0.0 && (0.0..=255.0).contains(&number) {
+            Ok(Some(number as u8))
+        } else {
+            Err(serde::de::Error::custom("expected a whole number"))
+        }
+    }
+}
+
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
 #[ts(export, export_to = "../../../packages/protocol/src/generated/")]
 pub struct Key {
@@ -181,6 +204,37 @@ pub struct Track {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]
     pub solo: Option<bool>,
+    /// How much the track's notes matter when an OPL chip runs out of channels, 0 to 9. Left out,
+    /// the role decides (`TrackRole::default_priority`).
+    #[serde(
+        default,
+        skip_serializing_if = "Option::is_none",
+        with = "whole_priority"
+    )]
+    #[ts(optional, type = "number")]
+    pub priority: Option<u8>,
+}
+
+impl TrackRole {
+    /// The priority a track of this role has when it sets none. Melody 9, bass 8, drums 7,
+    /// harmony 5, texture 4: a lead outlasts a bass, which outlasts a pad, which outlasts a bell.
+    pub fn default_priority(self) -> u8 {
+        match self {
+            TrackRole::Melody => 9,
+            TrackRole::Bass => 8,
+            TrackRole::Drums => 7,
+            TrackRole::Harmony => 5,
+            TrackRole::Texture => 4,
+        }
+    }
+}
+
+impl Track {
+    /// The track's own priority, else its role's.
+    pub fn effective_priority(&self) -> u8 {
+        self.priority
+            .unwrap_or_else(|| self.role.default_priority())
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
@@ -424,5 +478,41 @@ impl Song {
         self.instruments
             .get(&track.instrument)
             .is_some_and(|instrument| instrument.preset == PresetId::Kit)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    fn track(extra: Value) -> Track {
+        let mut value = json!({
+            "id": "t", "name": "T", "role": "texture", "instrument": "i", "volume": 1, "pan": 0
+        });
+        value
+            .as_object_mut()
+            .unwrap()
+            .extend(extra.as_object().unwrap().clone());
+        serde_json::from_value(value).unwrap()
+    }
+
+    #[test]
+    fn a_track_without_a_priority_takes_its_roles() {
+        assert_eq!(track(json!({})).effective_priority(), 4);
+        assert_eq!(track(json!({ "role": "melody" })).effective_priority(), 9);
+        assert_eq!(track(json!({ "priority": 0 })).effective_priority(), 0);
+    }
+
+    #[test]
+    fn a_priority_may_be_spelled_with_a_fraction_part_and_is_written_whole() {
+        let parsed = track(json!({ "priority": 6.0 }));
+        assert_eq!(parsed.priority, Some(6));
+        assert_eq!(serde_json::to_value(&parsed).unwrap()["priority"], json!(6));
+        assert!(track(json!({})).priority.is_none());
+        assert!(serde_json::to_value(track(json!({})))
+            .unwrap()
+            .get("priority")
+            .is_none());
     }
 }

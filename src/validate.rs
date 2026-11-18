@@ -54,6 +54,7 @@ pub enum ProblemCode {
     UnknownInstrument,
     BadVolume,
     BadPan,
+    BadPriority,
     BadSections,
     BadBars,
     BadArrangement,
@@ -458,6 +459,15 @@ pub fn validate_song(raw: &Value) -> Validation {
                         ProblemCode::BadPan,
                         format!("{path}.pan"),
                         "must be from -1 to 1",
+                    );
+                }
+                if member(track, "priority").is_some_and(|value| {
+                    !as_integer(value).is_some_and(|n| (0.0..=9.0).contains(&n))
+                }) {
+                    problems.error(
+                        ProblemCode::BadPriority,
+                        format!("{path}.priority"),
+                        "must be a whole number from 0 to 9 (leave it out to use the role's)",
                     );
                 }
             }
