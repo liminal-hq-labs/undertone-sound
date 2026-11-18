@@ -10,6 +10,7 @@ use wasm_bindgen::prelude::wasm_bindgen;
 
 use crate::opx::{self, Format};
 use crate::player::OplPlayer;
+use crate::recorded::{self, RecordedScore};
 use crate::voice;
 
 /// What an OPX stream is: the answers the demo page shows.
@@ -163,4 +164,62 @@ pub fn render_voice(
 	sample_rate: f64,
 ) -> Result<Vec<f32>, String> {
 	voice::render_note(sound, midi, seconds, sample_rate)
+}
+
+/// A recorded Undertone score streamed through `undertone-dsp`'s engine, a block at a time.
+#[wasm_bindgen]
+pub struct ScorePlayer {
+	inner: recorded::ScorePlayer,
+	recorded: RecordedScore,
+}
+
+#[wasm_bindgen]
+impl ScorePlayer {
+	/// Reads the case `case_id` from the text of `fixtures/undertone/graph.json` (`title-theme`
+	/// is recorded at 112 ticks a second) and books it at `sample_rate` frames a second.
+	#[wasm_bindgen(constructor)]
+	pub fn new(
+		graph_json: &str,
+		case_id: &str,
+		ticks_per_second: f64,
+		sample_rate: u32,
+	) -> Result<ScorePlayer, String> {
+		let recorded = recorded::read_case(graph_json, case_id, ticks_per_second)?;
+		Ok(ScorePlayer {
+			inner: recorded::ScorePlayer::new(&recorded, sample_rate)?,
+			recorded,
+		})
+	}
+
+	/// Renders the next `frames` frames as interleaved stereo `f32`; silence past the end.
+	pub fn render(&mut self, frames: u32) -> Vec<f32> {
+		self.inner.render(frames as usize)
+	}
+
+	/// The frames of the pass and its two-second tail.
+	#[wasm_bindgen(js_name = totalFrames)]
+	pub fn total_frames(&self) -> f64 {
+		self.inner.total_frames() as f64
+	}
+
+	/// The score's length in seconds, without the tail.
+	#[wasm_bindgen(js_name = passSeconds)]
+	pub fn pass_seconds(&self) -> f64 {
+		self.inner.pass_seconds()
+	}
+
+	/// The events of the score.
+	pub fn events(&self) -> u32 {
+		self.inner.events() as u32
+	}
+
+	/// The distinct voices of the score.
+	pub fn voices(&self) -> u32 {
+		self.inner.voices() as u32
+	}
+
+	/// The bars of the song the case holds, or zero when the file does not say.
+	pub fn bars(&self) -> u32 {
+		self.recorded.bars.unwrap_or(0)
+	}
 }

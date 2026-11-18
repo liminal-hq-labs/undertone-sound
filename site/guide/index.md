@@ -8,7 +8,7 @@ Undertone Sound is a workspace of Rust crates on two tracks. The first, the Unde
 |---|---|
 | [`undertone-mini`](/guide/undertone-mini) | Parses Undertone's mini-notation into patterns over exact fractions |
 | [`undertone-dsp`](/guide/undertone-dsp) | Renders Undertone's voices and Web Audio graph to samples |
-| `undertone-wasm` | Binds the crates for JavaScript; it runs the [demo](/demo) |
+| `undertone-wasm` | Binds the crates for JavaScript: OPX tools, an OPL2 and OPL3 player and a streaming Undertone score player. It runs the [demo](/demo), which plays Title Theme three ways |
 
 ## Track 2: synth backends, OPX and DOS
 

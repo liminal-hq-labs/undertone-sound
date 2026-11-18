@@ -13,7 +13,7 @@ Done:
 - [x] `undertone-mini`: mini-notation, exact fractions and pattern combinators, with recorded fixtures
 - [x] `undertone-dsp`: voices, effects, master bus, DSP kernels, the `Graph` trait and an in-house renderer that plays offline or streams in blocks of any size, matching the TypeScript library's recorded Web Audio graph byte for byte
 - [x] `undertone-mini` and `undertone-dsp` compile for `wasm32-unknown-unknown`
-- [x] `undertone-wasm`: first bindings, with a browser demo (the demo plays the OPL track today; one `undertone-dsp` voice renders through the same bindings)
+- [x] `undertone-wasm`: first bindings, with a browser demo (the demo plays Title Theme as the recorded Undertone score, an OPL2 file and an OPL3 file, side by side; one `undertone-dsp` voice renders through the same bindings)
 
 Open:
 
