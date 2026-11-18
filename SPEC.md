@@ -21,7 +21,7 @@ Shared Rust sound core for Undertone.
 
 | Crate | Role | State |
 |---|---|---|
-| `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Header only |
+| `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Working: header, decoder and stepper, validator, text twin, `alloc` writer and `std` importers and re-timing. Not yet run against real files or on hardware |
 | `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation | Empty shell |
 | `undertone-dsp` | Voices and node graph, native and WebAssembly | Empty shell |
 | `undertone-sound` | Song model and compiler | Empty shell |
