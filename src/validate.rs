@@ -12,7 +12,8 @@ use ts_rs::TS;
 use crate::js::{number_to_string, trim};
 use crate::mini_bridge;
 use crate::model::{
-    Author, DrumPiece, EngineId, PresetId, ScaleName, Song, TrackRole, SONG_FORMAT, SONG_VERSION,
+    Author, DrumPiece, EngineId, PresetId, ScaleName, Song, StepKind, TrackRole,
+    MAX_REVISION_STEPS, SONG_FORMAT, SONG_VERSION,
 };
 use crate::music::{parse_pitch, pitch_class};
 
@@ -77,6 +78,8 @@ pub enum ProblemCode {
     BadMessageTime,
     BadMix,
     BadPanLaw,
+    /// A take's `revision` that does not read, or names a take or step that is not there.
+    BadRevision,
     BadDescription,
     BadSongs,
     BadSongId,
@@ -572,6 +575,7 @@ pub fn validate_song(raw: &Value) -> Validation {
                         slot,
                         &path,
                         steps,
+                        bars.unwrap_or(64.0),
                         drum_tracks.contains(track_id.as_str()),
                         &mut problems,
                     );
@@ -667,7 +671,14 @@ pub fn validate_song(raw: &Value) -> Validation {
     }
 }
 
-fn check_slot(slot: &Value, path: &str, steps: f64, drums: bool, problems: &mut Problems) {
+fn check_slot(
+    slot: &Value,
+    path: &str,
+    steps: f64,
+    bars: f64,
+    drums: bool,
+    problems: &mut Problems,
+) {
     let Some(slot) = as_object(slot) else {
         problems.error(
             ProblemCode::BadSlot,
@@ -685,6 +696,8 @@ fn check_slot(slot: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
         return;
     };
     let mut take_ids: HashSet<&str> = HashSet::new();
+    // Each revised take's path, id and `of`, checked once every id in the slot is known.
+    let mut revised: Vec<(String, &str, Option<&str>)> = Vec::new();
     for (index, take) in takes.iter().enumerate() {
         let take_path = format!("{path}.takes[{index}]");
         let Some(take) = as_object(take) else {
@@ -732,6 +745,17 @@ fn check_slot(slot: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
                 );
             }
         }
+        if let Some(revision) = member(take, "revision") {
+            let of = check_revision(
+                revision,
+                &format!("{take_path}.revision"),
+                steps,
+                bars,
+                drums,
+                problems,
+            );
+            revised.push((format!("{take_path}.revision"), id, of));
+        }
         let notes = member(take, "notes");
         let mini = member(take, "mini");
         if notes.is_some() == mini.is_some() {
@@ -775,6 +799,7 @@ fn check_slot(slot: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
             }
         }
     }
+    check_revision_links(&revised, &take_ids, problems);
     match member(slot, "active") {
         Some(Value::Null) => {}
         Some(Value::String(active)) if take_ids.contains(active.as_str()) => {}
@@ -783,6 +808,325 @@ fn check_slot(slot: &Value, path: &str, steps: f64, drums: bool, problems: &mut 
             format!("{path}.active"),
             "must name one of the takes, or be null for silence",
         ),
+    }
+}
+
+/// Checks a take's `revision` and returns its `of`, when it has one, for the links check.
+fn check_revision<'a>(
+    revision: &'a Value,
+    path: &str,
+    steps: f64,
+    bars: f64,
+    drums: bool,
+    problems: &mut Problems,
+) -> Option<&'a str> {
+    let Some(revision) = as_object(revision) else {
+        problems.error(ProblemCode::BadRevision, path, "must be an object");
+        return None;
+    };
+    let of = member(revision, "of").and_then(Value::as_str);
+    if of.is_none() {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.of"),
+            "must name another take in the slot",
+        );
+    }
+    if !member(revision, "n")
+        .and_then(as_integer)
+        .is_some_and(|n| n >= 1.0)
+    {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.n"),
+            "must be a whole number from 1",
+        );
+    }
+    if member(revision, "request")
+        .and_then(Value::as_str)
+        .is_none()
+    {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.request"),
+            "needs the request text",
+        );
+    }
+    if member(revision, "model").and_then(Value::as_str).is_none() {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.model"),
+            "needs a model name",
+        );
+    }
+    if let Some(settings) = member(revision, "settings") {
+        check_revision_settings(settings, &format!("{path}.settings"), bars, problems);
+    }
+    let mut step_ids: HashSet<&str> = HashSet::new();
+    match member(revision, "steps").and_then(Value::as_array) {
+        Some(list) if (1..=MAX_REVISION_STEPS).contains(&list.len()) => {
+            for (index, step) in list.iter().enumerate() {
+                if let Some(id) = check_step(
+                    step,
+                    &format!("{path}.steps[{index}]"),
+                    index == 0,
+                    steps,
+                    bars,
+                    drums,
+                    problems,
+                ) {
+                    if !step_ids.insert(id) {
+                        problems.error(
+                            ProblemCode::DuplicateId,
+                            format!("{path}.steps[{index}].id"),
+                            format!("\"{id}\" is used twice"),
+                        );
+                    }
+                }
+            }
+        }
+        _ => problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.steps"),
+            format!("must be a list of 1 to {MAX_REVISION_STEPS} steps"),
+        ),
+    }
+    if !member(revision, "current")
+        .and_then(Value::as_str)
+        .is_some_and(|current| step_ids.contains(current))
+    {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.current"),
+            "must name one of the steps",
+        );
+    }
+    of
+}
+
+fn check_revision_settings(settings: &Value, path: &str, bars: f64, problems: &mut Problems) {
+    let Some(settings) = as_object(settings) else {
+        problems.error(ProblemCode::BadRevision, path, "must be an object");
+        return;
+    };
+    if member(settings, "think").is_some_and(|think| !think.is_boolean()) {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.think"),
+            "must be true or false",
+        );
+    }
+    if member(settings, "temperature").is_some_and(|value| as_number(value).is_none()) {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.temperature"),
+            "must be a number",
+        );
+    }
+    if let Some(list) = member(settings, "bars") {
+        let ok = list.as_array().is_some_and(|list| {
+            list.iter()
+                .all(|bar| as_integer(bar).is_some_and(|bar| bar >= 1.0 && bar <= bars))
+        });
+        if !ok {
+            problems.error(
+                ProblemCode::BadRevision,
+                format!("{path}.bars"),
+                format!(
+                    "must be a list of bars, each a whole number from 1 to {}",
+                    number_to_string(bars)
+                ),
+            );
+        }
+    }
+}
+
+/// Checks one step and returns its id, when it has a good one.
+fn check_step<'a>(
+    step: &'a Value,
+    path: &str,
+    first: bool,
+    steps: f64,
+    bars: f64,
+    drums: bool,
+    problems: &mut Problems,
+) -> Option<&'a str> {
+    let Some(step) = as_object(step) else {
+        problems.error(ProblemCode::NotAnObject, path, "must be an object");
+        return None;
+    };
+    let id = member(step, "id")
+        .and_then(Value::as_str)
+        .filter(|id| is_valid_id(id));
+    if id.is_none() {
+        problems.error(ProblemCode::BadId, format!("{path}.id"), ID_MESSAGE);
+    }
+    if !member(step, "kind")
+        .and_then(Value::as_str)
+        .is_some_and(|kind| StepKind::from_word(kind).is_some())
+    {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.kind"),
+            format!(
+                "must be one of {}",
+                word_list(StepKind::ALL, StepKind::as_str)
+            ),
+        );
+    }
+    if member(step, "at").and_then(Value::as_str).is_none() {
+        problems.error(
+            ProblemCode::BadMessageTime,
+            format!("{path}.at"),
+            "must be an ISO 8601 timestamp",
+        );
+    }
+    if member(step, "comment").is_some_and(|comment| !comment.is_string()) {
+        problems.error(
+            ProblemCode::BadRevision,
+            format!("{path}.comment"),
+            "must be a string",
+        );
+    }
+    let notes = member(step, "notes");
+    let mini = member(step, "mini");
+    let changed = member(step, "bars");
+    let held = [notes.is_some(), mini.is_some(), changed.is_some()];
+    if held.iter().filter(|held| **held).count() != 1 {
+        problems.error(
+            ProblemCode::NeedsOneOfNotesOrMini,
+            path,
+            "needs exactly one of \"notes\", \"mini\" or \"bars\"",
+        );
+    } else if first && changed.is_some() {
+        problems.error(
+            ProblemCode::BadRevision,
+            path,
+            "the first step must hold \"notes\" or \"mini\", as nothing comes before it",
+        );
+    }
+    if let Some(mini) = mini {
+        match mini.as_str() {
+            None => problems.error(
+                ProblemCode::BadMini,
+                format!("{path}.mini"),
+                "must be a string",
+            ),
+            Some(source) => {
+                if let Err(message) = mini_bridge::check(source, drums) {
+                    problems.error(ProblemCode::BadMini, format!("{path}.mini"), message);
+                }
+            }
+        }
+    }
+    if let Some(notes) = notes {
+        match notes.as_array() {
+            None => problems.error(
+                ProblemCode::BadNotes,
+                format!("{path}.notes"),
+                "must be a list",
+            ),
+            Some(notes) => {
+                for (index, note) in notes.iter().enumerate() {
+                    check_note(
+                        note,
+                        &format!("{path}.notes[{index}]"),
+                        steps,
+                        drums,
+                        problems,
+                    );
+                }
+            }
+        }
+    }
+    if let Some(changed) = changed {
+        match changed.as_array() {
+            None => problems.error(
+                ProblemCode::BadRevision,
+                format!("{path}.bars"),
+                "must be a list",
+            ),
+            Some(list) => {
+                for (index, entry) in list.iter().enumerate() {
+                    let entry_path = format!("{path}.bars[{index}]");
+                    let Some(entry) = as_object(entry) else {
+                        problems.error(
+                            ProblemCode::NotAnObject,
+                            entry_path,
+                            "must be { \"bar\", \"notes\" }",
+                        );
+                        continue;
+                    };
+                    if !member(entry, "bar")
+                        .and_then(as_integer)
+                        .is_some_and(|bar| bar >= 1.0 && bar <= bars)
+                    {
+                        problems.error(
+                            ProblemCode::BadRevision,
+                            format!("{entry_path}.bar"),
+                            format!("must be a whole bar from 1 to {}", number_to_string(bars)),
+                        );
+                    }
+                    match member(entry, "notes").and_then(Value::as_array) {
+                        None => problems.error(
+                            ProblemCode::BadNotes,
+                            format!("{entry_path}.notes"),
+                            "must be a list",
+                        ),
+                        Some(notes) => {
+                            for (note_index, note) in notes.iter().enumerate() {
+                                check_note(
+                                    note,
+                                    &format!("{entry_path}.notes[{note_index}]"),
+                                    steps,
+                                    drums,
+                                    problems,
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    id
+}
+
+/// Every revised take's `of` must be another take of the slot, and a chain must not loop.
+fn check_revision_links(
+    revised: &[(String, &str, Option<&str>)],
+    take_ids: &HashSet<&str>,
+    problems: &mut Problems,
+) {
+    let parents: HashMap<&str, &str> = revised
+        .iter()
+        .filter_map(|(_, id, of)| of.map(|of| (*id, of)))
+        .collect();
+    for (path, id, of) in revised {
+        let Some(of) = of else { continue };
+        if of == id || !take_ids.contains(of) {
+            problems.error(
+                ProblemCode::BadRevision,
+                format!("{path}.of"),
+                "must name another take in the slot",
+            );
+            continue;
+        }
+        let mut here = *of;
+        for _ in 0..parents.len() {
+            match parents.get(here) {
+                Some(next) => here = next,
+                None => break,
+            }
+            if here == *id {
+                problems.error(
+                    ProblemCode::BadRevision,
+                    format!("{path}.of"),
+                    "must not lead back to this take",
+                );
+                break;
+            }
+        }
     }
 }
 

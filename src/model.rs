@@ -210,6 +210,89 @@ pub struct Note {
     pub vel: Option<f64>,
 }
 
+text_enum!(
+    /// How a revision step came about: the model's first answer, another go, a hand edit, or the
+    /// kept bars joined back with the new ones.
+    StepKind, "lowercase",
+    [Model => "model", Retry => "retry", Edit => "edit", Splice => "splice"]
+);
+
+/// The most steps one revision keeps, so a take's history cannot grow the song file without end.
+pub const MAX_REVISION_STEPS: usize = 20;
+
+/// What a revision was asked with, all of it optional.
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize, TS)]
+#[ts(export, export_to = "../../../packages/protocol/src/generated/")]
+pub struct RevisionSettings {
+    /// Whether the model thought before it answered.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub think: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub temperature: Option<f64>,
+    /// The bars (counted from 1) the request was limited to.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub bars: Option<Vec<u32>>,
+}
+
+/// The notes of one bar in a step that holds only what changed.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[ts(export, export_to = "../../../packages/protocol/src/generated/")]
+pub struct BarNotes {
+    /// The bar, counted from 1.
+    pub bar: u32,
+    /// Every note whose onset is in the bar; none means the bar is empty.
+    pub notes: Vec<Note>,
+}
+
+/// One version of a revised take. Exactly one of `notes`, `mini` and `bars` holds its content:
+/// `notes` or `mini` is a whole snapshot (the first and the current step are always one), `bars`
+/// lists the bars that differ from the step before.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[ts(export, export_to = "../../../packages/protocol/src/generated/")]
+pub struct RevisionStep {
+    /// Unique in the take (`s1`, `s2`, ...).
+    pub id: String,
+    pub kind: StepKind,
+    /// ISO 8601 timestamp.
+    pub at: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub comment: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub notes: Option<Vec<Note>>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub mini: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub bars: Option<Vec<BarNotes>>,
+}
+
+/// A take's link to the take it revises, and the steps it went through (`docs/SONG-FORMAT.md`).
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[ts(export, export_to = "../../../packages/protocol/src/generated/")]
+pub struct Revision {
+    /// Id of the take this one revises, in the same slot.
+    pub of: String,
+    /// Which trial of the parent this is, from 1.
+    pub n: u32,
+    /// What the person asked for.
+    pub request: String,
+    /// The model's name.
+    pub model: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub settings: Option<RevisionSettings>,
+    /// One to `MAX_REVISION_STEPS` versions, oldest first.
+    pub steps: Vec<RevisionStep>,
+    /// Id of the step the take is on.
+    pub current: String,
+}
+
 /// One idea for what a track plays in a section. A take holds either explicit `notes` or a `mini`
 /// pattern in Undertone mini-notation, where one cycle is one bar.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
@@ -232,6 +315,10 @@ pub struct Take {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[ts(optional)]
     pub comment: Option<String>,
+    /// Set when this take revises another and keeps the steps it went through.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[ts(optional)]
+    pub revision: Option<Revision>,
 }
 
 /// Every take a track has for one section, and which of them plays.
