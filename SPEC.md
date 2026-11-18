@@ -25,14 +25,17 @@ Shared Rust sound core for Undertone.
 | `undertone-opl` | OPL2 and OPL3 sequencing and channel allocation | Empty shell |
 | `undertone-mini` | Undertone's mini-notation: parser, pattern combinators and exact fractions, plus JavaScript number semantics (`js`) | Carved from the studio; passes the recorded `fixtures/mini/` cases |
 | `undertone-dsp` | Voices, the Web Audio graph Undertone books, and an in-house renderer, offline or streaming, native and WebAssembly | Carved from the studio; `LogGraph` matches the recorded `fixtures/undertone/graph.json` byte for byte and the engine streams in any block size. Compiles for `wasm32-unknown-unknown`; no bindings yet |
-| `undertone-sound` | Song model and compiler | Empty shell |
+| `undertone-sound` | The song document: model, validation, stable formatting, pitch and pan, and the compiler to timed, engine-neutral events. Optional `ts` feature for TypeScript bindings | Carved from the studio; passes the recorded `fixtures/song/` cases for validation, formatting, pitch and scales, and compilation. No sound is made here |
 
 ## Behaviour
+
+The song document is specified by its types, `validate_song` and the recorded cases in `fixtures/song/`, which the TypeScript implementation wrote. `compile_song` repeats that implementation's floating-point operations in the same order, so a performance matches bit for bit.
 
 OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for the format.
 
 ## Interfaces
 
+- `undertone-sound`: `model` (`Song` and its parts, `SONG_FORMAT`, `SONG_VERSION`), `validate::validate_song` (a JSON value in, a `Validation` with the song and every problem by path out), `format::format_song` and `format_document`, `music`, `pan`, `takes::take_notes` and `compile::compile_song`, which lowers a song to a `Performance`.
 - The OPX file format, version 0.1, a draft: [docs/OPX.md](docs/OPX.md).
 - `oplstream` (`no_std` core): `Header`, `Decoder` and `Stepper` over the command stream, `validate`, and `print_twin`.
 - `oplstream` with `alloc`: `Writer` and the twin `assemble`.
@@ -40,7 +43,8 @@ OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for
 
 ## Settings and defaults
 
-None yet.
+- `undertone-sound` cargo feature `ts` (off by default): derives `ts-rs` bindings for the wire types, written to `bindings/` by `cargo test -p undertone-sound --features ts`.
+- The song format id is `fizz-audio-studio/song`, version 1, kept byte for byte until a version gate changes it ([decisions.md](docs/decisions.md), D31).
 
 ## Security and privacy
 
