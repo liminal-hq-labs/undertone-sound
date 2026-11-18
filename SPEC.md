@@ -33,7 +33,9 @@ OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for
 ## Interfaces
 
 - The OPX file format, version 0.1, a draft: [docs/OPX.md](docs/OPX.md).
-- `oplstream::Header`: parse and write of the 32-byte header.
+- `oplstream` (`no_std` core): `Header`, `Decoder` and `Stepper` over the command stream, `validate`, and `print_twin`.
+- `oplstream` with `alloc`: `Writer` and the twin `assemble`.
+- `oplstream` with `std`: `import_imf`, `import_dro`, `import_vgm` and the explicit, reported `retime`.
 
 ## Settings and defaults
 
