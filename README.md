@@ -12,7 +12,7 @@ Shared Rust sound core for Undertone.
 
 Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-hq/undertone) family: one sound grammar for songs and effects, with a renderer per target, from OPL2 and OPL3 chips to the browser. It starts with `oplstream`, the reference implementation of OPX, a small, exact, loopable stream of timed OPL register writes.
 
-> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-opl` and `undertone-sound` are empty shells. `undertone-wasm` binds them for the browser, and the site has a live demo that imports Title Theme and plays it through an OPL emulator. The [roadmap](docs/ROADMAP.md) lists what comes next.
+> **Status:** experimental, and nothing is released or published. `oplstream` reads, writes, validates and steps OPX, prints and assembles its text twin, and imports IMF, DRO and VGM. `undertone-mini` and `undertone-dsp` are carved out of the studio with their recorded fixtures. `undertone-opl` sequences songs onto the chips, and `undertone-sound` holds the song document, its validation and its compiler. `undertone-wasm` binds them for the browser, and the site has a live demo that imports Title Theme and plays it through an OPL emulator. The [roadmap](docs/ROADMAP.md) lists what comes next.
 
 ## What it's for
 
@@ -29,7 +29,7 @@ Undertone Sound is the Rust side of the [Undertone](https://github.com/liminal-h
 | `undertone-mini` | Undertone's mini-notation and exact fractions | Working |
 | `undertone-dsp` | Undertone's voices, Web Audio graph and in-house renderer | Working |
 | `undertone-opl` | OPL sequencing and channel allocation | Planned, empty |
-| `undertone-sound` | The song model and compiler | Planned, empty |
+| `undertone-sound` | The song document, its validation and formatting, and the compiler to engine-neutral events | Working |
 | `undertone-wasm` | WebAssembly bindings and the demo's engine | Working |
 
 ## Install and run

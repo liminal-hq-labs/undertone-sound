@@ -45,7 +45,9 @@ const crates: Crate[] = [
 	},
 	{
 		name: 'undertone-sound',
-		summary: 'The song model and compiler. Waiting for the code to move in from the studio.'
+		summary: 'The song document: model, validation, stable formatting and the compiler to timed, engine-neutral events.',
+		guide: '/guide/undertone-sound',
+		api: '/api/undertone_sound/index.html'
 	}
 ];
 </script>
