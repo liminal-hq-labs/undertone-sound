@@ -6,13 +6,17 @@
 
 set -euo pipefail
 
-# Needs Bun and the pinned Rust toolchain. The result is `site/.vitepress/dist`, which is what
+# Needs Bun, the pinned Rust toolchain with the wasm32 target and `wasm-bindgen` (see
+# `scripts/build-wasm.sh`). The result is `site/.vitepress/dist`, which is what
 # GitHub Pages serves. Set `SKIP_RUST_DOCS=1` to leave the API pages out (the pages still build).
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 
 dist="site/.vitepress/dist"
+
+# The demo page imports the WebAssembly build, so it comes first.
+bash scripts/build-wasm.sh
 
 (
 	cd site

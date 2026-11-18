@@ -34,6 +34,12 @@ const crates: Crate[] = [
 		api: '/api/undertone_dsp/index.html'
 	},
 	{
+		name: 'undertone-wasm',
+		summary: 'WebAssembly bindings for the crates above. It runs the live demo: import, validate, view and play an OPX stream in the browser.',
+		guide: '/demo',
+		api: '/api/undertone_wasm/index.html'
+	},
+	{
 		name: 'undertone-opl',
 		summary: 'OPL2 and OPL3 sequencing and channel allocation. Waiting for the code to move in from the studio.'
 	},
@@ -53,7 +59,7 @@ const crates: Crate[] = [
 			</header>
 			<p>{{ crate.summary }}</p>
 			<footer v-if="crate.guide">
-				<a :href="withBase(crate.guide)">Guide</a>
+				<a :href="withBase(crate.guide)">{{ crate.guide === '/demo' ? 'Demo' : 'Guide' }}</a>
 				<a :href="withBase(crate.api!)">API</a>
 			</footer>
 		</article>
