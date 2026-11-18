@@ -61,6 +61,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/' },
       { text: 'OPX', link: '/opx' },
       { text: 'Roadmap', link: '/roadmap' },
+      { text: 'Demo', link: '/demo' },
       { text: 'API', link: '/api' }
     ],
     sidebar: [
@@ -76,6 +77,7 @@ export default defineConfig({
       {
         text: 'Reference',
         items: [
+          { text: 'Demo', link: '/demo' },
           { text: 'OPX specification', link: '/opx' },
           { text: 'Behaviour (SPEC)', link: '/spec' },
           { text: 'Rust API', link: '/api' }

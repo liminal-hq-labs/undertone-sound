@@ -34,7 +34,8 @@ Each crate moves from the studio with its history and fixtures, behind a version
 ## Later
 
 - [x] `undertone-mini` and `undertone-dsp` compile for `wasm32-unknown-unknown` (no bindings yet)
-- [ ] WebAssembly bindings (`undertone-wasm`) and a browser demo page that imports Title Theme and plays it through an OPL emulator
+- [x] WebAssembly bindings (`undertone-wasm`) and a browser demo page that imports Title Theme and plays it through the `oplon` emulator
+- [ ] A demo that streams through an AudioWorklet instead of rendering the whole song first
 - [ ] Parity canary against the TypeScript library
 - [ ] Publishing plan: names, versions, release flow, then crates.io
 

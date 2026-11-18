@@ -83,6 +83,48 @@ pub struct DecodeError {
 	pub kind: DecodeErrorKind,
 }
 
+impl core::fmt::Display for DecodeError {
+	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+		let offset = self.offset;
+		match self.kind {
+			DecodeErrorKind::Truncated => {
+				write!(
+					f,
+					"the stream ends in the middle of the command at byte {offset}"
+				)
+			}
+			DecodeErrorKind::MissingEnd => {
+				write!(
+					f,
+					"the stream has no END command (it stops at byte {offset})"
+				)
+			}
+			DecodeErrorKind::UnknownOpcode(opcode) => {
+				write!(
+					f,
+					"byte {offset} is the reserved or unknown opcode {opcode:#04X}"
+				)
+			}
+			DecodeErrorKind::BankOneOnOpl2 => {
+				write!(f, "byte {offset} writes to bank 1 on an OPL2 stream")
+			}
+			DecodeErrorKind::SpeakerCommandOnOpl => {
+				write!(f, "byte {offset} is a speaker command in an OPL stream")
+			}
+			DecodeErrorKind::OplCommandOnSpeaker => {
+				write!(f, "byte {offset} is an OPL command in a speaker stream")
+			}
+			DecodeErrorKind::ZeroLongWait => {
+				write!(f, "byte {offset} is a long wait of zero ticks")
+			}
+			DecodeErrorKind::BadTier(tier) => write!(f, "byte {offset} sets the tier to {tier}"),
+			DecodeErrorKind::WaitOverrun => {
+				write!(f, "the waits at byte {offset} pass the largest clock value")
+			}
+		}
+	}
+}
+
 /// Decodes a command stream one command at a time and keeps the clock.
 ///
 /// It is an iterator of [`Step`]s. It stops after `END` and after the first error.

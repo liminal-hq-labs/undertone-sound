@@ -24,8 +24,9 @@ Shared Rust sound core for Undertone.
 | `oplstream` | The OPX reader, writer, stepper, validator, text twin and importers. `no_std` core | Working: header, decoder and stepper, validator, text twin, `alloc` writer and `std` importers and re-timing. Not yet run against real files or on hardware |
 | `undertone-opl` | OPL2 and OPL3 register sequencing and channel allocation, lost-note accounting, the PC speaker engine and an `oplon` renderer, under a host-supplied profile | Carved from the studio; matches the recorded `fixtures/chips/` register writes, speaker frames, lost notes and rendered samples. Writes OPX (`opx`) and reads notes and drum hits back out of a stream (`analyse`). The Title Theme exports for the OPL2 and OPL3 as the golden files in `fixtures/opx/`, and the OPL2 stream sounds what the DOS game's chunk sounds, with four carrier levels apart. Not played in any player or on hardware. Compiles for `wasm32-unknown-unknown` |
 | `undertone-mini` | Undertone's mini-notation: parser, pattern combinators and exact fractions, plus JavaScript number semantics (`js`) | Carved from the studio; passes the recorded `fixtures/mini/` cases |
-| `undertone-dsp` | Voices, the Web Audio graph Undertone books, and an in-house renderer, offline or streaming, native and WebAssembly | Carved from the studio; `LogGraph` matches the recorded `fixtures/undertone/graph.json` byte for byte and the engine streams in any block size. Compiles for `wasm32-unknown-unknown`; no bindings yet |
+| `undertone-dsp` | Voices, the Web Audio graph Undertone books, and an in-house renderer, offline or streaming, native and WebAssembly | Carved from the studio; `LogGraph` matches the recorded `fixtures/undertone/graph.json` byte for byte and the engine streams in any block size. Compiles for `wasm32-unknown-unknown`; `undertone-wasm` renders one voice |
 | `undertone-sound` | The song document: model, validation, stable formatting, pitch and pan, and the compiler to timed, engine-neutral events. Optional `ts` feature for TypeScript bindings | Carved from the studio; passes the recorded `fixtures/song/` cases for validation, formatting, pitch and scales, and compilation. No sound is made here |
+| `undertone-wasm` | WebAssembly bindings: OPX import, validation, header and text twin views, register-write list, an OPL player through the `oplon` emulator, and one `undertone-dsp` voice | Working; native tests cover its logic and the demo page drives it in a browser. Not published |
 
 ## Behaviour
 
@@ -41,6 +42,8 @@ OPX behaviour is specified in [docs/OPX.md](docs/OPX.md), which is canonical for
 - `oplstream` (`no_std` core): `Header`, `Decoder` and `Stepper` over the command stream, `validate`, and `print_twin`.
 - `oplstream` with `alloc`: `Writer` and the twin `assemble`.
 - `oplstream` with `std`: `import_imf`, `import_dro`, `import_vgm` and the explicit, reported `retime`.
+- `oplstream` errors (`HeaderError`, `DecodeError`, `ValidationError`) implement `Display` with one readable sentence each.
+- `undertone-wasm` (JavaScript, after `wasm-bindgen --target web`): `detectFormat`, `importToOpx`, `summarize`, `headerTable`, `textTwin`, `registerWrites`, `renderVoice` and the `Player` class (`render`, `ended`, `totalFrames`, `setLooping`). A failure is a thrown string with a readable message. `Player` places tick `n` on output frame `n * sample_rate / grid_hz`, rounded down, and plays OPL2 and OPL3 streams; a PC speaker stream is refused.
 
 ## Settings and defaults
 
